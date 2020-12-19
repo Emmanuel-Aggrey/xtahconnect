@@ -1,0 +1,113 @@
+{% extends 'header1.html' %}
+
+{% load static %}
+{% load humanize %}
+{% load thumbnail %}
+{% block title %}
+
+Your Shopping Cart
+{% endblock %}
+
+
+{% block content %}
+
+<!-- start -->
+<div class="container">
+<div class="row">
+    <div class="col">
+        <div class="order-summary clearfix">
+           
+                <h3 class="title">Cart Review</h3>
+            
+            <table class="shopping-cart-table table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                    {% with product=item.product  %}
+                    <tr>
+                        <td class="thumb">
+                            <a href="{{product.get_absolute_url}}">
+                                
+                                <img src="{{ product.image|thumbnail_url:'avatar' }}" alt="" style="width:fit-content;height:fit-content;">
+                            </a>
+                            <a href="{{product.get_absolute_url}}">{{product.name}}</a>
+
+                        </td>
+
+                        
+                        <td class="price text-center"><strong>GH₵ {{product.price|intcomma}}</strong><br><del
+                                class="font-weak"><small>$40.00</small></del></td>
+
+                        <td class="qty text-center">
+                            <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                {% csrf_token %}
+                                <p> {{ item.update_quantity_form.quantity }}</p>
+                                <p> {{ item.update_quantity_form.update }}</p>
+                                <br>
+                                <input type="submit" value="Update" class="btn">
+                            </form>
+                        </td>
+                        <td class="">
+                            <a class="main-btn icon-btn fa fa-close" href="{% url "cart:cart_remove" product.id %}">❌</a>
+                    </td>
+                    </tr>
+
+                    {% endwith %}
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="empty" colspan="3"></th>
+                        <th>SUBTOTAL</th>
+                        <th colspan="2" class="sub-total">GH₵ {{ cart.get_total_price|intcomma }}</th>
+                    </tr>
+                    <tr>
+                        <th class="empty" colspan="3"></th>
+                        <th>SHIPING</th>
+                        <td colspan="2">Free Shipping</td>
+                    </tr>
+                    <tr>
+                        <th class="empty" colspan="3"></th>
+                        <th>TOTAL</th>
+                        <th colspan="2" class="total">
+                            {% with totail_items=cart|length %}
+                            {% if cart|length > 0 %}
+                            GH₵ {{ cart.get_total_price|intcomma }}
+                            {% else %}
+                            Your cart is empty.
+                            {% endif %}
+                            {% endwith %}
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+           
+        </div>
+        <ul>
+            <li>
+                <a class="btn primary-btn my-4" href="/">Continue Shopping</a>
+                {% if cart.get_total_price > 1 %}
+                <a style="background-color: #4654A3;" href="{% url "orders:checkout" %}" class="btn btn-primary">Checkout</a>
+    
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    
+</div>
+</div>
+
+<style>
+    table{
+        text-align: center;
+    }
+</style>
+
+{% endblock %}

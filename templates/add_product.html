@@ -1,0 +1,68 @@
+{% extends 'header1.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+
+
+<div class="container">
+    
+
+
+<main class="main my-4">
+    <h2 class="text-center">
+        <b style="font-weight: bolder; font-size: larger;">
+            EKOL XTAYCONNECT AFRICA LIMITED
+            Online Store/Website
+        </b>
+    </h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <strong>{{message}}</strong> 
+            </div>
+            
+            <script>
+              $(".alert").alert();
+            </script>
+        {% endfor %}
+    {% endif %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+                <h3 class="text-center font-weight-bold">ADD AN ITEM TO {{product|upper}}</h3>
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {{form|crispy}}
+                       <ul style="text-align: center;">
+                           <li >
+                            <button type="submit" class="btn btn-info">Submit</button>
+            
+                            <a class="btn btn-info" href="{% url 'create_form' %}">Back</a>
+                           </li>
+                       </ul>
+                </form>
+        </div>
+    </div>
+    
+       
+
+</main><!-- End .main -->
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends 'header1.html' %}
+
+
+{% load static %}
+{% load humanize %}
+{% load  crispy_forms_tags %}
+
+<head>
+    {% block head %}
+
+
+    <title>
+
+        {% block title %}
+        Your Shopping Cart| Checkout
+        {% endblock title %}
+    </title>
+
+    {% endblock head %}
+
+
+</head>
+
+{% block content %}
+
+{% if messages %}
+
+{% for message in messages %}
+<div class="alert alert-{{message.tags}}" role="alert">
+    {{message|safe}} <a href="/">Continue Shopping</a>
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="page-headers">Checkout</h4>
+            <form method="post">
+                {% csrf_token %}
+                {{  form|crispy}}<br>
+                {% if cart.get_total_price < 1 %}
+                <p class="text-danger  btn" style="color: #CE7F11;">your carrt is empty  </p>
+                <a class="btn mx-6" style="background-color: #270949;color: white;" href="/">add some </a>
+           
+                {% else %}
+                <input type="submit" class="btn btn-primary" value="Submit order" style="background-color: #4654A3;">
+
+               
+            </form>
+            <div class="col-md-6">
+                <div class="page-headers">
+                    Your Order
+                </div>
+                <ul class="list-group">
+                    {% for item in cart %}
+                    <li class="list-group-item" >
+                        {{ item.quantity }} {{ item.product.name }}
+                        <span> Total GH₵: {{ item.total_price|intcomma }}</span>
+                    </li>
+                    {% endfor %}
+
+                    <li class="list-group-item active" style="background-color: #FA7A62;">Total Cost: GH₵: {{ cart.get_total_price|intcomma }}</li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-6">
+            <div class="shiping-methods">
+                <div class="section-title">
+                    <h4 class="title">Shiping Methods</h4>
+                </div>
+                <div class="input-checkbox">
+                    <input type="radio" name="shipping" id="shipping-1" checked>
+                    <label for="shipping-1">Free Shiping - GH₵ 0.00</label>
+                    <div class="caption">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            <p>
+                    </div>
+                </div>
+                <div class="input-checkbox">
+                    <input type="radio" name="shipping" id="shipping-2">
+                    <label for="shipping-2">Standard - GH₵ 4.00</label>
+                    <div class="caption">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            <p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payments-methods">
+                <div class="section-title">
+                    <h4 class="title">Payments Methods</h4>
+                </div>
+                <div class="input-checkbox">
+                    <input type="radio" name="payments" id="payments-1" checked>
+                    <label for="payments-1">Online payment</label>
+                    <div class="caption">
+                        
+                        <!-- ipay -->
+                            
+                        <!-- ipay -->
+                    </div>
+                </div>
+                <div class="input-checkbox">
+                    <input type="radio" name="payments" id="payments-2">
+                    <label for="payments-2">Pay On Delevery</label>
+                    <div class="caption">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            <p>
+                    </div>
+                </div>
+                <div class="input-checkbox">
+                    <input type="radio" name="payments" id="payments-3">
+                    <label for="payments-3">Paypal System/(Pay In Foreign Currency)</label>
+                    <div class="caption">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            <p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% if user.is_authenticated %}
+    <script> 
+    document.getElementById('id_name').value="{{request.user.get_full_name}}"
+    document.getElementById('id_email').value="{{request.user.email}}"
+    
+    </script>
+{% endif %}
+{% endblock %}

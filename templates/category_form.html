@@ -1,0 +1,93 @@
+{% extends 'header1.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+    
+
+
+<main class="main my-4">
+    <h2 class="text-center">
+        <b style="font-weight: bolder; font-size: larger;">
+            EKOL XTAYCONNECT AFRICA LIMITED
+            Online Store/Website
+        </b>
+    </h2>
+    <div class="form-group float-right">
+        <h4>ADD A NEW CATEGORY</h4>
+        <form method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="submit" class="btn btn-primary pulse" style="background-color:#7B5685">Save</button>
+        </form>
+    </div>
+
+    <div class="container">
+
+
+        <div class="row justify-content-center">
+            {% for object in categories %}
+
+            <div class="col-md-6">
+
+                <ul class="list-unstyled font-weight-bold">
+                    <li>Category: {{object.name}} </li>
+                </ul>
+
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            
+                            <th>SUBCATEGORY</th>
+                            <th>Add New</th>
+                        </tr>
+                    </thead>
+                    <td>
+                        <form action="{% url 'create_subcategory' object.id %}" method="post">
+                            {% csrf_token %}
+                           <div class="form-group">
+                            <!-- <input type="text" name="name" placeholder="enter name" id=""> -->
+                            {{form|crispy}}
+                            <script>
+                                document.getElementById('id_name').placeholder='add new'
+                            </script>
+                            <button type="submit" class="btn btn-primary" style="background-color: rgb(76, 90, 168);">Submit</button>
+                           </div>
+                        </form>
+                  </td>
+
+                    {% for  subcategiry in object.sub_categories.all %}
+
+
+
+                    <tbody>
+                        <tr>
+                            <td> {{subcategiry.name}} </td>
+                            <td> 
+                                <a href="{% url 'add_product' subcategiry.id  %}">add</a>
+                            </td>
+                                
+                        </tr>
+                    
+                        {% endfor %}
+                    </tbody>
+                    
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</main><!-- End .main -->
+
+</div>
+
+
+
+{% endblock %}

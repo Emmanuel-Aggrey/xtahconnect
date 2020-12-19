@@ -1,0 +1,132 @@
+{% extends 'header1.html' %}
+
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static "css/tableexport.css" %}">
+<script type="text/javascript" src="{% static 'jquery/jquery.min.js' %}"></script>
+<script src="{% static "js/xlsx.min.js" %}"></script>
+
+<script src="{% static "js/FileSaver.min.js" %}"></script>
+<script src="{% static "js/tableexport.js" %}"></script>
+
+
+
+<nav class="breadcrumb" style="margin-left:68%;font-size: larger;">
+
+  <a style="background-color: #270949;color: white;" title="Items Bought" data-toggle='tooltip' class="breadcrumb-item btn" href="{% url 'orders:orders' %}">Items Bought</a>
+
+      <a style="background-color: #270949;color: white;" title="" class="breadcrumb-item btn" href="/">Home</a>
+
+</nav>
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+
+      
+       <h4 class="text-center display-4" style="font-weight: bolder;">ITEMS BY {{orders.name|upper}}</h4>
+
+            <section>
+                <form action="#" method="GET">
+                  <!-- <table class="table  table-sm"> -->
+                  <table class="table table-bordered table-hover">
+                    <!-- search -->
+                    <!-- <input class="my-3" type="text" name="q" id="" placeholder="search" value="{{ request.GET.q }}"> -->
+                    <!-- <button type="submit">search</button> -->
+                    <hr>
+                    <ul style="list-style: square;font-weight: bolder;color: rgb(148, 121, 121);">
+                        <li>Phone :{{orders.phone_number}}</li>
+                        <li>Order Number: {{orders.order_number}}</li>
+                        <li>Date Issued: {{orders.date_add}}</li>
+                    </ul>
+                    <thead class="thead-light active">
+                      <tr style="font-size: x-large;">
+                        <th scope="col">#</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Item</th>
+                       <th scope="col">Quantity</th>
+                       <th scope="col">Price</th>
+                        <th>Totol</th>
+                      </tr>
+                    </thead>
+                 
+                    {% for  order in orders.items.all  %}
+                      
+                  
+                    <tbody>
+        
+                      <tr style="font-size: x-large;">
+                        <td id="id" scope="row"> {{forloop.counter}} </td>
+                        <td scope="row"> {{ order.product.category }} </td>
+                        <td scope="row"> {{ order.product.name }} </td>
+                       
+                       <td  scope="row">{{order.quantity}}</td>
+                       <td  scope="row">{{order.product.price}}</td>
+                       <td  scope="row">{{order.get_cost}}</td>
+
+                      </tr>
+        
+                      {% empty %}
+        
+                      <p class="text-info"> Nothing to show currently</p>
+                    </tbody>
+
+                   <caption> {{order.grand_total}}</caption>
+                    {% endfor %}
+                  </table>
+                </form>
+              </section>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+
+  $("table").tableExport({
+
+// Displays table headers (th or td elements) in the <thead>
+headers: true,                    
+
+// Displays table footers (th or td elements) in the <tfoot>    
+footers: true, 
+
+// Filetype(s) for the export
+formats: ["xls", "csv", "txt","xlsx"],           
+
+// Filename for the downloaded file
+fileName: "id",                         
+
+// Style buttons using bootstrap framework  
+bootstrap: false,
+
+// Automatically generates the built-in export buttons for each of the specified formats   
+exportButtons: true,                          
+
+// Position of the caption element relative to table
+position: "top",                   
+
+// (Number, Number[]), Row indices to exclude from the exported file(s)
+ignoreRows: null,                             
+
+// (Number, Number[]), column indices to exclude from the exported file(s)              
+ignoreCols: null,                   
+
+// Removes all leading/trailing newlines, spaces, and tabs from cell text in the exported file(s)     
+trimWhitespace: false,
+
+// (Boolean), set direction of the worksheet to right-to-left (default: false)
+RTL: false, 
+
+// (id, String), sheet name for the exported spreadsheet, (default: 'id') 
+sheetname: "id" 
+
+
+});
+
+</script>
+{% endblock %}

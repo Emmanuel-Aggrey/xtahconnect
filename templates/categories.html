@@ -1,0 +1,173 @@
+{% extends 'header1.html' %}
+{% load thumbnail %}
+
+{% load static %}
+
+{% block content %}
+<main class="main">
+   
+
+
+   
+   
+        <div class="container">
+           
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a style="color: #CE7D0E;" class="nav-link active" id="featured-products-tab" data-toggle="tab" href="#featured-products"
+                        role="tab" aria-controls="featured-products" aria-selected="true"> {{allrelated.name}}  </a>
+                </li>
+                
+              
+            </ul>
+         
+        </div><!-- End .container -->
+        <main class="main">
+   
+     
+           
+            <div class="container">
+                <div class="row">
+                {% for product in products %}
+                <div class="col-md-3">
+                                         
+                    <div class="product-default">
+                        <figure>
+                           
+                            <a href="{{product.get_absolute_url}}">
+                                <img src="{{product.image.url}}">`
+                            </a>
+                        </figure>
+                        <div class="product-details">
+                            <div class="ratings-container">
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:400"></span><!-- End .ratings -->
+                                </div><!-- End .product-ratings -->
+                            </div><!-- End .product-container -->
+                          
+                            <h2 class="product-title">
+                                <a id="product-name" href="{{product.get_absolute_url}}">{{product.name}}</a>
+                                <h6 id="product-id">{{product.id}}</h6>
+                            </h2>
+                            <div class="price-box">
+                                <span class="product-price">GH₵ {{product.price}}</span>
+                            </div><!-- End .price-box -->
+                            <div class="product-action">
+                                <a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a>
+                                <button class="btn-icon btn-add-cart" style="background-color: #4654A3;color: white;" data-toggle="modal"
+                                    data-target="#addCartModal"><i class="icon-bag"></i>ADD TO CART</button>
+                                <a href="{{product.get_absolute_url}}" class="btn-quickview" title="Quick View"><i
+                                        class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div><!-- End .product-details -->
+                    </div>
+                 
+                  
+             
+                  
+            </div>
+                {% endfor %}
+                </div>
+            </div><!-- End .container -->
+        
+     
+
+
+
+
+
+<div class="mb-1"></div><!-- margin -->
+
+<div class="promo-section" style="background-image: url('{% static "images/promo-bg.jpg" %}')">
+    <div class="container">
+        <h3>the perfect gift</h3>
+        <h4>Check off your list with our best gifts</h4>
+        <!-- <a href="#" class="btn btn-primary">Shop Now</a> -->
+    </div><!-- End .container -->
+</div><!-- End .promo-section -->
+
+<div class="partners-container">
+    <div class="container">
+        <div class="partners-carousel owl-carousel owl-theme">
+            <a href="#" class="partner">
+                <img src="{% static 'images/logos/1.png' %}" alt="logo">
+            </a>
+            <a href="#" class="partner">
+                <img src="{% static 'images/logos/2.png' %}" alt="logo">
+            </a>
+            <a href="#" class="partner">
+                <img src="{% static 'images/logos/3.png' %}" alt="logo">
+            </a>
+            <a href="#" class="partner">
+                <img src="{% static 'images/logos/4.png' %}" alt="logo">
+            </a>
+            <a href="#" class="partner">
+                <img src="{% static 'images/logos/5.png' %}" alt="logo">
+            </a>
+            <a href="#" class="partner">
+                <img src="{% static 'images/logos/2.png' %}" alt="logo">
+            </a>
+            <a href="#" class="partner">
+                <img src="{% static 'images/logos/1.png' %}" alt="logo">
+            </a>
+        </div><!-- End .partners-carousel -->
+    </div><!-- End .container -->
+</div><!-- End .partners-container -->
+
+{% if resent_view_products %}
+    
+
+<div class="container">
+    <h3 class="h4 title">Recently viewed items</h3>
+    <div class="row">
+     
+        
+        {% for  resent_view_products in resent_view_products %}
+        
+            
+        <div class="col-6 col-lg-3">
+            <div class="product-column">
+               
+
+                <div class="product-default left-details product-widget mb-3">
+                    <figure>
+                        <a href="{{resent_view_products.get_absolute_url}}">
+                            <img src="{{resent_view_products.image.url}}">
+                        </a>
+                    </figure>
+                    <div class="product-details">
+                        <h2 class="product-title">
+                            <a href="{{resent_view_products.get_absolute_url}}">{{resent_view_products.name}}</a>
+                        </h2>
+                        <div class="ratings-container">
+                            <div class="product-ratings">
+                                <span class="ratings" style="width:100%"></span><!-- End .ratings -->
+                                <span class="tooltiptext tooltip-top"></span>
+                            </div><!-- End .product-ratings -->
+                        </div><!-- End .product-container -->
+                        <div class="price-box">
+                            <span class="product-price">GH₵ {{resent_view_products.price}}</span>
+                        </div><!-- End .price-box -->
+                    </div><!-- End .product-details -->
+                </div>
+                
+               
+            </div><!-- End .product-column -->
+        </div><!-- End .col-lg-3 -->
+        {% endfor %}
+    </div>
+       
+</div>
+{% endif %}
+
+
+<div class="mb-6"></div><!-- margin -->
+</main><!-- End .main -->
+
+<style>
+#product-id{
+    display: none;
+    visibility: hidden;
+}
+</style>
+{% endblock %}
