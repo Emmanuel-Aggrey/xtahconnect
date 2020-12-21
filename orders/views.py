@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 
 from django.conf import settings
-# from uniqstore.settings import EMAIL_HOST_USER
+from solvergeek.settings import EMAIL_HOST_USER
 from  django.contrib import  messages
 from django.core.mail import send_mail
 from django.core.mail import send_mass_mail
@@ -49,11 +49,11 @@ def checkout(request):
                 city = form.cleaned_data.get('city')
                 
                 # subject = 'order placed'
-                # message = ' A customer just sent a request to purchase a product get to admin for more info '
-                # recepient = [customer_email]
-                # # email_from = settings.EMAIL_HOST_USER
-                # send_mail(subject, 
-                # message, EMAIL_HOST_USER, ['aggrey.en@live.com'], fail_silently = False)
+                message = ' A customer just sent a request to purchase a product get to admin for more info '
+                recepient = [customer_email]
+                # email_from = settings.EMAIL_HOST_USER
+                send_mail(message, 
+                'order number is {} search for the items with this order number. Customer Name is {} and phone is :{} from {}'.format(order_number,name,phone_number,city), EMAIL_HOST_USER, ['aggrey.en@live.com',recepient], fail_silently = False)
             
                 # print(first_name,email,address,phone_number,city)
                 
