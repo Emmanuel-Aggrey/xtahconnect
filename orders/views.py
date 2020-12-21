@@ -49,11 +49,11 @@ def checkout(request):
                 city = form.cleaned_data.get('city')
                 
                 # subject = 'order placed'
-                message = ' A customer just sent a request to purchase a product get to admin for more info '
-                recepient = [customer_email]
+                # message = ' A customer just sent a request to purchase a product get to admin for more info '
+                # recepient = [customer_email]
                 # email_from = settings.EMAIL_HOST_USER
-                send_mail(message, 
-                'order number is {} search for the items with this order number. Customer Name is {} and phone is :{} from {}'.format(order_number,name,phone_number,city), EMAIL_HOST_USER, ['aggrey.en@live.com',recepient], fail_silently = False)
+                # send_mail(message, 
+                # 'order number is {} search for the items with this order number. Customer Name is {} and phone is :{} from {}'.format(order_number,name,phone_number,city), EMAIL_HOST_USER, ['aggrey.en@live.com',recepient], fail_silently = False)
             
                 # print(first_name,email,address,phone_number,city)
                 
