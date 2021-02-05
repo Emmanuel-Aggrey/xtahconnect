@@ -3,146 +3,160 @@
 {% block content %}
 
 {% load humanize %}
-
 <script src="{% static 'js/jquery.min.js' %}"></script>
- 
 
-	<!-- section -->
-	<div class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<!--  Product Details -->
-				
-					<div class="col-md-6">
-						<div id="product-main-view">
-							<div class="product-view">
-								{% if product.image.url %}
-								<img src="{{product.image.url}}" alt="">
+<script type="text/javascript" src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
 
-								{% endif %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css"
+	integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA=="
+	crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"
+	integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ=="
+	crossorigin="anonymous"></script>
+
+
+
+<!-- section -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!--  Product Details -->
+
+			<div class="col-md-6">
+				<div id="product-main-view">
+					<div class="col-md-9">
+						<!-- Home Main Image -->
+						<img class="zoom_10" class="img-main img-fluid mb-3" src="{{ product.image.url }}"
+							data-zoom-image="{{ product.image.url }}"/>
+						<!-- Thumbnails -->
+						<div class="row mb-5 thumbs">
+							{% if product.image1 %}
+							<div class="col-md-2">
+								<a href="{{ product.image1.url }}" data-lightbox="product-images">
+									<img src="{{ product.image1.url }}" alt="" class="img-fluid zoom_10">
+								</a>
 							</div>
-							<div class="product-view">
-								{% if product.image1.url %}
-								<img src="{{product.image1.url}}" alt="">
-
-								{% endif %}
+							{% endif %}
+							{% if product.image2 %}
+							<div class="col-md-2">
+								<a href="{{ product.image2.url }}" data-lightbox="product-images">
+									<img src="{{ product.image2.url }}" alt="" class="img-fluid zoom_10">
+								</a>
 							</div>
-							<div class="product-view">
-								{% if product.image2.url %}
-								<img src="{{product.image2.url}}" alt="">
-
-								{% endif %}
+							{% endif %}
+							{% if product.image3 %}
+							<div class="col-md-2">
+								<a href="{{ product.image3.url }}" data-lightbox="product-images">
+									<img src="{{ product.image3.url }}" alt="" class="img-fluid zoom_10">
+								</a>
 							</div>
-							<div class="product-view">
-								{% if product.image3.url %}
-								<img src="{{product.image3.url}}" alt="">
-
-								{% endif %}
+							{% endif %}
+							{% if product.image4 %}
+							<div class="col-md-2">
+								<a href="{{ product.image4.url }}" data-lightbox="product-images">
+									<img src="{{ product.image4.url }}" alt="" class="img-fluid zoom_10">
+								</a>
 							</div>
+							{% endif %}
+							{% if product.image5 %}
+							<div class="col-md-2">
+								<a href="{{ product.image5.url }}" data-lightbox="product-images">
+									<img src="{{ product.image5.url }}" alt="" class="img-fluid zoom_10">
+								</a>
+							</div>
+							{% endif %}
+
 						</div>
-						<div id="product-view">
-							<div class="product-view">
-								{% if product.image1.url %}
-								<img src="{{product.image.url}}" alt="">
 
-								{% endif %}
-							</div>
-							<div class="product-view">
-								{% if product.image1.url %}
-								<img src="{{product.image1.url}}" alt="">
-
-								{% endif %}
-							</div>
-							<div class="product-view">
-								{% if product.image2.url %}
-								<img src="{{product.image2.url}}" alt="">
-
-								{% endif %}
-							</div>
-							<div class="product-view">
-								{% if product.image3.url %}
-								<img src="{{product.image3.url}}" alt="">
-
-								{% endif %}
-							</div>
-						</div>
-                    </div>
-                   
-					<div class="col-md-6">
-						<div class="product-body">
-							<div class="product-label">
-								<span>New</span>
-								<span class="sale">-20%</span>
-							</div>
-							<h2 id="product" class="product-name">{{product.name}}</h2>
-							<h3 class="product-price">GH¢ {{product.price|intcomma}}<del class="product-old-price "> GH¢ 45.00</del></h3>
-							
-							<p><strong>Availability:</strong> {{available|yesno:"No,Yes" }}</p>
-							<!-- <p><strong>Brand:</strong> E-SHOP</p> -->
-							
-						
-							<form id="cart-form" method="POST">
-									
-								<div class="form-group product-btns">
-									<div class="qty-input">
-										<span class="text-uppercase">QTY: </span>
-                                        <input class="input quantity" type="number" id="quantity" required>
-                                        <button id="addtocart" class="primary-btn add-to-cart my-4 mb-4"><i class="fa fa-shopping-cart"></i> Add to Cart</button> <br>
-                                            <b class="btn mb-4 text-light btn-block" style="background-color: #CE7D0E;" id="saved-message"></b>
-                                    </div>  
-                                    
-                                    <p>{{product.description|safe}}</p>
-								 <h3><a id="checkout" href="{% url 'orders:checkout' %}"></a></h3>
-                                </div>
-								</form>
-								</div>
-								<ul id="modelId" style="justify-content: center;">
-									<li>
-										<button  style="background-color: #4654A3;color: white;" class="main-btn"><a class="text-light" href="{% url 'orders:checkout' %}">CONTINEU SHOPPING<i class="fa fa-arrow-circle-right"></i> </a></button>
-									<button  style="background-color: #4654A3;color: white;" class="main-btn"><a class="text-light" href="{% url 'cart:cart_detail' %}">VIEW CART &  CHECKOUT <i class="fa fa-shopping-cart"></i> </a></button>
-								
-									</li>
-								</ul>
-								
-								
-				
-						
-						</div>
-					
-			
-
-				</div>
-				<!-- /Product Details -->
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /section -->
-
-	<!-- section -->
-	<div class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<!-- section title -->
-				<div class="col-md-12">
-					<div class="section-title">
-						<h2 class="title">Picked For You</h2>
 					</div>
-				</div>
-				<!-- section title -->
 
-				{% for popular in popular|slice:'0:8' %}
-				  
-				
-				<!-- Product Single -->
-				<div class="col-md-3 col-sm-6 col-xs-6">
-					<div class="product product-single">
-						<a href="{{popular.get_absolute_url}}">
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="product-body">
+					<div class="product-label">
+						<span>New</span>
+						<!-- <span class="sale">-20%</span> -->
+					</div>
+					<h2 id="product" class="product-name">{{product.name}}</h2>
+					<h3 class="product-price">GH¢ {{product.price|intcomma}}<del class="product-old-price "> GH¢
+							45.00</del></h3>
+
+					<p><strong>Availability:</strong> {{available|yesno:"No,Yes" }}</p>
+					<!-- <p><strong>Brand:</strong> E-SHOP</p> -->
+
+
+					<form id="cart-form" method="POST">
+
+						<div class="form-group product-btns">
+							<div class="qty-input">
+								<span class="text-uppercase">QTY: </span>
+								<input class="input quantity" type="number" id="quantity" required>
+								<button id="addtocart" class="primary-btn add-to-cart my-4 mb-4"><i
+										class="fa fa-shopping-cart"></i> Add to Cart</button> <br>
+								<b class="btn mb-4 text-light btn-block" style="background-color: #CE7D0E;"
+									id="saved-message"></b>
+							</div>
+
+							<p>{{product.description|safe}}</p>
+							<h3><a id="checkout" href="{% url 'orders:checkout' %}"></a></h3>
+						</div>
+					</form>
+				</div>
+				<ul id="modelId" style="justify-content: center;">
+					<li>
+						<button style="background-color: #4654A3;color: white;" class="main-btn"><a class="text-light"
+								href="{% url 'orders:checkout' %}">CONTINEU SHOPPING<i
+									class="fa fa-arrow-circle-right"></i> </a></button>
+						<button style="background-color: #4654A3;color: white;" class="main-btn"><a class="text-light"
+								href="{% url 'cart:cart_detail' %}">VIEW CART & CHECKOUT <i
+									class="fa fa-shopping-cart"></i> </a></button>
+
+					</li>
+				</ul>
+
+
+
+
+			</div>
+
+
+
+		</div>
+		<!-- /Product Details -->
+	</div>
+	<!-- /row -->
+</div>
+<!-- /container -->
+</div>
+<!-- /section -->
+
+<!-- section -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!-- section title -->
+			<div class="col-md-12">
+				<div class="section-title">
+					<h2 class="title">Picked For You</h2>
+				</div>
+			</div>
+			<!-- section title -->
+
+			{% for popular in popular|slice:'0:8' %}
+
+
+			<!-- Product Single -->
+			<div class="col-md-3 col-sm-6 col-xs-6">
+				<div class="product product-single">
+					<a href="{{popular.get_absolute_url}}">
 						<div class="product-thumb">
 							<div class="product-label">
 								<span style="background-color: #4654A3" class="sale text-light">-20%</span>
@@ -151,7 +165,8 @@
 							<img src="{{popular.image.url}}" alt="">
 						</div>
 						<div class="product-body">
-							<h3  class="product-price"> GH¢ {{popular.price}} <del class="product-old-price">$45.00</del></h3>
+							<h3 class="product-price"> GH¢ {{popular.price}} <del class="product-old-price">$45.00</del>
+							</h3>
 							<div class="product-rating">
 								<!-- <i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
@@ -160,111 +175,118 @@
 								<i class="fa fa-star-o empty"></i> -->
 							</div>
 							<h2 class="product-name">{{popular.name}}</h2>
-						</a>
-							<div class="product-btns">
-								<a  style="background-color: #4654A3;color: white;" class="primary-btn btn-block  add-to-cart text-center" href="{{products.get_absolute_url}}">View Details</a>
+					</a>
+					<div class="product-btns">
+						<a style="background-color: #4654A3;color: white;"
+							class="primary-btn btn-block  add-to-cart text-center"
+							href="{{products.get_absolute_url}}">View Details</a>
 
-								<!-- <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+						<!-- <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 								<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 								 -->
-							</div>
-						</div>
 					</div>
 				</div>
-				<!-- /Product Single -->
-				{% endfor %}
-				
 			</div>
-			<!-- /row -->
 		</div>
-		<!-- /container -->
+		<!-- /Product Single -->
+		{% endfor %}
+
 	</div>
-	<!-- /section -->
+	<!-- /row -->
+</div>
+<!-- /container -->
+</div>
+<!-- /section -->
 
 
 
 <style>
-    #id_quantity{
-        height: 35px;
-        width: 80px;
+	#id_quantity {
+		height: 35px;
+		width: 80px;
 	}
-	#id_quantity:hover{
+
+	#id_quantity:hover {
 		width: 100px;
 
 	}
 
-	.main-btn{
+	.main-btn {
 		margin-top: 1em;
-	
-	
+
+
 	}
-	
 </style>
 
 
 
 <script>
-$('#modelId,#saved-message').fadeOut('fast')
+	$('#modelId,#saved-message').fadeOut('fast')
 
 	// add to cart
 
-	$('#cart-form').on('submit',function(e){
-		
+	$('#cart-form').on('submit', function (e) {
+
 		e.preventDefault();
-       
-        product_id = '{{product.id}}'
 
-     
-      url ='/add/'+product_id+'/'
-	
+		product_id = '{{product.id}}'
+
+
+		url = '/add/' + product_id + '/'
+
 		$.ajax({
-			type:'POST',
-			url:url,
-		
-			data:{
-			 
-                product:product_id,
-				quantity:$('#quantity').val(),
-				// update_quantity:$('#update_quantity').val(),
-			 
-				csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-		
-			},
-		beforeSend:function(){
-            $('#saved-message').text('adding to cart...')
-		
+			type: 'POST',
+			url: url,
 
-		},
-		
-			success:function(){
+			data: {
+
+				product: product_id,
+				quantity: $('#quantity').val(),
+				// update_quantity:$('#update_quantity').val(),
+
+				csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+
+			},
+			beforeSend: function () {
+				$('#saved-message').text('adding to cart...')
+
+
+			},
+
+			success: function () {
 				// location.reload()
 				// $('#checkout').fadeIn().text('checkout')
-                old_quantity = "{{cart|length}}"
-                // alert(old_quantity)
+				old_quantity = "{{cart|length}}"
+				// alert(old_quantity)
 				new_quantity = $('.quantity').val()
-                new_value= parseInt(old_quantity)+parseInt(new_quantity)
-                console.log('old_quantity', old_quantity,)
-                $('.cart-count').text(new_value)
-                
+				new_value = parseInt(old_quantity) + parseInt(new_quantity)
+				console.log('old_quantity', old_quantity,)
+				$('.cart-count').text(new_value)
 
-                $('#quantity').val('')
 
-                $('#saved-message').text('added to cart...')
-                $('#modelId,#saved-message').fadeIn('fast')
-                $('#saved-message').fadeOut(4002)
+				$('#quantity').val('')
+
+				$('#saved-message').text('added to cart...')
+				$('#modelId,#saved-message').fadeIn('fast')
+				$('#saved-message').fadeOut(4002)
 				console.log('saved')
 
 			},
-			error:function(){
-			alert('error')
+			error: function () {
+				alert('error')
 			}
-	
+
 		})
 	})
-	
-		</script>
-    
-    
+
+	$('.zoom_10').ezPlus({
+    easing: true
+});
+
+</script>
+
+
+
 
 {% endblock %}

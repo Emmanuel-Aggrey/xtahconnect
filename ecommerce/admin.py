@@ -24,6 +24,16 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['category','is_available']
     list_editable = ['is_available',]
 
+    fieldsets = (
+        (None, {
+            'fields': ('category','name', 'price','image','is_available','description',)
+        }),
+        ('MORE IMAGES', {
+            'classes': ('collapse',),
+            'fields': ('image1', 'image2','image3','image4','image5',),
+        }),
+    )
+
 
 
 

@@ -188,7 +188,7 @@
                                                             {% if navs.is_available %}
                                                             {{navs.name}}
                                                             {% endif %}
-                                                            <span class="tip tip-new"></span></a>
+                                                            <span class=""></span></a>
                                                     </div>
                                                   
                                                     <ul>
@@ -196,7 +196,7 @@
                                                         {% if items.is_available %}
                                                         <li><a href="{% url 'categories' items.id %}">
                                                            
-                                                            {{items.name}}<span class="tip tip-hot"></span></a></li>
+                                                            {{items.name}}<span class=""></span></a></li>
                                                             {% endif %}
                                                                 {% endfor %}
                                                     </ul>
@@ -399,7 +399,7 @@
                        
                     </li>
                     <li>
-                        <a href="#">Pages<span class="tip tip-hot">Hot!</span></a>
+                        <a href="#">Pages<span class="">Hot!</span></a>
                         <ul>
                             <li><a href="{% url 'cart:cart_detail' %}">Shopping Cart</a></li>
                             <li>
@@ -431,7 +431,7 @@
                   <li class=""><a href="{% url 'account_logout' %}">LOGOUT</a>
 
                   {% else  %}
-                  <li><a href="{% url 'account_login' %}">LOGIN<span class="tip tip-hot"></span></a></li>
+                  <li><a href="{% url 'account_login' %}">LOGIN<span class=""></span></a></li>
                   <li><a href="{% url 'account_signup' %}">REGISTER</a></li>
                   {% endif %}
                   <li class=""><a href="{% url 'about' %}">About Us</a></li>

@@ -61,6 +61,11 @@ class Product(Base_Model):
     description =RichTextField(blank=True, null=True)
     is_available = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, editable=False, null=True, blank=True)
+    image1 = models.ImageField(upload_to='images/%Y/%m/%d/',null=True, blank=True)
+    image2 = models.ImageField(upload_to='images/%Y/%m/%d/',null=True, blank=True)
+    image3 = models.ImageField(upload_to='images/%Y/%m/%d/',null=True, blank=True)
+    image4 = models.ImageField(upload_to='images/%Y/%m/%d/',null=True, blank=True)
+    image5 = models.ImageField(upload_to='images/%Y/%m/%d/',null=True, blank=True)
 
     # create a new slug
 
