@@ -53,11 +53,10 @@ INSTALLED_APPS = [
     # 3rd party
     'crispy_forms',
     'easy_thumbnails',
-    'cloudinary_storage',
-    'cloudinary',
+    # 'cloudinary_storage',
+    # 'cloudinary',
     'ckeditor',
     'storages',
-    'django_cleanup.apps.CleanupConfig',
     
     #logins
     'allauth',
@@ -70,6 +69,10 @@ INSTALLED_APPS = [
     'ecommerce',
     'cart',
     'orders',
+
+# must be the last app by documantation
+    'django_cleanup.apps.CleanupConfig',
+
 ]
 
 SITE_ID = 1
