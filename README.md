@@ -1,2 +1,2 @@
-#django-eommerce-website
+#django-ecommerce-website
 # ecom
