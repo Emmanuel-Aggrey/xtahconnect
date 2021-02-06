@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,14 +10,14 @@
     <title>XtayConnect Africa</title>
     <meta name="google-site-verification" content="o1DPArDP5gesmVyQu3YsQBOdZnX2NtUQ0yD_Zx4Js9k" />
 
-    <meta name="keywords" content="XtayConnect AfricaTM"/>
+    <meta name="keywords" content="XtayConnect AfricaTM" />
     <meta name="description" content="EKOL XTAYCONNECT AFRICA LIMITED  Online Store">
     <meta name="author" content="XtayConnect AfricaTM">
     <meta name="copyright" content="XtayConnect AfricaTM">
     <meta name="page-type" content="eCommerce">
     <meta name="audience" content="Everyone">
     <meta name="robots" content="index, follow">
-   
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'images/new_logo.png' %}">
 
@@ -36,20 +37,20 @@
             s.parentNode.insertBefore(wf, s);
         })(document);
     </script>
-	<!--start of Tawk.to Script-->
-<script type="text/javascript">
-	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-	(function(){
-	var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-	s1.async=true;
-	s1.src='https://embed.tawk.to/5e0c744e7e39ea1242a28fec/default';
-	s1.charset='UTF-8';
-	s1.setAttribute('crossorigin','*');
-	s0.parentNode.insertBefore(s1,s0);
-	})();
-	</script>
-	<!--End of Tawk.to Script-->
-	<!-- heder page -->
+    <!--start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5e0c744e7e39ea1242a28fec/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <!-- heder page -->
 
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -59,13 +60,14 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <link rel="stylesheet" type="text/css" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
-    
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <style></style>
-    
+
     {% block head %}
-        
+
     {% endblock head %}
-        
+
 </head>
 
 <body>
@@ -90,12 +92,12 @@
                                 </ul>
                             </div>
                             <!-- End .header-menu -->
-                        <!-- </div> -->
-                        <!-- End .header-dropown -->
-                    <!-- </div> -->
-                    <!-- End .header-right -->
-                <!-- </div> -->
-                <!-- End .container -->
+            <!-- </div> -->
+            <!-- End .header-dropown -->
+            <!-- </div> -->
+            <!-- End .header-right -->
+            <!-- </div> -->
+            <!-- End .container -->
             <!-- </div> -->
             <!-- End .header-top -->
 
@@ -113,12 +115,13 @@
                                         required value="{{request.GET.q}}">
                                     <div class="select-custom" style="font-weight: bolder;">
                                         <select id="cat" name="">
-                                            
+
                                             {% for groups in sub_category %}
-                                           
-                                                <option value=""><a href="{% url 'categories' groups.id %}">{{groups.name}}</a></option>
-                                            
-                                           
+
+                                            <option value=""><a
+                                                    href="{% url 'categories' groups.id %}">{{groups.name}}</a></option>
+
+
                                             {% endfor %}
                                         </select>
                                     </div><!-- End .select-custom -->
@@ -154,14 +157,15 @@
                                         <a href="{% url 'cart:cart_detail' %}">View Cart</a>
                                     </div><!-- End .dropdown-cart-header -->
                                     <div class="dropdown-cart-products">
-                                        
-                                     
+
+
                                     </div><!-- End .cart-product -->
 
-                                 
+
 
                                     <div class="dropdown-cart-action">
-                                        <a style="background-color:#CE7E11;" href="{% url 'orders:checkout' %}" class="btn btn-block">Checkout</a>
+                                        <a style="background-color:#CE7E11;" href="{% url 'orders:checkout' %}"
+                                            class="btn btn-block">Checkout</a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdownmenu-wrapper -->
                             </div><!-- End .dropdown-menu -->
@@ -177,59 +181,60 @@
                             <li class=""><a href="/">Home</a></li>
                             <li>
                                 <a href="#" class="sf-with-ul">Categories</a>
-                                
+
                                 <div class="megamenu megamenu-fixed-width">
-                                    
-                                            <div class="row">
-                                                {% for navs in nav %}
-                                                <div class="col-lg-4 col-md-6">
-                                                   
-                                                    <div class="menu-title">
-                                                        <a class="" href="#">
-                                                            {% if navs.is_available %}
-                                                            {{navs.name}}
-                                                            {% endif %}
-                                                            <span class=""></span></a>
-                                                    </div>
-                                                  
-                                                    <ul>
-                                                        {% for items in navs.sub_categories.all %}
-                                                        {% if items.is_available %}
-                                                        <li><a href="{% url 'categories' items.id %}">
-                                                           
-                                                            {{items.name}}<span class=""></span></a></li>
-                                                            {% endif %}
-                                                                {% endfor %}
-                                                    </ul>
-                                                   
-                                                   
-                                                </div><!-- End .col-lg-6 -->
+
+                                    <div class="row">
+                                        {% for navs in nav %}
+                                        <div class="col-lg-4 col-md-6">
+
+                                            <div class="menu-title">
+                                                <a class="" href="#">
+                                                    {% if navs.is_available %}
+                                                    {{navs.name}}
+                                                    {% endif %}
+                                                    <span class=""></span></a>
+                                            </div>
+
+                                            <ul>
+                                                {% for items in navs.sub_categories.all %}
+                                                {% if items.is_available %}
+                                                <li><a href="{% url 'categories' items.id %}">
+
+                                                        {{items.name}}<span class=""></span></a></li>
+                                                {% endif %}
                                                 {% endfor %}
-                                                
-                                            </div><!-- End .row -->
-                                           
-                                            
+                                            </ul>
+
+
+                                        </div><!-- End .col-lg-6 -->
+                                        {% endfor %}
+
+                                    </div><!-- End .row -->
+
+
                                 </div><!-- End .megamenu -->
-                                
-                                
+
+
                             </li>
                             {% if user.is_staff %}
                             <li>
-                               
+
                                 <a href="#" class="sf-with-ul">Pages</a>
 
                                 <ul>
-                                  
+
                                     <!-- <li><a href="{% url 'about' %}">About Us</a></li> -->
-                                    
+
                                     <!-- <li><a href="#">Contact Us</a></li> -->
                                     <hr>
-                                  
-                                    <li ><a title="orders placed by customers" href="{% url 'orders:orders' %}">Orders Placed</a></li>
 
-                                   
+                                    <li><a title="orders placed by customers" href="{% url 'orders:orders' %}">Orders
+                                            Placed</a></li>
+
+
                                 </ul>
-                               
+
                             </li>
                             {% endif %}
                             {% if user.is_authenticated %}
@@ -278,8 +283,8 @@
                                         <ul class="contact-info">
                                             <li>
                                                 <span class="contact-info-label">Address:</span>
-                                             
-                                                    No. 114, Malm Rd, Swaniker Street – Abelemkpe, Accra
+
+                                                No. 114, Malm Rd, Swaniker Street – Abelemkpe, Accra
                                             </li>
                                             <li>
                                                 <span class="contact-info-label">Phone:</span><a
@@ -288,14 +293,17 @@
                                             </li>
                                             <li>
                                                 <span class="contact-info-label">Phone:</span><a
-                                                href="tel:+233271494929">
-                                                +233271494929</a>
+                                                    href="tel:+233271494929">
+                                                    +233271494929</a>
                                             </li>
                                             <li>
                                                 <span class="contact-info-label">Email:</span> <a
-                                                    href="mailto:xtayconnect.africa@gmail.com ">xtayconnect.africa@gmail.com </a>
-                                                    <a href="mailto:info@xtayconnectafrica.com"> info@xtayconnectafrica.com</a>
-                                                    <a href="mailto:ceo@xtayconnectafrica.com  ">ceo@xtayconnectafrica.com  </a>
+                                                    href="mailto:xtayconnect.africa@gmail.com ">xtayconnect.africa@gmail.com
+                                                </a>
+                                                <a href="mailto:info@xtayconnectafrica.com">
+                                                    info@xtayconnectafrica.com</a>
+                                                <a href="mailto:ceo@xtayconnectafrica.com  ">ceo@xtayconnectafrica.com
+                                                </a>
 
                                             </li>
                                             <li>
@@ -306,14 +314,14 @@
                                                 <span class="contact-info-label">you can also reach us
                                                     <a class="d-lg-none" style="color:#00A751;" href="https://api.whatsapp.com/send?phone=+233206494929&text=hello {% if user.is_authenticated %}{{user}}:
                                                       {% endif %}feel free to talk to us." target="_blank"
-                                                      rel="noopener noreferrer">via whatsapp 
+                                                        rel="noopener noreferrer">via whatsapp
                                                     </a>
                                                     <a class="d-none d-lg-block" style="color:#00A751;"
-                                                      href="https://web.whatsapp.com/send?phone=+233206494929&text=hello {% if user.is_authenticated %}{{user}}: {% endif %}feel free to talk to us."
-                                                      target="_blank" rel="noopener noreferrer">
-                                                     via whatsapp 
-                                       
-                                                  </span>
+                                                        href="https://web.whatsapp.com/send?phone=+233206494929&text=hello {% if user.is_authenticated %}{{user}}: {% endif %}feel free to talk to us."
+                                                        target="_blank" rel="noopener noreferrer">
+                                                        via whatsapp
+
+                                                </span>
                                             </li>
                                         </ul>
                                     </div><!-- End .widget -->
@@ -333,7 +341,7 @@
                                     </div><!-- End .widget -->
                                 </div><!-- End .col-md-3 -->
 
-                              
+
                             </div><!-- End .row -->
                         </div><!-- End .col-lg-8 -->
 
@@ -376,11 +384,11 @@
             <nav class="mobile-nav">
                 <ul class="mobile-menu">
                     <li class=""><a href="/">Home</a></li>
-                   
+
                     <li>
                         <a href="#">Categories</a>
-                       
-                            
+
+
                         <ul>
                             {% for navs in nav %}
                             <li>
@@ -388,36 +396,38 @@
                                 <ul>
                                     {% for items in navs.sub_categories.all %}
                                     <li><a href="{% url 'categories' items.id %}">{{items.name}}</a></li>
-                                  
+
                                     {% endfor %}
                                 </ul>
-                               
+
                             </li>
                             {% endfor %}
-                           
+
                         </ul>
 
-                       
+
                     </li>
                     <li>
                         <a href="#">Pages<span class="">Hot!</span></a>
                         <ul>
                             <li><a href="{% url 'cart:cart_detail' %}">Shopping Cart</a></li>
                             <li>
-                                <a  href="{% url 'orders:checkout' %}">Checkout</a>
+                                <a href="{% url 'orders:checkout' %}">Checkout</a>
                                 <!-- <ul>
                                     <li><a href="#">Checkout Shipping</a></li>
                                     <li><a href="#">Checkout Shipping 2</a></li>
                                     <li><a href="#">Checkout Review</a></li>
                                 </ul> -->
                             </li>
-                           
-                          
+
+
                             <li><a href="#">Forgot Password</a></li>
-                            
+
                             {% if user.is_staff %}
-                            <li><a title="orders placed by customers" href="{% url 'orders:orders' %}">Orders Placed</a></li>
-                            <li title="add a new item"><a class="btn pulse" href="{% url 'create_form' %}">Create</a></li>
+                            <li><a title="orders placed by customers" href="{% url 'orders:orders' %}">Orders Placed</a>
+                            </li>
+                            <li title="add a new item"><a class="btn pulse" href="{% url 'create_form' %}">Create</a>
+                            </li>
                             {% endif %}
 
                         </ul>
@@ -427,15 +437,15 @@
                             <li><a href="#">Blog Post</a></li>
                         </ul>
                     </li> -->
-                   
-                  {% if user.is_authenticated %}
-                  <li class=""><a href="{% url 'account_logout' %}">LOGOUT</a>
 
-                  {% else  %}
-                  <li><a href="{% url 'account_login' %}">LOGIN<span class=""></span></a></li>
-                  <li><a href="{% url 'account_signup' %}">REGISTER</a></li>
-                  {% endif %}
-                  <li class=""><a href="{% url 'about' %}">About Us</a></li>
+                    {% if user.is_authenticated %}
+                    <li class=""><a href="{% url 'account_logout' %}">LOGOUT</a>
+
+                        {% else %}
+                    <li><a href="{% url 'account_login' %}">LOGIN<span class=""></span></a></li>
+                    <li><a href="{% url 'account_signup' %}">REGISTER</a></li>
+                    {% endif %}
+                    <li class=""><a href="{% url 'about' %}">About Us</a></li>
 
                 </ul>
 
@@ -483,28 +493,32 @@
                     <h4 id="productTitle"></h4>
                     <img src="#" id="productImage" width="100" height="100" alt="adding cart image">
                     <div class="btn-actions">
-                        <form  method="post" id="cartform">
+                        <form method="post" id="cartform">
                             {% csrf_token %}
 
                             <div class="form-group product-btns">
                                 <div class="qty-input">
                                     <span class="text-uppercase">QTY: </span>
                                     <input class="input" type="number" id="quantity" required>
-                                    <button id="add-to-cart" class="primary-btn add-to-cart my-4 mb-4" style="background-color: #F95B3D;"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                    <button id="add-to-cart" class="primary-btn add-to-cart my-4 mb-4"
+                                        style="background-color: #F95B3D;"><i class="fa fa-shopping-cart"></i> Add to
+                                        Cart</button>
 
                                 </div>
                             </div>
 
-                
+
                         </form>
-                    </div> 
+                    </div>
 
-                   <div id="">
-                    <button class="btn btn-primary" data-dismiss="modal" style="background-color: #4654A3;">Continue shoping</button>
+                    <div id="">
+                        <button class="btn btn-primary" data-dismiss="modal" style="background-color: #4654A3;">Continue
+                            shoping</button>
 
-                    <a class="btn btn-primary" href="{% url 'orders:checkout' %}" style="background-color: #4654A3;">checkout</a>
+                        <a class="btn btn-primary" href="{% url 'orders:checkout' %}"
+                            style="background-color: #4654A3;">checkout</a>
 
-                   </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -527,7 +541,7 @@
 
 
 <style>
-    #product-id{
+    #product-id {
         display: none;
         visibility: hidden;
     }
@@ -538,61 +552,61 @@
 
 
 
-	$('#cartform').on('submit',function(e){
-        let product_id=$('#product-id').text()
+    $('#cartform').on('submit', function (e) {
+        let product_id = $('#product-id').text()
 
-		e.preventDefault();
-        
-	   
-	  // var department = '{{department.id}}'
-	
-	  // console.log('department = ',department,'url = ',url)
-      url ='/add/'+product_id+'/'
-      
-     
- 
-	
-		$.ajax({
-			type:'POST',
-			url:url,
-		
-			data:{
-			 
-				product:$('#product-id').text(),
-				quantity:$('#quantity').val(),
-				// update_quantity:$('#update_quantity').val(),
-			 
-				csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-		
-			},
-		beforeSend:function(){
-            $(".cart_saved").text('saving to cart...').addClass('alert')
-			// $('#addtocart').text('adding to cart..')
-		},
-		
-			success:function(){
-				$('.cart_saved').text('saved to Cart').fadeOut(5000)
-               
+        e.preventDefault();
+
+
+        // var department = '{{department.id}}'
+
+        // console.log('department = ',department,'url = ',url)
+        url = '/add/' + product_id + '/'
+
+
+
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+
+            data: {
+
+                product: $('#product-id').text(),
+                quantity: $('#quantity').val(),
+                // update_quantity:$('#update_quantity').val(),
+
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+
+            },
+            beforeSend: function () {
+                $(".cart_saved").text('saving to cart...').addClass('alert')
+                // $('#addtocart').text('adding to cart..')
+            },
+
+            success: function () {
+                $('.cart_saved').text('saved to Cart').fadeOut(5000)
+
                 old_quantity = "{{cart|length}}"
                 // alert(old_quantity)
-				new_quantity = $('#quantity').val()
-                new_value= parseInt(old_quantity)+parseInt(new_quantity)
+                new_quantity = $('#quantity').val()
+                new_value = parseInt(old_quantity) + parseInt(new_quantity)
                 console.log('old_quantity', old_quantity,)
                 $('.cart-count').text(new_value)
-		
-               
 
-				quantity = $('#quantity').val('')
-				// $('#modelId').fadeIn()
+
+
+                quantity = $('#quantity').val('')
+                // $('#modelId').fadeIn()
                 console.log('saved')
-                
-               
 
-			},
-			error:function(){
-			alert('error')
-			}
-	
-		})
-	})
+
+
+            },
+            error: function () {
+                alert('error')
+            }
+
+        })
+    })
 </script>
