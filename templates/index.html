@@ -158,9 +158,9 @@
                                 </div><!-- End .price-box -->
                                 <div class="product-action">
                                     <a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a>
-                                    <button  style="background-color: #4654A3;color: white;" class="btn-icon btn-add-cart" data-toggle="modal"
+                                    <button  style="background-color: #4654A3;color: white;" class="btn-icon btn-add-cart" data-toggle="modals"
                                         data-target="#addCartModal"><i class="icon-bag"></i>ADD TO CART</button>
-                                    <a href="{{product.get_absolute_url}}" class="btn-quickview" title="Quick View"><i
+                                    <a href="{{product.get_absolute_url}}" class="btn-quickview hidden-sm" title="Quick View"><i
                                             class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div><!-- End .product-details -->
@@ -263,7 +263,7 @@
         <div class="row">
          
             
-            {% for  resent_view_products in resent_view_products %}
+            {% for  resent_view_products in resent_view_products|slice:'0:8' %}
             
                 
             <div class="col-6 col-lg-3">
