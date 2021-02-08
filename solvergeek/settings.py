@@ -198,21 +198,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-# STATIC_URL = '/static/'
-
-# STATICFILES_DIRS=os.path.join(BASE_DIR,'static'),
-
-# STATIC_ROOT=os.path.join(BASE_DIR,'assets')
 
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static')
-# ]
 
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 600,
+    },
+}
+
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATIC_URL = '/static/'
@@ -220,20 +225,10 @@ USE_TZ = True
 #     os.path.join(BASE_DIR,'static')
 # ]
 
-
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-# MEDIA__ROOT='/media'
-
-# MEDIA_ROOT=os.path.join(BASE_DIR,'media')
-
-
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 THUMBNAIL_ALIASES = {
     '': {
@@ -250,15 +245,6 @@ THUMBNAIL_ALIASES = {
 # }
 
 
-CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
-
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': 600,
-    },
-}
 
 
 # email settings
@@ -276,7 +262,7 @@ EMAIL_HOST_PASSWORD = config('PASSWORD')
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
-# DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+## DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
@@ -289,33 +275,15 @@ AWS_S3_OBJECT_PARAMETERS = {
 AWS_LOCATION=config('AWS_LOCATION')
 
 
-
-STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
-
-
-AWS_S3_CUSTOM_DOMAIN = 'https://nyc3.digitaloceanspaces.com'
-
-STATIC_URL = '{}/{}/'.format(AWS_S3_CUSTOM_DOMAIN, 'static')
-STATIC_ROOT = 'static/'
-
-MEDIA_URL = '{}/{}/'.format(AWS_S3_CUSTOM_DOMAIN, 'media')
-MEDIA_ROOT = 'media/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '/static'),
+]
 
 
 
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
-# STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
-# MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL,'product_images')
-
-
-# MEDIA_URL = '{}/{}/'.format('https://xtayconnectafrica.com/', 'media')
-# MEDIA_ROOT = 'media/'
-
-# STATICFILES_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
-# DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL,'media')

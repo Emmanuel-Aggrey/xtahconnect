@@ -64,6 +64,7 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <style></style>
 
+  
     {% block head %}
 
     {% endblock head %}
@@ -103,6 +104,7 @@
 
             <div class="header-middle">
                 <div class="container">
+                   
                     <div class="header-left">
                         <button class="mobile-menu-toggler" type="button">
                             <i class="icon-menu"></i>
@@ -587,28 +589,40 @@
             },
 
             success: function () {
-                $('.cart_saved').text('saved to Cart').fadeOut(5000)
-
-                old_quantity = "{{cart|length}}"
-                // alert(old_quantity)
-                new_quantity = $('#quantity').val()
-                new_value = parseInt(old_quantity) + parseInt(new_quantity)
-                console.log('old_quantity', old_quantity,)
-                $('.cart-count').text(new_value)
-
-
-
-                quantity = $('#quantity').val('')
                 // $('#modelId').fadeIn()
                 console.log('saved')
 
+                getcartsize()
 
 
             },
             error: function () {
-                alert('error')
+                // alert('error')
+                $('.cart_saved').text('not saved').fadeOut(5000)
+
             }
 
         })
     })
+
+
+
+function getcartsize(){
+    $.ajax({
+        url:'/cart_size/',
+        type:'GET',
+        success:function(res){
+            // console.log('size is ',res.size)
+            $('.cart-count').text(res.size)
+            $('.cart_saved').text('saved to Cart').fadeOut(5000)
+
+            quantity = $('#quantity').val('')
+        },
+        error:function(){
+            $('.cart_saved').text('not saved').fadeOut(5000)
+
+        }
+    })
+}
+  
 </script>

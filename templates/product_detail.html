@@ -5,7 +5,8 @@
 {% load humanize %}
 <script src="{% static 'js/jquery.min.js' %}"></script>
 
-<script type="text/javascript" src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
+<script type="text/javascript"
+	src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css"
@@ -16,8 +17,13 @@
 	integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ=="
 	crossorigin="anonymous"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"
+	integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA=="
+	crossorigin="anonymous"></script>
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css"
+	integrity="sha512-nNlU0WK2QfKsuEmdcTwkeh+lhGs6uyOxuUs+n+0oXSYDok5qy0EI0lt01ZynHq6+p/tbgpZ7P+yUb+r71wqdXg=="
+	crossorigin="anonymous" />
 <!-- section -->
 <div class="section">
 	<!-- container -->
@@ -30,47 +36,50 @@
 				<div id="product-main-view">
 					<div class="col-md-9">
 						<!-- Home Main Image -->
-						<img class="zoom_10" class="img-main img-fluid mb-3" src="{{ product.image.url }}"
-							data-zoom-image="{{ product.image.url }}"/>
+						<img class="zoom_10" id="zoombg" class="img-main img-fluid mb-3" src="{{ product.image.url }}"
+							data-zoom-image="{{ product.image.url }}" />
 						<!-- Thumbnails -->
-						<div class="row mb-5 thumbs">
+
+						<p class="imglist">
 							{% if product.image1 %}
-							<div class="col-md-2">
-								<a href="{{ product.image1.url }}" data-lightbox="product-images">
-									<img src="{{ product.image1.url }}" alt="" class="img-fluid">
-								</a>
-							</div>
+							<!-- fancybox start -->
+
+
+							<a class="col-md-2" href="{{product.image1.url}}"
+								data-fancybox="images">
+								<img class="col-md-4" src="{{product.image1.url}}" />
+							</a>
 							{% endif %}
 							{% if product.image2 %}
-							<div class="col-md-2">
-								<a href="{{ product.image2.url }}" data-lightbox="product-images">
-									<img src="{{ product.image2.url }}" alt="" class="img-fluid">
-								</a>
-							</div>
+							<a class="col-md-2" href="{{product.image2.url}}"
+								data-fancybox="images">
+								<img class="col-md-4" src="{{product.image2.url}}" />
+							</a>
 							{% endif %}
 							{% if product.image3 %}
-							<div class="col-md-2">
-								<a href="{{ product.image3.url }}" data-lightbox="product-images">
-									<img src="{{ product.image3.url }}" alt="" class="img-fluid">
-								</a>
-							</div>
+							<a class="col-md-2" href="{{product.image3.url}}"
+								data-fancybox="images">
+								<img class="col-md-4" src="{{product.image3.url}}" />
+							</a>
 							{% endif %}
 							{% if product.image4 %}
-							<div class="col-md-2">
-								<a href="{{ product.image4.url }}" data-lightbox="product-images">
-									<img src="{{ product.image4.url }}" alt="" class="img-fluid">
-								</a>
-							</div>
+							<a class="col-md-2" href="{{product.image4.url}}"
+								data-fancybox="images">
+								<img class="col-md-4" src="{{product.image4.url}}" />
+							</a>
 							{% endif %}
 							{% if product.image5 %}
-							<div class="col-md-2">
-								<a href="{{ product.image5.url }}" data-lightbox="product-images">
-									<img src="{{ product.image5.url }}" alt="" class="img-fluid">
-								</a>
-							</div>
-							{% endif %}
+							<a class="col-md-2" href="{{product.image5.url}}"
+								data-fancybox="images">
+								<img class="col-md-4" src="{{product.image5.url}}" />
+							</a>
 
-						</div>
+
+							{% endif %}
+						</p>
+
+						<!-- fancybox end -->
+
 
 					</div>
 
@@ -99,8 +108,7 @@
 								<input class="input quantity" type="number" id="quantity" required>
 								<button id="addtocart" class="primary-btn add-to-cart my-4 mb-4"><i
 										class="fa fa-shopping-cart"></i> Add to Cart</button> <br>
-								<b class="btn mb-4 text-light btn-block" style="background-color: #CE7D0E;"
-									id="saved-message"></b>
+
 							</div>
 
 							<p>{{product.description|safe}}</p>
@@ -108,14 +116,14 @@
 						</div>
 					</form>
 				</div>
-				<ul id="modelId" style="justify-content: center;">
+				<ul id="modelId" style="justify-content: center;" class="mx-4">
 					<li>
 						<button style="background-color: #4654A3;color: white;" class="main-btn"><a class="text-light"
 								href="{% url 'orders:checkout' %}">CONTINEU SHOPPING<i
 									class="fa fa-arrow-circle-right"></i> </a></button>
 						<button style="background-color: #4654A3;color: white;" class="main-btn"><a class="text-light"
-								href="{% url 'cart:cart_detail' %}">VIEW CART & CHECKOUT <i
-									class="fa fa-shopping-cart"></i> </a></button>
+								href="{% url 'cart:cart_detail' %}">VIEW CART <i class="fa fa-shopping-cart"></i>
+							</a></button>
 
 					</li>
 				</ul>
@@ -222,7 +230,7 @@
 
 
 <script>
-	$('#modelId,#saved-message').fadeOut('fast')
+	$('#modelId').fadeOut('fast')
 
 	// add to cart
 
@@ -255,23 +263,10 @@
 			},
 
 			success: function () {
-				// location.reload()
-				// $('#checkout').fadeIn().text('checkout')
-				old_quantity = "{{cart|length}}"
-				// alert(old_quantity)
-				new_quantity = $('.quantity').val()
-				new_value = parseInt(old_quantity) + parseInt(new_quantity)
-				console.log('old_quantity', old_quantity,)
-				$('.cart-count').text(new_value)
 
+				getcartsize()
 
-				$('#quantity').val('')
-
-				$('#saved-message').text('added to cart...')
-				$('#modelId,#saved-message').fadeIn('fast')
-				$('#saved-message').fadeOut(4002)
-				console.log('saved')
-
+				$('#modelId').fadeIn('fast')
 			},
 			error: function () {
 				alert('error')
@@ -280,9 +275,47 @@
 		})
 	})
 
+
+
 	$('.zoom_10').ezPlus({
-    easing: true
-});
+		easing: true
+	});
+
+
+	function getcartsize() {
+		$.ajax({
+			url: '/cart_size/',
+			type: 'GET',
+			success: function (res) {
+				// console.log('size is ',res.size)
+				$('.cart-count').text(res.size)
+				$('.cart_saved').text('saved to Cart').fadeOut(5000)
+
+				quantity = $('#quantity').val('')
+			},
+			error: function () {
+				$('.cart_saved').text('not saved').fadeOut(5000)
+
+			}
+		})
+
+	}
+
+
+	$('[data-fancybox="images"]').fancybox({
+		thumbs: {
+			autoStart: true
+		}
+	})
+
+
+	$(window).resize(function() {
+    if ($(window).width() < 480) {
+        $('#zoombg').removeClass('zoom_10');
+    } else {
+        $("#zoombg").addClass('zoom_10');
+    }
+}).resize(); // trigger resize event initially
 
 </script>
 
