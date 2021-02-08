@@ -5,6 +5,10 @@
 {% load humanize %}
 <script src="{% static 'js/jquery.min.js' %}"></script>
 
+
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
+
+
 <script type="text/javascript"
 	src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
 
@@ -34,56 +38,53 @@
 
 			<div class="col-md-6">
 				<div id="product-main-view">
-					<div class="col-md-9">
-						<!-- Home Main Image -->
-						<img class="zoom_10" id="zoombg" class="img-main img-fluid mb-3" src="{{ product.image.url }}"
-							data-zoom-image="{{ product.image.url }}" />
-						<!-- Thumbnails -->
 
-						<p class="imglist">
-							{% if product.image1 %}
-							<!-- fancybox start -->
+					<!-- Home Main Image -->
+					<img class="zoom_10" id="zoombg" class="img-fluid mb-3 img-responsive" src="{{ product.image.url }}" style=""
+						data-zoom-image="{{ product.image.url }}" />
+						
+					<!-- Thumbnails -->
+					{% if product.image1 %}
 
+					<a href="{{product.image1.url}}" data-fancybox="images-preview"
+					data-width="1500" data-height="1000" data-thumbs='{"autoStart":true}'>
+					<img src="{{product.image1.url}}" />
 
-							<a class="col-md-2" href="{{product.image1.url}}"
-								data-fancybox="images">
-								<img class="col-md-4" src="{{product.image1.url}}" />
-							</a>
-							{% endif %}
-							{% if product.image2 %}
-							<a class="col-md-2" href="{{product.image2.url}}"
-								data-fancybox="images">
-								<img class="col-md-4" src="{{product.image2.url}}" />
-							</a>
-							{% endif %}
-							{% if product.image3 %}
-							<a class="col-md-2" href="{{product.image3.url}}"
-								data-fancybox="images">
-								<img class="col-md-4" src="{{product.image3.url}}" />
-							</a>
-							{% endif %}
-							{% if product.image4 %}
-							<a class="col-md-2" href="{{product.image4.url}}"
-								data-fancybox="images">
-								<img class="col-md-4" src="{{product.image4.url}}" />
-							</a>
-							{% endif %}
-							{% if product.image5 %}
-							<a class="col-md-2" href="{{product.image5.url}}"
-								data-fancybox="images">
-								<img class="col-md-4" src="{{product.image5.url}}" />
-							</a>
+					<div>
+					{% endif %}
+					<div style="display: none;">
+						
+						{% if product.image2 %}
+						<a href="{{product.image2.url}}" data-fancybox="images-preview"
+						data-width="1500" data-height="1000"
+						data-thumb="{{product.image2.url}}"></a>
 
-
-							{% endif %}
-						</p>
-
-						<!-- fancybox end -->
-
-
+						{% endif %}
+							
+						{% if product.image3 %}
+						<a href="{{product.image3.url}}" data-fancybox="images-preview"
+						data-width="1500" data-height="1000"
+						data-thumb="{{product.image3.url}}"></a>
+					
+						{% endif %}
+							 
+						{% if product.image4 %}
+						<a href="{{product.image4.url}}" data-fancybox="images-preview"
+						data-width="1500" data-height="1000"
+						data-thumb="{{product.image4.url}}"></a>
+				   
+						{% endif %}
+							  
+						{% if product.image5 %}
+						<a href="{{product.image5.url}}" data-fancybox="images-preview"
+						data-width="1500" data-height="1000"
+						data-thumb="{{product.image5.url}}"></a>
+				  
+						{% endif %}
 					</div>
 
 				</div>
+			</div>
 			</div>
 
 			<div class="col-md-6">
@@ -306,20 +307,27 @@
 		thumbs: {
 			autoStart: true
 		}
+
 	})
 
 
-	$(window).resize(function() {
-    if ($(window).width() < 480) {
-        $('#zoombg').removeClass('zoom_10');
-    } else {
-        $("#zoombg").addClass('zoom_10');
-    }
-}).resize(); // trigger resize event initially
+
+	$(window).resize(function () {
+		if ($(window).width() < 480) {
+			$('#zoombg').removeClass('zoom_10');
+		} else {
+			$("#zoombg").addClass('zoom_10');
+		}
+	}).resize(); // trigger resize event initially
 
 </script>
 
 
 
+<style>
 
+
+
+
+</style>
 {% endblock %}
