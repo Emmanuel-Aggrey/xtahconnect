@@ -27,7 +27,9 @@
                 <div class="product-details-left">
                     <div class="product-details-images slider-navigation-1">
                         <div class="lg-image">
-                            <img src="{{product.image.url}}" alt="product image">
+                            <!-- <img id="zoom_10" src="{{product.image.url}}" alt="product image"> -->
+							<img id="zoom_01" src="{{product.image.url}}" alt="product image"
+     						data-zoom-image="{{product.image.url}}"/>
                         </div>
 						{% if product.image1 %}	
                         <div class="lg-image">
@@ -91,14 +93,16 @@
                         <h2 style="color:#270E46">{{product.name}}</h2>
                         <span class="product-details-ref">available: {{product.is_available|yesno:'YES,NO'}}</span>
                         
-                        <div class="price-box pt-20">
-                            <span class="new-price new-price-2">GH¢: {{product.price}}</span>
+                        <div class="price-box pt-20 display-4" style="color:#D7782F">
+                            <span class="new-price new-price-2 display-4" style="font-size:larger;font-weight:bold">GH¢: {{product.price}}</span>
                         </div>
                         <div class="countersection">
                             <!-- <div class="li-countdown product-sale-countdown"></div> -->
                         </div>
                        
-                       
+                        <div id="alert" class="alert alert-success text-center" role="alert" style="background-color: #270E46;color: white" width="50%">
+                            saved to cart
+                        </div>
                         <div class="single-add-to-cart">
                             <form id="cart-form" action="#" class="cart-quantity">
                                 <div class="quantity">
@@ -110,6 +114,17 @@
                                 </div>
                                 <button class="btn btn-lg" style="color:white;background-color:#270E46" type="submit">Add to cart</button>
                             </form>
+                              
+                            <ul >
+                                
+                                <li>
+                                    <a id="view_cart" style="background-color: #3D589E;color: white;" class="btn btn-lg" href="{% url 'cart:cart_detail' %}">view cart</a>
+                                </li>
+                                <li>
+                                    <a id="checkout"  style="background-color: #3D589E;color: white;" class="btn btn-md" href="{% url 'orders:checkout' %}">check out</a>
+                                </li>
+                            </ul>
+							
                         </div>
 						<div class="product-desc">
                             <p>
@@ -506,9 +521,12 @@
 
 
 <script>
-	$('#modelId').fadeOut('fast')
 
 	// add to cart
+
+    $("#view_cart").fadeOut()
+    $("#checkout").fadeOut()
+    $("#alert").fadeOut()
 
 	$('#cart-form').on('submit', function (e) {
 
@@ -533,7 +551,7 @@
 
 			},
 			beforeSend: function () {
-				$('#saved-message').text('adding to cart...')
+				$('#alert').text('adding to cart...') 
 
 
 			},
@@ -542,10 +560,17 @@
 
 				getcartsize()
 
-				$('#modelId').fadeIn('fast')
+				$('#alert').fadeIn('fast').text('saved to cart').fadeOut(5000)
+                
+                $('#view_cart').fadeIn('fast').fadeOut(30000)
+                $('#checkout').fadeIn('fast').fadeOut(30000)
+
+                // $('#').text('saved to cart').fadeIn('fast')
+
 			},
 			error: function () {
-				alert('error')
+                $('#alert').fadeIn('fast').text('not saved').fadeOut(5000)
+
 			}
 
 		})
@@ -553,9 +578,6 @@
 
 
 
-	$('.zoom_10').ezPlus({
-		easing: true
-	});
 
 
 	function getcartsize() {
@@ -568,6 +590,7 @@
 				$('.cart_saved').text('saved to Cart').fadeOut(5000)
 
 				quantity = $('#quantity').val('')
+
 			},
 			error: function () {
 				$('.cart_saved').text('not saved').fadeOut(5000)
@@ -578,22 +601,15 @@
 	}
 
 
-	$('[data-fancybox="images"]').fancybox({
-		thumbs: {
-			autoStart: true
-		}
-
-	})
 
 
-
-	$(window).resize(function () {
-		if ($(window).width() < 480) {
-			$('#zoombg').removeClass('zoom_10');
-		} else {
-			$("#zoombg").addClass('zoom_10');
-		}
-	}).resize(); // trigger resize event initially
+	// $(window).resize(function () {
+	// 	if ($(window).width() < 480) {
+	// 		$('#zoombg').removeClass('zoom_10');
+	// 	} else {
+	// 		$("#zoombg").addClass('zoom_10');
+	// 	}
+	// }).resize(); // trigger resize event initially
 
 </script>
 
@@ -602,12 +618,15 @@
 <style>
 
 
-
+li{
+    display: inline
+}
 
 </style>
 
 
 <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+
 <script src="{% static 'js/popper.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/jquery.meanmenu.min.js' %}"></script>
