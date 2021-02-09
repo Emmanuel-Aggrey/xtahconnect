@@ -35,3 +35,7 @@ def cart_detail(request):
 def cart_size(request):
     cart = Cart(request)
     return JsonResponse({'size': len(cart)})
+
+def detail(request):
+    
+    return render(request,'detail.html')
