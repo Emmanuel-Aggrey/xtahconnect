@@ -142,7 +142,7 @@
                         </div>
                         <div class="product-desc">
                             <p>
-                                <span>{{product.description}}
+                                <span>{{product.description|safe}}
                                 </span>
                             </p>
                         </div>
@@ -483,7 +483,7 @@
         display: inline
     }
 </style>
-<link rel="stylesheet" href="{% static 'css/styledetail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styledetail.css' %}">
 
 <!-- 
 <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
