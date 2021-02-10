@@ -416,8 +416,7 @@
 
             },
             beforeSend: function () {
-                // $('#alert').text('adding to cart...') 
-
+                $('#alertnew').text('adding to cart...') 
 
             },
 
@@ -429,9 +428,11 @@
 
                 // $('#').text('saved to cart').fadeIn('fast')
 
+
             },
             error: function () {
-                $('#alertnew').fadeIn('fast').text('error').fadeOut(5000)
+                $('#alertnew').fadeIn('fast').text(' not saved error').fadeOut(5000)
+
 
 
             }
@@ -483,7 +484,6 @@
         display: inline
     }
 </style>
-    <link rel="stylesheet" href="{% static 'css/styledetail.css' %}">
 
 <!-- 
 <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>

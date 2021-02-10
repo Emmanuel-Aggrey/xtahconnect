@@ -118,7 +118,7 @@
             <div class="tab-pane fade show active" id="featured-products" role="tabpanel"
                 aria-labelledby="featured-products-tab">
                 <div class="container">
-                    <div class="tab-products-carousel owl-carousel owl-theme">
+                    <div class="tab-products-carousel owl-carousel owl-theme owlspace">
 
                         {% for product in groupings.products.all %}
 
@@ -145,9 +145,9 @@
                                 </div><!-- End .price-box -->
                                     <form class="productname" method="post" id={{product.id}}>
 
-                                    <button class="btn btn-md" style="background-color: #4654A3;color: white;"
+                                    <button class="btn btn-md" id="{{product.id}}btn" style="background-color: #4654A3;color: white;"
                                         class=""><i class="icon-bag"></i>ADD TO
-                                        CART</button>
+                                        CART </button>
                                     </form>
                                 
                             </div><!-- End .product-details -->
@@ -303,6 +303,15 @@
     body {
         background-color: #4654A3;
     }
+    .tab-content{
+        padding: 0rem !important;
+    }
+    .owlspace{
+        height: 330px;
+    }
+  .product-details{
+      padding-bottom: 1em;
+  }
 </style>
 
 
@@ -335,8 +344,9 @@ $("#alertnew").fadeOut('fast')
 
             },
             beforeSend: function () {
-                // $('#alert').text('adding to cart...') 
-
+                $('#alertnew').text('adding to cart...') 
+            // document.getElementById(product_id+"btn").textContent='addind to cart'
+            $('#'+product_id+'btn').text('adding to cart..');
 
             },
 
@@ -347,10 +357,16 @@ $("#alertnew").fadeOut('fast')
                 $('#alertnew').fadeIn('fast').text('saved to cart').fadeOut(5000)
 
                 // $('#').text('saved to cart').fadeIn('fast')
+                $('#'+product_id+'btn').text('saved to cart').slideUp( 300 ).delay( 800 ).fadeIn( 400 );
+                $('#'+product_id+'btn').text('Add To Cart')
 
             },
             error: function () {
                 $('#alertnew').fadeIn('fast').text('error not saved').fadeOut(5000)
+                $('#'+product_id+'btn').text('error not saved').slideUp( 300 ).delay( 800 ).fadeIn( 400 );
+                $('#'+product_id+'btn').text('Add To Cart')
+
+
 
 
             }
