@@ -3,19 +3,28 @@
 {% block content %}
 
 {% load humanize %}
-<script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+<!-- <script src="{% static 'js/jquery.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
 
 <link rel="stylesheet" href="{% static 'css/material-design-iconic-font.min.css' %}">
-<link rel="stylesheet" href="{% static '' %}">
+<link rel="stylesheet" href="{% static 'css/meanmenu.css' %}">
 <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
 
 <link rel="stylesheet" href="{% static 'css/slick.css' %}">
 <link rel="stylesheet" href="{% static 'css/animate.css' %}">
 <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/venobox.css' %}">
+<link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+<link rel="stylesheet" href="{% static 'css/helper.css' %}">
+<link rel="stylesheet" href="{% static 'css/fontawesome-stars.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/styledetail.css' %}">
 <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 <link rel="stylesheet" href="{% static 'js/modernizr-2.8.3.min.js' %}">
+
+ -->
 
 <!-- Li's Breadcrumb Area End Here -->
 <!-- content-wraper start -->
@@ -28,60 +37,60 @@
                     <div class="product-details-images slider-navigation-1">
                         <div class="lg-image">
                             <!-- <img id="zoom_10" src="{{product.image.url}}" alt="product image"> -->
-							<img id="zoom_01" src="{{product.image.url}}" alt="product image"
-     						data-zoom-image="{{product.image.url}}"/>
+                            <img id="zoom_01" src="{{product.image.url}}" alt="{{product.image.url}}"
+                                data-zoom-image="{{product.image.url}}" />
                         </div>
-						{% if product.image1 %}	
+                        {% if product.image1 %}
                         <div class="lg-image">
-                            <img src="{{product.image1.url}}" alt="product image">
+                            <img src="{{product.image1.url}}" alt="{{product.image1.url}}">
                         </div>
-						{% endif %}
-						{% if product.image2 %}	
+                        {% endif %}
+                        {% if product.image2 %}
                         <div class="lg-image">
-                            <img src="{{product.image2.url}}" alt="product image">
+                            <img src="{{product.image2.url}}" alt="{{product.image2.url}}">
                         </div>
-						{% endif %}
-						{% if product.image3 %}	
+                        {% endif %}
+                        {% if product.image3 %}
 
                         <div class="lg-image">
-                            <img src="{{product.image3.url}}" alt="product image">
+                            <img src="{{product.image3.url}}" alt="{{product.image3.url}}">
                         </div>
-						{% endif %}
-						{% if product.image4 %}	
+                        {% endif %}
+                        {% if product.image4 %}
                         <div class="lg-image">
-                            <img src="{{product.image4.url}}" alt="product image">
+                            <img src="{{product.image4.url}}" alt="{{product.image4.url}}">
                         </div>
-						{% endif %}
-						{% if product.image5 %}	
+                        {% endif %}
+                        {% if product.image5 %}
                         <div class="lg-image">
-                            <img src="{{product.image5.url}}" alt="product image">
+                            <img src="{{product.image5.url}}" alt="{{product.image5.url}}">
                         </div>
-						{% endif %}
+                        {% endif %}
                     </div>
                     <div class="product-details-thumbs slider-thumbs-1">
-						{% if product.image1 %}	
-                        <div class="sm-image"><img src="{{product.image1.url}}" alt="product image thumb">
+                        {% if product.image1 %}
+                        <div class="sm-image"><img src="{{product.image1.url}}" alt="{{product.image1.url}}">
                         </div>
-						{% endif %}
-						{% if product.image2 %}	
+                        {% endif %}
+                        {% if product.image2 %}
 
-                        <div class="sm-image"><img src="{{product.image2.url}}" alt="product image thumb">
+                        <div class="sm-image"><img src="{{product.image2.url}}" alt="{{product.image2.url}}">
                         </div>
-						{% endif %}
-						{% if product.image3 %}	
-                        <div class="sm-image"><img src="{{product.image3.url}}" alt="product image thumb">
+                        {% endif %}
+                        {% if product.image3 %}
+                        <div class="sm-image"><img src="{{product.image3.url}}" alt="{{product.image3.url}}">
                         </div>
-						{% endif %}
+                        {% endif %}
 
-						{% if product.image4 %}	
-                        <div class="sm-image"><img src="{{product.image4.url}}" alt="product image thumb">
+                        {% if product.image4 %}
+                        <div class="sm-image"><img src="{{product.image4.url}}" alt="{{product.image4.url}}">
                         </div>
-						{% endif %}
-						{% if product.image5 %}
-                        <div class="sm-image"><img src="{{product.image5.url}}" alt="product image thumb">
+                        {% endif %}
+                        {% if product.image5 %}
+                        <div class="sm-image"><img src="{{product.image5.url}}" alt="{{product.image5.url}}">
                         </div>
-						{% endif %}
-						
+                        {% endif %}
+
                     </div>
                 </div>
                 <!--// Product Details Left -->
@@ -92,15 +101,17 @@
                     <div>
                         <h2 style="color:#270E46">{{product.name}}</h2>
                         <span class="product-details-ref">available: {{product.is_available|yesno:'YES,NO'}}</span>
-                        
+
                         <div class="price-box pt-20 display-4" style="color:#D7782F">
-                            <span class="new-price new-price-2 display-4" style="font-size:larger;font-weight:bold">GH¢: {{product.price}}</span>
+                            <span class="new-price new-price-2 display-4" style="font-size:larger;font-weight:bold">GH¢:
+                                {{product.price}}</span>
                         </div>
                         <div class="countersection">
                             <!-- <div class="li-countdown product-sale-countdown"></div> -->
                         </div>
-                       
-                        <div id="alert" class="alert alert-success text-center" role="alert" style="background-color: #270E46;color: white" width="50%">
+
+                        <div id="alert" class="alert alert-success text-center" role="alert"
+                            style="background-color: #270E46;color: white" width="50%">
                             saved to cart
                         </div>
                         <div class="single-add-to-cart">
@@ -109,24 +120,27 @@
                                     <label>Quantity</label>
                                     <div class="cart-plus-minus">
                                         <input class="" value="1" type="number" id="quantity">
-                                      
+
                                     </div>
                                 </div>
-                                <button class="btn btn-lg" style="color:white;background-color:#270E46" type="submit">Add to cart</button>
+                                <button id="submit" class="btn btn-lg" style="color:white;background-color:#270E46"
+                                    type="submit">Add To Cart</button>
                             </form>
-                              
-                            <ul >
-                                
+
+                            <ul>
+
                                 <li>
-                                    <a id="view_cart" style="background-color: #3D589E;color: white;" class="btn btn-lg" href="{% url 'cart:cart_detail' %}">view cart</a>
+                                    <a id="view_cart" style="background-color: #3D589E;color: white;" class="btn btn-lg"
+                                        href="{% url 'cart:cart_detail' %}">view cart</a>
                                 </li>
                                 <li>
-                                    <a id="checkout"  style="background-color: #3D589E;color: white;" class="btn btn-md" href="{% url 'orders:checkout' %}">check out</a>
+                                    <a id="checkout" style="background-color: #3D589E;color: white;" class="btn btn-md"
+                                        href="{% url 'orders:checkout' %}">check out</a>
                                 </li>
                             </ul>
-							
+
                         </div>
-						<div class="product-desc">
+                        <div class="product-desc">
                             <p>
                                 <span>{{product.description}}
                                 </span>
@@ -137,7 +151,7 @@
             </div>
 
 
-			
+
         </div>
     </div>
 </div>
@@ -147,25 +161,29 @@
 
 
 <!-- start of section -->
-{% comment %}
 <section class="product-area li-laptop-product pt-30 pb-50">
     <div class="container">
         <div class="row">
             <!-- Begin Li's Section Area -->
             <div class="col-lg-12">
+
                 <div class="li-section-title">
                     <h2>
-                        <span>15 other products in the same category:</span>
+                        <span class="text-capitalize" style="color:#4654A3">products in the same category:</span>
                     </h2>
                 </div>
                 <div class="row">
+                    <h4 class="text-center" id="alertnew" class="alert alert-success"></h4>
+
                     <div class="product-active owl-carousel">
+                        {% for products in related_products|slice:'0:8' %}
+
+
                         <div class="col-lg-12">
-                            <!-- single-product-wrap start -->
                             <div class="single-product-wrap">
                                 <div class="product-image">
-                                    <a href="single-product.html">
-                                        <img src="{% static 'large-size/1.jpg' %}" alt="Li's Product Image">
+                                    <a href="{{products.get_absolute_url}}">
+                                        <img src="{{products.image.url}}" alt="{{products.image.url}}">
                                     </a>
                                     <span class="sticker">New</span>
                                 </div>
@@ -173,7 +191,7 @@
                                     <div class="product_desc_info">
                                         <div class="product-review">
                                             <h5 class="manufacturer">
-                                                <a href="product-details.html">Graphic Corner</a>
+                                                <!-- <a href="#">Graphic Corner</a> -->
                                             </h5>
                                             <div class="rating-box">
                                                 <ul class="rating">
@@ -185,314 +203,105 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a>
-                                        </h4>
+                                        <h4 class="product_name">{{products.name }}</h4>
                                         <div class="price-box">
-                                            <span class="new-price">$46.80</span>
+                                            <h5 class="new-price display-4" style="color:#D7782F;font-weight:bold">GH¢
+                                                {{products.price}}</h5> <br>
                                         </div>
                                     </div>
-                                    
-                                </div>
-                            </div>
-                            <!-- single-product-wrap end -->
-                        </div>
-                        <div class="col-lg-12">
-                            <!-- single-product-wrap start -->
-                            <div class="single-product-wrap">
-                                <div class="product-image">
-                                    <a href="single-product.html">
-                                        <img src="{% static 'small-size/6.jpg' %}" alt="Li's Product Image">
-                                    </a>
-                                    <span class="sticker">New</span>
-                                </div>
-                                <div class="product_desc">
-                                    <div class="product_desc_info">
-                                        <div class="product-review">
-                                            <h5 class="manufacturer">
-                                                <a href="product-details.html">Studio Design</a>
-                                            </h5>
-                                            <div class="rating-box">
-                                                <ul class="rating">
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                      
-                                        <div class="price-box">
-                                            <span class="new-price new-price-2">$71.80</span>
-                                            <span class="old-price">$77.22</span>
-                                            <span class="discount-percentage">-7%</span>
-                                        </div>
-                                    </div>
+
                                     <div class="add-actions">
-                                        <ul class="add-actions-link">
-                                            <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                            <li><a href="#" title="quick view" class="quick-view-btn"
-                                                    data-toggle="modal" data-target="#exampleModalCenter"><i
-                                                        class="fa fa-eye"></i></a></li>
-                                            <li><a class="links-details" href="wishlist.html"><i
-                                                        class="fa fa-heart-o"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single-product-wrap end -->
-                        </div>
-                        <div class="col-lg-12">
-                            <!-- single-product-wrap start -->
-                            <div class="single-product-wrap">
-                                <div class="product-image">
-                                    <a href="single-product.html">
-                                        <img src="{% static 'small-size/3.jpg' %}" alt="Li's Product Image">
-                                    </a>
-                                    <span class="sticker">New</span>
-                                </div>
-                                <div class="product_desc">
-                                    <div class="product_desc_info">
-                                        <div class="product-review">
-                                            <h5 class="manufacturer">
-                                                <a href="product-details.html">Graphic Corner</a>
-                                            </h5>
-                                            <div class="rating-box">
-                                                <ul class="rating">
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a>
-                                        </h4>
-                                        <div class="price-box">
-                                            <span class="new-price">$46.80</span>
-                                        </div>
-                                    </div>
-                                    <div class="add-actions">
-                                        <ul class="add-actions-link">
-                                            <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                            <li><a href="#" title="quick view" class="quick-view-btn"
-                                                    data-toggle="modal" data-target="#exampleModalCenter"><i
-                                                        class="fa fa-eye"></i></a></li>
-                                            <li><a class="links-details" href="wishlist.html"><i
-                                                        class="fa fa-heart-o"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single-product-wrap end -->
-                        </div>
-                        <div class="col-lg-12">
-                            <!-- single-product-wrap start -->
-                            <div class="single-product-wrap">
-                                <div class="product-image">
-                                    <a href="single-product.html">
-                                        <img src="{% static 'large-size/4.jpg' %}" alt="Li's Product Image">
-                                    </a>
-                                    <span class="sticker">New</span>
-                                </div>
-                                <div class="product_desc">
-                                    <div class="product_desc_info">
-                                        <div class="product-review">
-                                            <h5 class="manufacturer">
-                                                <a href="product-details.html">Studio Design</a>
-                                            </h5>
-                                            <div class="rating-box">
-                                                <ul class="rating">
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <h4><a class="product_name" href="single-product.html">Mug Today is a good
-                                                day</a></h4>
-                                        <div class="price-box">
-                                            <span class="new-price new-price-2">$71.80</span>
-                                            <span class="old-price">$77.22</span>
-                                            <span class="discount-percentage">-7%</span>
-                                        </div>
-                                    </div>
-                                    <div class="add-actions">
-                                        <ul class="add-actions-link">
-                                            <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                            <li><a href="#" title="quick view" class="quick-view-btn"
-                                                    data-toggle="modal" data-target="#exampleModalCenter"><i
-                                                        class="fa fa-eye"></i></a></li>
-                                            <li><a class="links-details" href="wishlist.html"><i
-                                                        class="fa fa-heart-o"></i></a></li>
-                                        </ul>
+
+                                        <form class="productname" id="{{products.id}}" action="" method="POST"
+                                            value="{{products.id}}">
+                                            {% csrf_token %} <br>
+                                            <button class="add-cart active add-actions-link "
+                                                style="background-color: #4654A3;color: white;" type="submit">Add To
+                                                Cart</button>
+
+
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            <div class="single-product-wrap">
-                                <div class="product-image">
-                                    <a href="single-product.html">
-                                        <img src="{% static 'large-size/5.jpg' %}" alt="Li's Product Image">
-                                    </a>
-                                    <span class="sticker">New</span>
-                                </div>
-                                <div class="product_desc">
-                                    <div class="product_desc_info">
-                                        <div class="product-review">
-                                            <h5 class="manufacturer">
-                                                <a href="product-details.html">Graphic Corner</a>
-                                            </h5>
-                                            <div class="rating-box">
-                                                <ul class="rating">
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a>
-                                        </h4>
-                                        <div class="price-box">
-                                            <span class="new-price">$46.80</span>
-                                        </div>
-                                    </div>
-                                    <div class="add-actions">
-                                        <ul class="add-actions-link">
-                                            <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                            <li><a href="#" title="quick view" class="quick-view-btn"
-                                                    data-toggle="modal" data-target="#exampleModalCenter"><i
-                                                        class="fa fa-eye"></i></a></li>
-                                            <li><a class="links-details" href="wishlist.html"><i
-                                                        class="fa fa-heart-o"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="single-product-wrap">
-                                <div class="product-image">
-                                    <a href="single-product.html">
-                                        <img src="{% static 'large-size/6.jpg' %}" alt="Li's Product Image">
-                                    </a>
-                                    <span class="sticker">New</span>
-                                </div>
-                                <div class="product_desc">
-                                    <div class="product_desc_info">
-                                        <div class="product-review">
-                                            <h5 class="manufacturer">
-                                                <a href="product-details.html">Studio Design</a>
-                                            </h5>
-                                            <div class="rating-box">
-                                                <ul class="rating">
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <h4><a class="product_name" href="single-product.html">Mug Today is a good
-                                                day</a></h4>
-                                        <div class="price-box">
-                                            <span class="new-price new-price-2">$71.80</span>
-                                            <span class="old-price">$77.22</span>
-                                            <span class="discount-percentage">-7%</span>
-                                        </div>
-                                    </div>
-                                    <div class="add-actions">
-                                        <ul class="add-actions-link">
-                                            <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                            <li><a href="#" title="quick view" class="quick-view-btn"
-                                                    data-toggle="modal" data-target="#exampleModalCenter"><i
-                                                        class="fa fa-eye"></i></a></li>
-                                            <li><a class="links-details" href="wishlist.html"><i
-                                                        class="fa fa-heart-o"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
+
                     </div>
                 </div>
             </div>
-          
-    </div>
+
+        </div>
+
 </section>
 
 
-  
-{% endcomment %}
+
+
 <!-- end of section -->
 
 </div>
 
 <!-- section -->
 <div class="section">
-	<!-- container -->
-	<div class="container">
-		<!-- row -->
-		<div class="row">
-			<!-- section title -->
-			<div class="col-md-12">
-				<div class="section-title">
-					<h2 class="title">Picked For You</h2>
-				</div>
-			</div>
-			<!-- section title -->
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2 class="title">Picked For You</h2>
+                </div>
+            </div>
+            <!-- section title -->
 
-			{% for popular in popular|slice:'0:8' %}
+            {% for popular in popular|slice:'0:8' %}
 
 
-			<!-- Product Single -->
-			<div class="col-md-3 col-sm-6 col-xs-6">
-				<div class="product product-single">
-					<a href="{{popular.get_absolute_url}}">
-						<div class="product-thumb">
-							<div class="product-label">
-								<span style="background-color: #4654A3" class="sale text-light">-20%</span>
-							</div>
-							<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-							<img src="{{popular.image.url}}" alt="">
-						</div>
-						<div class="product-body">
-							<h3 class="product-price"> GH¢ {{popular.price}} <del class="product-old-price">$45.00</del>
-							</h3>
-							<div class="product-rating">
-								<!-- <i class="fa fa-star"></i>
+            <!-- Product Single -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="product product-single">
+                    <a href="{{popular.get_absolute_url}}">
+                        <div class="product-thumb">
+                            <div class="product-label">
+                                <span style="background-color: #4654A3" class="sale text-light">-20%</span>
+                            </div>
+                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                            <img src="{{popular.image.url}}" alt="">
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-price" style="color:#D7782F;font-weight:bold">GH¢ {{popular.price}} <del
+                                    class="product-old-price">$45.00</del>
+                            </h3>
+                            <div class="product-rating">
+                                <!-- <i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star-o empty"></i> -->
-							</div>
-							<h2 class="product-name">{{popular.name}}</h2>
-					</a>
-					<div class="product-btns">
-						<a style="background-color: #4654A3;color: white;"
-							class="primary-btn btn-block  add-to-cart text-center"
-							href="{{products.get_absolute_url}}">View Details</a>
+                            </div>
+                            <h4 class="product_name">{{popular.name }}</h4>
 
-						<!-- <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+                    </a>
+                    <div class="product-btns">
+                        <a style="background-color: #4654A3;color: white;"
+                            class="primary-btn btn-block  add-to-cart text-center"
+                            href="{{products.get_absolute_url}}">View Details</a>
+
+                        <!-- <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 								<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 								 -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Product Single -->
-		{% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Product Single -->
+        {% endfor %}
 
-	</div>
-	<!-- /row -->
+    </div>
+    <!-- /row -->
 </div>
 <!-- /container -->
 </div>
@@ -501,104 +310,158 @@
 
 
 <style>
-	#id_quantity {
-		height: 35px;
-		width: 80px;
-	}
+    #id_quantity {
+        height: 35px;
+        width: 80px;
+    }
 
-	#id_quantity:hover {
-		width: 100px;
+    #id_quantity:hover {
+        width: 100px;
 
-	}
+    }
 
-	.main-btn {
-		margin-top: 1em;
+    .main-btn {
+        margin-top: 1em;
 
 
-	}
+    }
 </style>
 
 
 
 <script>
 
-	// add to cart
+    // add to cart
 
     $("#view_cart").fadeOut()
     $("#checkout").fadeOut()
     $("#alert").fadeOut()
-
-	$('#cart-form').on('submit', function (e) {
-
-		e.preventDefault();
-
-		product_id = '{{product.id}}'
+    $("#alertnew").fadeOut()
 
 
-		url = '/add/' + product_id + '/'
 
-		$.ajax({
-			type: 'POST',
-			url: url,
+    $('#cart-form').on('submit', function (e) {
 
-			data: {
+        e.preventDefault();
 
-				product: product_id,
-				quantity: $('#quantity').val(),
-				// update_quantity:$('#update_quantity').val(),
-
-				csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-
-			},
-			beforeSend: function () {
-				$('#alert').text('adding to cart...') 
+        product_id = '{{product.id}}'
 
 
-			},
+        url = '/add/' + product_id + '/'
 
-			success: function () {
+        $.ajax({
+            type: 'POST',
+            url: url,
 
-				getcartsize()
+            data: {
 
-				$('#alert').fadeIn('fast').text('saved to cart').fadeOut(5000)
-                
+                product: product_id,
+                quantity: $('#quantity').val(),
+                // update_quantity:$('#update_quantity').val(),
+
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+
+            },
+            beforeSend: function () {
+                $('#submit').text('adding to cart...')
+
+
+            },
+
+            success: function () {
+
+                getcartsize()
+
+
+                // $('#').text('saved to cart').fadeIn('fast')
+                $('#alert').fadeIn('fast').text('saved to cart').fadeOut(5000)
+                $('#submit').text('Add To Cart')
+
                 $('#view_cart').fadeIn('fast').fadeOut(30000)
                 $('#checkout').fadeIn('fast').fadeOut(30000)
 
-                // $('#').text('saved to cart').fadeIn('fast')
 
-			},
-			error: function () {
+            },
+            error: function () {
                 $('#alert').fadeIn('fast').text('not saved').fadeOut(5000)
 
-			}
+            }
 
-		})
-	})
-
-
+        })
+    })
 
 
 
-	function getcartsize() {
-		$.ajax({
-			url: '/cart_size/',
-			type: 'GET',
-			success: function (res) {
-				// console.log('size is ',res.size)
-				$('.cart-count').text(res.size)
-				$('.cart_saved').text('saved to Cart').fadeOut(5000)
+    $('.productname').on('submit', function (e) {
 
-				quantity = $('#quantity').val('')
+        e.preventDefault();
 
-			},
-			error: function () {
-				$('.cart_saved').text('not saved').fadeOut(5000)
+        // console.log(this.id)
+        product_id = this.id
 
-			}
-		})
+        url = '/add/' + product_id + '/'
 
-	}
+        console.log(url)
+        $.ajax({
+            type: 'POST',
+            url: url,
+
+            data: {
+
+                product: product_id,
+                quantity: 1,
+                // update_quantity:$('#update_quantity').val(),
+
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+
+            },
+            beforeSend: function () {
+                // $('#alert').text('adding to cart...') 
+
+
+            },
+
+            success: function () {
+
+                getcartsize()
+
+                $('#alertnew').fadeIn('fast').text('saved to cart').fadeOut(5000)
+
+                // $('#').text('saved to cart').fadeIn('fast')
+
+            },
+            error: function () {
+                $('#alertnew').fadeIn('fast').text('error').fadeOut(5000)
+
+
+            }
+
+        })
+    })
+
+
+
+
+
+    function getcartsize() {
+        $.ajax({
+            url: '/cart_size/',
+            type: 'GET',
+            success: function (res) {
+                // console.log('size is ',res.size)
+                $('.cart-count').text(res.size)
+                $('.cart_saved').text('saved to Cart').fadeOut(5000)
+
+                quantity = $('#quantity').val('')
+
+            },
+            error: function () {
+                $('.cart_saved').text('not saved').fadeOut(5000)
+
+            }
+        })
+
+    }
 
 
 
@@ -616,15 +479,13 @@
 
 
 <style>
-
-
-li{
-    display: inline
-}
-
+    li {
+        display: inline
+    }
 </style>
+<link rel="stylesheet" href="{% static 'css/styledetail.css' %}">
 
-
+<!-- 
 <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
 
 <script src="{% static 'js/popper.min.js' %}"></script>
@@ -639,6 +500,15 @@ li{
 <script src="{% static 'js/venobox.min.js' %}"></script>
 <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
 <script src="{% static 'js/scrollUp.min.js' %}"></script>
-<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script> -->
 
+<!-- menu -->
+<!-- <script src="{% static 'js/jquery.meanmenu.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static '' %}"></script>
+<script src="{% static '' %}"></script>
+<script src="{% static '' %}"></script>
+<script src="{% static '' %}"></script> -->
 {% endblock %}
+
+

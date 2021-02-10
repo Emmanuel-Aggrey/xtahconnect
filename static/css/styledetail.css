@@ -1177,7 +1177,7 @@ textarea:focus {
   float: left;
   margin-right: 15px;
   position: relative;
-  width: 76px;
+  width: 150px;
   text-align: left;
 }
 .cart-plus-minus .cart-plus-minus-box {
@@ -1820,7 +1820,7 @@ textarea:focus {
 .hm-minicart-trigger.is-active .item-text::after {
 	transform: rotate(-180deg);
 }
-.megamenu {
+/* .megamenu {
 	background: #ffffff;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -1844,8 +1844,8 @@ textarea:focus {
 	top: 0;
 	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .1);
 	box-shadow: 0 0 5px rgba(0, 0, 0, .1);
-}
-.megamenu > li {
+} */
+/* .megamenu > li {
 	padding: 0 20px;
 	min-width: 250px;
 	border-right: 1px solid #ebebeb;
@@ -1880,8 +1880,8 @@ textarea:focus {
 	font-size: 14px;
 	padding: 7px 0;
 	display: block
-}
-.megamenu-holder .megamenu.is-visible, .megamenu-static-holder .megamenu.is-visible {
+} */
+/* .megamenu-holder .megamenu.is-visible, .megamenu-static-holder .megamenu.is-visible {
 	-webkit-transform: scaleY(1);
 	-ms-transform: scaleY(1);
 	transform: scaleY(1);
@@ -1894,7 +1894,7 @@ textarea:focus {
 	-webkit-transform: translateY(0);
 	-ms-transform: translateY(0);
 	transform: translateY(0)
-}
+} */
 /*Header Bottom Megamenu*/
 .hb-menu nav > ul > li:nth-child(4) {
 	margin-right: -20px;

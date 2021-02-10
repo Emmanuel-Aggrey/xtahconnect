@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User, auth
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect, render,get_list_or_404
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -50,12 +50,10 @@ def product_datilview(request, slug):
         request.session.setdefault('history',[]).append(slug)
         request.session.modified = True
     
-  
-    print(request.session['history'])
-
-
+    related_products = product.category.products.order_by('?')
     context ={
-        'product':product
+        'product':product,
+        'related_products':related_products,
     }
     return render(request,'product_detail.html',context)
     

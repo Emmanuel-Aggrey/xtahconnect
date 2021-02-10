@@ -4,81 +4,57 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-<style></style>
+
 
 
 <main class="main">
-    {% comment %}
-    <div class="home-slider-container">
-        <div class="home-slider owl-carousel">
-            {% for products in popular|slice:':5' %}
-            <div class="home-slide">
-                <div class="slide-bg owl-lazy" data-src="{{products.image.url}}" style="background-image: url("{{products.image.url}}"); opacity: 1;"></div>
-                <!-- End .slide-bg -->
-                <div class="home-slide-content container">
-                   
-                    <div class="row">
-                        <div class="col-md-6 offset-md-6 col-lg-5 offset-lg-7">
-                            <h3>{{ products.name }}</h3>
-                            <!-- <h1>{{sl.desc }}</h1> -->
-                            <h3>Only <strong>{{ products.price}}   GH₵ </strong></h3>
-                            <!-- <a href="category.html" class="btn btn-primary">Shop Now</a> -->
-                        </div><!-- End .col-lg-5 -->
-                    </div><!-- End .row -->
-                </div><!-- End .home-slide-content -->
-            </div><!-- End .home-slide -->
-            {% endfor %}
-           
-        </div>
-       
-        <!-- End .home-slider -->
-    </div>
-    {% endcomment %}
+
+    <!-- Slider Area start Here -->
+
+    <!-- Slider Area End Here -->
 
     <div class="container">
         <div class="row">
-        {% for product in products|slice:":4" %}
-        <div class="col-md-3 col-sm-3">
-                                 
-            <div class="product-default">
-                <figure>
-                   
-                    <a href="{{product.get_absolute_url}}">
-                        <img src="{{product.image.url}}">`
-                    </a>
-                </figure>
-                <div class="product-details">
-                    <div class="ratings-container">
-                        <div class="product-ratings">
-                            <span class="ratings" style="width:400"></span><!-- End .ratings -->
-                        </div><!-- End .product-ratings -->
-                    </div><!-- End .product-container -->
-                  
-                    <h2 class="product-title">
-                        <a id="product-name" href="{{product.get_absolute_url}}">{{product.name}}</a>
-                        <h6 id="product-id">{{product.id}}</h6>
-                    </h2>
-                    <div class="price-box">
-                        <span class="product-price">GH₵ {{product.price}}</span>
-                    </div><!-- End .price-box -->
-                    <div class="product-action">
-                        <a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a>
-                        <button class="btn-icon btn-add-cart" style="background-color: #4654A3;color: white;" data-toggle="modal"
-                            data-target="#addCartModal"><i class="icon-bag"></i>ADD TO CART</button>
-                        <a href="{{product.get_absolute_url}}" class="btn-quickview" title="Quick View"><i
-                                class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div><!-- End .product-details -->
+            {% for product in products|slice:":4" %}
+            <div class="col-md-3 col-sm-3">
+
+                <div class="product-default">
+                    <figure>
+
+                        <a href="{{product.get_absolute_url}}">
+                            <img src="{{product.image.url}}">`
+                        </a>
+                    </figure>
+                    <div class="product-details">
+                        <div class="ratings-container">
+                            <div class="product-ratings">
+                                <span class="ratings" style="width:400"></span><!-- End .ratings -->
+                            </div><!-- End .product-ratings -->
+                        </div><!-- End .product-container -->
+
+                        <h2 class="product-title">
+                            <a id="product-name" href="{{product.get_absolute_url}}">{{product.name}}</a>
+                            <h6 id="product-id">{{product.id}}</h6>
+                        </h2>
+                        <div class="price-box">
+                            <span class="product-price">GH₵ {{product.price}}</span>
+                        </div><!-- End .price-box -->
+                        <div class="product-action">
+                            <!-- <a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a> -->
+                            <button class="btn-icon btn-add-cart" style="background-color: #4654A3;color: white;"
+                                data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i>ADD TO
+                                CART</button>
+                            <!-- <a href="{{product.get_absolute_url}}" class="btn-quickview" title="Quick View"><i
+                                    class="fas fa-external-link-alt"></i></a> -->
+                        </div>
+                    </div><!-- End .product-details -->
+                </div>
+
+
+
+
             </div>
-         
-          
-     
-          
-    </div>
-        {% endfor %}
+            {% endfor %}
         </div>
     </div><!-- End .container -->
 
@@ -115,35 +91,40 @@ integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg
             </div><!-- End .info-box -->
         </div><!-- End .container -->
     </div><!-- End .info-boxes-container -->
-   
-    
+    <h4 id="alertnew" class="alert alert-success text-center"></h4>
+
+
     {% for groupings in sub_category %}
 
-    {% if groupings.products.count > 0  %}
+    {% if groupings.products.count > 0 %}
+
     <div class="home-product-tabs">
+
         <div class="container">
-           
+            <a href="{% url 'categories' groupings.id  %}" class="float-right btn" style="color: #4654A3;">view all</a>
+
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a style="color:#4654A3" class="nav-link active" id="featured-products-tab" data-toggle="tab" href="#featured-products"
-                        role="tab" aria-controls="featured-products" aria-selected="true"> {{groupings.name}} </a>
+                    <a style="color:#4654A3" class="nav-link active" id="featured-products-tab" data-toggle="tab"
+                        href="#featured-products" role="tab" aria-controls="featured-products" aria-selected="true">
+                        {{groupings.name}} </a>
                 </li>
-                
-              
+
+
             </ul>
-         
+
         </div><!-- End .container -->
         <div class="tab-content">
             <div class="tab-pane fade show active" id="featured-products" role="tabpanel"
                 aria-labelledby="featured-products-tab">
                 <div class="container">
                     <div class="tab-products-carousel owl-carousel owl-theme">
-                       
+
                         {% for product in groupings.products.all %}
-                      
+
                         <div class="product-default">
                             <figure>
-                               
+
                                 <a href="{{product.get_absolute_url}}">
                                     <img src="{{product.image.url}}">`
                                 </a>
@@ -154,7 +135,7 @@ integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg
                                         <span class="ratings" style="width:400"></span><!-- End .ratings -->
                                     </div><!-- End .product-ratings -->
                                 </div><!-- End .product-container -->
-                              
+
                                 <h2 class="product-title">
                                     <a id="product-name" href="{{product.get_absolute_url}}">{{product.name}}</a>
                                     <h6 id="product-id">{{product.id}}</h6>
@@ -162,165 +143,242 @@ integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg
                                 <div class="price-box">
                                     <span class="product-price">GH₵ {{product.price}}</span>
                                 </div><!-- End .price-box -->
-                                <div class="product-action">
-                                    <a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a>
-                                    <button  style="background-color: #4654A3;color: white;" class="btn-icon btn-add-cart" data-toggle="modals"
-                                        data-target="#addCartModal"><i class="icon-bag"></i>ADD TO CART</button>
-                                    <a href="{{product.get_absolute_url}}" class="btn-quickview hidden-sm" title="Quick View"><i
-                                            class="fas fa-external-link-alt"></i></a>
-                                </div>
+                                    <form class="productname" method="post" id={{product.id}}>
+
+                                    <button class="btn btn-md" style="background-color: #4654A3;color: white;"
+                                        class=""><i class="icon-bag"></i>ADD TO
+                                        CART</button>
+                                    </form>
+                                
                             </div><!-- End .product-details -->
                         </div>
-                     
+
                         {% endfor %}
-                 
-                      
+
+
                     </div><!-- End .products-carousel -->
                 </div><!-- End .container -->
             </div><!-- End .tab-pane -->
-         
-    </div><!-- End .home-product-tabs -->
-    {% endif %}
-    {% endfor %}
-   
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="feature-box">
-                    <i class="icon-star " style="color: #4654A3; border-color: #4654A3;"></i>
 
-                    <div class="feature-box-content">
-                        <h3>Dedicated Service</h3>
-                        <p>Consult our specialists for help with an order, customization, or design advice</p>
-                        <a href="#" class="btn btn-sm btn-outline-dark">Get in touch</a>
-                    </div><!-- End .feature-box-content -->
-                </div><!-- End .feature-box -->
-            </div><!-- End .col-md-4 -->
+        </div><!-- End .home-product-tabs -->
+        {% endif %}
+        {% endfor %}
 
-            <div class="col-md-4">
-                <div class="feature-box">
-                    <i class="icon-reply" style="color: #4654A3;border-color: #4654A3;"></i>
-
-                    <div class="feature-box-content">
-                        <h3>Free returns</h3>
-                        <p>We stand behind our goods and services and want you to be satisfied with them.</p>
-                        <a href="#" class="btn btn-sm btn-outline-dark">Return Policy</a>
-                    </div><!-- End .feature-box-content -->
-                </div><!-- End .feature-box -->
-            </div><!-- End .col-md-4 -->
-
-            <div class="col-md-4">
-                <div class="feature-box">
-                    <i class="icon-paper-plane" style="color: #4654A3; border-color: #4654A3;"></i>
-
-                    <div class="feature-box-content">
-                        <h3>international shipping</h3>
-                        <p>Currently over 50 countries qualify for express international shipping.</p>
-                        <!-- <a href="#" class="btn btn-sm btn-outline-dark">Learn More</a> -->
-                    </div><!-- End .feature-box-content -->
-                </div><!-- End .feature-box -->
-            </div><!-- End .col-md-4 -->
-        </div><!-- End .row -->
-    </div><!-- End .container -->
-
-    <div class="mb-1"></div><!-- margin -->
-
-    <div class="promo-section" style="background-image: url('{% static "images/promo-bg.jpg" %}')">
         <div class="container">
-            <h3>the perfect gift</h3>
-            <h4>Check off your list with our best gifts</h4>
-            <!-- <a href="#" class="btn btn-primary">Shop Now</a> -->
-        </div><!-- End .container -->
-    </div><!-- End .promo-section -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <i class="icon-star " style="color: #4654A3; border-color: #4654A3;"></i>
 
-    <div class="partners-container">
+                        <div class="feature-box-content">
+                            <h3>Dedicated Service</h3>
+                            <p>Consult our specialists for help with an order, customization, or design advice</p>
+                            <a href="#" class="btn btn-sm btn-outline-dark">Get in touch</a>
+                        </div><!-- End .feature-box-content -->
+                    </div><!-- End .feature-box -->
+                </div><!-- End .col-md-4 -->
+
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <i class="icon-reply" style="color: #4654A3;border-color: #4654A3;"></i>
+
+                        <div class="feature-box-content">
+                            <h3>Free returns</h3>
+                            <p>We stand behind our goods and services and want you to be satisfied with them.</p>
+                            <a href="#" class="btn btn-sm btn-outline-dark">Return Policy</a>
+                        </div><!-- End .feature-box-content -->
+                    </div><!-- End .feature-box -->
+                </div><!-- End .col-md-4 -->
+
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <i class="icon-paper-plane" style="color: #4654A3; border-color: #4654A3;"></i>
+
+                        <div class="feature-box-content">
+                            <h3>international shipping</h3>
+                            <p>Currently over 50 countries qualify for express international shipping.</p>
+                            <!-- <a href="#" class="btn btn-sm btn-outline-dark">Learn More</a> -->
+                        </div><!-- End .feature-box-content -->
+                    </div><!-- End .feature-box -->
+                </div><!-- End .col-md-4 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+
+        <div class="mb-1"></div><!-- margin -->
+
+        <div class="promo-section" style="background-image: url('{% static "images/promo-bg.jpg" %}')">
+            <div class="container">
+                <h3>the perfect gift</h3>
+                <h4>Check off your list with our best gifts</h4>
+                <!-- <a href="#" class="btn btn-primary">Shop Now</a> -->
+            </div><!-- End .container -->
+        </div><!-- End .promo-section -->
+
+        <div class="partners-container">
+            <div class="container">
+                <div class="partners-carousel owl-carousel owl-theme">
+                    <a href="#" class="partner">
+                        <img src="{% static 'images/logos/1.png' %}" alt="{% static 'images/logos/1.png' %}">
+                    </a>
+                    <a href="#" class="partner">
+                        <img src="{% static 'images/logos/2.png' %}" alt="{% static 'images/logos/2.png' %}">
+                    </a>
+                    <a href="#" class="partner">
+                        <img src="{% static 'images/logos/3.png' %}" alt="{% static 'images/logos/3.png' %}">
+                    </a>
+                    <a href="#" class="partner">
+                        <img src="{% static 'images/logos/4.png' %}" alt="{% static 'images/logos/4.png' %}">
+                    </a>
+                    <a href="#" class="partner">
+                        <img src="{% static 'images/logos/5.png' %}" alt="{% static 'images/logos/5.png' %}">
+                    </a>
+                    <a href="#" class="partner">
+                        <img src="{% static 'images/logos/2.png' %}" alt="{% static 'images/logos/2.png' %}">
+                    </a>
+                    <a href="#" class="partner">
+                        <img src="{% static 'images/logos/1.png' %}" alt="{% static 'images/logos/1.png' %}">
+                    </a>
+                </div><!-- End .partners-carousel -->
+            </div><!-- End .container -->
+        </div><!-- End .partners-container -->
+
+        {% if resent_view_products %}
+
+
         <div class="container">
-            <div class="partners-carousel owl-carousel owl-theme">
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/1.png' %}" alt="logo">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/2.png' %}" alt="logo">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/3.png' %}" alt="logo">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/4.png' %}" alt="logo">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/5.png' %}" alt="logo">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/2.png' %}" alt="logo">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/1.png' %}" alt="logo">
-                </a>
-            </div><!-- End .partners-carousel -->
-        </div><!-- End .container -->
-    </div><!-- End .partners-container -->
+            <h3 class="h4 title">Recently viewed items</h3>
+            <div class="row">
 
-    {% if resent_view_products %}
-        
-   
-    <div class="container">
-        <h3 class="h4 title">Recently viewed items</h3>
-        <div class="row">
-         
-            
-            {% for  resent_view_products in resent_view_products|slice:'0:8' %}
-            
-                
-            <div class="col-6 col-lg-3">
-                <div class="product-column">
-                   
 
-                    <div class="product-default left-details product-widget mb-3">
-                        <figure>
-                            <a href="{{resent_view_products.get_absolute_url}}">
-                                <img src="{{resent_view_products.image.url}}">
-                            </a>
-                        </figure>
-                        <div class="product-details">
-                            <h2 class="product-title">
-                                <a href="{{resent_view_products.get_absolute_url}}">{{resent_view_products.name}}</a>
-                            </h2>
-                            <div class="ratings-container">
-                                <div class="product-ratings">
-                                    <span class="ratings" style="width:100%"></span><!-- End .ratings -->
-                                    <span class="tooltiptext tooltip-top"></span>
-                                </div><!-- End .product-ratings -->
-                            </div><!-- End .product-container -->
-                            <div class="price-box">
-                                <span class="product-price">GH₵ {{resent_view_products.price}}</span>
-                            </div><!-- End .price-box -->
-                        </div><!-- End .product-details -->
-                    </div>
-                    
-                   
-                </div><!-- End .product-column -->
-            </div><!-- End .col-lg-3 -->
-            {% endfor %}
+                {% for resent_view_products in resent_view_products|slice:'0:8' %}
+
+
+                <div class="col-6 col-lg-3">
+                    <div class="product-column">
+
+
+                        <div class="product-default left-details product-widget mb-3">
+                            <figure>
+                                <a href="{{resent_view_products.get_absolute_url}}">
+                                    <img src="{{resent_view_products.image.url}}">
+                                </a>
+                            </figure>
+                            <div class="product-details">
+                                <h2 class="product-title">
+                                    <a
+                                        href="{{resent_view_products.get_absolute_url}}">{{resent_view_products.name}}</a>
+                                </h2>
+                                <div class="ratings-container">
+                                    <div class="product-ratings">
+                                        <span class="ratings" style="width:100%"></span><!-- End .ratings -->
+                                        <span class="tooltiptext tooltip-top"></span>
+                                    </div><!-- End .product-ratings -->
+                                </div><!-- End .product-container -->
+                                <div class="price-box">
+                                    <span class="product-price">GH₵ {{resent_view_products.price}}</span>
+                                </div><!-- End .price-box -->
+                            </div><!-- End .product-details -->
+                        </div>
+
+
+                    </div><!-- End .product-column -->
+                </div><!-- End .col-lg-3 -->
+                {% endfor %}
+            </div>
+
         </div>
-           
-    </div>
-        
-         
-            {% endif %}
 
-    <div class="mb-6"></div><!-- margin -->
+
+        {% endif %}
+
+        <div class="mb-6"></div><!-- margin -->
 </main><!-- End .main -->
 
 <style>
-    #product-id{
+    #product-id {
         display: none;
         visibility: hidden;
     }
 
-    body{
+    body {
         background-color: #4654A3;
     }
-  
 </style>
+
+
+<script>
+
+$("#alertnew").fadeOut('fast')
+
+
+    $('.productname').on('submit', function (e) {
+
+        e.preventDefault();
+
+        // console.log(this.id)
+        product_id = this.id
+
+        url = '/add/' + product_id + '/'
+
+        // console.log(url)
+        $.ajax({
+            type: 'POST',
+            url: url,
+
+            data: {
+
+                product: product_id,
+                quantity: 1,
+                // update_quantity:$('#update_quantity').val(),
+
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+
+            },
+            beforeSend: function () {
+                // $('#alert').text('adding to cart...') 
+
+
+            },
+
+            success: function () {
+
+                getcartsize()
+
+                $('#alertnew').fadeIn('fast').text('saved to cart').fadeOut(5000)
+
+                // $('#').text('saved to cart').fadeIn('fast')
+
+            },
+            error: function () {
+                $('#alertnew').fadeIn('fast').text('error not saved').fadeOut(5000)
+
+
+            }
+
+        })
+    })
+
+
+
+
+
+
+    function getcartsize() {
+        $.ajax({
+            url: '/cart_size/',
+            type: 'GET',
+            success: function (res) {
+                // console.log('size is ',res.size)
+                $('.cart-count').text(res.size)
+                $('.cart_saved').text('saved to Cart').fadeOut(5000)
+
+                quantity = $('#quantity').val('')
+            },
+            error: function () {
+                $('.cart_saved').text('not saved').fadeOut(5000)
+
+            }
+        })
+    }
+</script>
 {% endblock %}

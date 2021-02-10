@@ -10,6 +10,5 @@ urlpatterns = [
     path('remove/<int:product_id>/', views.cart_remove, name='cart_remove'),
     path("cart_size/",views.cart_size, name="cart_size"),
 
-    path('detail/',views.detail),
 ]
 
