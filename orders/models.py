@@ -1,9 +1,14 @@
-from django.db import models
-from django.core.validators import RegexValidator
-from ecommerce.models import Product
 import datetime
-from ecommerce.models import Base_Model
 
+from django.core.validators import RegexValidator
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from ecommerce.models import Base_Model, Product
+from hashids import Hashids
+
+# Create your models here.
+hashids = Hashids()
 
 
 
@@ -13,7 +18,8 @@ def increment_order_number():
     return '' + str(datetime.date.today().year) + str(datetime.date.today().month).zfill(2) + '0000'
   order_number = last_order.order_number
   order_int = int(order_number[9:13])
-  new_order_int = order_int + 1
+#   new_order_int= order_int + 1
+  new_order_int =order_int + 1
   new_order_id = '' + str(str(datetime.date.today().year)) + str(datetime.date.today().month).zfill(2) + str(new_order_int).zfill(4)
   return new_order_id
 
@@ -27,7 +33,7 @@ class Order(Base_Model):
     # created = models.DateTimeField(auto_now_add=True)
     # updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
-    order_number = models.CharField('order number',max_length=500,editable=False,default=increment_order_number)
+    order_number = models.CharField('order number',max_length=500,editable=False)
 
     class Meta:
         ordering = ('-date_updated', )
@@ -38,6 +44,19 @@ class Order(Base_Model):
     def get_total_cost(self):
     
         return sum(item.get_cost() for item in self.items.all())
+
+
+@receiver(post_save,sender=Order)
+def create_orders_number(sender,instance,created,*args, **kwargs):
+    now = datetime.datetime.now().strftime("%Y%m%d%H%M")
+    if not instance.order_number:
+        order_id = hashids.encrypt(instance.id)
+        ordernummber= now+'-'+str(order_id)
+        instance.order_number = ordernummber
+        instance.save()
+
+    # print('ordernummber ',ordernummber)
+
 
 
 class OrderItem(Base_Model):

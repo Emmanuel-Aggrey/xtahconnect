@@ -18,11 +18,11 @@
             {% for product in products|slice:":4" %}
             <div class="col-md-3 col-sm-3">
 
-                <div class="product-default">
+                <div class="product-default product-default-home">
                     <figure>
 
                         <a href="{{product.get_absolute_url}}">
-                            <img src="{{product.image.url}}">`
+                            <img src="{{product.image.url}}" id="product_image" alt="{{product.image.url}">
                         </a>
                     </figure>
                     <div class="product-details">
@@ -61,7 +61,7 @@
 
     <!-- End .home-slider-container -->
 
-    <div class="info-boxes-container">
+    <div class="info-boxes-container my-4">
         <div class="container">
             <div class="info-box">
                 <i class="icon-shipping"></i>
@@ -129,17 +129,12 @@
                                     <img src="{{product.image.url}}">`
                                 </a>
                             </figure>
-                            <div class="product-details">
-                                <div class="ratings-container">
-                                    <div class="product-ratings">
-                                        <span class="ratings" style="width:400"></span><!-- End .ratings -->
-                                    </div><!-- End .product-ratings -->
-                                </div><!-- End .product-container -->
-
-                                <h2 class="product-title">
+                            <div class="product-details product-group">
+                               
+                                <h5 class="product-title">
                                     <a id="product-name" href="{{product.get_absolute_url}}">{{product.name}}</a>
                                     <h6 id="product-id">{{product.id}}</h6>
-                                </h2>
+                                </h5>
                                 <div class="price-box">
                                     <span class="product-price">GH₵ {{product.price}}</span>
                                 </div><!-- End .price-box -->
@@ -304,14 +299,30 @@
         background-color: #4654A3;
     }
     .tab-content{
-        padding: 0rem !important;
+        /* padding: 0rem !important; */
+        /* height: 330px */
+
     }
+    /* .owlspace{
+        height: 300px;
+    } */
     .owlspace{
-        height: 330px;
-    }
-  .product-details{
-      padding-bottom: 1em;
+    height: 345px;
   }
+  
+
+   @media only screen and (max-width: 600px) {
+  .product-group {
+    /* background-color: lightblue; */
+    height: 20px !important;
+  }
+  .owlspace{
+    height: 225px;
+  }
+  .product-details{
+    height: 40px !important;
+   }
+}
 </style>
 
 

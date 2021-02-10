@@ -159,6 +159,8 @@
 <!-- Begin Product Area -->
 
 
+{% comment %}
+  
 
 <!-- start of section -->
 <section class="product-area li-laptop-product pt-30 pb-50">
@@ -234,7 +236,7 @@
         </div>
 
 </section>
-
+{% endcomment %}
 
 
 
@@ -247,13 +249,11 @@
     <!-- container -->
     <div class="container">
         <!-- row -->
+        <h2 class="title">Picked For You</h2>
         <div class="row">
             <!-- section title -->
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h2 class="title">Picked For You</h2>
-                </div>
-            </div>
+           
+
             <!-- section title -->
 
             {% for popular in popular|slice:'0:8' %}
@@ -483,6 +483,18 @@
     li {
         display: inline
     }
+
+      @media only screen and (max-width: 600px) {
+  .product-single {
+    height: 4% !important;
+  }
+  .owlspace{
+    height: 225px;
+  }
+  .product-details{
+    height: 40px !important;
+   }
+}
 </style>
 
 <!-- 
