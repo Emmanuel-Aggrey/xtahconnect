@@ -32,12 +32,12 @@ Your Shopping Cart
                     {% for item in cart %}
                     {% with product=item.product  %}
                     <tr>
-                        <td class="thumb">
+                        <td class="">
                             <a href="{{product.get_absolute_url}}">
                                 
-                                <img src="{{ product.image|thumbnail_url:'avatar' }}" alt="" style="width:fit-content;height:fit-content;">
+                                <img class="img-responsive" src="{{ product.image.url }}" alt="{{ product.image.url }}"style="height:100px; width:100px">
                             </a>
-                            <a href="{{product.get_absolute_url}}">{{product.name}}</a>
+                            <a href="{{product.get_absolute_url}}" style="color: #4654A3;">{{product.name}}</a>
 
                         </td>
 
@@ -87,27 +87,39 @@ Your Shopping Cart
                         </th>
                     </tr>
                 </tfoot>
+            
             </table>
+
+
            
         </div>
-        <ul>
-            <li>
-                <a class="btn primary-btn my-4" href="/">Continue Shopping</a>
-                {% if cart.get_total_price > 1 %}
-                <a style="background-color: #4654A3;" href="{% url "orders:checkout" %}" class="btn btn-primary">Checkout</a>
-    
-                {% endif %}
-            </li>
-        </ul>
+       
     </div>
     
 </div>
+<ul>
+    <li>
+        <a class="btn primary-btn my-4" href="/">Continue Shopping</a>
+       
+    </li>
+    <li>
+
+        {% if cart.get_total_price > 1 %}
+        <a style="background-color: #4654A3;" href="{% url "orders:checkout" %}" class="btn btn-primary">Checkout</a>
+
+        {% endif %}
+    </li>
+</ul>
 </div>
 
 <style>
-    table{
-        text-align: center;
-    }
-</style>
+    ul{
+        text-align: center
 
+    }
+    li{
+        display: inline;
+    }
+    
+</style>
 {% endblock %}
