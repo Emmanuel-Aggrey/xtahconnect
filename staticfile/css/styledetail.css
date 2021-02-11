@@ -451,7 +451,7 @@ textarea:focus {
 /*----------------------------------------*/
 /*Home One | Slider Background Image*/
 .bg-1, .bg-2, .bg-3 {
-	/* background-image: url("./images/slider/1.jpg"); */
+	background-image: url(images/slider/1.jpg);
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
@@ -459,14 +459,14 @@ textarea:focus {
 	width: 100%;
 }
 .bg-2 {
-	background-image: url(../images/slider/2.jpg);
+	background-image: url(images/slider/2.jpg);
 }
 .bg-3 {
-	background-image: url(./images/company_logo.png);
+	background-image: url(images/slider/3.jpg);
 }
 /*Home Two | Slider Background Image*/
 .bg-4, .bg-5, .bg-6 {
-	background-image: url(../images/company_logo.png);
+	background-image: url(images/slider/4.jpg);
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
@@ -1092,7 +1092,7 @@ textarea:focus {
   font-weight: 500;
   font-size: 24px;
   line-height: 27px;
-  color: #e80f0f;
+  color: #D7782F;
 }
 .product-details-view-content .content-center .product-variants {
   display: -webkit-box;
@@ -1525,7 +1525,7 @@ textarea:focus {
 }
 .hm-minicart-trigger {
 		border-radius: 2px;
-		background: #e80f0f;
+		background: #D7782F;
 		color: #fff;
 		height: 45px;
 		cursor: pointer;
@@ -2038,7 +2038,7 @@ textarea:focus {
 	margin-bottom: 10px;
 }
 .slider-content > h5 > span {
-	color: #e80f0f;
+	color: #D7782F;
 }
 .slider-content > h2 {
 	font-size: 35px;
@@ -2055,7 +2055,7 @@ textarea:focus {
 }
 .slider-content > h3 > span {
 	font-size: 30px;
-	color: #e80f0f;
+	color: #D7782F;
 }
 /*----------------------------------------*/
 /*  2.3 Li's Static Top
@@ -2298,12 +2298,12 @@ textarea:focus {
 }
 .product_desc .product_desc_info .price-box .new-price-2,
 .featured-price-box .new-price-2 {
-	color: #e80f0f !important;
+	color: #D7782F !important;
 }
 .product_desc .product_desc_info .price-box .discount-percentage,
 .featured-price-box .discount-percentage {
 	float: right;
-	color: #e80f0f;
+	color: #D7782F;
 }
  .product_desc .product_desc_info .old-price {
   color: #666;
@@ -2323,7 +2323,7 @@ textarea:focus {
 .li-countdown .count, .product-sale-countdown .count {
     display: inline-block;
     text-align: center;
-    color: #e80f0f;
+    color: #D7782F;
     border: 2px solid #dbdbdb;
     margin:20px 2px 0;
     padding:5px;
@@ -2629,7 +2629,7 @@ textarea:focus {
 	content: "";
 	position: absolute;
 	bottom: -23px;
-	background: #fed700;
+	background:#D7782F;
 	height: 1px;
 	left: 0;
 	right: 0;
@@ -2675,7 +2675,7 @@ textarea:focus {
 	z-index: 99;
 }
 .li-static-home-content > p span {
-	color: #e80f0f;
+	color: #D7782F;
 }
 .li-static-home-content > h2 {
 	font-weight: 400;
@@ -2698,7 +2698,7 @@ textarea:focus {
 }
 .li-static-home-content > p.schedule span {
 	font-size: 24px;
-	color: #e80f0f;
+	color: #D7782F;
 	font-weight: 500;
 }
 /*----------------------------------------*/
@@ -2725,7 +2725,7 @@ textarea:focus {
 .li-trending-product-tab > h2 > span::before {
 	content: "";
 	position: absolute;
-	background: #fed700;
+	background :#D7782F;
 	height: 1px;
 	width: 100%;
 	bottom: -10px;
@@ -2881,14 +2881,14 @@ textarea:focus {
 	color: #fff;
 }
 .social-link > li:hover > a {
-	background: #fed700 ;
+	background:#D7782F ;
 }
 /*Social Link Color Variations*/
 .twitter {
 	background: #40c1df;
 }
 .rss {
-	background: #eb8314;
+	background: #D7782F;
 }
 .google-plus {
 	background: #ed3c32;
@@ -3036,6 +3036,7 @@ text-align: center;
 .categories-toggle > span {
 	padding-left: 10px;
 }
+
 .category-heading > h2::before {
 	font-size: 20px;
 	vertical-align: top;
