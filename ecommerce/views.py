@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.template.defaultfilters import  slugify
-
+from django.http import JsonResponse
 from .models import Category, Product, Sub_Category
 from hashids import Hashids
 
@@ -171,7 +171,12 @@ def search(request):
 
     return render(request,'search.html',context)
 
-
+def search_api(request):
+    names = []
+    product_name = Product.objects.values_list('name', flat=True)
+    for name in product_name:
+        names.append(name)
+    return JsonResponse({'names':names})
 
 def producCreatetView(request,id):
     product = get_object_or_404(Sub_Category,id=id)

@@ -17,4 +17,5 @@ urlpatterns=[
     path("add/product/<int:id>/",views.producCreatetView, name="add_product"),
 
     path("search/",views.search,name="search"),
+    path("search_api/",views.search_api,name='search_api'),
 ]
