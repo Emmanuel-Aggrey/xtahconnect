@@ -237,7 +237,7 @@ textarea.input {
 }
 
 .list-links li>a:hover, .list-links li>a:focus, .list-links li.active>a {
-  color: #F8694A;
+  color: #D7782F;
   -webkit-transform: translateX(10px);
   -ms-transform: translateX(10px);
   transform: translateX(10px);
