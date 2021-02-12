@@ -7,23 +7,23 @@ from orders.models import OrderItem
 admin.site.site_header = "XTAYCONNECT AFRICA" # Add this
 
 
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name','is_available',]
-    list_editable = ['is_available',]
 
-
-
-
-class Sub_CategoryAdmin(admin.ModelAdmin):
+class Sub_CategoryInline(admin.TabularInline):
+    model = Sub_Category
     list_display = ['category','name','is_available']
     list_editable = ['is_available',]
+    list_filter = ['is_available']
 
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ['category','name','price','is_available']
-
-    list_filter = ['category','is_available']
+class CategoryAdmin(admin.ModelAdmin):
+    inlines = [Sub_CategoryInline]
+    list_display = ['name','is_available',]
     list_editable = ['is_available',]
+    extra=3
 
+class ProductInline(admin.TabularInline):
+    model = Product
+    list_display = ['category','name','price','is_available']
+    list_filter = ['category','is_available']
     fieldsets = (
         (None, {
             'fields': ('category','name', 'price','image','is_available','description',)
@@ -33,10 +33,22 @@ class ProductAdmin(admin.ModelAdmin):
             'fields': ('image1', 'image2','image3','image4','image5',),
         }),
     )
+    list_editable = ['is_available',]
 
+
+
+
+
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['category','name','is_available']
+    inlines = [ProductInline]
+    list_editable = ['is_available',]
+
+   
 
 
 
 admin.site.register(Category,CategoryAdmin)
-admin.site.register(Sub_Category,Sub_CategoryAdmin)
-admin.site.register(Product,ProductAdmin)
+admin.site.register(Sub_Category,ProductAdmin)
+admin.site.register(Product)
