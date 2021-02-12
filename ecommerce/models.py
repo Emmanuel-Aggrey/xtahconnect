@@ -35,7 +35,7 @@ class Category(Base_Model):
 class Sub_Category(Base_Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name='sub_categories')
-    name = models.CharField(max_length=200)
+    name = models.CharField('sub category',max_length=200)
     is_available = models.BooleanField(default=True)
 
     # create a new slug
