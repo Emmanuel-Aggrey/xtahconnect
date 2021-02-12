@@ -1,17 +1,17 @@
-from django.shortcuts import render,redirect,get_object_or_404
-
-from django.conf import settings
-from solvergeek.settings import EMAIL_HOST_USER
-from  django.contrib import  messages
-from django.core.mail import send_mail
-from django.core.mail import send_mass_mail
-from .models import OrderItem,Order
-from .forms import OrderCreateForm
 from cart.cart import Cart
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail, send_mass_mail
 from django.db.models import Q
+from django.shortcuts import get_object_or_404, redirect, render
+from solvergeek.settings import EMAIL_HOST_USER
+
+from .forms import OrderCreateForm
+from .models import Order, OrderItem
 
 
-
+@login_required
 def checkout(request):
     cart = Cart(request)
     if request.method == 'POST':
@@ -82,8 +82,8 @@ def payment_success(request):
     return render(request,'payment/success.html')
 
 
-def payment_fail(request):
-    return render(request,'payment/fail.html')
+def checkout_fail(request):
+    return render(request,'order/checkout_fail.html')
 
 
 

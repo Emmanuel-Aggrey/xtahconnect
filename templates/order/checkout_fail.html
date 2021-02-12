@@ -1,0 +1,54 @@
+{% extends 'header1.html' %}
+
+{% load static %}
+
+<head>
+
+    {% block head %}
+
+    <title>
+
+        {% block title %}
+        Your Shopping Cart| Thank you
+        {% endblock %}
+    </title>
+
+    {% endblock head %}
+
+</head>
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-md-offset-2">
+            <h1 class="page-header">Thank You For Shopping With Us
+            </h1>
+            <h2>But Unfortunately your payment have failed or you canceled the payment transaction
+                if its a failure then we appologize and please feel to contact customers support on
+                 <strong class="text-info"><a class="btn" href="tel:++233206494929">+233206494929</a></strong> we waiting on your call
+               <code class="text-center">Thank you</code> </h2>
+
+    <ul id="reachus"> 
+            <li class="li">
+                <a class="btn btn-lg" href="/">continue shopping</a>
+            </li>
+            <li class="li">
+                <a class="btn btn-lg"href="{% url 'orders:checkout' %}">Try Again</a>
+            </li>
+    </ul>
+        </div>
+
+       
+    </div>
+    
+</div>
+<style>
+    .li,.btn{
+        display: inline;
+        color:#270E46
+    }
+    #reachus{
+        text-align: center;
+      
+    }
+</style>
+{% endblock %}

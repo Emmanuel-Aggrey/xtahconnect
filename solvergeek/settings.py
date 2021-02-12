@@ -57,6 +57,9 @@ INSTALLED_APPS = [
     # 'cloudinary',
     'ckeditor',
     'storages',
+
+    # paymant
+  
     
     #logins
     'allauth',
@@ -286,3 +289,7 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL,'/media/')
 DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+
+
+PAYSTACK_SCRET_KEY=config('PAYSTACK_SCRET_KEY')
+PAYSTACK_PUBLIC_KEY=config('PAYSTACK_PUBLIC_KEY')
