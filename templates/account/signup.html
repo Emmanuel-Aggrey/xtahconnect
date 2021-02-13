@@ -1,53 +1,54 @@
+
+
+
 {% extends "account/base.html" %}
 {% load crispy_forms_tags %}
-
 {% load i18n %}
-
+{% load account socialaccount %}
+{% load static %}
 {% block head_title %}{% trans "Signup" %}{% endblock %}
+
 
 {% block content %}
 
-
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="">
-      <h1>{% trans "Sign Up" %}</h1>
-
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}" style="color: #270949;">sign in</a>.{% endblocktrans %}</p>
-
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form|crispy }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button class="btn btn-block btn-outline-info" type="submit">{% trans "Sign Up" %} &raquo;</button>
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+<div class="container d-flex justify-content-center">
+<div class="d-flex flex-column justify-content-between">
+  <div class="card mt-3 p-5">
+    <!-- <div class="logo mb-3"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVHaAK05kn7wo_YA15frtfKAsFnRHtCHAL1g&usqp=CAU"></div> -->
+    <div>
+        <p class="text-light">Register To Get Started</p>
+        <!-- <h4 class="mb-5 text-white">money with us!</h4> -->
+    </div> <button class="btn  btn-lg callout"><small class="text-muted">Already Have An Account ?</small><span>&nbsp;<a class="text-light" href="{{ login_url }}">Login Now</a></span> </button>
+</div>
+<div class="card two bg-white px-5 py-4 mb-3">
+  <form class="signup" id="signup_form" method="POST" action="{% url 'account_signup' %}"> 
+    {% csrf_token %}
+    {{ form|crispy }}
+    
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <a class="button secondaryAction link" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+   
+    <button type="submit" class="btn  btn-block btn-lg mt-1 mb-2 loginbtn"><span>{% trans "Sign Up" %}<i class="fas fa-long-arrow-alt-right ml-2"></i></span></button>
 </form>
-    </div>
-  </div>
+<span class="text-center text-muted">Register with</span>
+  <div class="btn btn-block social-account">{% include "socialaccount/snippets/provider_list.html" with process="login" %}</div>
+
+
+
 </div>
-<div>
-   <p class="text-center link">OR Register in with!</p>
 
-<ul class="socialaccount_providers list-unstyled text-center ">
-  <li class="text-center"> 
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-
-  </li>
-</ul>
 </div>
- <hr>
-<style>
-  .link{
-  color: #270949;
-}
-
-.socialaccount_provider{
   
-  color:blue;
+</div>
+
+<style>
 
 
-}
+ 
 </style>
-
 {% endblock %}
+
+   

@@ -79,7 +79,7 @@ def checkout(request):
 
 
 def payment_success(request):
-    return render(request,'payment/success.html')
+    return render(request,'order/checkoout_success.html')
 
 
 def checkout_fail(request):

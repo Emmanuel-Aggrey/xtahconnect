@@ -58,7 +58,7 @@
                     {% for item in cart %}
                     <li class="list-group-item" >
                         {{ item.quantity }} {{ item.product.name }}
-                        <span> Total GH₵: {{ item.total_price|intcomma }}</span>
+                        <span id="total_price"> Total GH₵: {{ item.total_price|intcomma }}</span>
                     </li>
                     {% endfor %}
 
@@ -71,51 +71,14 @@
         <div class="col-md-6">
             <div class="shiping-methods">
                 <div class="section-title">
-                    <h4 class="title">Shiping Methods</h4>
+                    <h4 class="title">SELECT PAYMENT METHOD</h4>
                 </div>
                 <div class="input-checkbox">
                     <input type="radio" name="shipping" id="shipping-1" checked>
-                    <label for="shipping-1">Free Shiping - GH₵ 0.00</label>
-                    <div class="caption">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            <p>
-                    </div>
-                </div>
-                <div class="input-checkbox">
-                    <input type="radio" name="shipping" id="shipping-2">
-                    <label for="shipping-2">Standard - GH₵ 4.00</label>
-                    <div class="caption">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            <p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="payments-methods">
-                <div class="section-title">
-                    <h4 class="title">Payments Methods</h4>
-                </div>
-                <div class="input-checkbox">
-                    <input type="radio" name="payments" id="payments-1" checked>
-                    <label for="payments-1">Online payment</label>
-                    <div class="caption">
-                        
-                        <!-- ipay -->
-                            
-                        <!-- ipay -->
-                    </div>
-                </div>
-                <div class="input-checkbox">
-                    <input type="radio" name="payments" id="payments-2">
-                    <label for="payments-2">Online Payment</label>
+                    <label for="shipping-1">ONLINE PAYMENT</label>
                     <div class="caption">
                         <p>
-                            <div>
-                                <html class="fonts">
+                            <html class="fonts">
                                     <head>
                                         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
                                         <style type="text/css">.fonts{font-size: 12.5px;}.ipay-btn{background-color: #04448C;border-color: #04448C;border-radius: 17px !important;}.modal{width: 27% !important;}.modal-header{padding-left:48px !important;padding-right: 48px !important;border-bottom: none !important;text-align: center !important;}.modal-footer{height: 120px;padding-left:48px !important;padding-right: 48px !important;margin-bottom: -17px !important;border-top: none !important;}.modal-body{margin-bottom: -25px;padding-right: 48px !important;padding-left: 48px !important;border-bottom: none !important;margin-top: -27px;}#close:hover{text-decoration: none !important;}.logo{width: 65px;height: 65px;}</style>
@@ -125,7 +88,7 @@
                                             <div class="row">
                                                     <div class="col-lg-3 col-md-3 col-xs-3 col-sm-5">
                                                     <div class="input-group-prepend">
-                                                        <button type="button" class="btn btn-primary ipay-btn" data-toggle="modal" data-target="#ipayModal">Make Payment</button>
+                                                        <button type="button" class="btn ipay-btn btn-block" style="background-color: #4654A3;color: white;" data-toggle="modal" data-target="#ipayModal">Make Payment</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -133,7 +96,7 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <img src="https://payments2.ipaygh.com/app/webroot/img/LOGO-MER04638.jpeg" class="mx-auto d-block logo">
+                                                            <img src="https://xtayconnectafrica.com/static/images/new_logo.png" class="mx-auto d-block logo">
                                                         </div>
                                                         <form action="https://manage.ipaygh.com/gateway/checkout" id="ipay_checkout" method="post" name="ipay_checkout" target="_blank">
                                                             <div class="modal-body">
@@ -141,7 +104,7 @@
                                                                 <input name="merchant_key" type="hidden" value="tk_325dac48-7a56-11ea-a1ba-f23c9170642f">
                                                                 <input id="merchant_code" type="hidden" value="TST000000004035">
                                                                 <input name="source" type="hidden" value="WIDGET">
-                                                                <input name="success_url" type="hidden" value="https://xtayconnectafrica.com/checkout/">
+                                                                <input name="success_url" type="hidden" value="https://xtayconnectafrica.com/payment_success/">
                                                                 <input name="cancelled_url" type="hidden" value="https://xtayconnectafrica.com/checkout_fail/">
                                                                 <input id="invoice_id" name="invoice_id" type="hidden" value="">
                                                                 <div class="row">
@@ -168,7 +131,7 @@
                                                                 <div class="row">
                                                                     <div class="col-lg">
                                                                         <div class="form-group input-group">
-                                                                            <input type="text" name="total" class="form-control" id="total" placeholder="Amount(GH₵)">
+                                                                            <input type="number" name="total" class="form-control" id="total" placeholder="Amount(GH₵)" value="">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -181,7 +144,7 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg">
-                                                                        <button type="submit" class="btn btn-primary ipay-btn btn-block" style="padding: 8px 11px;"><strong>Pay</strong></button>
+                                                                        <button type="submit" class="btn ipay-btn btn-block" style="padding: 8px 11px;background-color: #4654A3;color: white;"><strong>Pay</strong></button>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
@@ -211,9 +174,56 @@
                                         <script type="text/javascript">(function(){Date.prototype.today = function () { return  this.getFullYear()+(((this.getMonth()+1) < 10)?"0":"") + (this.getMonth()+1) +((this.getDate() < 10)?"0":"") + this.getDate();};Date.prototype.timeNow = function () { return ((this.getHours() < 10)?"0":"") + this.getHours() +((this.getMinutes() < 10)?"0":"") + this.getMinutes() +((this.getSeconds() < 10)?"0":"") + this.getSeconds();};document.getElementById("invoice_id").value = document.getElementById("merchant_code").value+ new Date().today() + new Date().timeNow();})();</script>
                                     </body>
                                 </html>
+
+                            <p>
+                    </div>
+                </div>
+                <div class="input-checkbox">
+                    <input type="radio" name="shipping" id="shipping-2">
+                    <label for="shipping-2">PAT ON DELIVERY</label>
+                    <div class="caption">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            <p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payments-methods">
+                <div class="section-title">
+                    <h4 class="title">Payments Methods</h4>
+                </div>
+                <div class="input-checkbox">
+                    <input type="radio" name="payments" id="payments-1" checked>
+                    <label for="payments-1">Online payment</label>
+                    <div class="caption">
+                        
+                        <!-- ipay -->
+                            Click on PAY Now Button To PAy
+                        <!-- ipay -->
+                    </div>
+                </div>
+                <div class="input-checkbox">
+                    <input type="radio" name="payments" id="payments-2">
+                    <label for="payments-2">Try as much to describe the pickup location</label>
+                    <div class="caption">
+                        <p>
+                            <div>
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
                             </div>
                             <p>
                     </div>
+
+
+
+
+
+
+
+
+
+
                 </div>
                 <div class="input-checkbox">
                     <input type="radio" name="payments" id="payments-3">
@@ -233,7 +243,8 @@
     <script> 
     document.getElementById('id_name').value="{{request.user.get_full_name}}"
     document.getElementById('id_email').value="{{request.user.email}}"
-    
+    document.getElementById('total').value=  document.getElementById('total_price').value
+
     </script>
 {% endif %}
 {% endblock %}
