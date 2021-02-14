@@ -76,7 +76,8 @@
                     <figure>
 
                         <a href="{{product.get_absolute_url}}">
-                            <img src="{{product.image.url}}" id="product_image" alt="{{product.image.url}">
+                            <img src="{{product.image.url}}" id="product_image" alt="{{product.name}}">
+
                         </a>
                     </figure>
                     <div class="product-details">
@@ -175,13 +176,15 @@
     <h4 id="alertnew" class="alert alert-success text-center"></h4>
 
 
-    {% for groupings in sub_category %}
 
-    {% if groupings.products.count > 0 %}
+
+
 
     <div class="home-product-tabs">
+        {% for groupings in sub_category %}
 
-        <div class="container">
+        {% if groupings.products.count > 0 %}
+        <div class="container" style="padding-top:2px">
             <a href="{% url 'categories' groupings.id  %}" class="float-right btn" style="color: #4654A3;font-weight:bolder">view all</a>
 
             <ul class="nav nav-tabs" role="tablist">
@@ -190,7 +193,6 @@
                         href="#featured-products" role="tab" aria-controls="featured-products" aria-selected="true">
                         {{groupings.name}} </a>
                 </li>
-
 
             </ul>
 
@@ -235,11 +237,11 @@
                     </div><!-- End .products-carousel -->
                 </div><!-- End .container -->
             </div><!-- End .tab-pane -->
-
+            {% endif %}
+            {% endfor %}
+    
         </div><!-- End .home-product-tabs -->
-        {% endif %}
-        {% endfor %}
-
+    
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -249,7 +251,7 @@
                         <div class="feature-box-content">
                             <h3>Dedicated Service</h3>
                             <p>Consult our specialists for help with an order, customization, or design advice</p>
-                            <a href="#" class="btn btn-sm btn-outline-dark">Get in touch</a>
+                            <!-- <a href="#" class="btn btn-sm btn-outline-dark">Get in touch</a> -->
                         </div><!-- End .feature-box-content -->
                     </div><!-- End .feature-box -->
                 </div><!-- End .col-md-4 -->
@@ -261,7 +263,7 @@
                         <div class="feature-box-content">
                             <h3>Free returns</h3>
                             <p>We stand behind our goods and services and want you to be satisfied with them.</p>
-                            <a href="#" class="btn btn-sm btn-outline-dark">Return Policy</a>
+                            <!-- <a href="#" class="btn btn-sm btn-outline-dark">Return Policy</a> -->
                         </div><!-- End .feature-box-content -->
                     </div><!-- End .feature-box -->
                 </div><!-- End .col-md-4 -->
@@ -376,9 +378,7 @@
         visibility: hidden;
     }
 
-    body {
-        background-color: #4654A3;
-    }
+    
     .tab-content{
         /* padding: 0rem !important; */
         /* height: 330px */
@@ -388,7 +388,7 @@
         height: 300px;
     } */
     .owlspace{
-    height: 345px;
+    height: 350px;
   }
   
 
@@ -398,10 +398,10 @@
     height: 20px !important;
   }
   .owlspace{
-    height: 225px;
+    height: 230px;
   }
   .product-details{
-    height: 40px !important;
+    height: 90px !important;
    }
 
 
