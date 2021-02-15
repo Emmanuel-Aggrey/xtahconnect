@@ -36,7 +36,32 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 		25. Zoom Product Venobox
 		26. WOW
 
+
+
+
 -----------------------------------------------------------------------------------*/
+
+
+
+// GET CART SIZE WHEN SAVED
+
+function getcartsize() {
+	$.ajax({
+		url: '/cart_size/',
+		type: 'GET',
+		success: function (res) {
+			// console.log('size is ',res.size)
+			$('.cart-count').text(res.size)
+			$('.cart_saved').text('saved to Cart').fadeOut(5000)
+
+			quantity = $('#quantity').val('')
+		},
+		error: function () {
+			$('.cart_saved').text('not saved').fadeOut(5000)
+
+		}
+	})
+}
 (function ($) {
 	"use Strict";
 /*----------------------------------------*/

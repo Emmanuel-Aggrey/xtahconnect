@@ -225,3 +225,6 @@ def error404(request, exception):
 def error500(request):
 
     return render(request, 'error_pages/error500.html')
+
+def header(request):
+    return render(request, 'test_pages/herder.html')

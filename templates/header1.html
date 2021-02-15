@@ -53,15 +53,15 @@
     <!-- heder page -->
 
     <!-- Plugins CSS File -->
-    
+
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
-    
+
     <link rel="stylesheet" href="{% static 'css/material-design-iconic-font.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/meanmenu.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    
+
     <link rel="stylesheet" href="{% static 'css/slick.css' %}">
     <!-- <link rel="stylesheet" href="{% static 'css/animate.css' %}"> -->
     <!-- <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}"> -->
@@ -72,9 +72,9 @@
     <link rel="stylesheet" href="{% static 'css/fontawesome-stars.css' %}">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'js/modernizr-2.8.3.min.js' %}">
-    
-    
-    
+
+
+
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
     <!-- Main CSS File -->
@@ -86,7 +86,7 @@
     <link rel="stylesheet" href="{% static 'css/styledetail.css' %}">
 
 
-  
+
     {% block head %}
 
     {% endblock head %}
@@ -99,40 +99,34 @@
 
             <div class="header-middle">
                 <div class="container">
-                   
-                    <div class="header-left">
-                        <button class="mobile-menu-toggler" type="button">
+                    <div class="header-center">
+                        <button class="mobile-menu-toggler float-left" type="button">
                             <i class="icon-menu"></i>
                         </button>
-                        <div class="header-search">
-                            <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
-                            <form action="{% url 'search' %}" method="get">
-                                <div class="header-search-wrapper">
-                                    <input type="search" class="form-control" name="q" id="q" placeholder="Search..."
-                                        required value="{{request.GET.q}}">
-                                    <div class="select-custom" style="font-weight: bolder;">
-                                        <select id="cat" name="">
+                        <a href="/" class="logo">
+                            <img src="{% static 'images/logo/JPEG Xtay.ico' %}" id="mainlogo"
+                                alt="XtayConnect AfricaTM logo">
+                        </a>
+                    </div><!-- End .headeer-center -->
+                    <div class="header-search">
+                        <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
 
-                                            {% for groups in sub_category %}
+                        <div class="header-search" style="align-items: center !important;">
+                            <form action="{% url 'search' %}" method="get" id="searchform">
+                                <div class="header-search-wrapper ">
+                                    <input type="search" class="form-control" name="q" id="q"
+                                        placeholder="Search for products and cetegories" required
+                                        value="{{request.GET.q}}">
 
-                                            <option value=""><a
-                                                    href="{% url 'categories' groups.id %}">{{groups.name}}</a></option>
-
-
-                                            {% endfor %}
-                                        </select>
-                                    </div><!-- End .select-custom -->
-                                    <button class="btn" type="submit"><i class="icon-magnifier"></i></button>
+                                    <button class="btn btn-lg btn-search"
+                                        style="color:white;background-color: #4654A3;margin: 0;"
+                                        type="submit">Search</button>
                                 </div><!-- End .header-search-wrapper -->
                             </form>
                         </div><!-- End .header-search -->
                     </div><!-- End .header-left -->
 
-                    <div class="header-center">
-                        <a href="/" class="logo">
-                            <img src="{% static 'images/new_logo.png' %}" alt="XtayConnect AfricaTM logo">
-                        </a>
-                    </div><!-- End .headeer-center -->
+
 
                     <div class="header-right">
                         <div class="header-contact">
@@ -143,15 +137,17 @@
                         <div class="dropdown cart-dropdown">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false" data-display="static">
-                                <div class="cart-count" id="cart-count">{{cart|length}}</div>
+                                <div class="cart-count" id="cart-count" style="color:white;background-color: #4654A3;">
+                                    {{cart|length}}</div>
                             </a>
 
                             <div class="dropdown-menu">
                                 <div class="dropdownmenu-wrapper">
                                     <div class="dropdown-cart-header">
-                                        <span class="">{{cart|length}} Item{{cart|length|pluralize}} </span>
+                                        <span class="" style="color:#4654A3">{{cart|length}}
+                                            Item{{cart|length|pluralize}} </span>
 
-                                        <a href="{% url 'cart:cart_detail' %}">View Cart</a>
+                                        <a style="color:#4654A3" href="{% url 'cart:cart_detail' %}">View Cart</a>
                                     </div><!-- End .dropdown-cart-header -->
                                     <div class="dropdown-cart-products">
 
@@ -161,7 +157,7 @@
 
 
                                     <div class="dropdown-cart-action">
-                                        <a style="background-color:#CE7E11;" href="{% url 'orders:checkout' %}"
+                                        <a style="background-color: #4654A3;" href="{% url 'orders:checkout' %}"
                                             class="btn btn-block">Checkout</a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdownmenu-wrapper -->
@@ -174,10 +170,10 @@
             <div class="header-bottom sticky-header">
                 <div class="container">
                     <nav class="main-nav">
-                        <ul class="menu sf-arrows">
-                            <li class=""><a href="/">Home</a></li>
+                        <ul class="menu sf-arrows ">
+                            <li class=""><a class="nav-item" href="/">Home</a></li>
                             <li>
-                                <a href="#" class="sf-with-ul">Categories</a>
+                                <a href="#" class="sf-with-ul nav-item">Categories</a>
 
                                 <div class="megamenu megamenu-fixed-width">
 
@@ -196,7 +192,7 @@
                                             <ul>
                                                 {% for items in navs.sub_categories.all %}
                                                 {% if items.is_available %}
-                                                <li><a href="{% url 'categories' items.id %}">
+                                                <li class=""><a href="{% url 'categories' items.id %}">
 
                                                         {{items.name}}<span class=""></span></a></li>
                                                 {% endif %}
@@ -217,16 +213,14 @@
                             {% if user.is_staff %}
                             <li>
 
-                                <a href="#" class="sf-with-ul">Pages</a>
+                                <a href="#" class="sf-with-ul nav-item">Pages</a>
 
                                 <ul>
 
-                                    <!-- <li><a href="{% url 'about' %}">About Us</a></li> -->
-
-                                    <!-- <li><a href="#">Contact Us</a></li> -->
                                     <hr>
 
-                                    <li><a title="orders placed by customers" href="{% url 'orders:orders' %}">Orders
+                                    <li><a class="" title="orders placed by customers"
+                                            href="{% url 'orders:orders' %}">Orders
                                             Placed</a></li>
 
 
@@ -236,20 +230,20 @@
                             {% endif %}
                             {% if user.is_authenticated %}
                             <!-- <li class="float-right"><a>{{user.first_name}}</a></li> -->
-                            <li class="float-right"><a href="{% url 'account_logout' %}">LOGOUT</a>
+                            <li class="float-right"><a class="nav-item" href="{% url 'account_logout' %}">LOGOUT</a>
                             </li>
                             {%else %}
-                            <li class="float-right"><a href="{% url 'account_login' %}">LOGIN</a></li>
-                            <li class="float-right"><a href="{% url 'account_signup' %}">REGISTER</a>
+                            <li class="float-right "><a class="nav-item" href="{% url 'account_login' %}">LOGIN</a></li>
+                            <li class="float-right"><a class="nav-item" href="{% url 'account_signup' %}">REGISTER</a>
                             </li>
                             {% endif %}
                             {% if user.is_staff %}
                             <li>
-                                <a class="btn pulse" href="{% url 'create_form' %}">Create</a>
+                                <a class="btn pulse nav-item" href="{% url 'create_form' %}">Create</a>
 
                             </li>
                             {% endif %}
-                            <li><a href="{% url 'about' %}">About Us</a></li>
+                            <li><a class="nav-item" style="color: #4654A3" href="{% url 'about' %}">About Us</a></li>
 
                         </ul>
                     </nav>
@@ -366,14 +360,18 @@
                     <img src="{% static 'images/payments.png' %}" alt="payment methods" class="footer-payments">
 
                     <div class="social-icons">
-                        <a href="https://m.facebook.com/XtayConnectAfrica/" class="social-icon" target="_blank"><i class="icon-facebook"></i></a>
-                        <a href="https://twitter.com/Xconnect_Africa?s=08" class="social-icon" target="_blank"><i class="icon-twitter"></i></a>
-                        <a href="linkedin.com/company/xtayconnectafrica" class="social-icon" target="_blank"><i class="icon-linkedin"></i></a>
-                        <a href="https://www.instagram.com/xtayconnectafrica/" class="social-icon" target="_blank"><i class="icon-instagram"></i></a> 
-                      
+                        <a href="https://www.facebook.com/XtayConnect-Africa-109896374204854/" class="social-icon"
+                            target="_blank"><i class="icon-facebook"></i></a>
+                        <a href="https://twitter.com/Xconnect_Africa?s=08" class="social-icon" target="_blank"><i
+                                class="icon-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/xtayconnect-africa/" class="social-icon"
+                            target="_blank"><i class="icon-linkedin"></i></a>
+                        <a href="https://www.instagram.com/xtayconnect_africa/" class="social-icon" target="_blank"><i
+                                class="icon-instagram"></i></a>
+
 
                     </div><!-- End .social-icons -->
-            </div><!-- End .containr -->
+                </div><!-- End .containr -->
         </footer><!-- End .footer -->
     </div><!-- End .page-wrapper -->
 
@@ -387,7 +385,7 @@
                     <li class=""><a href="/">Home</a></li>
 
                     <li>
-                        <a href="#">Categories</a>
+                        <a class="nav-item" href="#">Categories</a>
 
 
                         <ul>
@@ -408,12 +406,12 @@
 
 
                     </li>
-                    <li>
-                        <a href="#">Pages<span class="">Hot!</span></a>
+                    <li> 
+                        <a class="nav-item"  href="#">Pages<span class="">Hot!</span></a>
                         <ul>
-                            <li><a href="{% url 'cart:cart_detail' %}">Shopping Cart</a></li>
+                             <li><a class="nav-item" href="{% url 'cart:cart_detail' %}">Shopping Cart</a></li>
                             <li>
-                                <a href="{% url 'orders:checkout' %}">Checkout</a>
+                                <a class="nav-item" href="{% url 'orders:checkout' %}">Checkout</a>
                                 <!-- <ul>
                                     <li><a href="#">Checkout Shipping</a></li>
                                     <li><a href="#">Checkout Shipping 2</a></li>
@@ -425,9 +423,9 @@
                             <li><a href="#">Forgot Password</a></li>
 
                             {% if user.is_staff %}
-                            <li><a title="orders placed by customers" href="{% url 'orders:orders' %}">Orders Placed</a>
+                            <li><a class="nav-item" title="orders placed by customers" href="{% url 'orders:orders' %}">Orders Placed</a>
                             </li>
-                            <li title="add a new item"><a class="btn pulse" href="{% url 'create_form' %}">Create</a>
+                            <li title="add a new item"><a  class="btn pulse nav-link" href="{% url 'create_form' %}">Create</a>
                             </li>
                             {% endif %}
 
@@ -440,22 +438,27 @@
                     </li> -->
 
                     {% if user.is_authenticated %}
-                    <li class=""><a href="{% url 'account_logout' %}">LOGOUT</a>
+                    <li class=""><a class="nav-item" href="{% url 'account_logout' %}">LOGOUT</a>
 
                         {% else %}
-                    <li><a href="{% url 'account_login' %}">LOGIN<span class=""></span></a></li>
-                    <li><a href="{% url 'account_signup' %}">REGISTER</a></li>
+                    <li><a  class="nav-item" href="{% url 'account_login' %}">LOGIN<span class=""></span></a></li>
+                    <li><a class="nav-item" href="{% url 'account_signup' %}">REGISTER</a></li>
                     {% endif %}
-                    <li class=""><a href="{% url 'about' %}">About Us</a></li>
+                    <li class=""><a class="nav-item" href="{% url 'about' %}">About Us</a></li>
 
                 </ul>
 
             </nav><!-- End .mobile-nav -->
 
             <div class="social-icons">
-                <a href="#" class="social-icon" target="_blank"><i class="icon-facebook"></i></a>
-                <a href="#" class="social-icon" target="_blank"><i class="icon-twitter"></i></a>
-                <a href="#" class="social-icon" target="_blank"><i class="icon-instagram"></i></a>
+                <a href="https://www.facebook.com/pages/category/Product-Service/XtayConnect-Africa-109896374204854/"
+                    class="social-icon" target="_blank"><i class="icon-facebook"></i></a>
+                <a href="https://twitter.com/Xconnect_Africa?s=08" class="social-icon" target="_blank"><i
+                        class="icon-twitter"></i></a>
+                <a href="https://www.instagram.com/xtayconnect_africa/" class="social-icon" target="_blank"><i
+                        class="icon-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/xtayconnect-africa/" class="social-icon" target="_blank"><i
+                        class="icon-linkedin"></i></a>
             </div><!-- End .social-icons -->
         </div><!-- End .mobile-menu-wrapper -->
     </div><!-- End .mobile-menu-container -->
@@ -535,25 +538,25 @@
     <!-- Main JS File -->
     <script src="{% static 'js/main.min.js' %}"></script>
 
-<script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
 
-<script src="{% static 'js/popper.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/jquery.meanmenu.min.js' %}"></script>
-<script src="{% static 'js/wow.min.js' %}"></script>
-<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.meanmenu.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
 
-<script src="{% static 'js/slick.min.js' %}"></script>
-<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
-<script src="{% static 'js/jquery.counterup.min.js' %}"></script>
-<script src="{% static 'js/venobox.min.js' %}"></script>
-<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
-<script src="{% static 'js/scrollUp.min.js' %}"></script>
-<script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/venobox.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/scrollUp.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 
-<!-- menu -->
-<!-- <script src="{% static 'js/jquery.meanmenu.min.js' %}"></script> -->
-<script src="{% static 'js/wow.min.js' %}"></script>
+    <!-- menu -->
+    <!-- <script src="{% static 'js/jquery.meanmenu.min.js' %}"></script> -->
+    <script src="{% static 'js/wow.min.js' %}"></script>
 
 </body>
 
@@ -567,17 +570,69 @@
         display: none;
         visibility: hidden;
     }
- 
-.header-middle{
-    margin: 0; padding: 0; border: none; margin-top:2px;
+
+    .header-middle {
+        margin: 0;
+        padding: 0;
+        border: none;
+        margin-top: 2px;
+
+
+    }
+
+    @media screen and (max-width: 600px) {
+        #banner {
+            display: none;
+        }
+
+
+        .logo {
+            padding-right: 1em !important;
+
+        }
+
+        #mainlogo {
+            height: 50px;
+            width: auto;
+        }
+        .owlspace{
+    height: 268px;
+  }
+        
+    }
   
 
+
+
+
+    /* all devices */
+
+    .main-nav {
+        background-color: #4654A3;
+    }
+
+    .nav-item {
+        color: white !important;
+
+    }
+
+
+    /* #mainlogo {
+            padding-right: 15em !important;
+        } */
+
+ @media screen and (min-width: 600px) {
+    #mainlogo {
+            height: 50px;
+            width: auto;
+        }
+        #mainlogo {
+            padding-right: 20em !important;
+        } 
+        
 }
-@media only screen and (max-width: 600px) {
-    #banner{
-    display: none;
-}
-}
+
+  
 
 </style>
 
@@ -637,23 +692,22 @@
 
 
 
-function getcartsize(){
-    $.ajax({
-        url:'/cart_size/',
-        type:'GET',
-        success:function(res){
-            // console.log('size is ',res.size)
-            $('.cart-count').text(res.size)
-            $('.cart_saved').text('saved to Cart').fadeOut(5000)
+    function getcartsize() {
+        $.ajax({
+            url: '/cart_size/',
+            type: 'GET',
+            success: function (res) {
+                // console.log('size is ',res.size)
+                $('.cart-count').text(res.size)
+                $('.cart_saved').text('saved to Cart').fadeOut(5000)
 
-            quantity = $('#quantity').val('')
-        },
-        error:function(){
-            $('.cart_saved').text('not saved').fadeOut(5000)
+                quantity = $('#quantity').val('')
+            },
+            error: function () {
+                $('.cart_saved').text('not saved').fadeOut(5000)
 
-        }
-    })
-}
-  
+            }
+        })
+    }
+
 </script>
-

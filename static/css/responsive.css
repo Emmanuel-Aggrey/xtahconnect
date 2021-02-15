@@ -648,10 +648,10 @@ Note: responsive.css, All Responsive CSS Style For This Theme Included In This F
 		display: none;
 	}
 	.hm-searchbox input {
-		padding: 0 60px 0 15px;
+		padding: 0 40px 0 15px;
 	}
 	.header-middle-right {
-		display: flex;
+		/* display: flex; */
 		justify-content: flex-start;
 		padding-top: 40px;
 	}

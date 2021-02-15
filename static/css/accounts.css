@@ -100,3 +100,7 @@ p.mb-1 {
     font-size: 15px;
     color: #D0E6FF
 }
+
+.socialaccount_provider{
+    display: inline
+}

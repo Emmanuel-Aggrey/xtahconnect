@@ -443,29 +443,6 @@
 
 
 
-    function getcartsize() {
-        $.ajax({
-            url: '/cart_size/',
-            type: 'GET',
-            success: function (res) {
-                // console.log('size is ',res.size)
-                $('.cart-count').text(res.size)
-                $('.cart_saved').text('saved to Cart').fadeOut(5000)
-
-                quantity = $('#quantity').val('')
-
-            },
-            error: function () {
-                $('.cart_saved').text('not saved').fadeOut(5000)
-
-            }
-        })
-
-    }
-
-
-
-
 	// $(window).resize(function () {
 	// 	if ($(window).width() < 480) {
 	// 		$('#zoombg').removeClass('zoom_10');
