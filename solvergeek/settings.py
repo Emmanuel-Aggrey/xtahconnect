@@ -80,7 +80,7 @@ INSTALLED_APPS = [
 
 ]
 
-SITE_ID = 1
+SITE_ID = config('SITE_ID')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
