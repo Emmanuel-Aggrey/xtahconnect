@@ -250,6 +250,10 @@
                 </div><!-- End .header-bottom -->
             </div><!-- End .header-bottom -->
         </header><!-- End .header -->
+
+
+
+        
         {% block content %}
 
         {% endblock %}
@@ -576,10 +580,18 @@
         padding: 0;
         border: none;
         margin-top: 2px;
-
-
     }
 
+
+    .main-nav {
+        background-color: #4654A3;
+    }
+
+    .nav-item {
+        color: white !important;
+
+    }
+/* mobile */
     @media screen and (max-width: 600px) {
         #banner {
             display: none;
@@ -601,30 +613,11 @@
         
     }
   
-
-
-
-
-    /* all devices */
-
-    .main-nav {
-        background-color: #4654A3;
-    }
-
-    .nav-item {
-        color: white !important;
-
-    }
-
-
-    /* #mainlogo {
-            padding-right: 15em !important;
-        } */
-
+/* big screens */
  @media screen and (min-width: 600px) {
     #mainlogo {
             height: 50px;
-            width: auto;
+            width: autox;
         }
         #mainlogo {
             padding-right: 20em !important;

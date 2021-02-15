@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
                 ('paid', models.BooleanField(default=False)),
-                ('order_number', models.CharField(default=orders.models.increment_order_number, editable=False, max_length=500, verbose_name='order number')),
+                ('order_number', models.CharField(editable=False, max_length=500, verbose_name='order number')),
             ],
             options={
                 'ordering': ('-created',),

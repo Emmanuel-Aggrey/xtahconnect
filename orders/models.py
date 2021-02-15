@@ -11,18 +11,6 @@ from hashids import Hashids
 hashids = Hashids()
 
 
-
-def increment_order_number():
-  last_order = Order.objects.all().order_by('id').last()
-  if not last_order:
-    return '' + str(datetime.date.today().year) + str(datetime.date.today().month).zfill(2) + '0000'
-  order_number = last_order.order_number
-  order_int = int(order_number[9:13])
-#   new_order_int= order_int + 1
-  new_order_int =order_int + 1
-  new_order_id = '' + str(str(datetime.date.today().year)) + str(datetime.date.today().month).zfill(2) + str(new_order_int).zfill(4)
-  return new_order_id
-
 class Order(Base_Model):
     name = models.CharField(max_length=60)
     email = models.EmailField()
