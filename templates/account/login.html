@@ -16,7 +16,7 @@
     <div>
         <p class="text-light">Login To Get Started</p>
         <!-- <h4 class="mb-5 text-white">money with us!</h4> -->
-    </div> <button class="btn  btn-lg callout"><small class="text-muted">Dont Have An Account ?</small><span>&nbsp;<a class="text-light" href="{{ signup_url }}">Register Now</a></span> </button>
+    </div> <button class="btn  btn-lg callout"><small class="text-muted">Dont Have An Account ?</small><span>&nbsp;<a class="" style="color: #4654A3;" href="{{ signup_url }}">Register Now</a></span> </button>
 </div>
 <div class="card two bg-white px-5 py-4 mb-3">
   <form class="login" method="POST" action="{% url 'account_login' %}"> 
@@ -30,7 +30,7 @@
     <button type="submit" class="btn  btn-block btn-lg mt-1 mb-2 loginbtn"><span>{% trans "Sign In" %}<i class="fas fa-long-arrow-alt-right ml-2"></i></span></button>
 </form>
 <span class="text-center text-muted">login with</span>
-  <div class="btn btn-block social-account">{% include "socialaccount/snippets/provider_list.html" with process="login" %}</div>
+  <div class="btn btn-block social-account"  style="background-color: #4654A3;">{% include "socialaccount/snippets/provider_list.html" with process="login" %}</div>
 
 
 

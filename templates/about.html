@@ -1,42 +1,62 @@
 {% extends 'header1.html' %}
-
-{% load crispy_forms_tags %}
-
 {% load static %}
 
 {% block content %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'test/assets/vendor/aos/aos.js' %}">
+<link rel="stylesheet" href="{% static 'test/assets/css/style.css' %}">
 
 
-<link rel="stylesheet" href="{% static 'css/about.css' %}">
-
-<div class="container">
-    <section id="" class="wrapper style1">
-        <div class="container 75%">
-            <div class="row 200%">
-                <div class="6u 12u$(medium)">
-                    <header class="major">
-                        <h2>EKOL XTAYCONNECT AFRICA </h2>
-                        <p>LIMITED</p>
-                    </header>
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="clearfix">
+    <div class="container d-flex h-100">
+        <div class="row justify-content-center align-self-center" data-aos="fade-up">
+            <div class="col-md-6 intro-info order-md-first order-last" data-aos="zoom-in" data-aos-delay="100">
+                <h2>DTH Solutions<br>WE PROVIDE <span style="color: #A282EF;">FOR ALL CUSTOMERS!</span></h2>
+                <div>
+                    <a href="/" class="btn-get-started " style="color: #fff;background-color: #3D589E;">Get Started</a>
                 </div>
-                <h4 class="6u$ 12u$(medium) text-monospace" style="font-weight: normal;">
-                    <p>
-                        XtayConnect Africa started as a Research into other products that could rely on
-                        the internet to provide support for the unsupported mass in 2018. It was incorporated as
-                        Ekol XtayConnect Enterprise in the early part of 2020 and later changed to Ekol XtayConnect
-                        Africa Limited in the Republic of Ghana.
+            </div>
 
-                    </p>
+            <div class="col-md-6 intro-img order-md-last order-first" data-aos="zoom-out" data-aos-delay="200">
+                <img src="{% static 'images/Wavy_Bus-17_Single-06.jpg' %}" alt="" class="img-fluid">
+            </div>
+        </div>
 
+    </div>
+</section><!-- End Hero -->
 
+<main id="main">
 
-                    <!-- Button trigger modal -->
-                    <button style="background-color:#270949" type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+
+                <div class="col-lg-5 col-md-6">
+                    <div class="about-img" data-aos="fade-right" data-aos-delay="100">
+                        <img src="{% static 'images/logo/JPEG Xtay.ico' %}" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-7 col-md-6">
+                    <div class="about-content" data-aos="fade-left" data-aos-delay="100">
+                        <h2>About Us</h2>
+                        <h3>EKOL XTAYCONNECT AFRICA LIMITED.</h3>
+                        <p>XtayConnect Africa started as a Research into other products that could rely on the internet
+                            to provide support for the unsupported </p>
+                        <p>mass in 2018. It was incorporated as Ekol XtayConnect Enterprise in the early part of 2020
+                            and later changed to Ekol XtayConnect Africa Limited in the Republic of Ghana.</p>
+
+                    </div>
+                    <button style="background-color:#270949" type="button" class="btn text-light" data-toggle="modal"
+                        data-target="#staticBackdrop">
                         Continue Reading
                     </button>
-                </h4>
-                <!-- Modal -->
-                
+                </div>
+
                 <div class="modal fade modal-dialog-scrollable " id="staticBackdrop" data-backdrop="static"
                     data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -94,222 +114,432 @@
                                 </h4>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" style="background-color:#270949;" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
+                                <button type="button" style="background-color:#270949;"
+                                    class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    </section>
 
+    </section><!-- End About Section -->
 
-    <!-- Two -->
-    <section id="two" class="wrapper style2 special">
-        <div class="container">
-            <header class="major">
-                <h2>Vision, Mission </h2>
-                <p>XtayConnect Africa TM </p>
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <header class="section-header">
+                <h3>Core Values</h3>
+
             </header>
-            <div class="row 150%">
-                <div class="6u 12u$(xsmall)">
-                    <div class="image fit captioned">
-                        <img src="{% static 'images/logo/JPEG Xtay.ico' %}"  style="width:auto;height: fit-content;padding-left: 15em;" alt="" />
 
+            <div class="row justify-content-center">
 
+                <div class="wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="box">
+                        <div class="icon" style="background:  #D7782F;;"><i class="ion-ios-analytics-outline"
+                                style="color: #D7782F;"></i></div>
+                        <h4 class="title"><a href="">SYNERGIES</a></h4>
+                        <!-- <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p> -->
                     </div>
                 </div>
-                <div class="6u$ 12u$(medium)">
-                    <div class="">
-                        <h4 class="text-capitalize text-monospace" style="font-weight: normal;">
-                            <p class="r"> to ‘become the most dependable and reliable partner in relevant technology and
-                                ‘opportunity-for-all’ in Africa by the end of 2025’; <br>
-                            </p>
-
-                            <p class="">
-                                to ‘partner all Private and Public institutions relevant in running a technology and
-                                connectivity hub, willing and able to sustain the solutions over a given period of time’
-
-                            </p>
-                        </h4>
+                <div class="" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="box">
+                        <div class="icon" style="background: #270E46;"><i class="ion-ios-bookmarks-outline"
+                                style="color: #270E46;"></i></div>
+                        <h4 class="title"><a href="">SUPPORT</a></h4>
+                        <!-- <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p> -->
                     </div>
                 </div>
+
+                <div class="" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="box">
+                        <div class="icon" style="background: #2D589E;"><i class="ion-ios-paper-outline"
+                                style="color: #2D589E;"></i></div>
+                        <h4 class="title"><a href="">DIVERSITY</a></h4>
+                        <!-- <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p> -->
+                    </div>
+                </div>
+                <div class="wow" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="box">
+                        <div class="icon" style="background: #B95567;"><i class="ion-ios-speedometer-outline"
+                                style="color:#B95567;"></i></div>
+                        <h4 class="title"><a href="">INCLUSION</a></h4>
+                        <!-- <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p> -->
+                    </div>
+                   
+                </div>
+                <p class="text-center">
+                    We believe a large majority of people depend on the harnessed unique capabilities of teams, individuals and institutions; hence, we are opened to any form of relevant partnership to provide cheaper, alternate products and services the large majority.
+                </p>
             </div>
-            <h2> <em>CORE VALUES</em></h2>
-            <ul class="actions">
-                <li><a href="#" class="button special big" style="background-color: #D7782F;"> Synergies </a>
-                </li>
-                <li><a href="#" class="button big" style="background-color: #270E46;"> Support  </a></li>
-                <li><a href="#" class="button special big" style="background-color:#2D589E;"> Diversity</a>
-                </li>
-                <li><a href="#" class="button big" style="background-color:#B95567;"> Inclusion</a></li>
-            </ul>
-            <ul class="actions">
-                
-            </ul>
-            We believe a large majority of people depend on the harnessed unique capabilities of teams, individuals and
-            institutions; hence, we are opened to any form of relevant partnership to provide cheaper, alternate
-            products and services the large majority.
-        </div>
-    </section>
 
-    
-        <div class="container justify-content-center ">
-            <div class="row 200%">
-                
-                
+        </div>
+
+        
+    </section><!-- End Services Section -->
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+        <div class="container" data-aos="fade-up">
+
+            <header class="section-header">
+                <h3>About CEO</h3>
+                <p>MR. EMMANUEL KWAKU OWUSU LARBI.</p>
+            </header>
+
+            <div class="row">
+
+                <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="why-us-img">
+                        <img src="{% static 'images/EKOL new.png' %}" alt="EMMANUEL KWAKU OWUSU LARBI CEO"
+                            class="img-fluid">
+                    </div>
+                </div>
+
+                <div class="col-lg-6 ">
+                    <div class="why-us-content">
+                        <p> Emmanuel K.O Larbi holds an MBA from the Australian Institute of Business (through the Accra
+                            Business School) and a graduate Diploma in Public Finance and Accountancy from the Institute
+                            of
+                            Accountancy Training from the Ministry of Finance and Economic Planning in Ghana..</p>
+                        <p>
+                            He also has a
+                            deferred EMBA from Assam Don Bosco University - India, which he intends to go back and
+                            complete in
+                            2022 after pursuing PMP in 2021.
+                            Mr. Larbi also has over 10 years of experience in Business Promotion,
+                            Regulations and Development,
+                            Management, Sales and Marketing, Public Relations, Corporate Governance and
+                            Operations among other
+                            related fields.
+                        </p>
+
+                        He is the CEO of XtayConnect Africa (a DTH service provider & ISP). He is the
+                        Director of Business
+                        Consultation at TruCapital Global Advisors (a BPO, Capital Raising and Business
+                        Consultancy and
+                        Training firm in Accra, Ghana) and a Director for TruCap Logistics Ghana Limited
+                        (Transport, Haulage
+                        and Logistics Company) and Eclectic Hermanez Limited (Real Estate, Building &
+                        Construction and
+                        Property Management). He is the Executive Board Chairman of the Young African
+                        Entrepreneurs’ Network
+                        [YAEN] and works as a Board member for about 4 companies in Accra and Tema.
+
+                    </div>
                     <!-- Modal -->
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title"><em >  EMMANUEL KWAKU OWUSU LARBI</em></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <h5 class="text-monospace" style="font-weight: normal;">
-                                        He also has a
-                                        deferred EMBA from Assam Don Bosco University - India, which he intends to go back and complete in
-                                        2022 after pursuing PMP in 2021.
-                                        Mr. Larbi also has over 10 years of experience in Business Promotion,
-                                        Regulations and Development,
-                                        Management, Sales and Marketing, Public Relations, Corporate Governance and
-                                        Operations among other
-                                        related fields.
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"><em> EMMANUEL KWAKU OWUSU LARBI</em></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5 class="text-monospace" style="font-weight: normal;">
+                                            He also has a
+                                            deferred EMBA from Assam Don Bosco University - India, which he intends to
+                                            go back and complete in
+                                            2022 after pursuing PMP in 2021.
+                                            Mr. Larbi also has over 10 years of experience in Business Promotion,
+                                            Regulations and Development,
+                                            Management, Sales and Marketing, Public Relations, Corporate Governance and
+                                            Operations among other
+                                            related fields.
 
-                                        He is the CEO of XtayConnect Africa (a DTH service provider & ISP). He is the
-                                        Director of Business
-                                        Consultation at TruCapital Global Advisors (a BPO, Capital Raising and Business
-                                        Consultancy and
-                                        Training firm in Accra, Ghana) and a Director for TruCap Logistics Ghana Limited
-                                        (Transport, Haulage
-                                        and Logistics Company) and Eclectic Hermanez Limited (Real Estate, Building &
-                                        Construction and
-                                        Property Management). He is the Executive Board Chairman of the Young African
-                                        Entrepreneurs’ Network
-                                        [YAEN] and works as a Board member for about 4 companies in Accra and Tema.
+                                            He is the CEO of XtayConnect Africa (a DTH service provider & ISP). He is
+                                            the
+                                            Director of Business
+                                            Consultation at TruCapital Global Advisors (a BPO, Capital Raising and
+                                            Business
+                                            Consultancy and
+                                            Training firm in Accra, Ghana) and a Director for TruCap Logistics Ghana
+                                            Limited
+                                            (Transport, Haulage
+                                            and Logistics Company) and Eclectic Hermanez Limited (Real Estate, Building
+                                            &
+                                            Construction and
+                                            Property Management). He is the Executive Board Chairman of the Young
+                                            African
+                                            Entrepreneurs’ Network
+                                            [YAEN] and works as a Board member for about 4 companies in Accra and Tema.
+                                            ,,,
 
-                                        He has the mandate and obligation to ensuring that clients enjoy the endless
-                                        opportunities of
-                                        tailor-made solutions with quality and value for money as the driving forces.
 
-                                        Currently a Business Development Manager, and Key Project/Accounts’ Manager in
-                                        charge of Enterprise
-                                        Fiber connectivity and Deployment, PRIME, Tizetti, Ghana Water deployments among
-                                        others for U-ton
-                                        Engineering Limited, a Telecommunication Consortium in Ghana and the Business
-                                        representation in the
-                                        Republic of Liberia and Sierra Leone.
 
-                                        He is distinguished by his ability to identify, leverage, and develop talents.
-                                        Clients appreciate
-                                        his high-spirited straight talk, and often-unconventional perspectives.
 
-                                        He has a contagious enthusiasm and passionate belief in people that inspires
-                                        them to become prouder,
-                                        stronger, and more valuable contributors to their organizations.
+                                            He has the mandate and obligation to ensuring that clients enjoy the endless
+                                            opportunities of
+                                            tailor-made solutions with quality and value for money as the driving
+                                            forces.
 
-                                        He loves to engage in Public Relations, Community Engagements, and Alternate
-                                        Dispute Resolutions
-                                        among others. He also likes travelling and making sure everyone who encounters
-                                        him remains happy and
-                                        smiles ever after.
+                                            Currently a Business Development Manager, and Key Project/Accounts’ Manager
+                                            in
+                                            charge of Enterprise
+                                            Fiber connectivity and Deployment, PRIME, Tizetti, Ghana Water deployments
+                                            among
+                                            others for U-ton
+                                            Engineering Limited, a Telecommunication Consortium in Ghana and the
+                                            Business
+                                            representation in the
+                                            Republic of Liberia and Sierra Leone.
 
-                                        Mr. Larbi has trained (directly and indirectly), a number of people in the field
-                                        of Corporate
-                                        Structures, Business Set up, Sales, Community relations and played roles in a
-                                        number of ADR cases in
-                                        Tema and Ashaiman. He has also spoken to Young Entrepreneurs and on relationship
-                                        topics with a
-                                        couple of Churches in Tema and Accra.
+                                            He is distinguished by his ability to identify, leverage, and develop
+                                            talents.
+                                            Clients appreciate
+                                            his high-spirited straight talk, and often-unconventional perspectives.
 
-                                        In the future, by grace, he intends to enter into Servant-Leadership-Politics
-                                        and read his DBA and
-                                        PhD before attaining 45years.
+                                            He has a contagious enthusiasm and passionate belief in people that inspires
+                                            them to become prouder,
+                                            stronger, and more valuable contributors to their organizations.
 
-                                    </h5>
-                                </div>
-                                <div class="modal-footer">
-                                    <button style="background-color:#270949;" type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
+                                            He loves to engage in Public Relations, Community Engagements, and Alternate
+                                            Dispute Resolutions
+                                            among others. He also likes travelling and making sure everyone who
+                                            encounters
+                                            him remains happy and
+                                            smiles ever after.
+
+                                            Mr. Larbi has trained (directly and indirectly), a number of people in the
+                                            field
+                                            of Corporate
+                                            Structures, Business Set up, Sales, Community relations and played roles in
+                                            a
+                                            number of ADR cases in
+                                            Tema and Ashaiman. He has also spoken to Young Entrepreneurs and on
+                                            relationship
+                                            topics with a
+                                            couple of Churches in Tema and Accra.
+
+                                            In the future, by grace, he intends to enter into
+                                            Servant-Leadership-Politics
+                                            and read his DBA and
+                                            PhD before attaining 45years.
+
+                                        </h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button style="background-color:#270949;" type="button"
+                                            class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- model end -->
+
+                    <br>
+                    <button style="background-color:#270949;" type="button" class="btn text-light" data-toggle="modal"
+                        data-target="#modelId">
+                        Continue Reading
+                    </button>
+
                 </div>
-                <!-- model end -->
-           
+
             </div>
 
+        </div>
 
+    </section><!-- End Why Us Section -->
 
-            <div class="about-us-wrapper pt-60 pb-40 " style="background-color:rgba(201, 190, 194, 0.144);">
-                <div class="container">
-                    <h2 class="text-center"><u>ABOUT THE CEO</u></h2>
+    <!-- ======= Call To Action Section ======= -->
+    <section id="call-to-action" class="call-to-action">
+        <div class="container" data-aos="zoom-out">
+            <div class="row">
+                <div class="col-lg-9 text-center text-lg-left">
+                    <h3 class="cta-title">Call To Action</h3>
+                    <p class="cta-text">call us 24/7 and we are ready to assist you in all complaints,suggestions or
+                        seemless checkout</p>
+                </div>
+                <div class="col-lg-3 cta-btn-container text-center">
+                    <a class="cta-btn align-middle" href="tel:++233206494929">Call To Action</a>
 
-                    <div class="row">
-                        <!-- About Text Start -->
-                        <div class="col-lg-6 order-last order-lg-first">
-                            <div class="about-text-wrap">
-                                <h2><span> BRIEF PROFILE </span></h2>
-
-                                <!-- <em> EMMANUEL KWAKU OWUSU LARBI</em> <br> -->
-             
-                                 Emmanuel K.O Larbi holds an MBA from the Australian Institute of Business (through the Accra
-                                 Business School) and a graduate Diploma in Public Finance and Accountancy from the Institute of
-                                 Accountancy Training from the Ministry of Finance and Economic Planning in Ghana.
-                                <br>
-                                <button style="background-color:#270949;" type="button" class="btn" data-toggle="modal" data-target="#modelId">
-                                    Continue Reading
-                                </button>
-
-                            </div>
-                        </div>
-                        <!-- About Text End -->
-                        <!-- About Image Start -->
-                        <div class="col-lg-5 col-md-10">
-                            <div class="about-image-wrap3">
-                                <img class="img-full float-right" src="{% static 'images/EKOL.jpg' %}" style="height: 300px; width:auto" alt="About CEO EMMANUEL KWAKU OWUSU LARBI " />
-                            </div>
-                        </div>
-                        <!-- About Image End -->
-                    </div>
                 </div>
             </div>
-            <header class="major">
 
-                <p>ever ready to hear from you</p>
+        </div>
+    </section><!--  End Call To Action Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row feature-item">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+                    <img src="{% static 'test/assets/img/features-1.svg' %}" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0" data-aos="fade-left" data-aos-delay="150">
+                    <h4 class="capitalize  why-us-content">we are available on all social media handles</h4>
+                    <p>
+                        feel free to talk to us follow us on social media channels and read comments from our wonderful
+                        customers just like you.
+                    </p>
+                    <!-- <div class="social-iconss">
+                        <a href="https://www.facebook.com/XtayConnect-Africa-109896374204854/"
+                            class="social-icon text-light" target="_blank"><i class="icon-facebook"
+                                style="background-color: #2D589E;"></i></a>
+                        <a href="https://twitter.com/Xconnect_Africa?s=08" class="social-icon" target="_blank"><i
+                                class="icon-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/xtayconnect-africa/" class="social-icon"
+                            target="_blank"><i class="icon-linkedin"></i></a>
+                        <a href="https://www.instagram.com/xtayconnect_africa/" class="social-icon" target="_blank"><i
+                                class="icon-instagram"></i></a>
+
+
+                    </div> -->
+                    <!-- End .social-icons -->
+                </div>
+            </div>
+
+            <div class="row feature-item mt-5 pt-5">
+                <div class="col-lg-6 wow fadeInUp order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                    <img src="{% static 'test/assets/img/hand-with-credit-card-laptop.jpg' %}" class="img-fluid" alt="">
+                </div>
+
+                <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1  why-us-content" data-aos="fade-right"
+                    data-aos-delay="150">
+                    <h4 class="capitalize">Buy all your products from us and enjoy special discounts when you purchase
+                        them online</h4>
+                    <p>
+                        we provide all median of payment just to make your ordering process a hasle free
+                    </p>
+
+                </div>
+
+            </div>
+            <!-- <div class="row feature-item mt-5 pt-5 ">
+                <div class="col-lg-6 wow fadeInUp order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                  <img src="{% static 'images/Wavy_Bus-17_Single-06.jpg' %}" class="img-fluid" alt="">
+                </div>
+      
+                <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="150">
+                  <h4 class="why-us-content">Adding items to cart made simple</h4>
+                  <p>
+                      just select from the list of items and start shoopping on you phone or pc 
+                  </p>
+                  <p>
+                      no need to walk to a supper market or a mall just order and have it delivered to your door step
+                  </p>
+
+                </div>
+      
+              </div> -->
+        </div>
+    </section><!-- End Features Section -->
+
+
+
+
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq">
+        <div class="container" data-aos="fade-up">
+            <header class="section-header">
+                <h3>Frequently Asked Questions</h3>
+                <!-- <p></p> -->
             </header>
-            <!-- <ul class="actions">
-                <li><a href="https://api.whatsapp.com/send?phone=+233206494929&text=#XTAYCONNECT AFRICA TM. hello, feel free to talk to us."
-                        class="button special big" style="background-color: #3D589E;">Get in touch</a></li>
-            </ul> -->
+
+            <ul id="faq-list" data-aos="fade-up" data-aos-delay="100">
+                <li>
+                    <a data-toggle="collapse" class="collapsed" href="#faq1">is Extayconnect Africa a registerd Business ? <i class="ion-android-remove"></i></a>
+                    <div id="faq1" class="collapse" data-parent="#faq-list">
+                        <p>
+                            YES. Extayconnect Africa is a registered business in Ghana
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#faq2" class="collapsed">Do You do home delivery for all purchased products ? <i class="ion-android-remove"></i></a>
+                    <div id="faq2" class="collapse" data-parent="#faq-list">
+                        <p>
+                           We do home delivery but not for all products but only for products purchased that reahed a calculated amount
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#faq3" class="collapsed">I was about to checkout and the system redirected me to login page 
+                        i don't know why ? <i class="ion-android-remove"></i></a>
+                    <div id="faq3" class="collapse" data-parent="#faq-list">
+                        <p>
+                            Yes you have to login before you can checkout. feel free to loign with your email and password
+                            or simply login with facebook or google.
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#faq4" class="collapsed">I don't understand, why do i have to login? <i class="ion-android-remove"></i></a>
+                    <div id="faq4" class="collapse" data-parent="#faq-list">
+                        <p>
+                          It keeps spammers away and also helps us to know who is purchasing the product and able to deliver to you.
+                          Also it helps the system to keep track of your purchases which simply means the more you purchase 
+                          from us the possibly of winning a voucher from us is very high.
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#faq5" class="collapsed">Do you have a physical officia ? <i class="ion-android-remove"></i></a>
+                    <div id="faq5" class="collapse" data-parent="#faq-list">
+                        <p>
+                           Yes we do  you can locate us at No. 114, Malm Rd, Swaniker Street – Abelemkpe, Accra 
+                           or simply click on this link to come to us via google maps <a href="https://goo.gl/maps/XmqBgFdEZEf4pLwE7" target="_blank" rel="noopener noreferrer">map</a> 
+                           yet for the the mean time you can also call us on <a href="tel:++233206494929">+233206494929</a>
+                           or send us a whatsapp message at <a href="https://api.whatsapp.com/send?phone=+233206494929&text=hello" target="_blank" rel="noopener noreferrer">here</a>
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#faq6" class="collapsed"> what type of payment system do you accept ?<i class="ion-android-remove"></i></a>
+                    <div id="faq6" class="collapse" data-parent="#faq-list">
+                        <p>
+                          for now we do accept master card,credit card, mobile money and direct bank trasfer.
+                        </p>
+                    </div>
+                </li>
+
+            </ul>
+
         </div>
-    </section>
-            </div>
-            
-        </div>
-    </section>
+    </section><!-- End F.A.Q Section -->
+
+    <script src="{% static 'test/assets/js/main.js' %}"></script>
+    <script src="{% static 'test/assets/vendor/aos/aos.js' %}"></script>
 
 
-</div>
+
+    <style>
+        /* big screens */
+        @media screen and (min-width: 600px) {
+            .why-us-content{
+                margin-top:10em;
+            }
+        }
+
+        /* mobile */
+        @media screen and (max-width: 600px) {
+            .why-us-content {
+                margin-top:0em;
+
+        }
+    }
+
+    .header-middle {
+        margin: 0;
+        padding: 0;
+        border: none;
+        margin-top: 2px;
+    }
+    </style>
 
 
-<style>
-    h1, h2, h3, h4, h5, h6 {
-		text-transform: none;
-	 } 
-    
-
-body{
-    margin: 0; padding: 0; border: none; margin-top:2px;
-
-}
-</style>
-
-
-{% endblock %}
+    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d4594.930695361165!2d-0.22035458485498652!3d5.609622945933253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sNo.%20114%2C%20Malm%20Rd%2C%20Swaniker%20Street%20%E2%80%93%20Abelemkpe%2C%20Accra%20!5e1!3m2!1sen!2sgh!4v1613451502220!5m2!1sen!2sgh" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    {% endblock %}
