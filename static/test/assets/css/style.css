@@ -205,10 +205,10 @@ h1, h2, h3, h4, h5, h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Desktop Navigation */
-.main-nav {
+/* .main-nav { */
   /* Drop Down */
   /* Deep Drop Down */
-}
+/* }
 
 .main-nav, .main-nav * {
   margin: 0;
@@ -305,7 +305,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Mobile Navigation */
-.mobile-nav {
+/* .mobile-nav {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -404,7 +404,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .mobile-nav-active .mobile-nav-toggle i {
   color: #fff;
-}
+/* } */ 
 
 /*--------------------------------------------------------------
 # Hero Section
