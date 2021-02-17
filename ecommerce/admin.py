@@ -12,7 +12,8 @@ class Sub_CategoryInline(admin.TabularInline):
     model = Sub_Category
     list_display = ['category','name','is_available']
     list_editable = ['is_available',]
-    list_filter = ['is_available']
+    list_filter = ['is_available','category']
+
 
 class CategoryAdmin(admin.ModelAdmin):
     inlines = [Sub_CategoryInline]

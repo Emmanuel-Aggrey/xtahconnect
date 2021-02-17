@@ -98,7 +98,7 @@
         <header class="header">
 
             <div class="header-middle">
-                <div class="container">
+                <div class="container middle_header">
                     <div class="header-center">
                         <button class="mobile-menu-toggler float-left" type="button">
                             <i class="icon-menu"></i>
@@ -240,6 +240,11 @@
                             {% if user.is_staff %}
                             <li>
                                 <a class="btn pulse nav-item" href="{% url 'create_form' %}">Create</a>
+
+                            </li>
+                            {% elif user.is_authenticated %}
+                            <li>
+                                <a title="orders placed" class="btn nav-item" href="{% url 'orders:my_order_detail' %}">My Orders</a>
 
                             </li>
                             {% endif %}
@@ -411,7 +416,7 @@
 
                     </li>
                     <li> 
-                        <a class="nav-item"  href="#">Pages<span class="">Hot!</span></a>
+                        <a class="nav-item"  href="#">Pages</a>
                         <ul>
                              <li><a class="nav-item" href="{% url 'cart:cart_detail' %}">Shopping Cart</a></li>
                             <li>
@@ -431,6 +436,8 @@
                             </li>
                             <li title="add a new item"><a  class="btn pulse nav-link" href="{% url 'create_form' %}">Create</a>
                             </li>
+                            
+                            
                             {% endif %}
 
                         </ul>
@@ -442,7 +449,11 @@
                     </li> -->
 
                     {% if user.is_authenticated %}
-                    <li class=""><a class="nav-item" href="{% url 'account_logout' %}">LOGOUT</a>
+                    <li class=""><a class="nav-item" href="{% url 'account_logout' %}">LOGOUT</a> </li>
+                        <li>
+                            <a title="orders placed" class="nav-item" href="{% url 'orders:my_order_detail' %}">My Orders</a>
+
+                        </li>
 
                         {% else %}
                     <li><a  class="nav-item" href="{% url 'account_login' %}">LOGIN<span class=""></span></a></li>
@@ -586,7 +597,7 @@
     .main-nav {
         background-color: #4654A3;
     }
-
+  
     .nav-item {
         color: white !important;
 
@@ -608,7 +619,7 @@
             width: auto;
         }
         .owlspace{
-    height: 268px;
+    height: 345px;
   }
         
     }

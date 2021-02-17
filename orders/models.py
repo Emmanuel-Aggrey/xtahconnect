@@ -6,12 +6,14 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from ecommerce.models import Base_Model, Product
 from hashids import Hashids
-
+from django.contrib.auth.models import User
+from django.db.models import Sum
 # Create your models here.
 hashids = Hashids()
 
 
 class Order(Base_Model):
+    user =models.ForeignKey(User,on_delete=models.CASCADE,related_name='user')
     name = models.CharField(max_length=60)
     email = models.EmailField()
     address = models.CharField(max_length=150)
@@ -32,6 +34,9 @@ class Order(Base_Model):
     def get_total_cost(self):
     
         return sum(item.get_cost() for item in self.items.all())
+    def __str__(self):
+        return f'user: {self.user.username} order umber : {self.order_number}'
+    
 
 
 @receiver(post_save,sender=Order)
@@ -58,13 +63,12 @@ class OrderItem(Base_Model):
 
     def get_cost(self):
         if self.price and self.quantity:
-
+            
             return self.price * self.quantity
         else:
             return None
 
 
     def grand_total(self):
-        print(sum(self.get_cost))
-        return sum(self.get_cost)
-
+        return self.get_cost
+      

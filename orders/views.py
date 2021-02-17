@@ -17,7 +17,10 @@ def checkout(request):
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
         if form.is_valid():
-            order = form.save()
+
+            order = form.save(commit=False)
+            order.user = request.user
+            order.save()
             order_number = order.order_number
            
            
@@ -114,3 +117,14 @@ def order_items(request, order_number, pk):
         # 'order_items':order_items,
     }
     return render(request, 'order/orderitems.html', context)
+
+
+
+def my_order_detail(request):
+    orders = Order.objects.filter(user=request.user)
+
+    context ={
+        'orders':orders,
+    }
+
+    return render(request,'order/my_order_details.html',context)

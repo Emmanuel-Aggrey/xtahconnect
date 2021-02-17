@@ -11,5 +11,6 @@ urlpatterns = [
 
     path("orders/",views.orders,name="orders"),
     path('order_items/<str:order_number>/<int:pk>/',views.order_items,name='order_items'),
+    path('my_orders/',views.my_order_detail,name='my_order_detail'),
 
 ]

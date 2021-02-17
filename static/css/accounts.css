@@ -15,6 +15,9 @@
 
   color: #0e0a07b7;
 }
+.link.hover {
+    color:#D7782F;
+}
 .socialaccount_provider{
   color: #fff;
   display: inline;
@@ -23,7 +26,7 @@
 .card,.loginbtn {
     border: none;
     border-radius: 10px;
-    background-color: #270E46 !important;
+    background-color: #3D589E !important;
     width: 350px;
     margin-top: -60px
 }
@@ -93,7 +96,7 @@ p.mb-1 {
 .btn-block {
     border: none;
     border-radius: 8px;
-    background-color: #506CCF;
+    background-color:#3D589E;
     padding: 10px 0 12px
 }
 
@@ -112,6 +115,7 @@ p.mb-1 {
 .facebook{
   float: right;
   background-color:#4654A3;
+  /* scrollText: '<i class="fa fa-angle-double-up"></i>', */
   
 }
 .google{
@@ -119,3 +123,4 @@ p.mb-1 {
   background-color:#4654A3;
 
 }
+

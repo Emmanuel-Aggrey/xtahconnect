@@ -1057,7 +1057,7 @@ section {
   }
 }
 
-#testimonials .owl-nav, #testimonials .owl-dots {
+#testimonials, #testimonials .owl-dots {
   margin-top: 5px;
   text-align: center;
 }
@@ -1164,7 +1164,7 @@ section {
   opacity: 1;
 }
 
-#clients .owl-nav, #clients .owl-dots {
+#clients, #clients .owl-dots {
   margin-top: 5px;
   text-align: center;
 }
@@ -1412,7 +1412,7 @@ section {
   z-index: 1;
 }
 
-.portfolio-details .portfolio-details-carousel .owl-nav, .portfolio-details .portfolio-details-carousel .owl-dots {
+.portfolio-details .portfolio-details-carousel, .portfolio-details .portfolio-details-carousel .owl-dots {
   margin-top: 5px;
   text-align: left;
 }

@@ -3,10 +3,9 @@
 
 {% block content %}
 <script src="{% static 'js/jquery.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/about_new.css' %}">
 
-<link rel="stylesheet" href="{% static 'test/assets/vendor/aos/aos.js' %}">
-<link rel="stylesheet" href="{% static 'test/assets/css/style.css' %}">
-
+<!-- <link rel="stylesheet" href="{% static 'js/aos/aos.css' %}"> -->
 
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="clearfix">
@@ -49,12 +48,15 @@
                             to provide support for the unsupported </p>
                         <p>mass in 2018. It was incorporated as Ekol XtayConnect Enterprise in the early part of 2020
                             and later changed to Ekol XtayConnect Africa Limited in the Republic of Ghana.</p>
+                           <center>
+                            <button style="background-color:#270949" type="button" class="btn text-light"  data-toggle="modal"
+                            data-target="#staticBackdrop">
+                            Continue Reading
+                        </button>
+                           </center>
 
                     </div>
-                    <button style="background-color:#270949" type="button" class="btn text-light" data-toggle="modal"
-                        data-target="#staticBackdrop">
-                        Continue Reading
-                    </button>
+                   
                 </div>
 
                 <div class="modal fade modal-dialog-scrollable " id="staticBackdrop" data-backdrop="static"
@@ -184,7 +186,7 @@
     <section id="why-us" class="why-us">
         <div class="container" data-aos="fade-up">
 
-            <header class="section-header">
+            <header class="section-header" >
                 <h3>About CEO</h3>
                 <p>MR. EMMANUEL KWAKU OWUSU LARBI.</p>
             </header>
@@ -335,10 +337,12 @@
                     <!-- model end -->
 
                     <br>
+                   <center>
                     <button style="background-color:#270949;" type="button" class="btn text-light" data-toggle="modal"
-                        data-target="#modelId">
-                        Continue Reading
-                    </button>
+                    data-target="#modelId">
+                    Continue Reading
+                </button>
+                   </center>
 
                 </div>
 
@@ -353,7 +357,7 @@
         <div class="container" data-aos="zoom-out">
             <div class="row">
                 <div class="col-lg-9 text-center text-lg-left">
-                    <h3 class="cta-title">Call To Action</h3>
+                    <h3 class="cta-title">We love taking your calls</h3>
                     <p class="cta-text">call us 24/7 and we are ready to assist you in all complaints,suggestions or
                         seemless checkout</p>
                 </div>
@@ -458,7 +462,7 @@
                     <a data-toggle="collapse" href="#faq2" class="collapsed">Do You do home delivery for all purchased products ? <i class="ion-android-remove"></i></a>
                     <div id="faq2" class="collapse" data-parent="#faq-list">
                         <p>
-                           We do home delivery but not for all products but only for products purchased that reahed a calculated amount
+                           We do home delivery but not for all products but only for products purchased that reached a calculated amount
                         </p>
                     </div>
                 </li>
@@ -480,7 +484,7 @@
                         <p>
                           It keeps spammers away and also helps us to know who is purchasing the product and able to deliver to you.
                           Also it helps the system to keep track of your purchases which simply means the more you purchase 
-                          from us the possibly of winning a voucher from us is very high.
+                          from us the possibility of winning a voucher from us is very high.
                         </p>
                     </div>
                 </li>
@@ -489,8 +493,8 @@
                     <a data-toggle="collapse" href="#faq5" class="collapsed">Do you have a physical officia ? <i class="ion-android-remove"></i></a>
                     <div id="faq5" class="collapse" data-parent="#faq-list">
                         <p>
-                           Yes we do  you can locate us at No. 114, Malm Rd, Swaniker Street – Abelemkpe, Accra 
-                           or simply click on this link to come to us via google maps <a href="https://goo.gl/maps/XmqBgFdEZEf4pLwE7" target="_blank" rel="noopener noreferrer">map</a> 
+                           Yes we do,  you can locate us at No. 114, Malm Rd, Swaniker Street – Abelemkpe, Accra 
+                           or simply click on this <a href="https://goo.gl/maps/XmqBgFdEZEf4pLwE7" target="_blank" rel="noopener noreferrer">link</a> to come to us via google maps, 
                            yet for the the mean time you can also call us on <a href="tel:++233206494929">+233206494929</a>
                            or send us a whatsapp message at <a href="https://api.whatsapp.com/send?phone=+233206494929&text=hello" target="_blank" rel="noopener noreferrer">here</a>
                         </p>
@@ -501,7 +505,7 @@
                     <a data-toggle="collapse" href="#faq6" class="collapsed"> what type of payment system do you accept ?<i class="ion-android-remove"></i></a>
                     <div id="faq6" class="collapse" data-parent="#faq-list">
                         <p>
-                          for now we do accept master card,credit card, mobile money and direct bank trasfer.
+                          for now we do accept master card,credit card, mobile money and direct bank transfer.
                         </p>
                     </div>
                 </li>
@@ -511,11 +515,12 @@
         </div>
     </section><!-- End F.A.Q Section -->
 
-    <script src="{% static 'test/assets/js/main.js' %}"></script>
-    <script src="{% static 'test/assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'js/about_new.js' %}"></script>
+    <script src="{% static 'js/aos/aos.js' %}"></script>
 
 
-
+    <script src="{% static 'js/about_new.js' %}"></script>
+<script src="{% static 'js/aos/aos.js' %}"></script>
     <style>
         /* big screens */
         @media screen and (min-width: 600px) {
@@ -537,6 +542,9 @@
         padding: 0;
         border: none;
         margin-top: 2px;
+    }
+    .d-lg-none{
+        display: none;
     }
     </style>
 
