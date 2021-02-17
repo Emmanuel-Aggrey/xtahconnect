@@ -4811,7 +4811,7 @@ span.required {
   color: #242424;
   cursor: pointer;
   display: block;
-  line-height: 20px;
+  line-height: 10px;
   position: relative;
 }
 .category-sub-menu li.has-sub li a {

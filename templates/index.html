@@ -1,6 +1,7 @@
 {% extends 'header1.html' %}
 {% load thumbnail %}
 
+{% load humanize %}
 
 {% block content %}
 
@@ -12,55 +13,91 @@
     <!-- Slider Area start Here -->
 
 
-            <!-- Begin Slider With Banner Area -->
-            <div class="slider-with-banner">
-                <div class="container">
-                    <div class="row">
-                        <!-- Begin Slider Area -->
-                        <div class="col-lg-8 col-md-8">
-                            <div class="slider-area">
-                                <div class="slider-active owl-carousel">
-                                    <!-- Begin Single Slide Area -->
-                                    {% for product in products|slice:":4" %}
-                                      
-                                  
-                                    <div class="single-slide align-center-left  animation-style-01 bg-1" style="background-image: url({% static 'images/slider/2.jpg' %})">
-                                        <div class="slider-progress"></div>
-                                        
-                                        <div class="slider-content">
-                                            <h5>Sale Offer <span>-20% Off</span> This Week</h5>
-                                            <h2>{{product.name}}</h2>
-                                            <h3>Starting at <span>GH₵: {{product.price}}</span></h3>
-                                            <div class="default-btn slide-btn">
-                                                <a class="links"href="{{product.get_absolute_url}}">Shop Now</a>
-                                            </div>
-                                        </div>
+    <!-- Begin Slider With Banner Area -->
+    <div class="slider-with-banner">
+        <div class="container">
+            <div class="row">
+
+                <!-- Begin Slider Area -->
+                <div class="col-lg-6 col-md-8">
+                    <div class="slider-area">
+                        <div class="slider-active owl-carousel">
+                            <!-- Begin Single Slide Area -->
+                            {% for product in products|slice:":4" %}
+
+
+                            <div class="single-slide align-center-left  animation-style-01 bg-1"
+                                style="background-image: url({% static 'images/slider/2.jpg' %})">
+                                <div class="slider-progress"></div>
+
+                                <div class="slider-content">
+                                    <h5>Sale Offer <span>-20% Off</span> This Week</h5>
+                                    <h2>{{product.name}}</h2>
+                                    <h3>Starting at <span>GH₵: {{product.price|intcomma}}</span></h3>
+                                    <div class="default-btn slide-btn">
+                                        <a class="links" href="{{product.get_absolute_url}}">Shop Now</a>
                                     </div>
-                                    {% endfor %}
-                                    <!-- Single Slide Area End Here -->
-                                   
                                 </div>
                             </div>
+                            {% endfor %}
+                            <!-- Single Slide Area End Here -->
+
                         </div>
-                        <!-- Slider Area End Here -->
-                        <!-- Begin Li Banner Area -->
-                        <div class="col-lg-4 col-md-4 text-center pt-xs-3" id="banner">
-                            <div class="li-banner">
-                                <a href="#">
-                                    <img src="{% static 'images/banner/1_1.jpg' %}" alt="">
-                                </a>
-                            </div>
-                            <div class="li-banner mt-15 mt-sm-30 mt-xs-30">
-                                <a href="#">
-                                    <img src="{% static 'images/banner/1_2.jpg' %}" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <!-- Li Banner Area End Here -->
                     </div>
                 </div>
+
+                <div class="col-lg-2 order-2 order-lg-1 bannerpc">
+                    <!--sidebar-categores-box start  -->
+                    <div class="sidebar-categores-box mt-sm-30 mt-xs-30">
+                        <div class="sidebar-title">
+                            <h2>Categories</h2>
+                        </div>
+                        <!-- category-sub-menu start -->
+                        <div class="category-sub-menu">
+                            <ul>
+                                {% for categories in nav %}
+                                {% if categories.is_available %}
+
+                                <li class="has-sub"><a href="">{{categories.name}}</a>
+                                    {% for products in categories.sub_categories.all %}
+                                    {% if products.is_available %}
+                                    <ul>
+                                        <li><a href="{% url 'categories' products.id  %}"
+                                                style="color:  #4654A3;">{{products.name}}</a></li>
+                                    </ul>
+                                    {% endif %}
+                                    {% endfor %}
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                        <!-- category-sub-menu end -->
+                    </div>
+
+                </div>
+
+                <!-- Slider Area End Here -->
+                <!-- Begin Li Banner Area -->
+                <div class="col-lg-4 col-md-4 text-center pt-xs-3 bannerpc">
+                    <div class="li-banner">
+                        <a href="#">
+                            <img src="{% static 'images/banner/1_1.jpg' %}" alt="">
+                        </a>
+                    </div>
+                    <div class="li-banner mt-15 mt-sm-30 mt-xs-30">
+                        <a href="#">
+                            <img src="{% static 'images/banner/1_2.jpg' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Li Banner Area End Here -->
             </div>
-            <!-- Slider With Banner Area End Here -->
+        </div>
+    </div>
+    <!-- Slider With Banner Area End Here -->
 
 
 
@@ -92,7 +129,7 @@
                             <h6 id="product-id">{{product.id}}</h6>
                         </h2>
                         <div class="price-box">
-                            <span class="product-price">GH₵ {{product.price}}</span>
+                            <span class="product-price">GH₵ {{product.price|intcomma}}</span>
                         </div><!-- End .price-box -->
                         <div class="product-action">
                             <!-- <a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a> -->
@@ -112,6 +149,8 @@
             {% endfor %}
         </div>
     </div><!-- End .container -->
+
+
 
 
     <!-- End .home-slider-container -->
@@ -148,228 +187,342 @@
     </div><!-- End .info-boxes-container -->
 
 
-    <div class="li-static-home">
+
+
+
+
+    <!-- wrapper start -->
+
+    <!-- Begin Li's Content Wraper Area -->
+    <div class="content-wraper">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <!-- Begin Li's Static Home Image Area -->
-                    <div class="li-static-home-image" style="background-image: url('{% static 'images/banner/1.jpg' %}')"></div>
-                    <!-- Li's Static Home Image Area End Here -->
-                    <!-- Begin Li's Static Home Content Area -->
-                    <div class="li-static-home-content">
-                        <p>Sale Offer<span>-20% Off</span>This Week</p>
-                        <h2>Featured Product</h2>
-                        <h2>New Arrival 2021</h2>
-                        <p class="schedule">
-                            Starting at
-                            <span> GH₵: 1209.00</span>
-                        </p>
-                        <div class="default-btn">
-                            <a href="#" class="links">Shop Now</a>
+                <div class="col-lg-12 order-1 order-lg-2">
+                    <!-- Begin Li's Banner Area -->
+
+                    <!-- Li's Banner Area End Here -->
+                    <!-- shop-top-bar start -->
+                    <div class="shop-top-bar mt-30">
+                        <div class="shop-bar-inner">
+                            <div class="product-view-mode">
+                                <!-- shop-item-filter-list start -->
+                                <ul class="nav shop-item-filter-list" role="tablist">
+                                    <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="grid-view"
+                                            href="#grid-view"><i class="fa fa-th"></i></a></li>
+                                    <li class="active" role="presentation"><a aria-selected="true" class="active show"
+                                            data-toggle="tab" role="tab" aria-controls="list-view" href="#list-view"><i
+                                                class="fa fa-th-list"></i></a></li>
+                                </ul>
+                                <!-- shop-item-filter-list end -->
+                            </div>
+
+                        </div>
+                        <!-- product-select-box start -->
+
+                    </div>
+                    <!-- shop-top-bar end -->
+                    <!-- shop-products-wrapper start -->
+                    <div class="shop-products-wrapper">
+                        <div class="tab-content">
+                            <div id="grid-view" class="tab-pane fade" role="tabpanel">
+                                <div class="product-area shop-product-area">
+                                    <div class="row">
+                                        <!-- holds nornal view -->
+
+                                        {% for product in products|slice:":15" %}
+                                        <div class="col-6 col-lg-3">
+                                            <!-- single-product-wrap start -->
+                                            <div class="single-product-wrap">
+                                                <div class="product-image">
+                                                    <a href="{{product.get_absolute_url}}">
+                                                        <img src="{{product.image.url}}" alt="{{product.name}}">
+                                                    </a>
+                                                    <!-- <span class="sticker">New</span> -->
+                                                </div>
+                                                <div class="product_desc">
+                                                    <div class="product_desc_info">
+                                                        <div class="product-review">
+                                                            <h5 class="manufacturer">
+                                                                <a
+                                                                    href="{% url 'categories' product.category.id  %}">{{product.category.name}}</a>
+                                                            </h5>
+                                                           
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <h4><a class="product_name"
+                                                                    href="{{product.get_absolute_url}}">{{product.name}}</a></h4>
+                                                            <div class="price-box">
+                                                                <span class="new-price"><b>GH₵:
+                                                                        {{product.price|intcomma}}</b></span>
+                                                            </div>
+                                                        </div>
+                                                    </div> <br> <br>
+                                                    <div class="add-actions">
+                                                        <form class="productname" method="post" id={{product.id}}>
+
+                                                            <button class="btn btn-md" id="{{product.id}}btn"
+                                                                style="background-color: #4654A3;color: white;"
+                                                                class=""><i class="icon-bag"></i>Add To
+                                                                Cart </button>
+                                                            
+
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- single-product-wrap end -->
+                                        </div>
+                                        <!-- holds normal view  end -->
+
+                                        {% endfor %}
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="list-view" class="tab-pane fade product-list-view active show" role="tabpanel">
+                                <div class="row">
+
+                                    <div class="col">
+                                        <!-- straight display start -->
+                                        <div class="row product-layout-list">
+                                            {% for product in products|slice:":8" %}
+                                            <div class="col-lg-3 col-md-5 ">
+                                                <div class="product-image">
+                                                    <a href="{{ product.get_absolute_url}}">
+                                                        <img src="{{product.image.url}}" alt="{{product.name}}">
+                                                    </a>  
+                                                    <!-- <span class="sticker">New</span> -->
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 col-md-7">
+                                                <div class="product_desc">
+                                                    <div class="product_desc_info">
+                                                        <div class="product-review">
+                                                            <h5 class="manufacturer">
+                                                                <a
+                                                                    href="{% url 'categories' product.category.id  %}">{{product.category.name}}</a>
+
+                                                            </h5>
+                                                            <div class="rating-box">
+                                                                <ul class="rating">
+                                                                    <li><i class="fa fa-star-o"></i></li>
+                                                                    <li><i class="fa fa-star-o"></i></li>
+                                                                    <li><i class="fa fa-star-o"></i></li>
+                                                                    <li class="no-star"><i class="fa fa-star-o"></i>
+                                                                    </li>
+                                                                    <li class="no-star"><i class="fa fa-star-o"></i>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <h4><a class="product_name"
+                                                                href="{{product.get_absolute_url}}">{{product.name}}</a>
+                                                        </h4>
+                                                        <div class="price-box">
+                                                            <span class="new-price product-pric">GH₵:
+                                                                {{product.price|intcomma}}</span>
+                                                                
+                                                        </div>
+                                                    
+                                                        <div class="product-desc">
+                                                            <p>
+                                                                <span>{{product.description|safe|truncatechars:30}}
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="shop-add-action mb-xs-30">
+                                                    <form class="productname" method="post" id={{product.id}}>
+
+                                                        <button class="btn btn-md" id="{{product.id}}btn"
+                                                            style="background-color: #4654A3;color: white;"
+                                                            class=""><i class="icon-bag"></i>Add To
+                                                            Cart </button>
+                                                        <a href="{{product.get_absolute_url}}" title="quick view" class="btn"
+                                                            style="background-color: #4654A3;color: white;">View
+                                                            Detail</a>
+
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+
+                                        <!-- straight display end-->
+
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <!-- Li's Static Home Content Area End Here -->
+
+                    <!-- shop-products-wrapper end -->
                 </div>
+
+
+
+
+
+
             </div>
         </div>
     </div>
+    <!-- Content Wraper Area End Here -->
 
 
 
 
 
 
-    <div class="home-product-tabs">
-        {% for groupings in sub_category %}
 
-        {% if groupings.products.count > 0 %}
-        <div class="container" style="padding-top:2px">
-            <a href="{% url 'categories' groupings.id  %}" class="float-right btn" style="color: #4654A3;font-weight:bolder">view all</a>
+    <!-- wrapper end -->
 
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a style="color:#4654A3" class="nav-link active" id="featured-products-tab" data-toggle="tab"
-                        href="#featured-products" role="tab" aria-controls="featured-products" aria-selected="true">
-                        {{groupings.name}} </a>
-                </li>
+    <!-- wrapper end -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <i class="icon-star " style="color: #4654A3; border-color: #4654A3;"></i>
 
-            </ul>
+                    <div class="feature-box-content">
+                        <h3>Dedicated Service</h3>
+                        <p>Consult our specialists for help with an order, customization, or design advice</p>
+                        <!-- <a href="#" class="btn btn-sm btn-outline-dark">Get in touch</a> -->
+                    </div><!-- End .feature-box-content -->
+                </div><!-- End .feature-box -->
+            </div><!-- End .col-md-4 -->
 
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <i class="icon-reply" style="color: #4654A3;border-color: #4654A3;"></i>
+
+                    <div class="feature-box-content">
+                        <h3>Free returns</h3>
+                        <p>We stand behind our goods and services and want you to be satisfied with them.</p>
+                        <!-- <a href="#" class="btn btn-sm btn-outline-dark">Return Policy</a> -->
+                    </div><!-- End .feature-box-content -->
+                </div><!-- End .feature-box -->
+            </div><!-- End .col-md-4 -->
+
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <i class="icon-paper-plane" style="color: #4654A3; border-color: #4654A3;"></i>
+
+                    <div class="feature-box-content">
+                        <h3>international shipping</h3>
+                        <p>Currently over 50 countries qualify for express international shipping.</p>
+                        <!-- <a href="#" class="btn btn-sm btn-outline-dark">Learn More</a> -->
+                    </div><!-- End .feature-box-content -->
+                </div><!-- End .feature-box -->
+            </div><!-- End .col-md-4 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+
+    <div class="mb-1"></div><!-- margin -->
+
+    <div class="promo-section" style="background-image: url('{% static " images/promo-bg.jpg" %}')">
+        <div class="container">
+            <h3>the perfect gift</h3>
+            <h4>Check off your list with our best gifts</h4>
+            <!-- <a href="#" class="btn btn-primary">Shop Now</a> -->
         </div><!-- End .container -->
-        <div class="tab-content">
-            <div class="tab-pane fade show active" id="featured-products" role="tabpanel"
-                aria-labelledby="featured-products-tab">
-                <div class="container">
-                    <div class="tab-products-carousel owl-carousel owl-theme owlspace">
+    </div><!-- End .promo-section -->
 
-                        {% for product in groupings.products.all %}
+    <div class="partners-container">
+        <div class="container">
+            <div class="partners-carousel owl-carousel owl-theme">
+                <a href="#" class="partner">
+                    <img src="{% static 'images/logos/1.png' %}" alt="{% static 'images/logos/1.png' %}">
+                </a>
+                <a href="#" class="partner">
+                    <img src="{% static 'images/logos/2.png' %}" alt="{% static 'images/logos/2.png' %}">
+                </a>
+                <a href="#" class="partner">
+                    <img src="{% static 'images/logos/3.png' %}" alt="{% static 'images/logos/3.png' %}">
+                </a>
+                <a href="#" class="partner">
+                    <img src="{% static 'images/logos/4.png' %}" alt="{% static 'images/logos/4.png' %}">
+                </a>
+                <a href="#" class="partner">
+                    <img src="{% static 'images/logos/5.png' %}" alt="{% static 'images/logos/5.png' %}">
+                </a>
+                <a href="#" class="partner">
+                    <img src="{% static 'images/logos/2.png' %}" alt="{% static 'images/logos/2.png' %}">
+                </a>
+                <a href="#" class="partner">
+                    <img src="{% static 'images/logos/1.png' %}" alt="{% static 'images/logos/1.png' %}">
+                </a>
+            </div><!-- End .partners-carousel -->
+        </div><!-- End .container -->
+    </div><!-- End .partners-container -->
 
-                        <div class="product-default">
-                            <figure>
-
-                                <a href="{{product.get_absolute_url}}">
-                                    <img src="{{product.image.url}}">`
-                                </a>
-                            </figure>
-                            <div class="product-details product-group">
-                               
-                                <h5 class="product-title">
-                                    <h5>{{product.name}}</h5>
-                                    <h6 id="product-id">{{product.id}}</h6>
-                                </h5>
-                                <div class="price-box">
-                                    <span class="product-price">GH₵: {{product.price}}</span>
-                                </div><!-- End .price-box -->
-                                    <form class="productname" method="post" id={{product.id}}>
-
-                                    <button class="btn btn-md" id="{{product.id}}btn" style="background-color: #4654A3;color: white;"
-                                        class=""><i class="icon-bag"></i>ADD TO
-                                        CART </button>
-                                    </form>
-                                
-                            </div><!-- End .product-details -->
-                        </div>
-
-                        {% endfor %}
+    {% if resent_view_products %}
 
 
-                    </div><!-- End .products-carousel -->
-                </div><!-- End .container -->
-            </div><!-- End .tab-pane -->
-            {% endif %}
+    <div class="container">
+        <h3 class="h4 title">Recently viewed items</h3>
+        <div class="row">
+
+
+            {% for resent_view_products in resent_view_products|slice:'0:8' %}
+
+
+            <div class="col-6 col-lg-3">
+                <div class="product-column">
+
+
+                    <div class="product-default left-details product-widget mb-3">
+                        <figure>
+                            <a href="{{resent_view_products.get_absolute_url}}">
+                                <img src="{{resent_view_products.image.url}}">
+                            </a>
+                        </figure>
+                        <div class="product-details">
+                            <h2 class="product-title">
+                                <a href="{{resent_view_products.get_absolute_url}}">{{resent_view_products.name}}</a>
+                            </h2>
+                            <div class="ratings-container">
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:100%"></span><!-- End .ratings -->
+                                    <span class="tooltiptext tooltip-top"></span>
+                                </div><!-- End .product-ratings -->
+                            </div><!-- End .product-container -->
+                            <div class="price-box">
+                                <span class="product-price">GH₵ {{resent_view_products.price|intcomma}}</span>
+                            </div><!-- End .price-box -->
+                        </div><!-- End .product-details -->
+                    </div>
+
+
+                </div><!-- End .product-column -->
+            </div><!-- End .col-lg-3 -->
             {% endfor %}
-    
-        </div><!-- End .home-product-tabs -->
-    
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="feature-box">
-                        <i class="icon-star " style="color: #4654A3; border-color: #4654A3;"></i>
-
-                        <div class="feature-box-content">
-                            <h3>Dedicated Service</h3>
-                            <p>Consult our specialists for help with an order, customization, or design advice</p>
-                            <!-- <a href="#" class="btn btn-sm btn-outline-dark">Get in touch</a> -->
-                        </div><!-- End .feature-box-content -->
-                    </div><!-- End .feature-box -->
-                </div><!-- End .col-md-4 -->
-
-                <div class="col-md-4">
-                    <div class="feature-box">
-                        <i class="icon-reply" style="color: #4654A3;border-color: #4654A3;"></i>
-
-                        <div class="feature-box-content">
-                            <h3>Free returns</h3>
-                            <p>We stand behind our goods and services and want you to be satisfied with them.</p>
-                            <!-- <a href="#" class="btn btn-sm btn-outline-dark">Return Policy</a> -->
-                        </div><!-- End .feature-box-content -->
-                    </div><!-- End .feature-box -->
-                </div><!-- End .col-md-4 -->
-
-                <div class="col-md-4">
-                    <div class="feature-box">
-                        <i class="icon-paper-plane" style="color: #4654A3; border-color: #4654A3;"></i>
-
-                        <div class="feature-box-content">
-                            <h3>international shipping</h3>
-                            <p>Currently over 50 countries qualify for express international shipping.</p>
-                            <!-- <a href="#" class="btn btn-sm btn-outline-dark">Learn More</a> -->
-                        </div><!-- End .feature-box-content -->
-                    </div><!-- End .feature-box -->
-                </div><!-- End .col-md-4 -->
-            </div><!-- End .row -->
-        </div><!-- End .container -->
-
-        <div class="mb-1"></div><!-- margin -->
-
-        <div class="promo-section" style="background-image: url('{% static "images/promo-bg.jpg" %}')">
-            <div class="container">
-                <h3>the perfect gift</h3>
-                <h4>Check off your list with our best gifts</h4>
-                <!-- <a href="#" class="btn btn-primary">Shop Now</a> -->
-            </div><!-- End .container -->
-        </div><!-- End .promo-section -->
-
-        <div class="partners-container">
-            <div class="container">
-                <div class="partners-carousel owl-carousel owl-theme">
-                    <a href="#" class="partner">
-                        <img src="{% static 'images/logos/1.png' %}" alt="{% static 'images/logos/1.png' %}">
-                    </a>
-                    <a href="#" class="partner">
-                        <img src="{% static 'images/logos/2.png' %}" alt="{% static 'images/logos/2.png' %}">
-                    </a>
-                    <a href="#" class="partner">
-                        <img src="{% static 'images/logos/3.png' %}" alt="{% static 'images/logos/3.png' %}">
-                    </a>
-                    <a href="#" class="partner">
-                        <img src="{% static 'images/logos/4.png' %}" alt="{% static 'images/logos/4.png' %}">
-                    </a>
-                    <a href="#" class="partner">
-                        <img src="{% static 'images/logos/5.png' %}" alt="{% static 'images/logos/5.png' %}">
-                    </a>
-                    <a href="#" class="partner">
-                        <img src="{% static 'images/logos/2.png' %}" alt="{% static 'images/logos/2.png' %}">
-                    </a>
-                    <a href="#" class="partner">
-                        <img src="{% static 'images/logos/1.png' %}" alt="{% static 'images/logos/1.png' %}">
-                    </a>
-                </div><!-- End .partners-carousel -->
-            </div><!-- End .container -->
-        </div><!-- End .partners-container -->
-
-        {% if resent_view_products %}
-
-
-        <div class="container">
-            <h3 class="h4 title">Recently viewed items</h3>
-            <div class="row">
-
-
-                {% for resent_view_products in resent_view_products|slice:'0:8' %}
-
-
-                <div class="col-6 col-lg-3">
-                    <div class="product-column">
-
-
-                        <div class="product-default left-details product-widget mb-3">
-                            <figure>
-                                <a href="{{resent_view_products.get_absolute_url}}">
-                                    <img src="{{resent_view_products.image.url}}">
-                                </a>
-                            </figure>
-                            <div class="product-details">
-                                <h2 class="product-title">
-                                    <a
-                                        href="{{resent_view_products.get_absolute_url}}">{{resent_view_products.name}}</a>
-                                </h2>
-                                <div class="ratings-container">
-                                    <div class="product-ratings">
-                                        <span class="ratings" style="width:100%"></span><!-- End .ratings -->
-                                        <span class="tooltiptext tooltip-top"></span>
-                                    </div><!-- End .product-ratings -->
-                                </div><!-- End .product-container -->
-                                <div class="price-box">
-                                    <span class="product-price">GH₵ {{resent_view_products.price}}</span>
-                                </div><!-- End .price-box -->
-                            </div><!-- End .product-details -->
-                        </div>
-
-
-                    </div><!-- End .product-column -->
-                </div><!-- End .col-lg-3 -->
-                {% endfor %}
-            </div>
-
         </div>
 
+    </div>
 
-        {% endif %}
 
-        <div class="mb-6"></div><!-- margin -->
+    {% endif %}
+
+    <div class="mb-6"></div><!-- margin -->
 </main><!-- End .main -->
+
+
+
+
+
+
+
 
 <style>
     #product-id {
@@ -377,41 +530,11 @@
         visibility: hidden;
     }
 
-    
-    .tab-content{
-        /* padding: 0rem !important; */
-        /* height: 330px */
-
+    body {
+        background: #fff !important;
+        color: #444;
+        font-family: "Open Sans", sans-serif;
     }
-    /* .owlspace{
-        height: 300px;
-    } */
-    .owlspace{
-    height: 428px;
-  }
-  
-
-   @media only screen and (max-width: 600px) {
-  .product-group {
-    /* background-color: lightblue; */
-    height: 20px !important;
-  }
-  /* .owlspace{
-    height: 233px;
-  } */
-  .product-details{
-    height: 90px !important;
-   }
-
-
-}
-
-body {
-  background: #fff !important;
-  color: #444;
-  font-family: "Open Sans", sans-serif;
-}
-
 </style>
 
 
@@ -443,9 +566,9 @@ body {
 
             },
             beforeSend: function () {
-             
-            // document.getElementById(product_id+"btn").textContent='addind to cart'
-            $('#'+product_id+'btn').text('adding to cart..').addClass('icon-spinner');
+
+                // document.getElementById(product_id+"btn").textContent='addind to cart'
+                $('#' + product_id + 'btn').text('adding to cart..').addClass('icon-spinner');
 
             },
 
@@ -456,11 +579,11 @@ body {
 
                 // $('#').text('saved to cart').fadeIn('fast')
                 // $('#'+product_id+'btn').text('saved to cart').slideUp( 300 ).delay( 800 ).fadeIn( 400 );
-                $('#'+product_id+'btn').text('Add To Cart').addClass('icon-check')
+                $('#' + product_id + 'btn').text('Add To Cart').addClass('icon-check')
 
             },
             error: function () {
-                $('#'+product_id+'btn').text('error not saved').slideUp( 300 ).delay( 800 ).fadeIn( 400 );
+                $('#' + product_id + 'btn').text('error not saved').slideUp(300).delay(800).fadeIn(400);
                 // $('#'+product_id+'btn').text('Add To Cart')
 
 

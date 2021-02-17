@@ -103,7 +103,7 @@
 
                         <div class="price-box pt-20 display-4" style="color:#D7782F">
                             <span class="new-price new-price-2 display-4" style="font-size:larger;font-weight:bold">GH¢:
-                                {{product.price}}</span>
+                                {{product.price|intcomma}}</span>
                         </div>
                         <div class="countersection">
                             <!-- <div class="li-countdown product-sale-countdown"></div> -->
@@ -207,7 +207,7 @@
                                         <h4 class="product_name">{{products.name }}</h4>
                                         <div class="price-box">
                                             <h5 class="new-price display-4" style="color:#D7782F;font-weight:bold">GH¢
-                                                {{products.price}}</h5> <br>
+                                                {{products.price|intcomma}}</h5> <br>
                                         </div>
                                     </div>
 
@@ -270,7 +270,7 @@
                             <img src="{{popular.image.url}}" alt="">
                         </div>
                         <div class="product-body">
-                            <h3 class="product-price" style="color:#D7782F;font-weight:bold">GH¢ {{popular.price}} <del
+                            <h3 class="product-price" style="color:#D7782F;font-weight:bold">GH¢ {{popular.price|intcomma}} <del
                                     class="product-old-price">$45.00</del>
                             </h3>
                             <div class="product-rating">

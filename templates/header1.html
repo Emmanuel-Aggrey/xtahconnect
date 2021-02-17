@@ -144,8 +144,9 @@
                             <div class="dropdown-menu">
                                 <div class="dropdownmenu-wrapper">
                                     <div class="dropdown-cart-header">
-                                        <span class="" style="color:#4654A3">{{cart|length}}
-                                            Item{{cart|length|pluralize}} </span>
+                                        <span class="cart-count mx-2" style="color:#4654A3">{{cart|length}}
+                                            </span> <span style="color:#4654A3">Item{{cart|length|pluralize}}</span>
+
 
                                         <a style="color:#4654A3" href="{% url 'cart:cart_detail' %}">View Cart</a>
                                     </div><!-- End .dropdown-cart-header -->
@@ -429,7 +430,7 @@
                             </li>
 
 
-                            <li><a href="#">Forgot Password</a></li>
+                            <!-- <li><a href="#">Forgot Password</a></li> -->
 
                             {% if user.is_staff %}
                             <li><a class="nav-item" title="orders placed by customers" href="{% url 'orders:orders' %}">Orders Placed</a>
@@ -604,7 +605,7 @@
     }
 /* mobile */
     @media screen and (max-width: 600px) {
-        #banner {
+        .bannerpc {
             display: none;
         }
 
@@ -618,9 +619,7 @@
             height: 50px;
             width: auto;
         }
-        .owlspace{
-    height: 345px;
-  }
+ 
         
     }
   
