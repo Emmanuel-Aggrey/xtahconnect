@@ -88,3 +88,8 @@ class Product(Base_Model):
         self.slug =  slug+'-'+id_
         return super().save(*args, **kwargs)
 
+
+
+# thethella
+# asare_stephen111 
+# https://theteller.net/documentation

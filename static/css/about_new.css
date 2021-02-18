@@ -16,7 +16,7 @@ body {
 
 a {
   color: #1bb1dc;
-  transition: 0.5s;
+  /* transition: 0.5s; */
 }
 
 a:hover, a:active, a:focus {
@@ -26,8 +26,8 @@ a:hover, a:active, a:focus {
 }
 
 p {
-  padding: 0;
-  margin: 0 0 30px 0;
+  /* padding: 0; */
+  /* margin: 0 0 30px 0; */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -720,24 +720,25 @@ section {
   text-align: center;
 }
 
-#services .box:hover {
+#services .core:hover {
   transform: scale(1.1);
 }
 
-#services .icon {
-  margin: 0 auto 15px auto;
-  padding-top: 12px;
-  display: inline-block;
+.core{
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 0 10px 40px 10px;
+  background: #fff;
+  box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1);
+  transition: all 0.3s ease-in-out;
   text-align: center;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width:15em;
+  justify-content: center;
+  
 }
 
-#services .icon i {
-  font-size: 36px;
-  line-height: 1;
-}
 
 #services .title {
   font-weight: 700;
@@ -749,7 +750,7 @@ section {
   color: #111;
 }
 
-#services .box:hover .title a {
+#services .core:hover .box:hover .title a {
   color: #1bb1dc;
 }
 
@@ -1738,3 +1739,5 @@ section {
 #footer .credits a:hover {
   color: #0a98c0;
 }
+
+

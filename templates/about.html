@@ -4,21 +4,34 @@
 {% block content %}
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/about_new.css' %}">
+<!-- CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<!-- JS -->
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- INITIALIZE AOS: -->
+<script>
+  AOS.init();
+</script>
+
+
 
 <!-- <link rel="stylesheet" href="{% static 'js/aos/aos.css' %}"> -->
 
 <!-- ======= Hero Section ======= -->
-<section id="hero" class="clearfix">
-    <div class="container d-flex h-100">
-        <div class="row justify-content-center align-self-center" data-aos="fade-up">
-            <div class="col-md-6 intro-info order-md-first order-last" data-aos="zoom-in" data-aos-delay="100">
-                <h2>DTH Solutions<br>WE PROVIDE <span style="color: #A282EF;">FOR ALL CUSTOMERS!</span></h2>
+<section id="hero" class="clearfix" >
+    <div class="container d-flex h-100" >
+        <div class="row justify-content-center align-self-center">
+            <div class="col-md-6 intro-info order-md-first order-last">
+                <h2 style="color: #3D589E;">WE PROVIDE DTH <small class="text-muted">(Direct To Home)</small> SOLUTIONS <br> <span style="color: #A282EF;">FOR ALL CUSTOMERS!</span></h2>
                 <div>
                     <a href="/" class="btn-get-started " style="color: #fff;background-color: #3D589E;">Get Started</a>
                 </div>
             </div>
 
-            <div class="col-md-6 intro-img order-md-last order-first" data-aos="zoom-out" data-aos-delay="200">
+            <div class="col-md-6 intro-img order-md-last order-first">
                 <img src="{% static 'images/Wavy_Bus-17_Single-06.jpg' %}" alt="" class="img-fluid">
             </div>
         </div>
@@ -45,9 +58,9 @@
                         <h2>About Us</h2>
                         <h3>EKOL XTAYCONNECT AFRICA LIMITED.</h3>
                         <p>XtayConnect Africa started as a Research into other products that could rely on the internet
-                            to provide support for the unsupported </p>
-                        <p>mass in 2018. It was incorporated as Ekol XtayConnect Enterprise in the early part of 2020
-                            and later changed to Ekol XtayConnect Africa Limited in the Republic of Ghana.</p>
+                            to provide support for the unsupported 
+                        mass in 2018. It was incorporated as Ekol XtayConnect Enterprise in the early part of 2020
+                            and later changed to Ekol XtayConnect Africa Limited in the Republic of Ghana...</p>
                            <center>
                             <button style="background-color:#270949" type="button" class="btn text-light"  data-toggle="modal"
                             data-target="#staticBackdrop">
@@ -132,76 +145,71 @@
         <div class="container" data-aos="fade-up">
 
             <header class="section-header">
-                <h3>Core Values</h3>
+                <h3 class="uppercase">Core Values</h3>
 
             </header>
 
             <div class="row justify-content-center">
 
-                <div class="wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="box">
-                        <div class="icon" style="background:  #D7782F;;"><i class="ion-ios-analytics-outline"
-                                style="color: #D7782F;"></i></div>
-                        <h4 class="title"><a href="">SYNERGIES</a></h4>
-                        <!-- <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p> -->
+                <div id class="wow bounceInDown" data-aos="fade-in" data-aos-delay="200" >
+                    <div class="container">
+                        <div class="row">
+                            <div class="button special big core title" style="background-color: #D7782F;color:white" >
+                               <div >
+                                SYNERGIES
+                               </div> 
+                            </div>
+                            <div class="button special big core title" style="background-color: #270E46; color: white" >
+                                <div>
+                                    SUPPORT
+                                   </div>
+                            </div>
+                            <div class="button special big core title" style="background-color: #2D589E; color: white">
+                                <div>
+                                    INCLUSION
+                                   </div>
+                            </div>
+                            <div class="button special big core title" style="background-color: #B95567; color: white">
+                                <div>
+                                    DIVERSITY
+                                   </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="box">
-                        <div class="icon" style="background: #270E46;"><i class="ion-ios-bookmarks-outline"
-                                style="color: #270E46;"></i></div>
-                        <h4 class="title"><a href="">SUPPORT</a></h4>
-                        <!-- <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p> -->
-                    </div>
-                </div>
-
-                <div class="" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="box">
-                        <div class="icon" style="background: #2D589E;"><i class="ion-ios-paper-outline"
-                                style="color: #2D589E;"></i></div>
-                        <h4 class="title"><a href="">DIVERSITY</a></h4>
-                        <!-- <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p> -->
-                    </div>
-                </div>
-                <div class="wow" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="box">
-                        <div class="icon" style="background: #B95567;"><i class="ion-ios-speedometer-outline"
-                                style="color:#B95567;"></i></div>
-                        <h4 class="title"><a href="">INCLUSION</a></h4>
-                        <!-- <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p> -->
-                    </div>
-                   
-                </div>
-                <p class="text-center">
+                
+               
+                <p class="text-center text-muted">
                     We believe a large majority of people depend on the harnessed unique capabilities of teams, individuals and institutions; hence, we are opened to any form of relevant partnership to provide cheaper, alternate products and services the large majority.
                 </p>
             </div>
 
         </div>
 
-        
     </section><!-- End Services Section -->
 
+  
     <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us">
-        <div class="container" data-aos="fade-up">
-
-            <header class="section-header" >
-                <h3>About CEO</h3>
-                <p>MR. EMMANUEL KWAKU OWUSU LARBI.</p>
-            </header>
-
+        <div class="container" data-aos="fade-up" >
+ 
+          
             <div class="row">
 
-                <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="why-us-img">
-                        <img src="{% static 'images/EKOL new.png' %}" alt="EMMANUEL KWAKU OWUSU LARBI CEO"
-                            class="img-fluid">
+                <div class="col-lg-6 wow bounceInUp ceo">
+                    <div class="why-us-img wow about-img"  data-aos="zoom-in" data-aos-delay="100">
+                        <img src="{% static 'images/EKOL new.png' %}" alt="EMMANUEL KWAKU OWUSU LARBI CEO XtayConnect Africa">
                     </div>
                 </div>
 
-                <div class="col-lg-6 ">
+                
+                <div class="col-lg-6  wow ceo" data-aos="zoom-in" data-aos-delay="100">  
                     <div class="why-us-content">
+                        <header class="" >
+                            <h3>About CEO</h3>
+                            <h3 style="font-style: italic;">MR. EMMANUEL KWAKU OWUSU LARBI.</h3>
+                        </header>
+            
                         <p> Emmanuel K.O Larbi holds an MBA from the Australian Institute of Business (through the Accra
                             Business School) and a graduate Diploma in Public Finance and Accountancy from the Institute
                             of
@@ -362,7 +370,7 @@
                         seemless checkout</p>
                 </div>
                 <div class="col-lg-3 cta-btn-container text-center">
-                    <a class="cta-btn align-middle" href="tel:++233206494929">Call To Action</a>
+                    <a class="cta-btn align-middle" href="tel:++233206494929">Call Us Now</a>
 
                 </div>
             </div>
@@ -371,7 +379,7 @@
     </section><!--  End Call To Action Section -->
 
     <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
+    <!-- <section id="features" class="features">
         <div class="container" data-aos="fade-up">
 
             <div class="row feature-item">
@@ -383,7 +391,7 @@
                     <p>
                         feel free to talk to us follow us on social media channels and read comments from our wonderful
                         customers just like you.
-                    </p>
+                    </p> -->
                     <!-- <div class="social-iconss">
                         <a href="https://www.facebook.com/XtayConnect-Africa-109896374204854/"
                             class="social-icon text-light" target="_blank"><i class="icon-facebook"
@@ -398,7 +406,7 @@
 
                     </div> -->
                     <!-- End .social-icons -->
-                </div>
+                <!-- </div>
             </div>
 
             <div class="row feature-item mt-5 pt-5">
@@ -416,7 +424,7 @@
 
                 </div>
 
-            </div>
+            </div> -->
             <!-- <div class="row feature-item mt-5 pt-5 ">
                 <div class="col-lg-6 wow fadeInUp order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
                   <img src="{% static 'images/Wavy_Bus-17_Single-06.jpg' %}" class="img-fluid" alt="">
@@ -434,10 +442,11 @@
                 </div>
       
               </div> -->
-        </div>
-    </section><!-- End Features Section -->
+        <!-- </div>
+    </section> -->
+    <!-- End Features Section -->
 
-
+    
 
 
     <!-- ======= F.A.Q Section ======= -->
@@ -450,39 +459,39 @@
 
             <ul id="faq-list" data-aos="fade-up" data-aos-delay="100">
                 <li>
-                    <a data-toggle="collapse" class="collapsed" href="#faq1">is Extayconnect Africa a registerd Business ? <i class="ion-android-remove"></i></a>
-                    <div id="faq1" class="collapse" data-parent="#faq-list">
+                    <a data-toggle="collapse" class="collapsed" href="#faq1">Is XtayConnect Africa a registerd Business?</a>
+                    <div id="faq1" class="collapse" data-parent="#faq-list">   
                         <p>
-                            YES. Extayconnect Africa is a registered business in Ghana
+                            Yes, ExtayConnect Africa is a registered business in Ghana.
                         </p>
                     </div>
                 </li>
 
                 <li>
-                    <a data-toggle="collapse" href="#faq2" class="collapsed">Do You do home delivery for all purchased products ? <i class="ion-android-remove"></i></a>
+                    <a data-toggle="collapse" href="#faq2" class="collapsed">Do You do home delivery for all purchased products?</a>
                     <div id="faq2" class="collapse" data-parent="#faq-list">
                         <p>
-                           We do home delivery but not for all products but only for products purchased that reached a calculated amount
+                           Yes we do home delivery, products purchased that is  above GH₵ 500 attracts free delivery within Accra and Tema.
                         </p>
                     </div>
                 </li>
 
                 <li>
                     <a data-toggle="collapse" href="#faq3" class="collapsed">I was about to checkout and the system redirected me to login page 
-                        i don't know why ? <i class="ion-android-remove"></i></a>
+                        I don't know why?</a>
                     <div id="faq3" class="collapse" data-parent="#faq-list">
                         <p>
                             Yes you have to login before you can checkout. feel free to loign with your email and password
-                            or simply login with facebook or google.
+                            or simply login with facebook or google account.
                         </p>
                     </div>
                 </li>
 
                 <li>
-                    <a data-toggle="collapse" href="#faq4" class="collapsed">I don't understand, why do i have to login? <i class="ion-android-remove"></i></a>
+                    <a data-toggle="collapse" href="#faq4" class="collapsed">I don't understand, why do I have to login?</a>
                     <div id="faq4" class="collapse" data-parent="#faq-list">
                         <p>
-                          It keeps spammers away and also helps us to know who is purchasing the product and able to deliver to you.
+                          It keeps spammers away and also helps us to know who is purchasing the product and be able to deliver to you.
                           Also it helps the system to keep track of your purchases which simply means the more you purchase 
                           from us the possibility of winning a voucher from us is very high.
                         </p>
@@ -490,22 +499,22 @@
                 </li>
 
                 <li>
-                    <a data-toggle="collapse" href="#faq5" class="collapsed">Do you have a physical officia ? <i class="ion-android-remove"></i></a>
+                    <a data-toggle="collapse" href="#faq5" class="collapsed">Do you have a physical office?</a>
                     <div id="faq5" class="collapse" data-parent="#faq-list">
-                        <p>
-                           Yes we do,  you can locate us at No. 114, Malm Rd, Swaniker Street – Abelemkpe, Accra 
-                           or simply click on this <a href="https://goo.gl/maps/XmqBgFdEZEf4pLwE7" target="_blank" rel="noopener noreferrer">link</a> to come to us via google maps, 
-                           yet for the the mean time you can also call us on <a href="tel:++233206494929">+233206494929</a>
-                           or send us a whatsapp message at <a href="https://api.whatsapp.com/send?phone=+233206494929&text=hello" target="_blank" rel="noopener noreferrer">here</a>
-                        </p>
+                    <p>
+                        Yes we do, you can locate us at No. 114, Malm Rd, Swaniker Street – Abelemkpe, Accra or you can come to us via google maps lacated 
+                        on the bottom of this page.
+                    </p>
+
+                       
                     </div>
                 </li>
 
                 <li>
-                    <a data-toggle="collapse" href="#faq6" class="collapsed"> what type of payment system do you accept ?<i class="ion-android-remove"></i></a>
+                    <a data-toggle="collapse" href="#faq6" class="collapsed"> What type of payment system do you accept?</a>
                     <div id="faq6" class="collapse" data-parent="#faq-list">
                         <p>
-                          for now we do accept master card,credit card, mobile money and direct bank transfer.
+                          For now, we do accept master card,credit card, mobile money and direct bank transfer.
                         </p>
                     </div>
                 </li>
@@ -525,7 +534,7 @@
         /* big screens */
         @media screen and (min-width: 600px) {
             .why-us-content{
-                margin-top:10em;
+                margin-top:1em;
             }
         }
 
@@ -537,7 +546,7 @@
         }
     }
 
-    .header-middle {
+    .header-middle,.link {
         margin: 0;
         padding: 0;
         border: none;
@@ -546,8 +555,16 @@
     .d-lg-none{
         display: none;
     }
+
+  .link{
+    white-space: nowrap;
+  }
+
+  
     </style>
+<div data-aos="fade-up-left">
+    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d4594.930695361165!2d-0.22035458485498652!3d5.609622945933253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sNo.%20114%2C%20Malm%20Rd%2C%20Swaniker%20Street%20%E2%80%93%20Abelemkpe%2C%20Accra%20!5e1!3m2!1sen!2sgh!4v1613451502220!5m2!1sen!2sgh" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
 
+</div>
 
-    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d4594.930695361165!2d-0.22035458485498652!3d5.609622945933253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sNo.%20114%2C%20Malm%20Rd%2C%20Swaniker%20Street%20%E2%80%93%20Abelemkpe%2C%20Accra%20!5e1!3m2!1sen!2sgh!4v1613451502220!5m2!1sen!2sgh" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
     {% endblock %}
