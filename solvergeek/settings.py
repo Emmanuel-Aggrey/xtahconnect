@@ -32,7 +32,7 @@ DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
-AUTHENTICATION_BACKENDS=(
+AUTHENTICATION_BACKENDS = (
     'ecommerce.backends.CommonAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -59,9 +59,9 @@ INSTALLED_APPS = [
     'storages',
 
     # paymant
-  
-    
-    #logins
+
+
+    # logins
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -69,13 +69,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
 
-    
+
 
     'ecommerce',
     'cart',
     'orders',
 
-# must be the last app by documantation
+    # must be the last app by documantation
     'django_cleanup.apps.CleanupConfig',
 
 ]
@@ -101,7 +101,7 @@ ROOT_URLCONF = 'solvergeek.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,10 +132,8 @@ DATABASES = {
 }
 
 
-
 prod_db = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
-
 
 
 # Password validation
@@ -155,9 +153,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
-
 
 
 AUTHENTICATION_BACKENDS = (
@@ -185,7 +180,6 @@ LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'account_login'
 
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -202,9 +196,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
-
-
 
 
 # DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -227,13 +218,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
 STATIC_URL = '/static/'
-STATICFILES_DIRS =[
-    os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
 ]
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 THUMBNAIL_ALIASES = {
@@ -243,7 +233,6 @@ THUMBNAIL_ALIASES = {
 }
 
 
-
 # CLOUDINARY_STORAGE = {
 #     'CLOUD_NAME': config('CLOUD_NAME'),
 #     'API_KEY': config('API_KEY'),
@@ -251,15 +240,14 @@ THUMBNAIL_ALIASES = {
 # }
 
 
-
-
 # email settings
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'rockcityhotelgh.com'
+EMAIL_HOST = 'smtp.mailgun.org'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = config('EMAIL')
-EMAIL_HOST_PASSWORD = config('PASSWORD')
+EMAIL_HOST_USER = 'info@xtayconnectafrica.com'  # config('EMAIL')
+# config('PASSWORD')
+EMAIL_HOST_PASSWORD = 'be0fdedbb73e8004bbe476168782853e-6e0fd3a4-50299aff'
 
 
 # DIGITAL OCEAN SPACES
@@ -268,7 +256,7 @@ EMAIL_HOST_PASSWORD = config('PASSWORD')
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
-## DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
@@ -278,7 +266,7 @@ AWS_S3_ENDPOINT_URL = config('AWS_S3_ENDPOINT_URL')
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-AWS_LOCATION=config('AWS_LOCATION')
+AWS_LOCATION = config('AWS_LOCATION')
 
 
 STATICFILES_DIRS = [
@@ -289,9 +277,11 @@ STATICFILES_DIRS = [
 # STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL,'/media/')
-DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+# MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL,'/media/')
+# DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 
 
-PAYSTACK_SCRET_KEY=config('PAYSTACK_SCRET_KEY')
-PAYSTACK_PUBLIC_KEY=config('PAYSTACK_PUBLIC_KEY')
+PAYSTACK_SCRET_KEY = config('PAYSTACK_SCRET_KEY')
+PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY')
+
+

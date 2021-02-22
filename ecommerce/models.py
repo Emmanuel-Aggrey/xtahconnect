@@ -1,10 +1,11 @@
+from ckeditor.fields import RichTextField
 from django.db import models
+from django.db.models.signals import post_save,pre_save
+from django.dispatch import receiver
 from django.shortcuts import reverse
 from django.template.defaultfilters import slugify
-from ckeditor.fields import RichTextField
-
+from django.utils import timezone
 from hashids import Hashids
-
 
 # Create your models here.
 hashids = Hashids()
@@ -79,6 +80,15 @@ class Product(Base_Model):
     image5 = models.ImageField(
         upload_to='images/%Y/%m/%d/', null=True, blank=True)
 
+
+    # promational products
+    text = models.CharField(max_length=30,blank=True, null=True)
+    discount_price = models.PositiveIntegerField(blank=True,null=True)
+    from_date = models.DateField(default=timezone.now,blank=True, null=True)
+    to_date = models.DateField(default=timezone.now,blank=True, null=True)
+    is_promational = models.BooleanField(default=False,editable=False)
+
+
     # create a new slug
 
     # def save(self, *args, **kwargs):
@@ -92,14 +102,33 @@ class Product(Base_Model):
     def __str__(self):
         return f'{self.name}: {self.category}'
 
-    def save(self, *args, **kwargs):
-        id_ = Product.objects.values_list('pk', flat=True).count()
-        id_ = str(id_)
-        slug = slugify(self.name)
-        self.slug = slug+'-'+id_
-        return super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     id_ = Product.objects.values_list('pk', flat=True).count()
+    #     id_ = str(id_)
+    #     slug = slugify(self.name)
+    #     self.slug = slug+'-'+id_
+    #     return super().save(*args, **kwargs)
+
+
+@receiver(pre_save,sender=Product)
+def pre_saved_handler(sender,instance,*args, **kwargs):
+    if instance.text:
+        instance.is_promational =True
+    else:
+        instance.is_promational= False
+        instance.discount_price=None
+        instance.from_date =None
+        instance.to_date =None
+
+@receiver(post_save,sender=Product)
+def post_save_handler(sender,instance,created,*args, **kwargs):
+    if created:
+        slug = slugify(instance.name)
+        instance.slug = slug+'-'+str(instance.id)
+        instance.save()
+
 
 
 # thethella
-# asare_stephen111
+# skype id : asare_stephen111
 # https://theteller.net/documentation

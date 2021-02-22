@@ -18,6 +18,7 @@ hashids = Hashids()
 
 def index(request):
     products = Product.objects.filter(is_available=True)
+    # promational_products = Product.objects.filter()
 
         # print(request.session['history'])
     resent_view_products = ''
