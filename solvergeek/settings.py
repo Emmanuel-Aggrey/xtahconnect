@@ -247,7 +247,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'info@xtayconnectafrica.com'  # config('EMAIL')
 # config('PASSWORD')
-EMAIL_HOST_PASSWORD = 'be0fdedbb73e8004bbe476168782853e-6e0fd3a4-50299aff'
+EMAIL_HOST_PASSWORD = ''
 
 
 # DIGITAL OCEAN SPACES
