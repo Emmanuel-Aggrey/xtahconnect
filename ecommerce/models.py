@@ -120,8 +120,8 @@ def pre_saved_handler(sender,instance,*args, **kwargs):
     else:
         instance.is_promational= False
         instance.discount_price=None
-        instance.from_date =None
-        instance.to_date =None
+        instance.start_date =None
+        instance.end_date =None
 
 @receiver(post_save,sender=Product)
 def post_save_handler(sender,instance,created,*args, **kwargs):
