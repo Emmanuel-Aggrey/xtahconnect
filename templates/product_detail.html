@@ -272,7 +272,7 @@
                         </div>
                         <div class="product-body">
                             <h3 class="product-price" style="color:#D7782F;font-weight:bold">GH¢ {{popular.price|intcomma}} <del
-                                    class="product-old-price">$45.00</del>
+                                    class="product-old-price">GH¢ {{popular.discount|intcomma}}</del>
                             </h3>
                             <div class="product-rating">
                                 <!-- <i class="fa fa-star"></i>
@@ -469,7 +469,7 @@
     height: 225px;
   }
   .product-details{
-    height: 40px !important;
+    height: 40px !important; 
    }
 }
 </style>
@@ -485,6 +485,8 @@
 <script src="{% static 'js/jquery.meanmenu.min.js' %}"></script>
 <script src="{% static 'js/wow.min.js' %}"></script>
 <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+
 
 <script src="{% static 'js/slick.min.js' %}"></script>
 <script src="{% static 'js/jquery.countdown.min.js' %}"></script>

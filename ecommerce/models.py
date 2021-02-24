@@ -66,6 +66,7 @@ class Product(Base_Model):
     name = models.CharField(max_length=100)
     image = models.FileField(upload_to='images/%Y/%m/%d/')
     price = models.DecimalField(decimal_places=2, max_digits=20)
+    discount = models.PositiveIntegerField('discount price',null=True,blank=True)
     description = RichTextField(blank=True, null=True)
     is_available = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, editable=False, null=True, blank=True)
@@ -84,10 +85,9 @@ class Product(Base_Model):
     # promational products
     text = models.CharField(max_length=30,blank=True, null=True)
     discount_price = models.PositiveIntegerField(blank=True,null=True)
-    from_date = models.DateField(default=timezone.now,blank=True, null=True)
-    to_date = models.DateField(default=timezone.now,blank=True, null=True)
+    start_date = models.DateTimeField(blank=True, null=True)
+    end_date = models.DateTimeField(blank=True, null=True)
     is_promational = models.BooleanField(default=False,editable=False)
-
 
     # create a new slug
 
@@ -101,6 +101,9 @@ class Product(Base_Model):
 
     def __str__(self):
         return f'{self.name}: {self.category}'
+
+    def promotional_products(self):
+        return  Product.objects.filter(is_promational=True,date_updated__range=[self.start_date,self.end_date])
 
     # def save(self, *args, **kwargs):
     #     id_ = Product.objects.values_list('pk', flat=True).count()

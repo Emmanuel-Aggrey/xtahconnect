@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, OrderItem
+from .models import Order, OrderItem,Staff_Email
 
 
 class OrderItemInline(admin.TabularInline):
@@ -14,9 +14,18 @@ class OrderAdmin(admin.ModelAdmin):
     search_fields = ('order_number','email','phone_number','name')
     list_editable = ['paid']
     list_display_links = ['order_number','email','name',]
+    
+    
 
 
 admin.site.register(Order, OrderAdmin)
 
+
+
+class ReceivedOrder(admin.ModelAdmin):
+    list_display=['name', 'email','receive_order']
+    list_editable = ['receive_order',]
+
+admin.site.register(Staff_Email,ReceivedOrder)
 
 

@@ -110,3 +110,4 @@ update.zip
 products/
 
 sendmail.py
+sendgrid.env

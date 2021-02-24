@@ -12,6 +12,20 @@ from django.db.models import Sum
 hashids = Hashids()
 
 
+
+class Staff_Email(Base_Model):
+    
+    name = models.ForeignKey(User,on_delete=models.CASCADE,limit_choices_to={'is_staff': True})
+    email = models.EmailField()
+    receive_order = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'staff Email'
+        verbose_name_plural='staff Emails'
+    
+    def __str__(self):
+        return f'{self.name.username,self.email}'
+
 class Order(Base_Model):
     user =models.ForeignKey(User,on_delete=models.CASCADE,related_name='user')
     name = models.CharField(max_length=60)
@@ -45,7 +59,7 @@ def create_orders_number(sender,instance,created,*args, **kwargs):
     if not instance.order_number:
         order_id = hashids.encrypt(instance.id)
         ordernummber= now+'-'+str(order_id)
-        instance.order_number = ordernummber
+        instance.order_number = ordernummber.upper()
         instance.save()
 
     # print('ordernummber ',ordernummber)

@@ -29,6 +29,10 @@ class ProductInline(admin.TabularInline):
         (None, {
             'fields': ('category','name', 'price','image','is_available','description',)
         }),
+         ('Add Descount', {
+            'classes': ('collapse',),
+            'fields': ('discount',),
+        }),
         ('MORE IMAGES', {
             'classes': ('collapse',),
             'fields': ('image1', 'image2','image3','image4','image5',),
@@ -57,13 +61,17 @@ class ProductAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('category','name', 'price','image','is_available','description',)
         }),
+        ('Add Descount', {
+            'classes': ('collapse',),
+            'fields': ('discount',),
+        }),
         ('MORE IMAGES', {
             'classes': ('collapse',),
             'fields': ('image1', 'image2','image3','image4','image5',),
         }),
          ('Run Promotion', {
             'classes': ('collapse',),
-            'fields': ('text', 'discount_price','from_date','to_date',),
+            'fields': ('text', 'discount_price','start_date','end_date',),
         }),
 
     )
