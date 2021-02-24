@@ -20,9 +20,9 @@ def index(request):
     products = Product.objects.filter(is_available=True)
 
 
-    promational_products = products.filter(is_promational=True)
-    for p in promational_products:
-        promational_products = promational_products.filter(Q(date_updated__gte=p.start_date)&Q(date_updated__lte=p.end_date))
+    # promational_products = products.filter(is_promational=True)
+    # for p in promational_products:
+    #     promational_products = promational_products.filter(Q(date_updated__gte=p.start_date)&Q(date_updated__lte=p.end_date))
 
     
 
@@ -39,7 +39,7 @@ def index(request):
     context = {
         'products': products,
         'resent_view_products':resent_view_products,
-        'promational_products':promational_products,
+        # 'promational_products':promational_products,
         'latest_items':products.order_by('?')[0:5],
     }
     return render(request, 'index.html', context)
