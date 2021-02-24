@@ -24,28 +24,6 @@ def index(request):
     for p in promational_products:
         promational_products = promational_products.filter(Q(date_updated__gte=p.start_date)&Q(date_updated__lte=p.end_date))
 
-        # print(promational_products.query)
-        # print(promational_products)
-
-        # print('p date ',p.start_date)
-
-    # promational_products=''
-    # for x in products:
-    #     print(x.start_date)
-        # promational_products=products.filter(is_promational=True,date_updated__range=[x.start_date.strftime('%Y-%m-%d %H:%M:%S'),x.end_date.strftime('%Y-%m-%d %H:%M:%S')])
-        # start_date = x.start_date
-        # end_date = x.end_date
-        # print(promational_products)
-
-    # promational_product= []
-    # for items in products:
-    #     promational_products = items.promotional_products
-    #     promational_product.append(promational_products)
-        
-    # promational_products = promational_products.filter(is_promational=True,date_updated__range=["start_date","end_date"])
-        # promational_products= products.filter(date_updated__lte='start_date',date_updated__gt='end_date')
-    # promational_products = products.filter(Q(date_updated__gte="start_date")&Q(date_updated__lte="end_date"))
-
     
 
 
