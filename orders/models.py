@@ -28,12 +28,12 @@ class Staff_Email(Base_Model):
 
 class Order(Base_Model):
     user =models.ForeignKey(User,on_delete=models.CASCADE,related_name='user')
-    name = models.CharField(max_length=60)
+    name = models.CharField(max_length=8000)
     email = models.EmailField()
-    address = models.CharField(max_length=150)
+    address = models.CharField(max_length=650)
     # phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+233'. Up to 15 digits allowed.")
     phone_number = models.CharField(max_length=15, blank=False)
-    city = models.CharField('City/Closest Landmark',max_length=100)
+    city = models.CharField('City/Closest Landmark',max_length=600)
     # created = models.DateTimeField(auto_now_add=True)
     # updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)

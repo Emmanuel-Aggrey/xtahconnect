@@ -20,7 +20,7 @@ class Base_Model(models.Model):
 
 
 class Category(Base_Model):
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=800, unique=True)
     is_available = models.BooleanField(default=True)
 
 
@@ -43,7 +43,7 @@ class Category(Base_Model):
 class Sub_Category(Base_Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name='sub_categories')
-    name = models.CharField('sub category', max_length=200)
+    name = models.CharField('sub category', max_length=800)
     is_available = models.BooleanField(default=True)
 
     # create a new slug
@@ -63,7 +63,7 @@ class Sub_Category(Base_Model):
 class Product(Base_Model):
     category = models.ForeignKey(
         Sub_Category, on_delete=models.CASCADE, related_name='products')
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=800)
     image = models.FileField(upload_to='images/%Y/%m/%d/')
     price = models.DecimalField(decimal_places=2, max_digits=20)
     discount = models.PositiveIntegerField('discount price',null=True,blank=True)
