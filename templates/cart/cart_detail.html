@@ -37,13 +37,17 @@ Your Shopping Cart
                                 
                                 <img class="img-responsive" src="{{ product.image.url }}" alt="{{ product.image.url }}"style="height:100px; width:100px">
                             </a>
-                            <a href="{{product.get_absolute_url}}" style="color: #4654A3;">{{product.name}}</a>
+                            <a href="{{product.get_absolute_url}}" style="color: #4654A3;">{{product.name|truncatewords:20}}</a>
 
                         </td>
 
                         
                         <td class="price text-center"><strong>GH₵ {{product.price|intcomma}}</strong><br><del
-                                class="font-weak"><small>$40.00</small></del></td>
+                                class="font-weak"><small>
+                                    {% if product.discount %}
+                                    GH₵ {{product.discount|intcomma}}
+                                    {% endif %}
+                                </small></del></td>
 
                         <td class="qty text-center">
                             <form action="{% url "cart:cart_add" product.id %}" method="post">
