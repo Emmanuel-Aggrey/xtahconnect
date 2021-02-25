@@ -112,6 +112,15 @@ class Product(Base_Model):
     #     self.slug = slug+'-'+id_
     #     return super().save(*args, **kwargs)
 
+    @property
+    def percentageoff(self):
+        if not type(self.discount) is str :
+            dis = self.discount
+            price =int(self.price)
+            return dis-price
+            # mydis = int(dis)
+            
+        
 
 @receiver(pre_save,sender=Product)
 def pre_saved_handler(sender,instance,*args, **kwargs):
