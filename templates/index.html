@@ -30,12 +30,7 @@
                                 <div class="slider-progress"></div>
 
                                 <div class="slider-content">
-                                    
-                                    {% if product.discount %}
                                     <h5>Sale Offer <span>{{product.discount}}% Off</span></h5>
-
-                                    {% endif %}
-                                        
                                     
                                     {% if product.is_promational %}
                                     <h2>{{product.text|truncatechars:20}}</h2>
@@ -61,12 +56,21 @@
                 <!-- Slider Area End Here -->
                 <!-- Begin Li Banner Area -->
                 <div class="col-lg-4 col-md-4 text-center pt-xs-3 bannerpc">
-                    <h4>Latest Products</h4>
+                    <h4>Latest Package</h4>
                     <div class="li-banner">
                         {% for product1 in latest_items|slice:'0:1'  %}
+                          
+                       
                         <a href="{{product1.get_absolute_url}}">
                             <img src="{{product1.image.url}}" alt="">
                         </a>
+                        <div class="price-box">
+                            <span class="product-price">GH₵ {{product1.price|intcomma}}</span>
+                            {% if product1.discount %}
+                            <small class=""><del>GH₵ {{product1.discount|intcomma}}</del></small>
+
+                            {% endif %}
+                        </div><!-- End .price-box -->
                         {% endfor %}
                     </div>
                     <!-- <div class="li-banner mt-15 mt-sm-30 mt-xs-30">
@@ -298,7 +302,7 @@
                                                         <div class="product-review">
                                                             <h5 class="manufacturer">
                                                                 <a
-                                                                    href="{% url 'categories' product.category.id  %}">{{product.category.name|truncatechars:50}}</a>
+                                                                    href="{% url 'categories' product.category.id  %}">{{product.category.name|truncatewords:20}}</a>
 
                                                             </h5>
                                                             <div class="rating-box">
@@ -314,7 +318,7 @@
                                                             </div>
                                                         </div>
                                                         <h4><a class="product_name"
-                                                                href="{{product.get_absolute_url}}">{{product.name|truncatechars:50}}</a>
+                                                                href="{{product.get_absolute_url}}">{{product.name|truncatewords:50}}</a>
                                                         </h4>
                                                         <div class="price-box">
                                                             <span class="new-price product-pric">GH₵:
@@ -328,31 +332,31 @@
                                                     
                                                         <div class="product-desc">
                                                             <p>
-                                                                <span>{{product.description|safe|truncatechars:655}}
+                                                                <span>{{product.description|safe|truncatewords:50}}
                                                                 </span>
                                                             </p>
                                                         </div>
                                                         
                                                     </div>
                                                 </div>
-                                                    <div class="shop-add-actions mb-xs-30" style="text-align: center">
-                                                        <form class="productname" method="post" id={{product.id}}>
-    
-                                                            <button class="btn btn-md" id="{{product.id}}btn"
-                                                                style="background-color: #4654A3;color: white;"
-                                                                class=""><i class="icon-bag"></i>Add To
-                                                                Cart </button>
-                                                            <a href="{{product.get_absolute_url}}" title="quick view" class="btn"
-                                                                style="background-color: #4654A3;color: white;">View
-                                                                Detail</a>
-    
-                                                        </form>
-    
-                                                    </div>
-                                                
-                                                {% endfor %}
                                             </div>
-                                          
+                                            <div class="col-lg-4">
+                                                <div class="shop-add-action mb-xs-30">
+                                                    <form class="productname" method="post" id={{product.id}}>
+
+                                                        <button class="btn btn-md" id="{{product.id}}btn"
+                                                            style="background-color: #4654A3;color: white;"
+                                                            class=""><i class="icon-bag"></i>Add To
+                                                            Cart </button>
+                                                        <a href="{{product.get_absolute_url}}" title="quick view" class="btn"
+                                                            style="background-color: #4654A3;color: white;">View
+                                                            Detail</a>
+
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                            {% endfor %}
                                         </div>
 
                                         <!-- straight display end-->
@@ -490,7 +494,12 @@
                             <h2 class="product-title">
                                 <a href="{{resent_view_products.get_absolute_url}}">{{resent_view_products.name|truncatechars:20}}</a>
                             </h2>
-                            
+                            <div class="ratings-container">
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:100%"></span><!-- End .ratings -->
+                                    <span class="tooltiptext tooltip-top"></span>
+                                </div><!-- End .product-ratings -->
+                            </div><!-- End .product-container -->
                             <div class="price-box">
                                 <span class="product-price">GH₵ {{resent_view_products.price|intcomma}}</span>
                                 {% if product.discount %}
