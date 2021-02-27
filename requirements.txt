@@ -22,3 +22,4 @@ django-allauth==0.41.0
 django-storages==1.11.1  
 django-cleanup==5.1.0 
 boto3==1.17.3 
+sendgrid==6.6.0     

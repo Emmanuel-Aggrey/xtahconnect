@@ -19,13 +19,18 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center" style="margin-top: 6%">
-        <div class="col-md-8 col-md-offset-2">
-            <h1 class="page-header">Thank You For Shopping With Us
-            </h1>
-            <h2>Your order has been successfully completed. Your order number is <strong class="text-info">{{ order.order_number }}</strong> you
-                will be contacted soon <code>Thank you</code> </h2>
-        </div>
-        <a class="btn btn-lg btn-block" style="background-color: #270E46; color: #270949;color: white;" href="/">Continue Shopping</a>
+        <h1 class="page-header">Thank You For Shopping With Us
+        </h1>
+        <h4>Your order has been successfully completed. Your order number is <strong class="text-info">{{request.session.order_number }}</strong> you
+            will be contacted soon <code class="mx-4">Thank you</code> </h4>  <br>
+            <small class="text-muted text-center">We Have Sent You An Email</small>
+            <br>
+
+
+        <a class="btn btn-lg mx-4" style="background-color: #4654A3;color: white;margin-bottom: 10px" href="/">Continue
+            Shopping</a>
+
     </div>
+
 </div>
 {% endblock %}

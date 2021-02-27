@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     # 'cloudinary',
     'ckeditor',
     'storages',
-
+    'sendgrid',
+    # 'smart_selects',
     # paymant
 
 
@@ -74,6 +75,7 @@ INSTALLED_APPS = [
     'ecommerce',
     'cart',
     'orders',
+    'reports',
 
     # must be the last app by documantation
     'django_cleanup.apps.CleanupConfig',
@@ -130,6 +132,19 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+# local posgress db
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'xtayconnectdb',
+#         'USER': 'postgres',
+#         'PASSWORD': 'aggrey123',
+#         'HOST': 'localhost',
+#         # 'PORT': '5432',
+#     }
+# }
 
 
 prod_db = dj_database_url.config(conn_max_age=500)

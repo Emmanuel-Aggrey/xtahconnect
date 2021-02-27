@@ -101,7 +101,7 @@
                 <div class="product-details-view-content sp-sale-content pt-60">
                     <div>
                         <h2 style="color:#270E46">{{product.name}}</h2>
-                        <span class="product-details-ref">available: {{product.is_available|yesno:'In Stock,Out of Stock'}}</span>
+                        <span class="product-details-ref">available: {{product.is_available|yesno:'Yes,Out Of Stock'}}</span>
 
                         <div class="price-box pt-20 display-4" style="color:#D7782F">
                             <span class="new-price new-price-2 display-4" style="font-size:larger;font-weight:bold">GH¢:
@@ -111,11 +111,9 @@
                             <!-- <div class="li-countdown product-sale-countdown"></div> -->
                         </div>
 
-                        <div id="alert" class="alert alert-success text-center" role="alert"
-                            style="background-color: #270E46;color: white" width="50%">
-                            saved to cart
-                        </div>
                         <div class="single-add-to-cart">
+                            <div id="alert" class="text-center" role="alert" style="color:#3D589E;width:fit-content">Saved To Cart</div>
+
                             <form id="cart-form" action="#" class="cart-quantity">
                                 <div class="quantity">
                                     <label>Quantity</label>
@@ -132,11 +130,11 @@
 
                                 <li>
                                     <a id="view_cart" style="background-color: #3D589E;color: white;" class="btn btn-lg"
-                                        href="{% url 'cart:cart_detail' %}">view cart</a>
+                                        href="{% url 'cart:cart_detail' %}">View Cart</a>
                                 </li>
                                 <li>
                                     <a id="checkout" style="background-color: #3D589E;color: white;" class="btn btn-md"
-                                        href="{% url 'orders:checkout' %}">check out</a>
+                                        href="{% url 'orders:checkout' %}">Check Out</a>
                                 </li>
                             </ul>
 
@@ -176,7 +174,7 @@
                     </h2>
                 </div>
                 <div class="row">
-                    <h4 class="text-center" id="alertnew" class="alert alert-success"></h4>
+                    <h4 class="text-center" id="alertnew" class="alert alert-success" style="height:4px"></h4>
 
                     <div class="product-active owl-carousel">
                         {% for products in related_products|slice:'0:8' %}
@@ -370,6 +368,7 @@
             beforeSend: function () {
                 $('#submit').text('adding to cart...')
 
+                $('#alert').fadeIn('fast').text('Saving To Cart').addClass('icon-spinner')
 
             },
 
@@ -379,9 +378,8 @@
 
 
                 // $('#').text('saved to cart').fadeIn('fast')
-                $('#alert').fadeIn('fast').text('saved to cart').fadeOut(5000)
+                $('#alert').fadeIn('fast').text('Saved To Cart').fadeOut(5000).addClass('icon-check')
                 $('#submit').text('Add To Cart')
-
                 $('#view_cart').fadeIn('fast').fadeOut(30000)
                 $('#checkout').fadeIn('fast').fadeOut(30000)
 
@@ -429,7 +427,7 @@
 
                 getcartsize()
 
-                $('#alertnew').fadeIn('fast').text('saved to cart').fadeOut(5000)
+                $('#alertnew').fadeIn('fast').text('Saved To Cart').fadeOut(5000)
 
                 // $('#').text('saved to cart').fadeIn('fast')
 

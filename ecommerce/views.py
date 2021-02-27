@@ -90,6 +90,8 @@ def category_view(request,id):
     return render(request,'categories.html',context)
 
 
+
+# django allauth inplace of this
 def register(request):
     if request.method=='POST':
         first_name=request.POST['first_name']

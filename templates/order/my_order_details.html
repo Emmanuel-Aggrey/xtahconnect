@@ -45,7 +45,7 @@
 
                             </a>
                         </td>
-                        <td scope="row"> {{orders_place.product.name}}</td>
+                        <td scope="row"> {{orders_place.product.name||truncatewords:20}}</td>
                         <td scope="row">{{orders_place.quantity}}</td>
                         <td scope="row">{{orders_place.price}}</td>
                         <td scope="row">{{orders_place.date_add}}</td>

@@ -1,0 +1,62 @@
+{% extends 'header1.html' %}
+
+{% load static %}
+{% load humanize %}
+{% load thumbnail %}
+{% block title %}
+
+Your Shopping Cart
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3 class="float-right"><span class="badge badge-pill badge-primary text-light"> {{orders.count}} </span></h3>
+            <h3 class="text-center">ALL CUSTOMERS</h3>
+             
+            <table class="table">
+                
+               
+              
+                    
+                <thead>
+                  
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Number Of Orders</th>
+                        <th>Number Of Purchase</th>
+                        <th>View Orders</th>
+                    </tr>
+                </thead>
+                {% for customer_orders in orders_set.all %}
+                <tbody>
+                    <tr>
+                        <td scope="row">{{forloop.counter}} </td>
+                        <td scope="row">{{customer_orders.user__username}}</td>
+                        <td scope="row">{{customer_orders.phone_number}}</td>
+                        <td scope="row">{{customer_orders.user__email}}</td>
+                        <td scope="row">{{customer_orders.total_orders}}</td>
+                        <td scope="row">{{customer_orders.count}}</td>
+                    
+                        <td scope="row">
+                            <a href="#">View Orders</a>
+                        </td>
+
+                    </tr>
+                    
+                </tbody>
+                {% endfor %}
+            </table>
+         
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

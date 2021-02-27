@@ -23,7 +23,7 @@
 
 {% block content %}
 
-{% if messages %}
+<!-- {% if messages %}
 
 {% for message in messages %}
 <div class="alert alert-{{message.tags}}" role="alert">
@@ -32,7 +32,7 @@
 
 {% endfor %}
 
-{% endif %}
+{% endif %} -->
 
 <div class="container">
     <div class="row">
@@ -52,7 +52,7 @@
             </form>
             <div class="col-md-6">
                 <div class="page-headers">
-                    Your Order
+                    Your Order review
                 </div>
                 <ul class="list-group">
                     {% for item in cart %}
@@ -85,7 +85,7 @@
                 </div>
                 <div class="input-checkbox">
                     <input type="radio" name="shipping" id="shipping-2">
-                    <label for="shipping-2">PAT ON DELIVERY</label>
+                    <label for="shipping-2">PAY ON DELIVERY</label>
                     <div class="caption">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -113,11 +113,7 @@
                     <input type="radio" name="payments" id="payments-2">
                     <label for="payments-2">Try as much to describe the pickup location</label>
                     <div class="caption">
-                        <p>
-                            <div>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                            </div>
-                            <p>
+                        
                     </div>
 
 
@@ -140,19 +136,20 @@
     <script> 
     document.getElementById('id_name').value="{{request.user.get_full_name}}"
     document.getElementById('id_email').value="{{request.user.email}}"
-    document.getElementById('total').value=  document.getElementById('total_price').value
+    document.getElementById('id_phone_number').value="{{request.user.phone}}"
+    // document.getElementById('total').value=  document.getElementById('total_price').value
 
 
-    $(".alert").fadeOut(10000)
+
 
     </script>
 
 {% endif %}
 
 <style>
-      .alert {
+      /* .alert {
         text-align: center
-    }
+    } */
 
     
 </style>

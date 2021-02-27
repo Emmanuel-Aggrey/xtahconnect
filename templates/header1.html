@@ -44,18 +44,19 @@
     <!--start of Tawk.to Script-->
 
     
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function () {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/5e0c744e7e39ea1242a28fec/default';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
+ <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/60389c711c1c2a130d62a033/1evei6be7';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
     </script>
-
+    <!--End of Tawk.to Script-->
 
     <!--End of Tawk.to Script-->
     <!-- heder page -->
@@ -125,7 +126,7 @@
                             <form action="{% url 'search' %}" method="get" id="searchform">
                                 <div class="header-search-wrapper ">
                                     <input type="search" class="form-control" name="q" id="q"
-                                        placeholder="Search for products and cetegories" required
+                                        placeholder="Search for products and cetegory" required
                                         value="{{request.GET.q}}">
 
                                     <button class="btn btn-lg btn-search"
@@ -392,6 +393,19 @@
 
                     </div><!-- End .social-icons -->
                 </div><!-- End .containr -->
+                {% if request.user.is_staff %}
+                <div class="container">
+                 <div class="row">
+                     <div class="col">
+                     <p class="text-danger">ADMININSTRATORS VIEW</p>
+                     <a href="{% url 'customers:customers' %}">View Customers</a>
+                     </div>
+                 </div>
+             </div>
+                  
+                {% endif %}
+
+             
         </footer><!-- End .footer -->
     </div><!-- End .page-wrapper -->
 
