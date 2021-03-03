@@ -4,7 +4,9 @@
 
 <head>
 
-
+{% load mapbox_location_field_tags %} 
+{% location_field_includes %}
+{% include_jquery %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -396,10 +398,27 @@
                 {% if request.user.is_staff %}
                 <div class="container">
                  <div class="row">
-                     <div class="col">
-                     <p class="text-danger">ADMININSTRATORS VIEW</p>
-                     <a href="{% url 'customers:customers' %}">View Customers</a>
-                     </div>
+                    <p class="text-danger my-4" title="only visible for administrators" data-toggle="tooltip" data-placement="top">
+                        ADMININSTRATORS VIEW
+                        <i class="fa fa-hand-o-right text-light" aria-hidden="true">  </i>
+
+                    </p>
+
+                     <ul class="mb-4">
+
+                         <li class="adminview">
+                            <a class="btn" href="{% url 'reports:customers' %}" title="view data related to customers" data-toggle="tooltip" data-placement="top">View Customers</a>
+
+                         </li>
+                         <li class="adminview">
+                            <a class="btn" href="/xconnect/" title="view administrator page " data-toggle="tooltip" data-placement="top">Back Office</a>
+
+                         </li>
+                         <li class="adminview">
+                                <a class="btn" href="{% url 'reports:product_report' %}" title="view product report" data-toggle="tooltip" data-pl>Products / Items</a>
+                         </li>
+                     </ul>
+                    
                  </div>
              </div>
                   
@@ -673,7 +692,10 @@ body {
 }
 
   
-
+.adminview{
+    display: inline;
+  
+}
 </style>
 
 <script>

@@ -1,15 +1,18 @@
+# from solvergeek.settings import EMAIL_HOST_USER
+import datetime
+
 from cart.cart import Cart
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail, send_mass_mail
-from django.db.models import Q
+from django.db.models import Count, F, Q
 from django.shortcuts import get_object_or_404, redirect, render
-# from solvergeek.settings import EMAIL_HOST_USER
-import datetime
-from .forms import OrderCreateForm
+from ecommerce.models import Product
+from solvergeek.sendGrid_email import send_sendGredemail
+
+from .forms import OrderCreateForm,City
 from .models import Order, OrderItem, Staff_Email
-from solvergeek.sendGrid_email import  send_sendGredemail
 
 # def great():
 
@@ -25,88 +28,97 @@ from solvergeek.sendGrid_email import  send_sendGredemail
 @login_required
 def checkout(request):
 
+    form = OrderCreateForm(request.POST or None)
     cart = Cart(request)
+    # if Order.objects.values('name','address','phone_number','address').filter(user__username=request.user).exists():
+    #     user_last_info= Order.objects.values('name','address','phone_number','address').filter(user__username=request.user).last()
+    #     print(user_last_info)
+       
+  
+
+
+    #     form.fields['email'].initial=request.user.email
+    #     form.fields['name'].initial=user_last_info['name']
+    #     form.fields['address'].initial=user_last_info['address']
+    #     # form.fields['region'].initial=user_last_info['region']
+    #     form.fields['phone_number'].initial=user_last_info['phone_number']
+    #     # form.fields['city'].initial=user_last_info['city']
+
+
+
     if request.method == 'POST':
-        form = OrderCreateForm(request.POST)
-        if form.is_valid():
+        customer_name = request.POST.get('name')
+        customer_email = request.POST.get('email')
+        customer_address = request.POST.get('address')
+        customer_phone_number = request.POST.get('phone_number')
+        customer_region = request.POST.get('region')
+        customer_city = request.POST.get('city')
+        user = request.user
+        # demo = request.POST.get('demo')
+        # print('demo is ',demo)
 
-            order = form.save(commit=False)
-            order.user = request.user
-            order.save()
-            order_number = order.order_number
-            order_id = order.id
+        orders = Order.objects.create(name=customer_name, phone_number=customer_phone_number,\
+            user=user,email=customer_email,city_id=customer_city,address=customer_address,region_id=customer_region)
 
-            #
-            # subject = 'order placed'
-            # message = ' A customer just sent a request to purchase a product get to admin for more info '
-            # email_from = settings.EMAIL_HOST_USER
-            # recipient_list = ['aggrey.en@live.com',]
-            # send_mail( subject, message, email_from, recipient_list,fail_silently=False )
+        order_number = orders.order_number
+        
 
-            for item in cart:
-                OrderItem.objects.create(
-                    order=order,
-                    product=item['product'],
-                    price=item['price'],
-                    quantity=item['quantity'],
-                )
 
-                # for key, value in request.POST.items():
-                # pass
+              
+        for item in cart:
+            OrderItem.objects.create(
+                order=orders,
+                product=item['product'],
+                price=item['price'],
+                quantity=item['quantity'],
+            )
 
-                alldate = form.cleaned_data
-                customer_name = form.cleaned_data.get('name')
-                customer_email = form.cleaned_data.get('email')
-                customer_address = form.cleaned_data.get('address')
-                customer_phone_number = form.cleaned_data.get('phone_number')
-                customer_city = form.cleaned_data.get('city')
-
-                # subject = 'order placed'
-                # message = ' A customer just sent a request to purchase a product get to admin for more info '
-                # recepient = [customer_email]
-                # email_from = settings.EMAIL_HOST_USER
-                # send_mail(message,
-                # 'order number is {} search for the items with this order number. Customer Name is {} and phone is :{} from {}'.format(order_number,name,phone_number,city), EMAIL_HOST_USER, ['aggrey.en@live.com',recepient], fail_silently = False)
-
-                # print(first_name,email,address,phone_number,city)
+        
 
                 # get order email receivers
-                order_email_recepients = Staff_Email.objects.values_list(
-                    'email', flat=True).filter(receive_order=True)
+        order_email_recepients = Staff_Email.objects.values_list(
+            'email', flat=True).filter(receive_order=True)
 
                 # send mail to intended staff
-                subject_staff = 'Hi'
-                message_staff = f'Hello {customer_name} with contact number {customer_phone_number} from {customer_address} plus (Google Map link) and close to {customer_city} having order number {order_number} \
-                   \n He prefers to pay through (Payment Method). Please confirm, follow up and arrange dispatch. Thank You'
+        subject_staff = 'Hi'
+        message_staff = f'Hello {customer_name} with contact number {customer_phone_number} from {customer_address} plus (Google Map link) and close to {customer_city} having order number {order_number} \
+        \n He prefers to pay through (Payment Method). Please confirm, follow up and arrange dispatch. Thank You'
 
-                recepient_staff = order_email_recepients
-                email_from = 'Orders@xtayconnectafrica.com'
+        recepient_staff = order_email_recepients
+        email_from = 'Orders@xtayconnectafrica.com'
                 
 
-                # send mail to customers
-                customer_subject ='Dear Client'
-                html_content ='<strong>Your Order has been placed successfully. We will call you soon! Please keep your Order Number safe and thanks for shopping with us \
-                    To view Your order(s). Please click here. <a href="https://xtayconnectafrica.com/my_orders/" target="_blank" rel="noopener noreferrer">My Order(s)</a></strong>'
+            # send mail to customers
+        customer_subject ='Dear Client'
+        html_content ='<strong>Your Order has been placed successfully. We will call you soon! Please keep your Order Number safe and thanks for shopping with us \
+        To view Your order(s). Please click here. <a href="https://xtayconnectafrica.com/my_orders/" target="_blank" rel="noopener noreferrer">My Order(s)</a></strong>'
                 
-                # send the mail
-                if order_email_recepients:
+            # send the mail
+        try:
+
+            send_mail(subject_staff, message_staff, email_from,recepient_staff, fail_silently=False)
+
+                
+            # customers
+            send_sendGredemail(customer_email,customer_subject,html_content)
+
+
+            cart.clear()
+            request.session['order_number'] =order_number
+
                     
-                    # staff
-                    send_mail(subject_staff, message_staff, email_from,recepient_staff, fail_silently=False)
+            return redirect('orders:checkout_success')
+        except:
+            pass
+                    
+            # staff
 
-                
-                    # customers
-                    send_sendGredemail(customer_email,customer_subject,html_content)
-               
-
-                    cart.clear()
-                    request.session['order_number'] =order_number
-                    return redirect('orders:checkout_success')
-                else:
-                    pass
+            
+        
+            # form = OrderCreateForm()
                    
-        return render(request, 'order/checkoout_success.html', {'order': order})
-    else:
+        # return render(request, 'order/checkoout_success.html')
+    # else:
         form = OrderCreateForm()
     return render(request, 'order/checkoout.html', {'form': form})
 
@@ -153,9 +165,17 @@ def order_items(request, order_number, pk):
 @login_required
 def my_order_detail(request):
     orders = Order.objects.filter(user=request.user)
+    order_size= orders.aggregate(orders_size=Count('items'))
 
     context = {
         'orders': orders,
+        'order_size':order_size,
     }
 
     return render(request, 'order/my_order_details.html', context)
+
+
+def load_cities(request):
+    region_id = request.GET.get('region')
+    cities = City.objects.filter(region_id=region_id).order_by('name')
+    return render(request, 'order/city_dropdown_list_options.html', {'cities': cities})

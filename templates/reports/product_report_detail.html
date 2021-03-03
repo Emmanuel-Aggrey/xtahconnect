@@ -1,0 +1,76 @@
+{% extends 'header1.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a class="btn" style="background-color: #3d589e; color: white" href="{% url 'reports:product_report' %}"> Back</a>
+            <span class="btn badge badge-primary float-right display-4" style="background-color: #3d589e; color: white" tooltip="{{product_available.count|apnumber}} available" data-toggle="tooltip">Total {{Product_available.count}}</span>
+
+            <h4 class="text-center capitalize">Products Under  {{name}}
+
+
+            </h4>
+
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                       
+                    </tr>
+                </thead>
+
+                {% for Products in Product_available %}
+
+
+                <tbody>
+                    <tr>
+                        <td scope="row">{{forloop.counter}}</td>
+                        <td scope="row">
+                            <a href="{{Products.get_absolute_url}}">
+
+                                <img src="{{Products.image.url}}" style="height: 100px; width: auto;"
+                                    alt="{{Products..name}}">
+
+                            </a>
+                        </td>
+                        <td scope="row"> {{Products.name}}</td>
+                        <td scope="row">{{Products.quantity}}</td>
+                        <td scope="row">{{Products.price}}</td>
+                    </tr>
+
+                </tbody>
+               
+                <!-- <caption class="">GRAND TOTAL {{Products.grand_total}}</caption> -->
+
+                {% empty %}
+                <p>no orders placed yet <a href="/">create some  orders now</a></p>
+                {% endfor %}
+            </table>
+           
+         
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<style>
+     .header-middle{
+        display:None;
+    }
+</style>
+
+
+{% endblock %}

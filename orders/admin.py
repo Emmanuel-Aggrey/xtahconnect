@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Order, OrderItem,Staff_Email
-
+from .models import Order, OrderItem,Staff_Email,City,Region
+from mapbox_location_field.admin import MapAdmin  
+  
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
@@ -8,7 +9,7 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['user','order_number', 'name','email', 'address', 'phone_number', 'city', 'paid',]
+    list_display = ['user','order_number', 'name','email', 'address', 'phone_number','paid','location']
     list_filter = ['paid',]
     inlines = [OrderItemInline]
     search_fields = ('order_number','email','phone_number','name')
@@ -18,7 +19,28 @@ class OrderAdmin(admin.ModelAdmin):
     
 
 
-admin.site.register(Order, OrderAdmin)
+class CityInline(admin.TabularInline):
+    model = City
+    list_display = ['city','name']
+
+
+   
+    # raw_id_fields = ['product']
+
+
+class RegionAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    inlines = [CityInline]
+    search_fields = ('name',)
+ 
+
+
+admin.site.register(Order, MapAdmin)  
+
+
+# admin.site.register(Order, OrderAdmin)
+
+admin.site.register(Region, RegionAdmin)
 
 
 
@@ -29,3 +51,7 @@ class ReceivedOrder(admin.ModelAdmin):
 admin.site.register(Staff_Email,ReceivedOrder)
 
 
+
+
+
+# admin.site.register(OrderItem)

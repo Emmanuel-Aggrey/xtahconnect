@@ -58,6 +58,9 @@ INSTALLED_APPS = [
     'ckeditor',
     'storages',
     'sendgrid',
+    'mapbox_location_field',
+    'location_field.apps.DefaultConfig',
+
     # 'smart_selects',
     # paymant
 
@@ -126,25 +129,25 @@ WSGI_APPLICATION = 'solvergeek.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # local posgress db
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'xtayconnectdb',
-#         'USER': 'postgres',
-#         'PASSWORD': 'aggrey123',
-#         'HOST': 'localhost',
-#         # 'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'xtayconnectdb',
+        'USER': 'postgres',
+        'PASSWORD': 'aggrey123',
+        'HOST': 'localhost',
+        # 'PORT': '5432',
+    }
+}
 
 
 prod_db = dj_database_url.config(conn_max_age=500)
@@ -237,8 +240,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 THUMBNAIL_ALIASES = {
@@ -298,7 +299,18 @@ MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL,'/media/')
 DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 
 
-PAYSTACK_SCRET_KEY = config('PAYSTACK_SCRET_KEY')
-PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY')
 
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MAPBOX_KEY =config('MOBOX_API_PRIVATE_TOKEN')  
+
+LOCATION_FIELD = {
+    'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
+    'provider.google.api_key': config("GOOGLE_MAPS_API"),
+    'provider.google.api_libraries': '',
+    'provider.google.map.type': 'ROADMAP',
+    'search.provider': 'google',
+
+}
 

@@ -14,49 +14,79 @@ Your Shopping Cart
 <div class="container">
     <div class="row">
         <div class="col">
-            <h3 class="float-right"><span class="badge badge-pill badge-primary text-light"> {{orders.count}} </span></h3>
             <h3 class="text-center">ALL CUSTOMERS</h3>
-             
-            <table class="table">
-                
-               
+
+            <h3 class="float-right"><span class="btn badge badge-pill badge-primary text-light" style="background-color: #3d589e; color: white" title="{{orders.count|apnumber}} Customers" data-toggle="tooltip">Total {{orders.count}} </span>
+            </h3>
+            <a class="btn btn-sm my-4" style="background-color: #3d589e; color: white" href="{% url 'reports:customers' %}">clear
+                search</a>
+
+            <form action="" method="get">
+
+                <div class="input-group my-4">
+                   
+                    <input class="form-control" type="date" name="q1" value="{{request.GET.q1}}">
+                    <input class="form-control" type="date" name="q2" value="{{request.GET.q2}}">
+                    <button class="btn btn-search " style="background-color: #4654A3;color: white;"
+                    type="submit">search</button>
+                </div>
               
-                    
-                <thead>
                   
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Number Of Orders</th>
-                        <th>Number Of Purchase</th>
-                        <th>View Orders</th>
-                    </tr>
-                </thead>
-                {% for customer_orders in orders_set.all %}
-                <tbody>
-                    <tr>
-                        <td scope="row">{{forloop.counter}} </td>
-                        <td scope="row">{{customer_orders.user__username}}</td>
-                        <td scope="row">{{customer_orders.phone_number}}</td>
-                        <td scope="row">{{customer_orders.user__email}}</td>
-                        <td scope="row">{{customer_orders.total_orders}}</td>
-                        <td scope="row">{{customer_orders.count}}</td>
-                    
-                        <td scope="row">
-                            <a href="#">View Orders</a>
-                        </td>
+     
 
-                    </tr>
-                    
-                </tbody>
-                {% endfor %}
-            </table>
-         
+        <table class="table">
 
-        </div>
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Number Of Orders</th>
+                    <th>Number Of Items</th>
+                    <th>Date Registered</th>
+                    <th>Last Loged In</th>
+                    <th>View Orders</th>
+                </tr>
+            </thead>
+            {% for customer_orders in orders %}
+            <tbody>
+                <tr>
+                    <td scope="row">{{forloop.counter}} </td>
+                    <td scope="row">{{customer_orders.user__username}}</td>
+                    <td scope="row">{{customer_orders.user__email}}</td>
+                    <td scope="row">{{customer_orders.orders_total}}</td>
+                    <td scope="row">{{customer_orders.purchase}}</td>
+                    <td scope="row">{{customer_orders.user__date_joined}}</td>
+                    <th class="row">{{customer_orders.user__last_login|timesince}}</th>
+                    <td scope="row">
+                        <a class="" style="color: #3D589E;"
+                            href="{% url 'reports:customers_order' customer_orders.user__id %}">View Orders</a>
+                    </td>
+
+
+                </tr>
+
+            </tbody>
+            {% endfor %}
+            </form>
+        </table>
+
+
     </div>
 </div>
+</div>
+</div>
 
+<style>
+    .date {
+        display: inline;
+        margin: 1px
+    }
+    .header-middle{
+        display:None;
+    }
+    
+</style>
 {% endblock %}

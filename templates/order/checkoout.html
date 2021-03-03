@@ -3,7 +3,7 @@
 
 {% load static %}
 {% load humanize %}
-{% load  crispy_forms_tags %}
+{% load crispy_forms_tags %}
 
 <head>
     {% block head %}
@@ -37,32 +37,34 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h4 class="page-headers">Checkout</h4>
-            <form method="post">
+            <h4 class="page-headers">Checkout {{user_last_info.name}}</h4>
+            <form method="post" id="personForm" data-cities-url="{% url 'orders:ajax_load_cities' %}" novalidate>
                 {% csrf_token %}
-                {{  form|crispy}}<br>
-                {% if cart.get_total_price < 1 %}
-                <p class="text-danger  btn" style="color: #CE7F11;">your carrt is empty  </p>
-                <a class="btn mx-6" style="background-color: #270949;color: white;" href="/">add some </a>
-           
-                {% else %}
-                <input type="submit" class="btn btn-primary mb-4" value="Submit order" style="background-color: #4654A3;">
+                {{ form|crispy}}<br>
+                {% if cart.get_total_price < 1 %} <p class="text-danger  btn" style="color: #CE7F11;">your cart is empty
+                    </p>
+                    <a class="btn mx-6" style="background-color: #270949;color: white;" href="/">add some </a>
 
-               
+                    {% else %}
+                    <input  id="save_checkout" type="submit" class="btn btn-primary mb-4" value="Submit order"
+                        style="background-color: #4654A3;width: 84%">
+                            <!-- <input type="text" name="demo" id="demo"> -->
+
             </form>
+            {{ form.media }}
             <div class="col-md-6">
                 <div class="page-headers">
                     Your Order review
                 </div>
                 <ul class="list-group">
                     {% for item in cart %}
-                    <li class="list-group-item" >
+                    <li class="list-group-item">
                         {{ item.quantity }} {{ item.product.name }}
                         <span id="total_price"> Total GH₵: {{ item.total_price|intcomma }}</span>
                     </li>
                     {% endfor %}
 
-                    <li class="list-group-item active" style="background-color: #FA7A62;">Total Cost: GH₵: {{ cart.get_total_price|intcomma }}</li>
+                    <li class="list-group-item active" style="background-color: #FA7A62;">Total Cost: GH₵: {{cart.get_total_price|intcomma }}</li>
                 </ul>
             </div>
             {% endif %}
@@ -77,10 +79,7 @@
                     <input type="radio" name="shipping" id="shipping-1" checked>
                     <label for="shipping-1">ONLINE PAYMENT</label>
                     <div class="caption">
-                        
-                           
 
-                        
                     </div>
                 </div>
                 <div class="input-checkbox">
@@ -90,7 +89,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                             nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            <p>
+                        <p>
                     </div>
                 </div>
             </div>
@@ -103,9 +102,9 @@
                     <input type="radio" name="payments" id="payments-1" checked>
                     <label for="payments-1">Online payment</label>
                     <div class="caption">
-                        
+
                         <!-- ipay -->
-                            Click on PAY Now Button To PAy
+                        Click on PAY Now Button To PAy
                         <!-- ipay -->
                     </div>
                 </div>
@@ -113,7 +112,7 @@
                     <input type="radio" name="payments" id="payments-2">
                     <label for="payments-2">Try as much to describe the pickup location</label>
                     <div class="caption">
-                        
+
                     </div>
 
 
@@ -124,7 +123,7 @@
                     <div class="caption">
                         <p>
                             contact customer care
-                            <p>
+                        <p>
                     </div>
                 </div>
             </div>
@@ -132,25 +131,38 @@
 
     </div>
 </div>
+
+
+<!-- <button onclick="getLocation()">Try It</button> -->
+
+
+<style>
+    /* big screen */
+    @media screen and (min-width: 600px) {
+        #id_address {
+            height: 5em !important;
+            width: 37em;
+        }
+    }
+
+    /* mobile */
+    @media screen and (max-width: 600px) {}
+</style>
+
 {% if user.is_authenticated %}
-    <script> 
-    document.getElementById('id_name').value="{{request.user.get_full_name}}"
-    document.getElementById('id_email').value="{{request.user.email}}"
-    document.getElementById('id_phone_number').value="{{request.user.phone}}"
+<script>
+
+    document.getElementById('id_name').value = "{{user_last_info.name}}"
+    document.getElementById('id_email').value = "{{request.user.email}}"
+    document.getElementById('id_phone_number').value = "{{request.user.user.phone_number}}"
+
+    // document.getElementById('id_').value = "{{request.user.phone}}"
     // document.getElementById('total').value=  document.getElementById('total_price').value
-
-
-
-
-    </script>
+</script>
 
 {% endif %}
 
-<style>
-      /* .alert {
-        text-align: center
-    } */
 
-    
-</style>
+
+<script src="{% static 'js/pages/checkout.js' %}"></script>
 {% endblock %}

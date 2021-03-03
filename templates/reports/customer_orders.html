@@ -1,0 +1,89 @@
+{% extends 'header1.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a class="btn" style="background-color: #3d589e; color: white" href="{% url 'reports:customers' %}"> Back</a>
+            <span class="btn badge badge-primary float-right display-4"  style="background-color: #3d589e; color: white" >Total {{order_size.orders_size}}</span>
+
+            <h4 class="text-center capitalize">Orders Placed By {{user.username}}
+
+
+            </h4>
+
+
+            {% for orders_placeed in orders %}
+
+
+            <ul class="table table-striped">
+                <li>Name {{orders_placeed.name}}</li>
+                <li>Order Number {{orders_placeed.order_number}}</li>
+                <li>Phone Number {{orders_placeed.phone_number}}</li>
+            </ul>
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>DateTime</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                {% for orders_place in orders_placeed.items.all %}
+
+
+                <tbody>
+                    <tr>
+                        <td scope="row">
+                            <a href="{{orders_place.product.get_absolute_url}}">
+
+                                <img src="{{orders_place.product.image.url}}" style="height: 100px; width: auto;"
+                                    alt="{{orders_place.product..name}}">
+
+                            </a>
+                        </td>
+                        <td scope="row"> {{orders_place.product.name|truncatewords:20}}</td>
+                        <td scope="row">{{orders_place.quantity}}</td>
+                        <td scope="row">{{orders_place.price}}</td>
+                        <td scope="row">{{orders_place.date_add}}</td>
+                        <td scope="row">{{orders_place.get_cost}}</td>
+                    </tr>
+
+                </tbody>
+               
+                <!-- <caption class="">GRAND TOTAL {{orders_place.grand_total}}</caption> -->
+
+                {% endfor %}
+
+            </table>
+            <hr>
+            {% empty %}
+            <p>no orders placed yet <a href="/">create some  orders now</a></p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

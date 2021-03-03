@@ -13,4 +13,7 @@ urlpatterns = [
     path('order_items/<str:order_number>/<int:pk>/',views.order_items,name='order_items'),
     path('my_orders/',views.my_order_detail,name='my_order_detail'),
 
+    path('ajax/load-cities/', views.load_cities, name='ajax_load_cities'),  # <-- this one here
+
+
 ]

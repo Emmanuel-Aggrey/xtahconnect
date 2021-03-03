@@ -1,0 +1,250 @@
+{% extends 'header1.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- work on this file :delete this in category_Sales.html
+ -->
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* The grid: Three equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 20px;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+  }
+
+  .header-middle {
+    display: None;
+  }
+
+  .containerTab {
+    padding: 20px;
+    color: white;
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* Closable button inside the container tab */
+  .closebtn {
+    float: right;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+
+
+
+
+  <div style="text-align:center">
+    <h2 class="display-4"><b> STORE STATISTICS </b></h2>
+    <p class="text-muted">Click on each box to display content:</p>
+  </div>
+
+  <!-- Three columns -->
+  <div class="row">
+    <div class="column" onclick="openTab('b1');"  style="background-color: #D7782F;color:white">
+      Quantity Available
+    </div>
+    <div class="column" onclick="openTab('b2');"style="background-color: #270E46; color: white">
+      Quantity Sold
+
+    </div>
+    <div class="column" onclick="openTab('b3');" style="background-color: #2D589E; color: white">
+      Out Of Stock
+    </div>
+
+  </div>
+
+  <!-- Full-width columns: (hidden by default) -->
+  <div id="b1" class="containerTab" style="display:block;">
+    <span onclick="this.parentElement.style.display='block'" class="closebtn">&times;</span>
+    <h2 class="display-4 text-center">Current Stock</h2>
+    <!-- table -->
+
+
+    <table class="table table-bordered table-hover">
+      <!-- search -->
+
+      <hr>
+      <thead class="thead-light ">
+
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Category </th>
+          <th scope="col">Available Quanity</th>
+
+          <!-- <th scope="col">Quanity Sold</th> -->
+            <th scope="col">View</th>
+
+
+
+        </tr>
+      </thead>
+      {% for items in mostly_bought_products %}
+      <tbody>
+
+        <tr class="text-dark">
+          <td id="id" class="" scope="row"> {{ forloop.counter}} </td>
+          <td scope="row"> {{ items.name }} </td>
+          <td scope="row"> {{ items.quantity_available }} </td>
+          <!-- <td scope="row"> {{ items.quantity_bought }} </td> -->
+            <td scope="row">
+              <a  style="background-color: #3d589e; color: white"  class="btn"href="{% url 'reports:products_report_detail' items.name %}">view</a>
+            </td>
+
+          
+        </tr>
+
+        {% empty %}
+
+        <p class="text-white"> no data</p>
+      </tbody>
+
+      {% endfor %}
+    </table>
+
+
+    <!-- table end-->
+  </div>
+
+  <div id="b2" class="containerTab" style="display:none;">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <h2 class="display-4 text-center">Items Sold Out</h2>
+    <!-- date try here -->
+
+
+
+    <table class="table table-bordered table-hover" style="color:black">
+      <!-- search -->
+
+      <hr>
+      <thead class="">
+
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Category </th>
+          <th scope="col">Name</th>
+          <th scope="col">View</th>
+   
+
+        </tr>
+      </thead>
+      {% for sold_products in quantity_sold_products %}
+      <tbody>
+
+        <tr>
+          <td id="id" scope="row"> {{ forloop.counter}} </td>
+          <td scope="row"> {{ sold_products.name }} </td>
+          <td scope="row"> {{ sold_products.quantity_bought }} </td>
+
+          <td scope="row">
+            <a  style="background-color: #3d589e; color: white"  class="btn"href="{% url 'reports:products_remaiaining_detail' sold_products.name %}">view</a>
+          </td>
+
+
+
+        </tr>
+
+        {% empty %}
+
+        <p class=""> No Data Available</p>
+      </tbody>
+
+      {% endfor %}
+    </table>
+
+    <!-- table end-->
+
+    <!-- filter table -->
+  </div>
+    <!-- Full-width columns: (hidden by default) -->
+    <div id="b3" class="containerTab" style="display:none;">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+      <h2 class="display-4 text-center">Out Of Stock </h2> 
+      <!-- table -->
+
+
+      <table class="table table-bordered table-hover" style="color: black;">
+
+          <small class="text-muted">products in negative means a customer(s) have orderd for it but out of stock</small>
+        <thead class="">
+
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category </th>
+            <th scope="col">Name</th>
+            <th scope="col">Quntity</th>
+            
+        </thead>
+        {% for items in out_of_stock %}
+       
+        <tbody>
+
+          <tr>
+            <td id="id" scope="row">{{ forloop.counter}} </td>
+            <td scope="row"> {{ items.category__name }} </td>
+            <td scope="row"> {{ items.name }} </td>
+            <td class="text-danger" scope="row">{{ items.quantity}}</td>
+
+           
+          </tr>
+
+          {% empty %}
+
+          <p class="text-dark"> no data available</p>
+        </tbody>
+
+        {% endfor %}
+      </table>
+
+
+      <!-- table end-->
+    </div>
+
+    </form>
+
+
+
+
+ 
+
+
+
+
+  <script>
+    function openTab(tabName) {
+      var i, x;
+      x = document.getElementsByClassName("containerTab");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      document.getElementById(tabName).style.display = "block";
+    }
+  </script>
+
+
+  {% endblock %}

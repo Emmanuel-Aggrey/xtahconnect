@@ -1,0 +1,131 @@
+{% extends 'header1.html' %}
+
+{% load static %}
+{% load humanize %}
+{% load thumbnail %}
+{% block title %}
+
+Your Shopping Cart
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        
+        <div class="col-md-8 col-lg-8">
+            <h3 class="text-center uppercase">PRODUCTS SOLD OUT IN {{name}}</h3>
+
+            <h3 class="float-right"><span class="btn badge badge-pill badge-primary text-light" style="background-color: #3d589e; color: white" title="{{sold_size|apnumber}} Products" data-toggle="tooltip">Total {{sold_size}} </span>
+            </h3>
+            <a class="btn btn-sm my-4" style="background-color: #3d589e; color: white" href="{% url 'reports:products_remaiaining_detail' name %}">clear
+                search</a>
+
+            <form action="" method="get">
+
+                <div class="input-group my-4">
+                   
+                    <input class="form-control" type="date" name="q1" value="{{request.GET.q1}}">
+                    <input class="form-control" type="date" name="q2" value="{{request.GET.q2}}">
+                    <button class="btn btn-search " style="background-color: #4654A3;color: white;"
+                    type="submit">search</button>
+                </div>
+              
+                  
+     
+
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Date Sold</th>
+                           
+                        </tr>
+                    </thead>
+    
+                    {% for Products in Product_sold_out %}
+    
+    
+                    <tbody>
+                        <tr>
+                            <td scope="row">{{forloop.counter}}</td>
+                            <td scope="row">
+                                <a href="{{Products.order_items.get_absolute_url}}">
+    
+                                    <img src="{{Products.product.image.url}}" style="height: 100px; width: auto;"
+                                        alt="{{Products.order_items.name}}">
+    
+                                </a>
+                            </td>
+                            <td scope="row"> {{Products.product.name}}</td>
+                            <td scope="row">{{Products.quantity}}</td>
+                            <td scope="row">{{Products.product.price}}</td>
+                            <td scope="row">{{Products.date_add}}</td>
+                        </tr>
+    
+                    </tbody>
+                   
+                    <!-- <caption class="">GRAND TOTAL {{Products.grand_total}}</caption> -->
+    
+                    {% empty %}
+                    <p>no data</p>
+                    {% endfor %}
+                </table>
+
+            </form>
+               
+             
+
+
+    </div>
+    <div class="col-md-4 col-lg-4" style="margin-top:12%">
+       <h4 class="text-center"> Summary Of Results</h4>
+       <table class="table table-dark">
+           <thead class="thead-light">
+               <tr>
+                   <th>#</th>
+                   <th>Name</th>
+                   <th>Quantity</th>
+               </tr>
+           </thead>
+           {% for Product_sold_out_summary in Product_sold_out_summary %}
+             
+           
+           <tbody>
+               <tr>
+                <td>{{forloop.counter}}</td>
+
+                   <td>{{Product_sold_out_summary.product__name}}</td>
+                   <td>{{Product_sold_out_summary.total_quantity}}</td>
+               </tr>
+           </tbody>
+           {% endfor %}
+           <tfoot>
+               <tr>
+                   <th>Total :{{Product_sold_out_summary_size.orders_size}}</th>
+               </tr>
+           </tfoot>
+       </table>
+    </div>
+</div>
+
+</div>
+</div>
+
+<style>
+    .date {
+        display: inline;
+        margin: 1px
+    }
+    .header-middle{
+        display:None;
+    }
+    
+</style>
+{% endblock %}
