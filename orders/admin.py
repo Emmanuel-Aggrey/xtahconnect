@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, OrderItem,Staff_Email,City,Region
+from .models import Order, OrderItem,Staff_Email,Region#,City
 from mapbox_location_field.admin import MapAdmin  
   
 
@@ -21,25 +21,25 @@ class OrderAdmin(admin.ModelAdmin):
     
 
 
-class CityInline(admin.TabularInline):
-    model = City
-    list_display = ['city','name']
+# class CityInline(admin.TabularInline):
+#     model = City
+#     list_display = ['city','name']
 
 
    
-    # raw_id_fields = ['product']
+#     # raw_id_fields = ['product']
 
 
-class RegionAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    inlines = [CityInline]
-    search_fields = ('name',)
+# class RegionAdmin(admin.ModelAdmin):
+#     list_display = ['name']
+#     inlines = [CityInline]
+#     search_fields = ('name',)
  
 
 
 # admin.site.register(Order, MapAdmin)  
 
-
+admin.site.register(Region)
 admin.site.register(Order, OrderAdmin)
 
 admin.site.register(Region, RegionAdmin)

@@ -38,9 +38,9 @@ class Region(Base_Model):
     def __str__(self):
         return self.name
 
-class City(Base_Model):
-    region=models.ForeignKey(Region,on_delete=models.CASCADE,null=True)
-    name = models.CharField(max_length=200)
+# class City(Base_Model):
+#     region=models.ForeignKey(Region,on_delete=models.CASCADE,null=True)
+#     name = models.CharField(max_length=200)
 
     def __str__(self):
         return f"{self.name} in {self.region}"
