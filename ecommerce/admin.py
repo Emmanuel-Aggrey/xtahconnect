@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product,Category,Sub_Category
+from .models import Product,Category,Sub_Category,Reminder
 from orders.models import OrderItem
 # Register your models here
 
@@ -87,7 +87,7 @@ class Display_Reminder(admin.ModelAdmin):
         return False if self.model.objects.count() > 0 else super().has_add_permission(request) 
 
 
-# admin.site.register(Reminder,Display_Reminder)
+admin.site.register(Reminder,Display_Reminder)
 
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Sub_Category,ProductAdminInline)
