@@ -64,7 +64,7 @@ class Product(Base_Model):
     category = models.ForeignKey(
         Sub_Category, on_delete=models.CASCADE, related_name='products')
     name = models.CharField(max_length=800)
-    quantity = models.IntegerField(default=1,blank=True)
+    # quantity = models.IntegerField(default=1,blank=True)
     image = models.FileField(upload_to='images/%Y/%m/%d/')
     price = models.DecimalField(decimal_places=2, max_digits=20)
     discount = models.PositiveIntegerField('discount price',null=True,blank=True,default=0)
@@ -148,9 +148,9 @@ def post_save_handler(sender,instance,created,*args, **kwargs):
 
 
 
-class Reminder(Base_Model):
-    stock_size = models.PositiveSmallIntegerField(
-        default=10, help_text='enter the quantity to truck out of stock items')
-    def __str__(self):
-        return self.stock_size
+# class Reminder(Base_Model):
+#     stock_size = models.PositiveSmallIntegerField(
+#         default=10, help_text='enter the quantity to truck out of stock items')
+#     def __str__(self):
+#         return self.stock_size
     

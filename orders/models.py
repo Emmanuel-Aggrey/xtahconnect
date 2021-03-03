@@ -55,11 +55,11 @@ class Order(Base_Model):
     phone_number = models.CharField(max_length=15, blank=False)
     # city = models.CharField('City/Closest Landmark',max_length=600)
     
-    region =models.ForeignKey(Region,on_delete=models.CASCADE,null=True)
-    city =models.ForeignKey(City,null=True,on_delete=models.CASCADE)
+    # region =models.ForeignKey(Region,on_delete=models.CASCADE,null=True)
+    # city =models.ForeignKey(City,null=True,on_delete=models.CASCADE)
     paid = models.BooleanField(default=False)
     order_number = models.CharField('order number',max_length=500,editable=False)
-    location = LocationField(null=True)  
+    # location = LocationField(null=True)  
 
 
 

@@ -61,7 +61,7 @@ def checkout(request):
             user=user,email=customer_email,city_id=customer_city,address=customer_address,region_id=customer_region)
 
         order_number = orders.order_number
-        customer_city =str(orders.city)+' '+str(orders.region)
+        customer_city =orders.city
         
 
 
