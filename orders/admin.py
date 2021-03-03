@@ -9,7 +9,9 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['user','order_number', 'name','email', 'address', 'phone_number','paid','location']
+    list_display = ['user','order_number', 'name','email', 'address', 'phone_number','paid']
+    # list_display = ['user','order_number', 'name','email', 'address', 'phone_number','paid','location']
+
     list_filter = ['paid',]
     inlines = [OrderItemInline]
     search_fields = ('order_number','email','phone_number','name')
@@ -35,10 +37,10 @@ class RegionAdmin(admin.ModelAdmin):
  
 
 
-admin.site.register(Order, MapAdmin)  
+# admin.site.register(Order, MapAdmin)  
 
 
-# admin.site.register(Order, OrderAdmin)
+admin.site.register(Order, OrderAdmin)
 
 admin.site.register(Region, RegionAdmin)
 
