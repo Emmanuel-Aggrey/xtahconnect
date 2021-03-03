@@ -81,7 +81,7 @@ class Product(Base_Model):
         upload_to='images/%Y/%m/%d/', null=True, blank=True)
     image5 = models.ImageField(
         upload_to='images/%Y/%m/%d/', null=True, blank=True)
-    video =models.FileField(upload_to='videos/%Y/%m/%d/',null=True, blank=True)
+    # video =models.FileField(upload_to='videos/%Y/%m/%d/',null=True, blank=True)
 
 
     # promational products
@@ -148,9 +148,9 @@ def post_save_handler(sender,instance,created,*args, **kwargs):
 
 
 
-class Reminder(Base_Model):
-    stock_size = models.PositiveSmallIntegerField(
-        default=10, help_text='enter the quantity to truck out of stock items')
-    def __str__(self):
-        return self.stock_size
+# class Reminder(Base_Model):
+#     stock_size = models.PositiveSmallIntegerField(
+#         default=10, help_text='enter the quantity to truck out of stock items')
+#     def __str__(self):
+#         return self.stock_size
     
