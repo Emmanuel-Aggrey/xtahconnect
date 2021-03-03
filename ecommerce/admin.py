@@ -23,11 +23,11 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ProductInline(admin.TabularInline):
     model = Product
-    list_display = ['category','name','price','is_available']
+    list_display = ['category','name','quantity','price','is_available']
     list_filter = ['category','is_available']
     fieldsets = (
         (None, {
-            'fields': ('category','name', 'price','image','is_available','description',)
+            'fields': ('category','name','quantity', 'price','image','is_available','description',)
         }),
          ('Add Descount', {
             'classes': ('collapse',),
@@ -53,13 +53,13 @@ class ProductAdminInline(admin.ModelAdmin):
 
    
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['category','name','price','is_available']
+    list_display = ['category','name','quantity','price','is_available']
     list_editable = ['is_available',]
     list_filter = ['is_available','is_promational']
 
     fieldsets = (
         (None, {
-            'fields': ('category','name','price','image','is_available','description',)
+            'fields': ('category','name','quantity','price','image','is_available','description',)
         }),
         ('Add Descount', {
             'classes': ('collapse',),
@@ -77,17 +77,17 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
 
-# reminder
-# class Display_Reminder(admin.ModelAdmin):
-#     pass
+
+class Display_Reminder(admin.ModelAdmin):
+    pass
     # list_display=['stock_size']
     # list_editable = ['stock_size']
 
-    # def has_add_permission(self,request):
-    #     return False if self.model.objects.count() > 0 else super().has_add_permission(request) 
+    def has_add_permission(self,request):
+        return False if self.model.objects.count() > 0 else super().has_add_permission(request) 
 
 
-# admin.site.register(Reminder,Display_Reminder)
+admin.site.register(Reminder,Display_Reminder)
 
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Sub_Category,ProductAdminInline)
