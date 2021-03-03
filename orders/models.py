@@ -22,8 +22,8 @@ class Staff_Email(Base_Model):
     name = models.ForeignKey(User,on_delete=models.CASCADE,limit_choices_to={'is_staff': True})
     email = models.EmailField()
     receive_order = models.BooleanField(default=True)
-    city = models.CharField(max_length=255,null=True)
-    location = PlainLocationField(based_fields=['city'], zoom=7,null=True)
+    # city = models.CharField(max_length=255,null=True)
+    # location = PlainLocationField(based_fields=['city'], zoom=7,null=True)
 
 
     class Meta:

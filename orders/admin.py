@@ -42,7 +42,7 @@ class OrderAdmin(admin.ModelAdmin):
 admin.site.register(Region)
 admin.site.register(Order, OrderAdmin)
 
-admin.site.register(Region, RegionAdmin)
+# admin.site.register(Region, RegionAdmin)
 
 
 

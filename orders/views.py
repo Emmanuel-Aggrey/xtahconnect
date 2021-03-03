@@ -11,7 +11,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from ecommerce.models import Product
 from solvergeek.sendGrid_email import send_sendGredemail
 
-from .forms import OrderCreateForm,City
+from .forms import OrderCreateForm#,City
 from .models import Order, OrderItem, Staff_Email
 
 # def great():
