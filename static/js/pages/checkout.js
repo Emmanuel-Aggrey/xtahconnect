@@ -55,6 +55,7 @@ $('#personForm').submit(function (e) {
                 beforeSend: function () {
                     console.log('sending data')
                     // getLocation()
+                    $("save_checkout").text("Submiting Your Orders").addClass('icon-spinner')
                 },
 
                 success: function () {
