@@ -1,23 +1,23 @@
-// $("#id_city").addClass('id_city')
+$("#id_city").addClass('id_city')
 
-// $("#id_region").change(function () {
-//     var url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
-//     var regionId = $(this).val();  // get the selected region ID from the HTML input
+$("#id_region").change(function () {
+    var url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
+    var regionId = $(this).val();  // get the selected region ID from the HTML input
 
-//     $.ajax({                       // initialize an AJAX request
-//         url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
-//         data: {
-//             'region': regionId       // add the region id to the GET parameters
-//         },
-//         success: function (data) {   // `data` is the return of the `load_cities` view function
-//             $("#id_city").html(data);
+    $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+            'region': regionId       // add the region id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+            $("#id_city").html(data);
 
-//         }
-//     });
+        }
+    });
 
-// });
-// $("#id_address").width("450px");
-// $("#id_address").height("10px");
+});
+$("#id_address").width("450px");
+$("#id_address").height("10px");
 
 
 
@@ -25,11 +25,10 @@
 
 
 // save order
-// if ($.trim($("#id_name").val()) === "" || $.trim($("#id_address").val()) === "" || $.trim($("#id_phone_number").val()) === "" || $.trim($("#id_region").val()) === "" || $.trim($("#id_city").val()) === "") {
 
 $('#personForm').submit(function (e) {
    
-    if ($.trim($("#id_name").val()) === "" || $.trim($("#id_address").val()) === "" || $.trim($("#id_phone_number").val()) === "") {
+    if ($.trim($("#id_name").val()) === "" || $.trim($("#id_address").val()) === "" || $.trim($("#id_phone_number").val()) === "" || $.trim($("#id_region").val()) === "" || $.trim($("#id_city").val()) === "") {
         alert('all fields are required');
         return false;
     }
@@ -45,10 +44,10 @@ $('#personForm').submit(function (e) {
                     email: $('#id_email').val(),
                     address: $('#id_address').val(),
                     phone_number: $('#id_phone_number').val(),
-                    // address: $('#id_address').val(),
-                    // region: $('#id_region').val(),
-                    // city: $('#id_city').val(),
-                    // demo:$('#demo').val(),
+                    address: $('#id_address').val(),
+                    region: $('#id_region').val(),
+                    city: $('#id_city').val(),
+                    demo:$('#demo').val(),
                     
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
 
@@ -56,16 +55,18 @@ $('#personForm').submit(function (e) {
                 beforeSend: function () {
                     console.log('sending data')
                     // getLocation()
+                    $("save_checkout").text("Submiting Your Orders").addClass('icon-spinner')
                 },
 
                 success: function () {
-
+                    $("save_checkout").text("Submiting Your Orders").addClass('icon-check')
                     console.log('saved')
-                   
+                    var url = '/checkout_success/'
+                    $(location).attr('href', url)
                 
                 },
                 error: function () {
-                    alert('haha agggey')
+                    alert('error no saved try again')
 
                 }
 

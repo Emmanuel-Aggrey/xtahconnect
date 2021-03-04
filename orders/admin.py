@@ -1,17 +1,15 @@
 from django.contrib import admin
-from .models import Order, OrderItem,Staff_Email,Region#,City
-from mapbox_location_field.admin import MapAdmin  
-  
+from .models import Order, OrderItem,Staff_Email,City,Region,Delevery_Status
 
+from mapbox_location_field.admin import MapAdmin  
+from mapbox_location_field.spatial.admin import SpatialMapAdmin  
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     raw_id_fields = ['product']
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['user','order_number', 'name','email', 'address', 'phone_number','paid']
-    # list_display = ['user','order_number', 'name','email', 'address', 'phone_number','paid','location']
-
+    list_display = ['user','order_number', 'name','email', 'address', 'phone_number', 'city', 'paid',]
     list_filter = ['paid',]
     inlines = [OrderItemInline]
     search_fields = ('order_number','email','phone_number','name')
@@ -21,29 +19,26 @@ class OrderAdmin(admin.ModelAdmin):
     
 
 
-# class CityInline(admin.TabularInline):
-#     model = City
-#     list_display = ['city','name']
+class CityInline(admin.TabularInline):
+    model = City
+    list_display = ['city','name']
 
 
    
-#     # raw_id_fields = ['product']
+    # raw_id_fields = ['product']
 
 
-# class RegionAdmin(admin.ModelAdmin):
-#     list_display = ['name']
-#     inlines = [CityInline]
-#     search_fields = ('name',)
+class RegionAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    inlines = [CityInline]
+    search_fields = ('name',)
  
 
+# admin.site.register(Order, OrderAdmin)
+admin.site.register(Order, SpatialMapAdmin)  
+admin.site.register(Region, RegionAdmin)
 
-# admin.site.register(Order, MapAdmin)  
-
-admin.site.register(Region)
-admin.site.register(Order, OrderAdmin)
-
-# admin.site.register(Region, RegionAdmin)
-
+admin.site.register(Delevery_Status)
 
 
 class ReceivedOrder(admin.ModelAdmin):

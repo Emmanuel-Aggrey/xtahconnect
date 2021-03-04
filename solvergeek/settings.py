@@ -310,7 +310,9 @@ LOCATION_FIELD = {
     'provider.google.api_key': config("GOOGLE_MAPS_API"),
     'provider.google.api_libraries': '',
     'provider.google.map.type': 'ROADMAP',
-    'search.provider': 'google',
+}
 
+LOCATION_FIELD = {
+    'map.provider': 'google',
 }
 

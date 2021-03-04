@@ -11,6 +11,8 @@ db.sqlite3
 /db.sqlite3
 
 # Distribution / packaging
+__pycache__
+/__pycache__
 .Python
 env/
 build/
@@ -115,3 +117,6 @@ products/
 
 sendmail.py
 sendgrid.env
+/migrations
+migrations/
+migrations

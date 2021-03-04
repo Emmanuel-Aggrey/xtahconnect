@@ -3,11 +3,12 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
-from orders.models import Order, OrderItem
+from orders.models import Order, OrderItem, Delevery_Status
 from ecommerce.models import Sub_Category, Product
 from django.contrib.auth.decorators import login_required
-
-from django.db.models import Sum, Count,Max
+from .forms import DeleveryStatusForm
+from django.contrib import messages
+from django.db.models import Sum, Count, Max
 # Create your views here.
 
 
@@ -25,7 +26,7 @@ def customers_data(request):
     if q1 or q2:
 
         orders = orders.filter(date_updated__date__range=[q1, q2]).order_by('-order_number')\
-         .annotate(orders_total=Count('order_number', distinct=True), purchase=Count('items', distinct=True)).order_by('user__username')
+            .annotate(orders_total=Count('order_number', distinct=True), purchase=Count('items', distinct=True)).order_by('user__username')
 
         # print(orders.query)
 
@@ -52,55 +53,96 @@ def customers_order_detail(request, id):
 
     return render(request, 'reports/customer_orders.html', context)
 
+
 def product_report(request):
     mostly_bought_products = Sub_Category.objects.values('name')\
-        .annotate(quantity_available=Sum('products__quantity'))#,quantity_bought=Sum('products__order_items__quantity'))
-    
+        .annotate(quantity_available=Sum('products__quantity'))  # ,quantity_bought=Sum('products__order_items__quantity'))
+
     # print(mostly_bought_products.query)
     quantity_sold_products = Sub_Category.objects.values('name')\
         .annotate(quantity_bought=Sum('products__order_items__quantity'))
-    
-    out_of_stock = Product.objects.filter(quantity__lte=20).values('category__name','quantity','name').order_by('-quantity')
-          
+
+    out_of_stock = Product.objects.filter(quantity__lte=20).values(
+        'category__name', 'quantity', 'name').order_by('-quantity')
+
     context = {
-        'mostly_bought_products':mostly_bought_products,
-        'quantity_sold_products':quantity_sold_products,
-        "out_of_stock":out_of_stock,
-     }
-    return render(request,'reports/products_report.html',context)
+        'mostly_bought_products': mostly_bought_products,
+        'quantity_sold_products': quantity_sold_products,
+        "out_of_stock": out_of_stock,
+    }
+    return render(request, 'reports/products_report.html', context)
 
 
-
-def products_report_detail(request,name):
+def products_report_detail(request, name):
     Product_available = Product.objects.filter(category__name=name)
 
-    context ={
-        "Product_available":Product_available,
-        'name':name,
+    context = {
+        "Product_available": Product_available,
+        'name': name,
     }
 
-    return render(request, 'reports/product_report_detail.html',context)
+    return render(request, 'reports/product_report_detail.html', context)
 
 
-def products_remaiaining_detail(request,name):
-    Product_sold_out = OrderItem.objects.filter(product__category__name=name).order_by('-date_updated','-quantity')
+def products_remaiaining_detail(request, name):
+    Product_sold_out = OrderItem.objects.filter(
+        product__category__name=name).order_by('-date_updated', '-quantity')
 
     q1 = request.GET.get('q1')
     q2 = request.GET.get('q2')
     if q1 or q2:
-        Product_sold_out = Product_sold_out.filter(date_updated__date__range=[q1, q2])
+        Product_sold_out = Product_sold_out.filter(
+            date_updated__date__range=[q1, q2])
 
-    Product_sold_out_summary = Product_sold_out.values('product__name').annotate(total_quantity=Sum('quantity')).order_by('product__name')
+    Product_sold_out_summary = Product_sold_out.values('product__name').annotate(
+        total_quantity=Sum('quantity')).order_by('product__name')
     # print(Product_sold_out_summary.query)
 
-
-    context ={
-        "Product_sold_out":Product_sold_out,
-        'name':name,
-        "sold_size":Product_sold_out.count(),
-        'Product_sold_out_summary':Product_sold_out_summary,
+    context = {
+        "Product_sold_out": Product_sold_out,
+        'name': name,
+        "sold_size": Product_sold_out.count(),
+        'Product_sold_out_summary': Product_sold_out_summary,
         'Product_sold_out_summary_size': Product_sold_out_summary.aggregate(orders_size=Sum('total_quantity')),
 
     }
 
-    return render(request, 'reports/products_remaiaining_detail.html',context)
+    return render(request, 'reports/products_remaiaining_detail.html', context)
+
+
+def change_order_status(request):
+    form = DeleveryStatusForm()
+    q = request.GET.get('q')
+    orders = Order.objects.all()
+   
+
+    # delivery_status = Delevery_Status.objects.only('name')
+    try:
+        if q:
+            orders = orders.filter(order_number__icontains=q)
+            order_number = orders.get(order_number__iendswith=q)
+            order_number = order_number.order_number
+            # customer_name =order_number.user.get_full_name()
+
+        if request.method == 'POST':
+            delevery_Status = request.POST.get('delevery_Status')
+
+            # print("delevery_Status", delevery_Status)
+            orders = orders = orders.get(order_number=order_number)
+            orders.delevery_Status_id = delevery_Status
+            orders.save()
+            # print('orders', orders.delevery_Status)
+            messages.success(request,'order status updated')
+            return redirect('reports:customers')
+    except Order.DoesNotExist:
+        pass
+
+    context = {
+        'orders': orders,
+        'clear_content': True,
+        # "customer_name":order_number.user,
+        "form": form,
+        "order_size": orders.aggregate(orders_size=Count('items')),
+    }
+
+    return render(request, 'reports/customer_orders.html', context)

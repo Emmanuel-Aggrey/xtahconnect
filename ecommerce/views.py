@@ -24,9 +24,9 @@ def index(request):
     # for p in promational_products:
     #     promational_products = promational_products.filter(Q(date_updated__gte=p.start_date)&Q(date_updated__lte=p.end_date))
 
-    
+    # promotional_products = products.filter(date_updated__range=['start_date','end_date'])
 
-
+   
 
         # print(request.session['history'])
     resent_view_products = ''

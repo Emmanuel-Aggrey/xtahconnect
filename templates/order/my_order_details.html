@@ -18,9 +18,10 @@
 
 
             <ul class=" table-striped">
-                <li>Name {{orders_placeed.name}}</li>
-                <li>Order Number {{orders_placeed.order_number}}</li>
-                <li>Phone Number {{orders_placeed.phone_number}}</li>
+                <li>Name: <b>{{orders_placeed.name}}</b></li>
+                <li>Order Number: <b>{{orders_placeed.order_number}}</b></li>
+                <li>Phone Number: <b>{{orders_placeed.phone_number}}</b></li>
+                <li class="text-danger">Delivery Status : <b>{{orders_placeed.delevery_Status.name}}</b></li>
             </ul>
             <table class="table">
 

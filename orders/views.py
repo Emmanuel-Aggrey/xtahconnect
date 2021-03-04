@@ -12,7 +12,7 @@ from ecommerce.models import Product
 from solvergeek.sendGrid_email import send_sendGredemail
 
 from .forms import OrderCreateForm#,City
-from .models import Order, OrderItem, Staff_Email
+from .models import Order, OrderItem, Staff_Email,City
 
 # def great():
 

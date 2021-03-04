@@ -5,15 +5,18 @@
 
 
 <div class="container">
+   
     <div class="row">
+       
         <div class="col">
+           
             <a class="btn" style="background-color: #3d589e; color: white" href="{% url 'reports:customers' %}"> Back</a>
             <span class="btn badge badge-primary float-right display-4"  style="background-color: #3d589e; color: white" >Total {{order_size.orders_size}}</span>
-
-            <h4 class="text-center capitalize">Orders Placed By {{user.username}}
-
-
-            </h4>
+           
+            
+            <h4 class="text-center uppercase"> ORDER INFO </h4> 
+          
+          
 
 
             {% for orders_placeed in orders %}
@@ -23,9 +26,12 @@
                 <li>Name {{orders_placeed.name}}</li>
                 <li>Order Number {{orders_placeed.order_number}}</li>
                 <li>Phone Number {{orders_placeed.phone_number}}</li>
-            </ul>
-            <table class="table">
+                <li class="text-danger">Delivery Status : <b>{{orders_placeed.delevery_Status.name}}</b></li>
 
+            </ul>
+           
+            <table class="table">
+                
                 <thead>
                     <tr>
                         <th>Product</th>
@@ -66,9 +72,26 @@
             </table>
             <hr>
             {% empty %}
-            <p>no orders placed yet <a href="/">create some  orders now</a></p>
+             <p> no results found</p>
             {% endfor %}
         </div>
+        
+        {% if request.user.is_staff and request.GET.q %}
+            
+       
+            
+        <div class="col-md-4 col-lg-4 col-xl-4">
+            <form action="" method="POST">
+                {% csrf_token %}
+                
+                   
+                    {{ form.delevery_Status}}
+                    <button id="change_status" class="btn display-block text-center" style="background-color:#3d589e;color: white"
+                    type="submit">Change Status</button>
+                
+            </form>
+        </div>
+        {% endif %}
     </div>
 </div>
 
@@ -77,7 +100,20 @@
 
 
 
-
+{% if request.user.is_staff %}
+  <style>
+       .header-middle{
+        display:None;
+    }
+    #id_delevery_Status{
+       margin-bottom: 5%;
+       width: 50%;
+    }
+#change_status{
+    float: right;
+}
+  </style>
+{% endif %}
 
 
 

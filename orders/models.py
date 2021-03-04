@@ -22,8 +22,7 @@ class Staff_Email(Base_Model):
     name = models.ForeignKey(User,on_delete=models.CASCADE,limit_choices_to={'is_staff': True})
     email = models.EmailField()
     receive_order = models.BooleanField(default=True)
-    # city = models.CharField(max_length=255,null=True)
-    # location = PlainLocationField(based_fields=['city'], zoom=7,null=True)
+ 
 
 
     class Meta:
@@ -38,12 +37,23 @@ class Region(Base_Model):
     def __str__(self):
         return self.name
 
-# class City(Base_Model):
-#     region=models.ForeignKey(Region,on_delete=models.CASCADE,null=True)
-#     name = models.CharField(max_length=200)
+class City(Base_Model):
+    region=models.ForeignKey(Region,on_delete=models.CASCADE,null=True)
+    name = models.CharField(max_length=200)
 
     def __str__(self):
         return f"{self.name} in {self.region}"
+
+
+class Delevery_Status(Base_Model):
+    name = models.CharField(max_length=600)
+
+    class Meta:
+        verbose_name = "Delevery Status"
+        verbose_name_plural ='Delevery Status'
+    
+    def __str__(self):
+        return self.name
 
 
 
@@ -53,13 +63,18 @@ class Order(Base_Model):
     email = models.EmailField()
     address = models.TextField(null=True)
     phone_number = models.CharField(max_length=15, blank=False)
+    delevery_Status = models.ForeignKey(Delevery_Status,on_delete=models.CASCADE,null=True,blank=True)
     # city = models.CharField('City/Closest Landmark',max_length=600)
     
-    # region =models.ForeignKey(Region,on_delete=models.CASCADE,null=True)
-    # city =models.ForeignKey(City,null=True,on_delete=models.CASCADE)
+    region =models.ForeignKey(Region,on_delete=models.CASCADE,null=True,blank=True)
+    city =models.ForeignKey(City,null=True,on_delete=models.CASCADE,blank=True)
     paid = models.BooleanField(default=False)
     order_number = models.CharField('order number',max_length=500,editable=False)
-    # location = LocationField(null=True)  
+    location = LocationField(null=True,blank=True)  
+    payment_method =models.CharField(max_length=255,null=True,blank=True,editable=False)
+
+    city1 = models.CharField(max_length=255,null=True,blank=True)
+    location_google = PlainLocationField(based_fields=['city1'], zoom=7,null=True,blank=True)
 
 
 
