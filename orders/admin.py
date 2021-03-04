@@ -2,7 +2,8 @@ from django.contrib import admin
 from .models import Order, OrderItem,Staff_Email,City,Region,Delevery_Status
 
 from mapbox_location_field.admin import MapAdmin  
-from mapbox_location_field.spatial.admin import SpatialMapAdmin  
+# from mapbox_location_field.spatial.admin import SpatialMapAdmin  
+# from mapbox_location_field.admin import MapAdmin  
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     raw_id_fields = ['product']
@@ -35,7 +36,7 @@ class RegionAdmin(admin.ModelAdmin):
  
 
 # admin.site.register(Order, OrderAdmin)
-admin.site.register(Order, SpatialMapAdmin)  
+admin.site.register(Order, MapAdmin)  
 admin.site.register(Region, RegionAdmin)
 
 admin.site.register(Delevery_Status)
