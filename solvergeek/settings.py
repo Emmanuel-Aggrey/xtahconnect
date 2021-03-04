@@ -129,25 +129,25 @@ WSGI_APPLICATION = 'solvergeek.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # local posgress db
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'xtayconnectdb',
-        'USER': 'postgres',
-        'PASSWORD': 'aggrey123',
-        'HOST': 'localhost',
-        # 'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'xtayconnectdb',
+#         'USER': 'postgres',
+#         'PASSWORD': 'aggrey123',
+#         'HOST': 'localhost',
+#         # 'PORT': '5432',
+#     }
+# }
 
 
 prod_db = dj_database_url.config(conn_max_age=500)
