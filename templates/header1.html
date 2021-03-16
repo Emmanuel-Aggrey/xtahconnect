@@ -4,9 +4,7 @@
 
 <head>
 
-{% load mapbox_location_field_tags %} 
-{% location_field_includes %}
-{% include_jquery %}
+
 
 
     <meta charset="UTF-8">
@@ -130,7 +128,7 @@
                             <form action="{% url 'search' %}" method="get" id="searchform">
                                 <div class="header-search-wrapper ">
                                     <input type="search" class="form-control" name="q" id="q"
-                                        placeholder="Search for products and cetegory" required
+                                        placeholder="Eg Android TV Box" required
                                         value="{{request.GET.q}}">
 
                                     <button class="btn btn-lg btn-search"
@@ -278,7 +276,7 @@
         {% block content %}
 
         {% endblock %}
-        {% load static %}
+      
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
         <!-- Main CSS File -->

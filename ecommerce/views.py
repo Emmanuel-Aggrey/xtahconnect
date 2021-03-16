@@ -8,9 +8,9 @@ from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.template.defaultfilters import  slugify
 from django.http import JsonResponse
-from .models import Category, Product, Sub_Category
+from .models import Category, Product, Sub_Category,Launching
 from hashids import Hashids
-
+from datetime import datetime
 from .forms import ProductForm
 # Create your views here.
 hashids = Hashids()
@@ -18,13 +18,13 @@ hashids = Hashids()
 
 def index(request):
     products = Product.objects.filter(is_available=True)
-
+    launching = Launching.objects.filter(in_progress=True)
 
     # promational_products = products.filter(is_promational=True)
     # for p in promational_products:
     #     promational_products = promational_products.filter(Q(date_updated__gte=p.start_date)&Q(date_updated__lte=p.end_date))
 
-    # promotional_products = products.filter(date_updated__range=['start_date','end_date'])
+    # promotional_products = products.filter(is_promational=True,date_updated__range=[start_date=datetime.now(),end_date__lte=datetime.now()])
 
    
 
@@ -34,13 +34,14 @@ def index(request):
         resent_view_products = Product.objects.filter(slug__in=(request.session['history']))[:8]
 
   
-  
+    
     
     context = {
         'products': products,
         'resent_view_products':resent_view_products,
         # 'promational_products':promational_products,
         'latest_items':products.order_by('?')[0:5],
+        "launching":launching,
     }
     return render(request, 'index.html', context)
 
@@ -71,6 +72,8 @@ def product_datilview(request, slug):
 
 def category_view(request,id):
     
+
+
     allrelated = Sub_Category.objects.get(id=id)
 
     products = allrelated.products.filter(is_available=True)
@@ -88,6 +91,8 @@ def category_view(request,id):
 
     }
     return render(request,'categories.html',context)
+
+
 
 
 

@@ -25,3 +25,4 @@ boto3==1.17.3
 sendgrid==6.6.0
 django-location-field==2.1.0
 django-mapbox-location-field==1.7.1
+django-crontab==0.7.1 

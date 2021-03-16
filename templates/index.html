@@ -197,24 +197,7 @@
 
                     <!-- Li's Banner Area End Here -->
                     <!-- shop-top-bar start -->
-                    <div class="shop-top-bar mt-30">
-                        <div class="shop-bar-inner">
-                            <div class="product-view-mode">
-                                <!-- shop-item-filter-list start -->
-                                <ul class="nav shop-item-filter-list" role="tablist">
-                                    <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="grid-view"
-                                            href="#grid-view"><i class="fa fa-th"></i></a></li>
-                                    <li class="active" role="presentation"><a aria-selected="true" class="active show"
-                                            data-toggle="tab" role="tab" aria-controls="list-view" href="#list-view"><i
-                                                class="fa fa-th-list"></i></a></li>
-                                </ul>
-                                <!-- shop-item-filter-list end -->
-                            </div>
-
-                        </div>
-                        <!-- product-select-box start -->
-
-                    </div>
+                   
                     <!-- shop-top-bar end -->
                     <!-- shop-products-wrapper start -->
                     <div class="shop-products-wrapper">
@@ -286,91 +269,8 @@
 
 
                             
-                            <div id="list-view" class="tab-pane fade product-list-view " role="tabpanel">
-                                <div class="row">
-
-                                    <div class="">
-                                        <!-- straight display start -->
-                                        <div class="row product-layout-list">
-                                            {% for product in products|slice:":8" %}
-                                            <div class="col-lg-3 col-md-5 ">
-                                                <div class="product-image">
-                                                    <a href="{{ product.get_absolute_url}}">
-                                                        <img src="{{product.image.url}}" alt="{{product.name}}">
-                                                    </a>  
-                                                    <!-- <span class="sticker">New</span> -->
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-5 col-md-7">
-                                                <div class="product_desc">
-                                                    <div class="product_desc_info">
-                                                        <div class="product-review">
-                                                            <h5 class="manufacturer">
-                                                                <a
-                                                                    href="{% url 'categories' product.category.id  %}">{{product.category.name|truncatewords:20}}</a>
-
-                                                            </h5>
-                                                            <div class="rating-box">
-                                                                <ul class="rating">
-                                                                    <li><i class="fa fa-star-o"></i></li>
-                                                                    <li><i class="fa fa-star-o"></i></li>
-                                                                    <li><i class="fa fa-star-o"></i></li>
-                                                                    <li class="no-star"><i class="fa fa-star-o"></i>
-                                                                    </li>
-                                                                    <li class="no-star"><i class="fa fa-star-o"></i>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <h4><a class="product_name"
-                                                                href="{{product.get_absolute_url}}">{{product.name|truncatewords:50}}</a>
-                                                        </h4>
-                                                        <div class="price-box">
-                                                            <span class="new-price product-pric">GH₵:
-                                                                {{product.price|intcomma}}</span>
-                                                                {% if product.discount %}
-                                                                <small class=""><del>GH₵ {{product.discount|intcomma}}</del></small>
-                                
-                                                                {% endif %}
-                                                                
-                                                        </div>
-                                                    
-                                                        <div class="product-desc">
-                                                            <p>
-                                                                <span>{{product.description|safe|truncatewords:50}}
-                                                                </span>
-                                                            </p>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="shop-add-action mb-xs-30">
-                                                    <form class="productname" method="post" id={{product.id}}>
-
-                                                        <button class="btn btn-md" id="{{product.id}}btn"
-                                                            style="background-color: #4654A3;color: white;"
-                                                            class=""><i class="icon-bag"></i>Add To
-                                                            Cart </button>
-                                                        <a href="{{product.get_absolute_url}}" title="quick view" class="btn"
-                                                            style="background-color: #4654A3;color: white;">View
-                                                            Detail</a>
-
-                                                    </form>
-
-                                                </div>
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-
-                                        <!-- straight display end-->
-
-                                    </div>
-
-                                </div>
-                            </div>
-
+                          
+                        
                         </div>
                     </div>
 
@@ -438,39 +338,38 @@
 
     <div class="mb-1"></div><!-- margin -->
 
-    <div class="promo-section" style="background-image: url('{% static "images/promo-bg.jpg" %}')">
+    <!--  start of .promo-section-->
+
+      
+   <div class="slider-active owl-carousel">
+    {% for launching in launching %}
+
+    <div class="promo-section" style="background-image: url({{launching.image.url}})">
         <div class="container">
             <h3>the perfect gift</h3>
             <h4>Check off your list with our best gifts</h4>
             <!-- <a href="#" class="btn btn-primary">Shop Now</a> -->
         </div><!-- End .container -->
-    </div><!-- End .promo-section -->
+    </div>
+    {% endfor %}
+</div>
+    <!-- End .promo-section -->
+   
 
+
+   
     <div class="partners-container">
-        <div class="container">
-            <div class="partners-carousel owl-carousel owl-theme">
+        <div class="container-fluid">
+            {% for launching in launching %}
+              
+           
+            <div class="owl-carousel owl-theme   animation-style-01 bg-1">
+               
                 <a href="#" class="partner">
-                    <img src="{% static 'images/logos/1.png' %}" alt="{% static 'images/logos/1.png' %}">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/2.png' %}" alt="{% static 'images/logos/2.png' %}">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/3.png' %}" alt="{% static 'images/logos/3.png' %}">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/4.png' %}" alt="{% static 'images/logos/4.png' %}">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/5.png' %}" alt="{% static 'images/logos/5.png' %}">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/2.png' %}" alt="{% static 'images/logos/2.png' %}">
-                </a>
-                <a href="#" class="partner">
-                    <img src="{% static 'images/logos/1.png' %}" alt="{% static 'images/logos/1.png' %}">
+                    <img src="{{launching.image.url}}" alt="{{launching.name}}">
                 </a>
             </div><!-- End .partners-carousel -->
+            {% endfor %}
         </div><!-- End .container -->
     </div><!-- End .partners-container -->
 
@@ -613,7 +512,11 @@
 </script>
 
 <style>
+#single_launch{
+    content: '';
+  
 
+}
 </style>
 
 {% endblock %}

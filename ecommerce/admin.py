@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product,Category,Sub_Category,Reminder
+from .models import Product,Category,Sub_Category,Reminder,Launching
 from orders.models import OrderItem
 # Register your models here
 
@@ -79,7 +79,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class Display_Reminder(admin.ModelAdmin):
-    pass
+    # pass
     # list_display=['stock_size']
     # list_editable = ['stock_size']
 
@@ -87,6 +87,9 @@ class Display_Reminder(admin.ModelAdmin):
         return False if self.model.objects.count() > 0 else super().has_add_permission(request) 
 
 
+
+
+admin.site.register(Launching)
 admin.site.register(Reminder,Display_Reminder)
 
 admin.site.register(Category,CategoryAdmin)

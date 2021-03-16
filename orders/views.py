@@ -82,17 +82,17 @@ def checkout(request):
 
                 # send mail to intended staff
         subject_staff = 'Hi'
-        message_staff = f'Hello {customer_name} with contact number {customer_phone_number} from {customer_address} plus (Google Map link) and close to {customer_city} having order number {order_number} \
-        \n He prefers to pay through (Payment Method). Please confirm, follow up and arrange dispatch. Thank You'
+        message_staff = f'Hello {customer_name} with contact number {customer_phone_number} from {customer_address}  (Google Map link) and close to {customer_city}, having order number {order_number}. \
+        \n \t \n He prefers to pay through (Payment Method). Please confirm, follow up and arrange dispatch. Thank You'
 
         recepient_staff = order_email_recepients
         email_from = 'Orders@xtayconnectafrica.com'
-                
+    
 
             # send mail to customers
-        customer_subject ='Dear Client'
-        html_content ='<strong>Your Order has been placed successfully. We will call you soon! Please keep your Order Number safe and thanks for shopping with us \
-        To view Your order(s). Please click here. <a href="https://xtayconnectafrica.com/my_orders/" target="_blank" rel="noopener noreferrer">My Order(s)</a></strong>'
+        customer_subject ='Order From XtayconnectAfrica'
+        customer_message = '<strong>Dear Cherished Customer, <br> <br> Your Order has been placed successfully. We will call you soon! <br> <br> Please keep your Order Number safe and thanks for shopping with us! <br> <br>  To view Your order(s), please click here <a href="https://xtayconnectafrica.com/my_orders/" target="_blank" rel="noopener noreferrer">My Order(s)</a></strong> <br>'
+        html_content =customer_message
                 
             # send the mail
         try:

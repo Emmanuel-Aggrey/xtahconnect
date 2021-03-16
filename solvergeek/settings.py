@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'sendgrid',
     'mapbox_location_field',
     'location_field.apps.DefaultConfig',
+    'tracking',
 
     # 'smart_selects',
     # paymant
@@ -73,7 +74,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
 
-
+    'django_crontab',
 
     'ecommerce',
     'cart',
@@ -90,6 +91,7 @@ SITE_ID = config('SITE_ID')
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'tracking.middleware.VisitorTrackingMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -128,26 +130,26 @@ WSGI_APPLICATION = 'solvergeek.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 
 # local posgress db
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'xtayconnectdb',
-#         'USER': 'postgres',
-#         'PASSWORD': 'aggrey123',
-#         'HOST': 'localhost',
-#         # 'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'xtayconnectdb',
+        'USER': 'postgres',
+        'PASSWORD': 'aggrey123',
+        'HOST': 'localhost',
+        # 'PORT': '5432',
+    }
+}
 
 
 prod_db = dj_database_url.config(conn_max_age=500)
@@ -316,3 +318,11 @@ LOCATION_FIELD = {
     'map.provider': 'google',
 }
 
+
+CRONJOBS = [
+    ('*/5 * * * *', 'ecommerce.crontab.my_scheduled_job'),
+    ('*/5 * * * *', 'ecommerce.crontab.promotional_expire')
+
+]
+
+TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]

@@ -29,219 +29,132 @@
 <!-- Li's Breadcrumb Area End Here -->
 <!-- content-wraper start -->
 
+
 <div class="content-wraper">
     <div class="container">
         <div class="row single-product-area">
             <div class="col-lg-5 col-md-6">
-                <!-- Product Details Left -->
+               <!-- Product Details Left -->
                 <div class="product-details-left">
                     <div class="product-details-images slider-navigation-1">
                         <div class="lg-image">
-                            <!-- <img id="zoom_10" src="{{product.image.url}}" alt="product image"> -->
-                            <img id="zoom_01" src="{{product.image.url}}" alt="{{product.image.url}}"
-                                data-zoom-image="{{product.image.url}}" />
+                            <a  class="popup-img venobox vbox-item" href="{{product.image.url}}" data-gall="myGallery">
+                                <img id="zoom_01" src='{{product.image.url}}' data-zoom-image="{{product.image.url}}"/>
+
+                            </a>
                         </div>
+                        
                         {% if product.image1 %}
+                             
                         <div class="lg-image">
-                            <img id="" src="{{product.image1.url}}"    data-zoom-image="{{product.image1.url}}" alt="{{product.name}}">
+                            <a class="popup-img venobox vbox-item"  href="{{product.image1.url}}" alt="product image"data-gall="myGallery">
+                                <img id="zoom_02" src="{{product.image1.url}}" alt="{{product.name}}" data-zoom-image="{{product.image.url}}">
+                            </a>
                         </div>
                         {% endif %}
                         {% if product.image2 %}
                         <div class="lg-image">
-                            <img src="{{product.image2.url}}" alt="{{product.name}}">
+                            <a class="popup-img venobox vbox-item" href="{{product.image2.url}}" data-gall="myGallery">
+                                <img id="zoom_03" src="{{product.image2.url}}" alt="{{product.name}}" data-zoom-image="{{product.image.url}}">
+                            </a>
                         </div>
                         {% endif %}
                         {% if product.image3 %}
-
                         <div class="lg-image">
-                            <img src="{{product.image3.url}}" alt="{{product.name}}">
+                            <a class="popup-img venobox vbox-item" href="{{product.image3.url}}" data-gall="myGallery">
+                                <img id="zoom_04" src="{{product.image3.url}}" alt="{{product.name}}" data-zoom-image="{{product.image.url}}">
+                            </a>
                         </div>
                         {% endif %}
                         {% if product.image4 %}
                         <div class="lg-image">
-                            <img src="{{product.image4.url}}" alt="{{product.name}}">
+                            <a class="popup-img venobox vbox-item" href="{{product.image4.url}}" data-gall="myGallery">
+                                <img id="zoom_05" src="{{product.image4.url}}" alt="{{product.name}}" data-zoom-image="{{product.image.url}}">
+                            </a>
                         </div>
                         {% endif %}
                         {% if product.image5 %}
                         <div class="lg-image">
-                            <img src="{{product.image5.url}}" alt="{{product.name}}">
+                            <a class="popup-img venobox vbox-item" href="{{product.image5.url}}" data-gall="myGallery">
+                                <img id="zoom_06" src="{{product.image5.url}}" alt="{{product.name}}" data-zoom-image="{{product.image.url}}">
+                            </a>
                         </div>
                         {% endif %}
                     </div>
-                    <div class="product-details-thumbs slider-thumbs-1">
+                    <div class="product-details-thumbs slider-thumbs-1">                                        
+                        <div class="sm-image"><img src="{{product.image.url}}" alt="product image thumb"></div>
                         {% if product.image1 %}
-                        <div class="sm-image"><img src="{{product.image1.url}}" alt="{{product.name}}">
-                        </div>
+                        <div class="sm-image"><img src="{{product.image1.url}}" alt="product image thumb"></div>
                         {% endif %}
                         {% if product.image2 %}
-
-                        <div class="sm-image"><img src="{{product.image2.url}}" alt="{{productnamel}}">
-                        </div>
+                        <div class="sm-image"><img src="{{product.image2.url}}" alt="product image thumb"></div>
                         {% endif %}
                         {% if product.image3 %}
-                        <div class="sm-image"><img src="{{product.image3.url}}" alt="{{product.name}}">
-                        </div>
+                        <div class="sm-image"><img src="{{product.image3.url}}" alt="product image thumb"></div>
                         {% endif %}
-
                         {% if product.image4 %}
-                        <div class="sm-image"><img src="{{product.image4.url}}" alt="{{product.name}}">
-                        </div>
+                        <div class="sm-image"><img src="{{product.image4.url}}" alt="product image thumb"></div>
                         {% endif %}
                         {% if product.image5 %}
-                        <div class="sm-image"><img src="{{product.image5.url}}" alt="{{product.name}}">
-                        </div>
+                        <div class="sm-image"><img src="{{product.image5.url}}" alt="product image thumb"></div>
                         {% endif %}
-
                     </div>
                 </div>
                 <!--// Product Details Left -->
             </div>
 
             <div class="col-lg-7 col-md-6">
-                <div class="product-details-view-content sp-sale-content pt-60">
-                    <div>
-                        <h2 style="color:#270E46">{{product.name}}</h2>
-                        <span class="product-details-ref">available: {{product.is_available|yesno:'Yes,Out Of Stock'}}</span>
-
-                        <div class="price-box pt-20 display-4" style="color:#D7782F">
-                            <span class="new-price new-price-2 display-4" style="font-size:larger;font-weight:bold">GH¢:
-                                {{product.price|intcomma}}</span>
+                <div class="product-details-view-content pt-60">
+                    <div class="product-info">
+                      
+                        <div class="price-box pt-20">
+                            <span class="new-price new-price-2">GH₵ {{product.price|intcomma}}</span>
                         </div>
-                        <div class="countersection">
-                            <!-- <div class="li-countdown product-sale-countdown"></div> -->
-                        </div>
+                       
+                      
+                        
+                        <form id="cart-form" action="#" class="cart-quantity">
+                            <div class="quantity">
+                                <label>Quantity</label>
+                                <div class="cart-plus-minus">
+                                    <input class="" value="1" type="number" id="quantity">
 
-                        <div class="single-add-to-cart">
-                            <div id="alert" class="text-center" role="alert" style="color:#3D589E;width:fit-content">Saved To Cart</div>
-
-                            <form id="cart-form" action="#" class="cart-quantity">
-                                <div class="quantity">
-                                    <label>Quantity</label>
-                                    <div class="cart-plus-minus">
-                                        <input class="" value="1" type="number" id="quantity">
-
-                                    </div>
                                 </div>
-                                <button id="submit" class="btn btn-lg" style="color:white;background-color:#270E46"
-                                    type="submit">Add To Cart</button>
-                            </form>
+                            </div>
+                            <button id="submit" class="btn btn-lg" style="color:white;background-color:#270E46"
+                                type="submit">Add To Cart</button>
+                        </form>
 
-                            <ul>
+                        <ul>
 
-                                <li>
-                                    <a id="view_cart" style="background-color: #3D589E;color: white;" class="btn btn-lg"
-                                        href="{% url 'cart:cart_detail' %}">View Cart</a>
-                                </li>
-                                <li>
-                                    <a id="checkout" style="background-color: #3D589E;color: white;" class="btn btn-md"
-                                        href="{% url 'orders:checkout' %}">Check Out</a>
-                                </li>
-                            </ul>
-
-                        </div>
-                        <div class="product-desc">
-                            <p>
-                                <span>{{product.description|safe}}
-                                </span>
-                            </p>
-                        </div>
+                            <li>
+                                <a id="view_cart" style="background-color: #3D589E;color: white;" class="btn btn-lg"
+                                    href="{% url 'cart:cart_detail' %}">View Cart</a>
+                            </li>
+                            <li>
+                                <a id="checkout" style="background-color: #3D589E;color: white;" class="btn btn-md"
+                                    href="{% url 'orders:checkout' %}">Check Out</a>
+                            </li>
+                        </ul>
+                       
+                    </div>
+                    <div class="product-desc">
+                        <p>
+                            <span>{{product.description|safe}}
+                            </span>
+                        </p>
                     </div>
                 </div>
-            </div>
-
-
-
+            </div> 
         </div>
     </div>
 </div>
-<!-- content-wraper end -->
-<!-- Begin Product Area -->
-
-
-{% comment %}
-  
-
-<!-- start of section -->
-<section class="product-area li-laptop-product pt-30 pb-50">
-    <div class="container">
-        <div class="row">
-            <!-- Begin Li's Section Area -->
-            <div class="col-lg-12">
-
-                <div class="li-section-title">
-                    <h2>
-                        <span class="text-capitalize" style="color:#4654A3">products in the same category:</span>
-                    </h2>
-                </div>
-                <div class="row">
-                    <h4 class="text-center" id="alertnew" class="alert alert-success" style="height:4px"></h4>
-
-                    <div class="product-active owl-carousel">
-                        {% for products in related_products|slice:'0:8' %}
-
-
-                        <div class="col-lg-12">
-                            <div class="single-product-wrap">
-                                <div class="product-image">
-                                    <a href="{{products.get_absolute_url}}">
-                                        <img src="{{products.image.url}}" alt="{{products.image.url}}">
-                                    </a>
-                                    <span class="sticker">New</span>
-                                </div>
-                                <div class="product_desc">
-                                    <div class="product_desc_info">
-                                        <div class="product-review">
-                                            <h5 class="manufacturer">
-                                                <!-- <a href="#">Graphic Corner</a> -->
-                                            </h5>
-                                            <div class="rating-box">
-                                                <ul class="rating">
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                    <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <h4 class="product_name">{{products.name|truncatechars:20 }}</h4>
-                                        <div class="price-box">
-                                            <h5 class="new-price display-4" style="color:#D7782F;font-weight:bold">GH¢
-                                                {{products.price|intcomma}}</h5> <br>
-                                        </div>
-                                    </div>
-
-                                    <div class="add-actions">
-
-                                        <form class="productname" id="{{products.id}}" action="" method="POST"
-                                            value="{{products.id}}">
-                                            {% csrf_token %} <br>
-                                            <button class="add-cart active add-actions-link "
-                                                style="background-color: #4654A3;color: white;" type="submit">Add To
-                                                Cart</button>
-
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-</section>
-{% endcomment %}
 
 
 
-<!-- end of section -->
 
-</div>
+
+
 
 <!-- section -->
 <div class="section">
@@ -309,8 +222,6 @@
     <!-- /row -->
 </div>
 <!-- /container -->
-</div>
-<!-- /section -->
 
 <style>
     #id_quantity {
@@ -330,7 +241,7 @@
     }
 </style>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.js"></script>
 
 <script>
 
@@ -442,17 +353,38 @@
 
         })
     })
+    if($(window).width() >= 1024){
+  // do your stuff
 
+  $("#zoom_01").elevateZoom({easing : true});
+    $("#zoom_02").elevateZoom({easing : true});
 
+    $("#zoom_03").elevateZoom({easing : true});
 
-    // $("#zoom_01").elevateZoom();
+    $("#zoom_04").elevateZoom({easing : true});
+
+    $("#zoom_05").elevateZoom({easing : true});
+    $("#zoom_06").elevateZoom({easing : true});
+
+  
+}
 
 
 	// $(window).resize(function () {
 	// 	if ($(window).width() < 480) {
-	// 		$('#zoombg').removeClass('zoom_10');
+	// 		$('#zoom_01').removeClass('zoom_01');
+    //         $('#zoom_02').removeClass('zoom_02');
+    //         $('#zoom_03').removeClass('zoom_03');
+    //         $('#zoom_04').removeClass('zoom_04');
+    //         $('#zoom_05').removeClass('zoom_05');
+    //         $('#zoom_06').removeClass('zoom_06');
 	// 	} else {
-	// 		$("#zoombg").addClass('zoom_10');
+    //         $('#zoom_01').removeClass('zoom_01');
+    //         $('#zoom_02').removeClass('zoom_02');
+    //         $('#zoom_03').removeClass('zoom_03');
+    //         $('#zoom_04').removeClass('zoom_04');
+    //         $('#zoom_05').removeClass('zoom_05');
+    //         $('#zoom_06').removeClass('zoom_06');
 	// 	}
 	// }).resize(); // trigger resize event initially
 
@@ -476,6 +408,15 @@
     height: 40px !important; 
    }
 }
+#quantity{
+    width: 100px;
+}
+html img {
+   
+    all: revert;
+    
+}
+
 </style>
 <!-- <script src="{% static 'js/main.js' %}"></script>  -->
 
