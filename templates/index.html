@@ -346,8 +346,12 @@
 
     <div class="promo-section" style="background-image: url({{launching.image.url}})">
         <div class="container">
-            <h3>the perfect gift</h3>
-            <h4>Check off your list with our best gifts</h4>
+            <!-- <h3>the perfect gift</h3> -->
+            <h4>
+            {% if launching.name %}
+                {{launching.name}}
+            {% endif %}
+                </h4>
             <!-- <a href="#" class="btn btn-primary">Shop Now</a> -->
         </div><!-- End .container -->
     </div>
