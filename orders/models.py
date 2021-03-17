@@ -43,6 +43,10 @@ class City(Base_Model):
 
     def __str__(self):
         return f"{self.name} in {self.region}"
+    
+    class Meta:
+        verbose_name = 'City'
+        verbose_name_plural= 'Cites'
 
 
 class Delevery_Status(Base_Model):
@@ -57,16 +61,13 @@ class Delevery_Status(Base_Model):
 
 
 
-def get_default_delivery_status():
-    return Delevery_Status.objects.get(name="Order Placed")
-
 class Order(Base_Model):
     user =models.ForeignKey(User,on_delete=models.CASCADE,related_name='user')
     name = models.CharField(max_length=8000)
     email = models.EmailField()
     address = models.TextField(null=True)
     phone_number = models.CharField(max_length=15, blank=False)
-    delevery_Status = models.ForeignKey(Delevery_Status,on_delete=models.CASCADE,null=True,blank=True,default=get_default_delivery_status)
+    delevery_Status = models.ForeignKey(Delevery_Status,on_delete=models.CASCADE,null=True,blank=True)
     # city = models.CharField('City/Closest Landmark',max_length=600)
     
     region =models.ForeignKey(Region,on_delete=models.CASCADE,null=True,blank=True)

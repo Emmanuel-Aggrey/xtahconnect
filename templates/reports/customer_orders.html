@@ -26,7 +26,14 @@
                 <li>Name {{orders_placeed.name}}</li>
                 <li>Order Number {{orders_placeed.order_number}}</li>
                 <li>Phone Number {{orders_placeed.phone_number}}</li>
+                
+                {% if orders_placeed.delevery_Status.name %}
                 <li class="text-danger">Delivery Status : <b>{{orders_placeed.delevery_Status.name}}</b></li>
+                {% else %}
+                <li class="text-danger">Delivery Status : <b> Order(s) Placeed</b></li>
+
+                {% endif %}
+                    
 
             </ul>
            

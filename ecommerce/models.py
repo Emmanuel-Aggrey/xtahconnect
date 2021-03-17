@@ -161,11 +161,16 @@ class Reminder(Base_Model):
 
 
 class Launching(models.Model):
-    name = models.CharField(max_length=500)
+    name = models.CharField(max_length=500,blank=True,null=True)
     image = models.ImageField()
     description = RichTextField(blank=True, null=True)
     in_progress = models.BooleanField(default=True)
     
 
+    def __str__(self):
+        return f'{self.name} {self.in_progress}'
+
     class Meta:
-        managed = True
+        # managed = True
+        verbose_name ='Launching'
+        verbose_name_plural ='Launching'

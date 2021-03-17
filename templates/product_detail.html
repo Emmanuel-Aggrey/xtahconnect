@@ -38,7 +38,7 @@
                 <div class="product-details-left">
                     <div class="product-details-images slider-navigation-1">
                         <div class="lg-image">
-                            <a  class="popup-img venobox vbox-item" href="{{product.image.url}}" data-gall="myGallery">
+                            <a   class="popup-img venobox vbox-item" href="{{product.image.url}}" data-gall="myGallery">
                                 <img id="zoom_01" src='{{product.image.url}}' data-zoom-image="{{product.image.url}}"/>
 
                             </a>
@@ -47,7 +47,7 @@
                         {% if product.image1 %}
                              
                         <div class="lg-image">
-                            <a class="popup-img venobox vbox-item"  href="{{product.image1.url}}" alt="product image"data-gall="myGallery">
+                            <a class="popup-img venobox vbox-item" style="height: 100px; width: 100px" href="{{product.image1.url}}" alt="product image"data-gall="myGallery">
                                 <img id="zoom_02" src="{{product.image1.url}}" alt="{{product.name}}" data-zoom-image="{{product.image.url}}">
                             </a>
                         </div>
@@ -353,6 +353,7 @@
 
         })
     })
+
 //     if($(window).width() >= 1024){
 //   // do your stuff
 
@@ -369,24 +370,6 @@
   
 // }
 
-
-	// $(window).resize(function () {
-	// 	if ($(window).width() < 480) {
-	// 		$('#zoom_01').removeClass('zoom_01');
-    //         $('#zoom_02').removeClass('zoom_02');
-    //         $('#zoom_03').removeClass('zoom_03');
-    //         $('#zoom_04').removeClass('zoom_04');
-    //         $('#zoom_05').removeClass('zoom_05');
-    //         $('#zoom_06').removeClass('zoom_06');
-	// 	} else {
-    //         $('#zoom_01').removeClass('zoom_01');
-    //         $('#zoom_02').removeClass('zoom_02');
-    //         $('#zoom_03').removeClass('zoom_03');
-    //         $('#zoom_04').removeClass('zoom_04');
-    //         $('#zoom_05').removeClass('zoom_05');
-    //         $('#zoom_06').removeClass('zoom_06');
-	// 	}
-	// }).resize(); // trigger resize event initially
 
 </script>
 
