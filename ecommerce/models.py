@@ -167,3 +167,5 @@ class Launching(models.Model):
     in_progress = models.BooleanField(default=True)
     
 
+    class Meta:
+        managed = True
