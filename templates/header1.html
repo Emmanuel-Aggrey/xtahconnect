@@ -46,8 +46,46 @@
     <!--start of Tawk.to Script-->
 
     
+
+    <script>
+        var url = 'https://wati-integration-service.clare.ai/ShopifyWidget/shopifyWidget.js?13867';
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = url;
+        var options = {
+      "enabled":true,
+      "chatButtonSetting":{
+          "backgroundColor":"#3f589e",
+          "ctaText":"we are live",
+          "borderRadius":"25",
+          "marginLeft":"0",
+          "marginBottom":"10",
+          "marginRight":"10",
+          "position":"right"
+      },
+      "brandSetting":{
+          "brandName":"XtayConnectAfrica",
+          "brandSubTitle":"Typically replies within a day",
+          "brandImg":"https://xtayconnectafrica.com/static/images/croped.jpg",
+          "welcomeText":"Hi, there!\nHow can I help you?",
+          "messageText":"Hi, there 👋%0AHaving trouble with shopping ?%0Asend us a text",
+          "backgroundColor":"#3f589e",
+          "ctaText":"Start Chat",
+          "borderRadius":"25",
+          "autoShow":false,
+          "phoneNumber":"233206494929"
+      }
+    };
+        s.onload = function() {
+            CreateWhatsappChatWidget(options);
+        };
+        var x = document.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+    </script>
+    
  <!--Start of Tawk.to Script-->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -57,7 +95,7 @@
     s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
     })();
-    </script>
+    </script> -->
     <!--End of Tawk.to Script-->
 
     <!--End of Tawk.to Script-->
