@@ -93,7 +93,7 @@ class Product(Base_Model):
     discount_price = models.PositiveIntegerField(blank=True,null=True)
     start_date = models.DateTimeField(blank=True, null=True,default=timezone.now)
     end_date = models.DateTimeField(blank=True, null=True,default=timezone.now)
-    is_promational = models.BooleanField(default=False,editable=False)
+    is_promational = models.BooleanField('promotion',default=False,editable=False)
 
     # create a new slug
 

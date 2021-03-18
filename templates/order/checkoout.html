@@ -70,31 +70,40 @@
             {% endif %}
         </div>
 
-        <div class="col-md-6">
-            <div class="shiping-methods">
-                <div class="section-title">
-                    <h4 class="title">SELECT PAYMENT METHOD</h4>
-                </div>
-                <div class="input-checkbox">
-                    <input type="radio" name="shipping" id="shipping-1" checked>
-                    <label for="shipping-1">ONLINE PAYMENT</label>
-                    <div class="caption">
 
-                    </div>
+              
+
+
+        <div class="col-md-6">
+            <div class="shiping-methods card">
+                <div class="section-title">
+                    <h4 class="title">Payment  Methods</h4>
                 </div>
-                <div class="input-checkbox">
-                    <input type="radio" name="shipping" id="shipping-2">
-                    <label for="shipping-2">PAY ON DELIVERY</label>
-                    <div class="caption">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                   
+
+                <div class="form-group" style="display:inline;">
+                    <div class="input-checkbox">
                         <p>
+                            <input style="height: 20px;" type="radio" value="Online Payment" name="shipping" id="shipping1" checked>
+                        <label for="shipping-1 mt-4">Online Payment</label>
+                        <div class="caption">
+                                pay now
+                        </div>
+                        </p>
+                    </div>
+                    <div class="input-checkbox">
+                        
+                        <input style="height: 20px;" type="radio" name="shipping" id="shipping2">
+                        <label for="shipping-2">Pay On Delivery</label>
+                        <div class="caption">
+                            you have selected to pay on delivery
+                        </div>
                     </div>
                 </div>
+               
             </div>
 
-            <div class="payments-methods">
+            <!-- <div class="payments-methods">
                 <div class="section-title">
                     <h4 class="title">Payments Methods</h4>
                 </div>
@@ -103,9 +112,7 @@
                     <label for="payments-1">Online payment</label>
                     <div class="caption">
 
-                        <!-- ipay -->
-                        Click on PAY Now Button To PAy
-                        <!-- ipay -->
+                      
                     </div>
                 </div>
                 <div class="input-checkbox">
@@ -126,7 +133,8 @@
                         <p>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            
         </div>
 
     </div>
@@ -141,22 +149,24 @@
     @media screen and (min-width: 600px) {
         #id_address {
             height: 5em !important;
-            width: 37em;
+            width: 40em;
         }
     }
 
     /* mobile */
-    @media screen and (max-width: 600px) {}
-
-    #map {
-        display: none;
+    @media screen and (max-width: 600px) {
+        #id_address {
+            height: 5em !important;
+            width: 26em !important;
+        }
     }
+   
 </style>
 
 {% if user.is_authenticated %}
 <script>
 
-    document.getElementById('id_name').value = "{{user_last_info.name}}"
+    document.getElementById('id_name').value = "{{request.user.name}}"
     document.getElementById('id_email').value = "{{request.user.email}}"
     document.getElementById('id_phone_number').value = "{{request.user.user.phone_number}}"
 
@@ -170,3 +180,22 @@
 
 <script src="{% static 'js/pages/checkout.js' %}"></script>
 {% endblock %}
+
+<!-- 
+
+<form>
+    <a class="ttlr_inline"
+       data-APIKey="MDY3NWY4OTRkMGZmOTg3NGE4ZjU4Yzk5NzExN2YwOGI="
+       data-transid="123456789012"
+       data-amount="10"
+       data-customer_email="aggrey.en@gmail.com"
+       data-currency="GHS"
+       data-redirect_url="http://127.0.0.1:8000/checkout_success/"
+       data-pay_button_text="Pay Now"
+       data-custom_description="Payment Using InlineJS"
+       data-payment_method="both">
+    </a>
+</form>
+
+<script type="text/javascript" src="https://test.theteller.net/checkout/resource/api/inline/theteller_inline.js"></script> -->
+                  

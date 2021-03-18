@@ -55,11 +55,11 @@ $('#personForm').submit(function (e) {
                 beforeSend: function () {
                     console.log('sending data')
                     // getLocation()
-                    $("save_checkout").text("Submiting Your Orders").addClass('icon-spinner')
+                    $("#save_checkout").text("Submiting Your Orders").addClass('icon-spinner')
                 },
 
                 success: function () {
-                    $("save_checkout").text("Submiting Your Orders").addClass('icon-check')
+                    $("#save_checkout").text("Submiting Your Orders").addClass('icon-check')
                     console.log('saved')
                     var url = '/checkout_success/'
                     $(location).attr('href', url)

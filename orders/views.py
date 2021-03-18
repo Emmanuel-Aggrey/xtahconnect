@@ -10,6 +10,7 @@ from django.db.models import Count, F, Q
 from django.shortcuts import get_object_or_404, redirect, render
 from ecommerce.models import Product
 from solvergeek.sendGrid_email import send_sendGredemail
+from ecommerce.crontab import  python_requests
 
 from .forms import OrderCreateForm#,City
 from .models import Order, OrderItem, Staff_Email,City
@@ -97,13 +98,13 @@ def checkout(request):
             # send the mail
         try:
 
-            send_mail(subject_staff, message_staff, email_from,recepient_staff, fail_silently=False)
+            # send_mail(subject_staff, message_staff, email_from,recepient_staff, fail_silently=False)
 
                 
             # customers
-            send_sendGredemail(customer_email,customer_subject,html_content)
+            # send_sendGredemail(customer_email,customer_subject,html_content)
 
-
+            python_requests()
             cart.clear()
             request.session['order_number'] =order_number
 

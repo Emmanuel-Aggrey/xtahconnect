@@ -47,13 +47,13 @@ class ProductInline(admin.TabularInline):
 
 
 class ProductAdminInline(admin.ModelAdmin):
-    list_display = ['category','name','is_available']
+    list_display = ['category','name','is_available',]
     inlines = [ProductInline]
     list_editable = ['is_available',]
 
    
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['category','name','quantity','price','is_available']
+    list_display = ['category','name','quantity','price','is_available','is_promational']
     list_editable = ['is_available',]
     list_filter = ['is_available','is_promational']
 

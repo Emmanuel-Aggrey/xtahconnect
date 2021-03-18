@@ -11,7 +11,6 @@ from hashids import Hashids
 from mapbox_location_field.models import LocationField
 # from mapbox_location_field.spatial.models import SpatialLocationField  
 from location_field.models.plain import PlainLocationField
-
 # Create your models here.
 hashids = Hashids()
 

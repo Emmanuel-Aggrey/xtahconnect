@@ -297,13 +297,13 @@ STATICFILES_DIRS = [
 # STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL,'/media/')
-# DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL,'/media/')
+DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 
 
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MAPBOX_KEY =config('MOBOX_API_PRIVATE_TOKEN')  
 
@@ -321,8 +321,9 @@ LOCATION_FIELD = {
 
 CRONJOBS = [
     ('*/5 * * * *', 'ecommerce.crontab.my_scheduled_job'),
-    ('*/5 * * * *', 'ecommerce.crontab.promotional_expire')
-
+    ('*/2 * * * *', 'ecommerce.crontab.promotional_expire','>> /cron_tob.log')
 ]
+
+CRONTAB_COMMAND_SUFFIX ='2>&1'
 
 TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
