@@ -120,7 +120,7 @@ def change_order_status(request):
     try:
         if q:
             orders = orders.filter(order_number__icontains=q)
-            order_number = orders.get(order_number__iendswith=q)
+            order_number = orders.get(order_number__iexact=q)
             order_number = order_number.order_number
             # customer_name =order_number.user.get_full_name()
 

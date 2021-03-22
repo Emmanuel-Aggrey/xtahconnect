@@ -5,10 +5,17 @@
 
 
 <div class="container">
-   
+    <form action="{% url 'reports:change_order_status' %}" method="get">
+        <div class="input-group text-center" style="justify-content:center">
+            <input class="form-control" type="search" name="q" value="{{request.GET.q}}" placeholder="search for order number or code" required>
+            <button class="btn btn-search " style="background-color: black;color: white;"
+            type="submit">search</button>
+        </div>
+    </form>
     <div class="row">
        
         <div class="col">
+           
            
             <a class="btn" style="background-color: #3d589e; color: white" href="{% url 'reports:customers' %}"> Back</a>
             <span class="btn badge badge-primary float-right display-4"  style="background-color: #3d589e; color: white" >Total {{order_size.orders_size}}</span>
@@ -31,10 +38,9 @@
                 <li class="text-danger">Delivery Status : <b>{{orders_placeed.delevery_Status.name}}</b></li>
                 {% else %}
                 <li class="text-danger">Delivery Status : <b> Order(s) Placeed</b></li>
-
                 {% endif %}
-                    
-
+                <li>Paid: {{orders_placeed.paid|yesno:'YES,NO'}}</li>
+                <li>Payment Method: {{orders_placeed.payment_method}}</li>
             </ul>
            
             <table class="table">
