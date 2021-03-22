@@ -127,12 +127,13 @@ class Product(Base_Model):
             
         
 
-@receiver(pre_save,sender=Product)
-def pre_saved_handler(sender,instance,*args, **kwargs):
-    if instance.text:
-        instance.is_promational =True
-    else:
-        instance.is_promational= False
+
+# @receiver(pre_save,sender=Product)
+# def pre_saved_handler(sender,instance,*args, **kwargs):
+#     if instance.text and instance.start_date == timezone.now():
+#         instance.is_promational =True
+#     else:
+#         instance.is_promational= False
         # instance.discount_price=None
         # instance.start_date =None
         # instance.end_date =None

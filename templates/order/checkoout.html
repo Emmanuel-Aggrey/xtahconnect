@@ -50,11 +50,47 @@
                         style="background-color: #4654A3;width: 84%">
                             <!-- <input type="text" name="demo" id="demo"> -->
 
-            </form>
-            {{ form.media }}
+       
+            <!-- {{ form.media }} -->
+           
+        </div>
+
+
+              
+
+
+        <div class="col-md-6">
+            <div class="shiping-methods card">
+                <div class="section-title">
+                    <h4 class="title">Payment  Methods</h4>
+                  {{request.session.payment_method}}
+                </div>
+
+                <div class="form-group">
+                    <div class="input-checkbox">
+                        
+                            <input style="height: 20px;" type="radio" value="Online" name="payment_method" id="payment1" class="radio"> 
+                        <label for="shipping-1 mt-4">Online Payment</label>
+                        <div class="caption" style="margin-left: 10% !important;">
+                            you have selected to pay through online
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="input-checkbox">
+                        
+                        <input style="height: 20px;" type="radio" value="On Delivery" name="payment_method" id="payment2" class="radio">
+                        <label for="shipping-2">Pay On Delivery</label>
+                        <div class="caption" style="margin-left: 10% !important;">
+                            you have selected to pay on delivery
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+
             <div class="col-md-6">
                 <div class="page-headers">
-                    Your Order review
+                    <b>Your Order review</b> <br>
                 </div>
                 <ul class="list-group">
                     {% for item in cart %}
@@ -68,41 +104,7 @@
                 </ul>
             </div>
             {% endif %}
-        </div>
-
-
-              
-
-
-        <div class="col-md-6">
-            <div class="shiping-methods card">
-                <div class="section-title">
-                    <h4 class="title">Payment  Methods</h4>
-                </div>
-                   
-
-                <div class="form-group" style="display:inline;">
-                    <div class="input-checkbox">
-                        <p>
-                            <input style="height: 20px;" type="radio" value="Online Payment" name="shipping" id="shipping1" checked>
-                        <label for="shipping-1 mt-4">Online Payment</label>
-                        <div class="caption">
-                                pay now
-                        </div>
-                        </p>
-                    </div>
-                    <div class="input-checkbox">
-                        
-                        <input style="height: 20px;" type="radio" name="shipping" id="shipping2">
-                        <label for="shipping-2">Pay On Delivery</label>
-                        <div class="caption">
-                            you have selected to pay on delivery
-                        </div>
-                    </div>
-                </div>
-               
-            </div>
-
+            
             <!-- <div class="payments-methods">
                 <div class="section-title">
                     <h4 class="title">Payments Methods</h4>
@@ -136,7 +138,8 @@
             </div> -->
             
         </div>
-
+   
+    </form>
     </div>
 </div>
 
@@ -160,7 +163,12 @@
             width: 26em !important;
         }
     }
-   
+
+    input{
+        width: 50px;
+    }
+  
+  
 </style>
 
 {% if user.is_authenticated %}

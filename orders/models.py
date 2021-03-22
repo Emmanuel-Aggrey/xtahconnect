@@ -13,7 +13,7 @@ from mapbox_location_field.models import LocationField
 from location_field.models.plain import PlainLocationField
 # Create your models here.
 hashids = Hashids()
-
+from random import randint
 
 
 class Staff_Email(Base_Model):
@@ -78,6 +78,8 @@ class Order(Base_Model):
 
     city1 = models.CharField(max_length=255,null=True,blank=True)
     location_google = PlainLocationField(based_fields=['city1'], zoom=7,null=True,blank=True)
+    transaction_id =models.CharField(max_length=200,null=True,blank=True)
+    
 
 
 
@@ -95,18 +97,28 @@ class Order(Base_Model):
         return f'user: {self.user.username} order umber : {self.order_number}'
     
     def gettotal_oders(self):
-        print(len(self.order_number))
+        # print(len(self.order_number))
         return len(self.order_number)
     
 
 
+
+
+def random_with_N_digits(n):
+    range_start = 10**(n-1)
+    range_end = (10**n)-1
+    return randint(range_start, range_end)
+
+# print (random_with_N_digits(2))
+
 @receiver(post_save,sender=Order)
 def create_orders_number(sender,instance,created,*args, **kwargs):
-    now = datetime.datetime.now().strftime("%Y%m%d%H%M")
+    # now = datetime.datetime.now().strftime("%Y%m%d%H%M")
     if not instance.order_number:
+        
         order_id = hashids.encrypt(instance.id)
-        ordernummber= now+'-'+str(order_id)
-        instance.order_number = ordernummber.upper()
+        ordernummber= str(random_with_N_digits(6))+''+str(order_id)
+        instance.order_number = ordernummber
         instance.save()
 
     # print('ordernummber ',ordernummber)

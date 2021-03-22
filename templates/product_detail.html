@@ -108,7 +108,8 @@
                     <div class="product-info">
                       
                         <div class="price-box pt-20">
-                            <span class="new-price new-price-2">GH₵ {{product.price|intcomma}}</span>
+                            <h4> {{product.name}}</h4>
+                            <span class="new-price new-price-2"><b>GH₵ {{product.price|intcomma}}</b></span>
                         </div>
                        
                       
@@ -241,7 +242,7 @@
     }
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.js"></script> -->
 
 <script>
 
@@ -277,9 +278,10 @@
 
             },
             beforeSend: function () {
-                $('#submit').text('adding to cart...')
+                // $('#submit').text('adding to cart...')
+                toastSuccess('Adding To Cart...')
 
-                $('#alert').fadeIn('fast').text('Saving To Cart').addClass('icon-spinner')
+                // $('#alert').fadeIn('fast').text('Saving To Cart').addClass('icon-spinner')
 
             },
 
@@ -289,8 +291,10 @@
 
 
                 // $('#').text('saved to cart').fadeIn('fast')
-                $('#alert').fadeIn('fast').text('Saved To Cart').fadeOut(5000).addClass('icon-check')
-                $('#submit').text('Add To Cart')
+                // $('#alert').fadeIn('fast').text('Saved To Cart').fadeOut(5000).addClass('icon-check')
+                
+                // $('#submit').text('Add To Cart')
+                toastSuccess('Saved To Cart')
                 $('#view_cart').fadeIn('fast').fadeOut(30000)
                 $('#checkout').fadeIn('fast').fadeOut(30000)
 
@@ -330,7 +334,8 @@
 
             },
             beforeSend: function () {
-                $('#alertnew').text('adding to cart...') 
+                // $('#alertnew').text('adding to cart...') 
+                toastSuccess('Adding To Cart...')
 
             },
 
@@ -338,14 +343,18 @@
 
                 getcartsize()
 
-                $('#alertnew').fadeIn('fast').text('Saved To Cart').fadeOut(5000)
+                // $('#alertnew').fadeIn('fast').text('Saved To Cart').fadeOut(5000)
+                toastSuccess('Saved To Cart')
+              
 
                 // $('#').text('saved to cart').fadeIn('fast')
 
 
             },
             error: function () {
-                $('#alertnew').fadeIn('fast').text(' not saved error').fadeOut(5000)
+                // $('#alertnew').fadeIn('fast').text(' not saved error').fadeOut(5000)
+                toastError('not saved error')
+                
 
 
 

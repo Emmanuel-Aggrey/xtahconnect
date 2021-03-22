@@ -28,10 +28,26 @@ $("#id_address").height("10px");
 
 $('#personForm').submit(function (e) {
    
-    if ($.trim($("#id_name").val()) === "" || $.trim($("#id_address").val()) === "" || $.trim($("#id_phone_number").val()) === "" || $.trim($("#id_region").val()) === "" || $.trim($("#id_city").val()) === "") {
-        alert('all fields are required');
+        
+
+    if ($.trim($("#id_name").val()) === "" || $.trim($("#id_address").val()) === "" || $.trim($("#id_phone_number").val()) === "" || $.trim($("#id_region").val()) === "" || $.trim($("#id_city").val()) === "" || $.trim($("#id_email").val()) === "" ) {
+        // alert('all fields are required');
+        toastError('all fields are required')
+        moveUp()
+
+        return false;
+        
+    }
+    else if(document.getElementById('payment1').checked===false && document.getElementById('payment2').checked===false) {
+        moveUp()
+        // alert('please select a payment method');
+        
+        toastError('please select a payment method')
+
         return false;
     }
+
+   
         else {
             e.preventDefault();
             $.ajax({
@@ -47,7 +63,7 @@ $('#personForm').submit(function (e) {
                     address: $('#id_address').val(),
                     region: $('#id_region').val(),
                     city: $('#id_city').val(),
-                    demo:$('#demo').val(),
+                    payment_method:$('input[name="payment_method"]:checked').val(),
                     
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
 
@@ -55,18 +71,41 @@ $('#personForm').submit(function (e) {
                 beforeSend: function () {
                     console.log('sending data')
                     // getLocation()
-                    $("#save_checkout").text("Submiting Your Orders").addClass('icon-spinner')
+                    // $("#save_checkout").text("Submiting Your Orders").addClass('icon-spinner')
+                    toastSuccess('Submiting Your Order(s)')
+                    // alert($('input[name="payment_method"]:checked').val(),)
+                    // make_payments()
+                   
                 },
 
                 success: function () {
-                    $("#save_checkout").text("Submiting Your Orders").addClass('icon-check')
+                    // $("#save_checkout").text("Submiting Your Orders").addClass('icon-check')
+
+                  
+                    toastSuccess('order(s) Processed successfully Redirecting')
                     console.log('saved')
-                    var url = '/checkout_success/'
+                    // var url = '/checkout_success/'
+                    // $(location).attr('href', url)
+                    payment_method = $('input[name="payment_method"]:checked').val()
+                    if(payment_method==='On Delivery'){
+                        var url = '/checkout_success/'
                     $(location).attr('href', url)
-                
+                    }
+
+                    else if(payment_method==='Online'){
+                        make_payments()
+                    }
+                    // window.location.href = '/url-path'+data.url; 
+
+                                    
+
+                 
+                   
+                  
                 },
                 error: function () {
-                    alert('error no saved try again')
+                    // alert('error no saved try again')
+                    toastError('error no saved try again')
 
                 }
 
@@ -75,6 +114,17 @@ $('#personForm').submit(function (e) {
   
 });
 
+
+$(".radio").click(function() {
+  
+if(document.getElementById('payment1').checked===true || document.getElementById('payment2').checked===true){
+
+    moveDown()
+    // alert($('input[name="payment_method"]:checked').val())
+}
+
+  });
+  
 
 // $('#personForm').on('submit', function (e) {
 
@@ -143,4 +193,43 @@ function showError(error) {
             break;
     }
 
+}
+
+
+
+
+
+function make_payments() {
+
+   
+    $.ajax({
+        url: '/make_payment_url/',
+        type: 'GET',
+        success: function (res) {
+
+            console.log(res.payment_url)
+            
+            $(location).attr('href',res.payment_url)
+            // window.location=res.payment_url
+
+        
+        },
+        error: function () {
+           console.log('error')
+
+        }
+    })
+}
+
+
+
+
+function moveUp(){
+    $('body, html').animate({scrollTop:$('form').offset().top}, 'slow');
+
+}
+
+function moveDown(){
+    
+    $('body, html').animate({scrollTop:$('form').offset().left}, 'slow');
 }

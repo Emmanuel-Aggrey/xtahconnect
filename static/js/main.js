@@ -556,6 +556,60 @@ function getcartsize() {
 /*----------------------------------------*/
     new WOW().init();
 })(jQuery);
+
+
+
+
+function toastSuccess(success_message){
+	toastr["success"](success_message)
+
+toastr.options = {
+ "closeButton": false,
+ "debug": false,
+ "newestOnTop": false,
+ "progressBar": false,
+ "positionClass": "toast-top-right",
+// "positionClass": "toast-top-full-width",
+
+ "preventDuplicates": false,
+ "onclick": null,
+ "showDuration": "300",
+ "hideDuration": "1000",
+ "timeOut": "5000",
+ "extendedTimeOut": "1000",
+ "showEasing": "swing",
+ "hideEasing": "linear",
+ "showMethod": "fadeIn",
+ "hideMethod": "fadeOut"
+}
+}
+
+
+
+function toastError(error_message){
+	toastr["error"](error_message)
+
+toastr.options = {
+ "closeButton": true,
+ "debug": false,
+ "newestOnTop": true,
+ "progressBar": true,
+ "positionClass": "toast-top-right",
+//  "positionClass": "toast-top-full-width",
+
+ "preventDuplicates": true,
+ "onclick": null,
+ "showDuration": "300",
+ "hideDuration": "1000",
+ "timeOut": "5000",
+ "extendedTimeOut": "1000",
+ "showEasing": "swing",
+ "hideEasing": "linear",
+ "showMethod": "fadeIn",
+ "hideMethod": "fadeOut"
+}
+}
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/
+

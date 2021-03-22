@@ -7,11 +7,13 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail, send_mass_mail
 from django.db.models import Count, F, Q
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect, render,HttpResponse
 from ecommerce.models import Product
 from solvergeek.sendGrid_email import send_sendGredemail
+from solvergeek.the_teller_api import make_payment
 # from ecommerce.crontab import  python_requests
-
+from django.http import JsonResponse
+import  json
 from .forms import OrderCreateForm#,City
 from .models import Order, OrderItem, Staff_Email,City
 
@@ -25,28 +27,16 @@ from .models import Order, OrderItem, Staff_Email,City
 #     else:
 #         return 'Good Evening'
 
-
+order_number_=[]
 @login_required
 def checkout(request):
 
     form = OrderCreateForm(request.POST or None)
     cart = Cart(request)
-    # if Order.objects.values('name','address','phone_number','address').filter(user__username=request.user).exists():
-    #     user_last_info= Order.objects.values('name','address','phone_number','address').filter(user__username=request.user).last()
-    #     print(user_last_info)
-       
-  
-
-
-    #     form.fields['email'].initial=request.user.email
-    #     form.fields['name'].initial=user_last_info['name']
-    #     form.fields['address'].initial=user_last_info['address']
-    #     # form.fields['region'].initial=user_last_info['region']
-    #     form.fields['phone_number'].initial=user_last_info['phone_number']
-    #     # form.fields['city'].initial=user_last_info['city']
-
-
-
+    payment_method =''
+    customer_name = ''
+    get_total_price =0
+    url= ''
     if request.method == 'POST':
         customer_name = request.POST.get('name')
         customer_email = request.POST.get('email')
@@ -55,14 +45,15 @@ def checkout(request):
         customer_region = request.POST.get('region')
         customer_city = request.POST.get('city')
         user = request.user
-        # demo = request.POST.get('demo')
-        # print('demo is ',demo)
+        payment_method = request.POST.get('payment_method')
+        get_total_price = cart.get_total_price()
 
         orders = Order.objects.create(name=customer_name, phone_number=customer_phone_number,\
             user=user,email=customer_email,city_id=customer_city,address=customer_address,region_id=customer_region)
 
         order_number = orders.order_number
         customer_city =orders.city
+        order_number_.append(order_number)
         
 
 
@@ -84,7 +75,7 @@ def checkout(request):
                 # send mail to intended staff
         subject_staff = 'Hi'
         message_staff = f'Hello {customer_name} with contact number {customer_phone_number} from {customer_address}  (Google Map link) and close to {customer_city}, having order number {order_number}. \
-        \n \t \n He prefers to pay through (Payment Method). Please confirm, follow up and arrange dispatch. Thank You'
+        \n \t \n He prefers to pay {payment_method}. Please confirm, follow up and arrange dispatch. Thank You'
 
         recepient_staff = order_email_recepients
         email_from = 'Orders@xtayconnectafrica.com'
@@ -92,7 +83,7 @@ def checkout(request):
 
             # send mail to customers
         customer_subject ='Order From XtayconnectAfrica'
-        customer_message = '<strong>Dear Cherished Customer, <br> <br> Your Order has been placed successfully. We will call you soon! <br> <br> Please keep your Order Number safe and thanks for shopping with us! <br> <br>  To view Your order(s), please click here <a href="https://xtayconnectafrica.com/my_orders/" target="_blank" rel="noopener noreferrer">My Order(s)</a></strong> <br>'
+        customer_message = f'<strong>Dear Cherished Customer, <br> <br> Your Order has been placed successfully. We will call you soon! <br> <br> Please keep your Order Number <b style="font-size:bold">{order_number}</b> safe and thanks for shopping with us! <br> <br>  To view Your order(s), please click here <a href="https://xtayconnectafrica.com/my_orders/" target="_blank" rel="noopener noreferrer">My Order(s)</a></strong> <br>'
         html_content =customer_message
                 
             # send the mail
@@ -105,26 +96,76 @@ def checkout(request):
             send_sendGredemail(customer_email,customer_subject,html_content)
 
             cart.clear()
-            request.session['order_number'] =order_number
+            # request.session['order_number'] ="order_number"
+            # print('order_number in session ',request.session['order_number'])
+            
+            order=Order.objects.filter(order_number=order_number).update(payment_method=payment_method)
 
+            if payment_method=='Online':
+                # print(customer_email,get_total_price)
+                make_payments =make_payment_(customer_email,get_total_price)
+
+                # print("make_payments",make_payments)
+                # print(make_payment_)
                     
-            return redirect('orders:checkout_success')
+                return redirect('orders:checkout_success')
         except:
             pass
                     
             # staff
 
-            
-        
-            # form = OrderCreateForm()
-                   
-        # return render(request, 'order/checkoout_success.html')
-    # else:
+             
         form = OrderCreateForm()
     return render(request, 'order/checkoout.html', {'form': form})
 
+  
+values = [] #empty list to get thetellerurl
+def make_payment_(email,amount):
+    
+    make_payments = make_payment(email,amount)
+    order=Order.objects.filter(order_number__in=order_number_).update(transaction_id= make_payments.get('transaction_id'))
+
+   
+    # print('order number is ',order)
+    # print('i am callable make_payments',make_payments['payment_url'])
+    payment_url =make_payments.get('payment_url')
+    token =make_payments.get('token')
+    transaction_id = make_payments.get('transaction_id')
+
+    # request.session['order_number']=order_number_
+    order_number_.clear() #empt the order number not safe to keep
+   
+  
+    values.append(payment_url)
+
+    make_payment_url()
+
+    # values = {
+    #     "transaction_id":transaction_id,
+    #     "token":token,
+    #     "payment_url":payment_url,
+    #     "order_number":order_number
+
+    # }
+   
+    return HttpResponse()
+
+def make_payment_url(request):
+
+    # print("values",values)
+    return JsonResponse({"payment_url":values})
+
+
+    # return JsonResponse({"make_payments":make_payments['payment_url']})
+
 
 def checkout_success(request):
+    # request.session['order_number'] =order_number_
+    # print(request.session['order_number'])
+    
+    # order_number= []
+    # order_number.append(order_number_)
+    # order_number_.clear()
     return render(request, 'order/checkoout_success.html')
 
 

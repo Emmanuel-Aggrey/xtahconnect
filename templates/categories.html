@@ -10,6 +10,9 @@
    
    
 
+{% comment %}
+    
+
             <!-- Begin Slider With Banner Area -->
             <div class="slider-with-banner">
                 <div class="container">
@@ -60,7 +63,8 @@
             </div>
             <!-- Slider With Banner Area End Here -->
 
-
+            {% endcomment %}
+    
         <div class="container">
            
             <ul class="nav nav-tabs" role="tablist">
@@ -117,6 +121,9 @@
              
                   
             </div>
+            {% empty %}
+
+            <p>no result</p>
                 {% endfor %}
                 </div>
             </div><!-- End .container -->
@@ -137,6 +144,11 @@
     </div><!-- End .container -->
 </div><!-- End .promo-section -->
 
+
+{% comment %}
+    
+
+    
 <div class="partners-container">
     <div class="container">
         <div class="partners-carousel owl-carousel owl-theme">
@@ -164,7 +176,7 @@
         </div><!-- End .partners-carousel -->
     </div><!-- End .container -->
 </div><!-- End .partners-container -->
-
+{% endcomment %}
 {% if resent_view_products %}
     
 

@@ -6,7 +6,7 @@ class OrderCreateForm(forms.ModelForm):
     address = forms.CharField(required=True,widget=forms.Textarea(attrs={'placeholder':'Street Name / Building /Apartment No /Floor/ Closest Landmark'}))
     class Meta:
         model = Order
-        exclude = ['user','paid','city1','location_google','location','delevery_Status']
+        exclude = ['user','paid','city1','location_google','location','delevery_Status','transaction_id']
 
 
     

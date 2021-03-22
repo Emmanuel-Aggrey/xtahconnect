@@ -105,7 +105,14 @@
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"> -->
+
+
+<!-- toastr start -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<!-- toastr end -->
 
     <link rel="stylesheet" href="{% static 'css/material-design-iconic-font.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/meanmenu.css' %}">
@@ -133,6 +140,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/styledetail.css' %}">
+
+
 
 
 
@@ -729,7 +738,9 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-  
+.toast-custom {
+    background-color: purple;
+}
 .adminview{
     display: inline;
   
@@ -769,21 +780,23 @@ body {
 
             },
             beforeSend: function () {
-                $(".cart_saved").text('saving to cart...').addClass('alert')
+                // $(".cart_saved").text('saving to cart...').addClass('alert')
+                toastSuccess('Saving To Cart...')
                 // $('#addtocart').text('adding to cart..')
             },
 
             success: function () {
                 // $('#modelId').fadeIn()
                 console.log('saved')
-
+                toastSuccess('Saved To Cart')
                 getcartsize()
 
 
             },
             error: function () {
                 // alert('error')
-                $('.cart_saved').text('not saved').fadeOut(5000)
+                toastError('not saved try again')
+                // $('.cart_saved').text('not saved').fadeOut(5000)
 
             }
 

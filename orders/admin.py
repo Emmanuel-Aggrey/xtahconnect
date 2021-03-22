@@ -10,8 +10,8 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['user','order_number', 'name','email', 'address', 'phone_number', 'city', 'paid',]
-    list_filter = ['paid',]
+    list_display = ['user','order_number', 'name','email', 'address', 'phone_number', 'city', 'paid','payment_method','transaction_id']
+    list_filter = ['paid','payment_method']
     inlines = [OrderItemInline]
     search_fields = ('order_number','email','phone_number','name')
     list_editable = ['paid']
@@ -35,8 +35,8 @@ class RegionAdmin(admin.ModelAdmin):
     search_fields = ('name',)
  
 
-# admin.site.register(Order, OrderAdmin)
-admin.site.register(Order, MapAdmin)  
+admin.site.register(Order, OrderAdmin)
+# admin.site.register(Order, MapAdmin)  
 admin.site.register(Region, RegionAdmin)
 
 admin.site.register(Delevery_Status)

@@ -320,10 +320,13 @@ LOCATION_FIELD = {
 
 
 CRONJOBS = [
-    ('*/5 * * * *', 'ecommerce.crontab.my_scheduled_job'),
-    ('*/2 * * * *', 'ecommerce.crontab.promotional_expire','>> /cron_tob.log')
+    ('*/1 * * * *', 'ecommerce.crontab.check_out_of_stock'),
+    ('*/1 * * * *', 'ecommerce.crontab.promotional_expire'),
+    ('*/1 * * * *', 'ecommerce.crontab.promotional_start'),
+    ('*/1 * * * *', 'orders.cron_jobs.verify_transaction_save'),
 ]
 
-CRONTAB_COMMAND_SUFFIX ='2>&1'
+# orders/cron_jobs.py
+
 
 TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]

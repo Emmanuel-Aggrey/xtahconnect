@@ -109,7 +109,7 @@ Your Shopping Cart
     <li>
 
         {% if cart.get_total_price > 1 %}
-        <a style="background-color: #4654A3;" href="{% url "orders:checkout" %}" class="btn btn-primary">Checkout</a>
+        <a  href="{% url 'orders:checkout' %}" class="btn primary-btn my-4">Checkout</a>
 
         {% endif %}
     </li>
@@ -118,6 +118,13 @@ Your Shopping Cart
 
 <style>
   
+    li{
+        display: inline;
     
+    }
+    ul{
+        text-align: center;
+        background-color: #4654A3;
+    }
 </style>
 {% endblock %}

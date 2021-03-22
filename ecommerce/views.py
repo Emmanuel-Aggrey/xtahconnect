@@ -19,13 +19,13 @@ hashids = Hashids()
 def index(request):
     products = Product.objects.filter(is_available=True)
     launching = Launching.objects.filter(in_progress=True)
-
-    # promational_products = products.filter(is_promational=True)
-    # for p in promational_products:
-    #     promational_products = promational_products.filter(Q(date_updated__gte=p.start_date)&Q(date_updated__lte=p.end_date))
-
-    # promotional_products = products.filter(is_promational=True,date_updated__range=[start_date=datetime.now(),end_date__lte=datetime.now()])
-
+    promational_products = ''
+    promational_products_available = products.filter(is_promational=True).exists()
+    if promational_products_available:
+        promational_products = products.filter(is_promational=True)
+    else:
+        promational_products = products.all()[0:5]
+        pass
    
 
         # print(request.session['history'])
@@ -39,7 +39,7 @@ def index(request):
     context = {
         'products': products,
         'resent_view_products':resent_view_products,
-        # 'promational_products':promational_products,
+        'promational_products':promational_products,
         'latest_items':products.order_by('?')[0:5],
         "launching":launching,
     }

@@ -18,19 +18,31 @@
 </head>
 {% block content %}
 <div class="container">
-    <div class="row justify-content-center" style="margin-top: 6%">
-        <h1 class="page-header">Thank You For Shopping With Us
-        </h1>
-        <h4>Your order has been successfully completed. Your order number is <strong class="text-info">{{request.session.order_number }}</strong> you
-            will be contacted soon  </h4>  <br>
+    <div class="row justify-content-center">
+            <div class="col">
+                <h1 class="text-center">Thank You For Shopping With Us</h1> <br> <br>
+
+                <h4 class="text-center">Your order has been successfully completed </h4>  <br>
+
+              <ul class="text-center">
+                  <li style="display: inline">
+                    <a class="btn btn-lg mx-4" style="background-color: #4654A3;color: white;margin-bottom: 10px" href="{% url 'orders:my_order_detail' %}">View Orders</a>
+
+                    <a class="btn btn-lg mx-4" style="background-color: #4654A3;color: white;margin-bottom: 10px" href="/">Continue
+                        Shopping</a>
+                  </li>
+              </ul>
+            </div>
        
         
-
-
-        <a class="btn btn-lg mx-4" style="background-color: #4654A3;color: white;margin-bottom: 10px" href="/">Continue
-            Shopping</a>
-
+      
     </div>
+   
 
 </div>
+
+
+<script>
+    // window.onbeforeunload = function() { return "Your work will be lost."; };
+</script>
 {% endblock %}
