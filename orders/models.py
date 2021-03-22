@@ -59,6 +59,8 @@ class Delevery_Status(Base_Model):
         return self.name
 
 
+class Pickupstation(Base_Model):
+    name = models.CharField(max_length=600)
 
 class Order(Base_Model):
     user =models.ForeignKey(User,on_delete=models.CASCADE,related_name='user')
@@ -79,6 +81,7 @@ class Order(Base_Model):
     city1 = models.CharField(max_length=255,null=True,blank=True)
     location_google = PlainLocationField(based_fields=['city1'], zoom=7,null=True,blank=True)
     transaction_id =models.CharField(max_length=200,null=True,blank=True)
+    pickupstation = models.ForeignKey(Pickupstation,on_delete=models.CASCADE,blank=True,null=True)
     
 
 

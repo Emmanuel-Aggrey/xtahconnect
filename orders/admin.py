@@ -18,6 +18,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display_links = ['order_number','email','name',]
     
     
+    
 
 
 class CityInline(admin.TabularInline):
