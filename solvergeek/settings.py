@@ -144,8 +144,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'xtayconnectdb',
-        'USER': 'postgres',
-        'PASSWORD': 'aggrey123',
+        'USER': 'aggrey',
+        'PASSWORD': 'christme@1',
         'HOST': 'localhost',
         # 'PORT': '5432',
     }
