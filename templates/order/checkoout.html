@@ -43,7 +43,7 @@
                 {{ form|crispy}}<br>
                 {% if cart.get_total_price < 1 %} <p class="text-danger  btn" style="color: #CE7F11;">your cart is empty
                     </p>
-                    <a class="btn mx-6" style="background-color: #270949;color: white;" href="/">add some </a>
+                    <a class="btn mx-6" style="background-color:#4654A3;color: white;" href="/">Continue Shopping</a>
 
                     {% else %}
                     <input  id="save_checkout" type="submit" class="btn btn-primary mb-4" value="Submit order"
@@ -70,7 +70,7 @@
                     <div class="input-checkbox">
                         
                             <input style="height: 20px;" type="radio" value="Online" name="payment_method" id="payment1" class="radio"> 
-                        <label for="shipping-1 mt-4">Online Payment</label>
+                        <label for="shipping-1 mt-4" style="position:static">Online Payment</label>
                         <div class="caption" style="margin-left: 10% !important;">
                             you have selected to pay through online
                         </div>
@@ -79,11 +79,23 @@
                     <div class="input-checkbox">
                         
                         <input style="height: 20px;" type="radio" value="On Delivery" name="payment_method" id="payment2" class="radio">
-                        <label for="shipping-2">Pay On Delivery</label>
+                        <label for="shipping-2" style="position:static">Pay On Delivery</label>
                         <div class="caption" style="margin-left: 10% !important;">
                             you have selected to pay on delivery
                         </div>
                     </div>
+                    <hr>
+                    <div class="input-checkbox">
+                        
+                        <input style="height: 20px;" type="radio" value="Other method" name="payment_method" id="payment3" class="radio"> 
+                    <label for="shipping-1 mt-4" style="top:20px !important;">Other Option</label>
+                    <div class="caption" style="margin-left: 10% !important;">
+                        
+                        <input type="text" name="order" id="id_order" placeholder="please Specify payment method" style="height: 40px;width:500px">
+                    </div>
+                    
+                </div>
+                  
                 </div>
                
             </div>
@@ -174,7 +186,7 @@
 {% if user.is_authenticated %}
 <script>
 
-    document.getElementById('id_name').value = "{{request.user.name}}"
+    document.getElementById('id_name').value = "{{request.user.get_full_name}}"
     document.getElementById('id_email').value = "{{request.user.email}}"
     document.getElementById('id_phone_number').value = "{{request.user.user.phone_number}}"
 

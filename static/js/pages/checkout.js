@@ -30,6 +30,7 @@ $('#personForm').submit(function (e) {
    
         
 
+  
     if ($.trim($("#id_name").val()) === "" || $.trim($("#id_address").val()) === "" || $.trim($("#id_phone_number").val()) === "" || $.trim($("#id_region").val()) === "" || $.trim($("#id_city").val()) === "" || $.trim($("#id_email").val()) === "" ) {
         // alert('all fields are required');
         toastError('all fields are required')
@@ -38,7 +39,7 @@ $('#personForm').submit(function (e) {
         return false;
         
     }
-    else if(document.getElementById('payment1').checked===false && document.getElementById('payment2').checked===false) {
+    else if(document.getElementById('payment1').checked===false && document.getElementById('payment2').checked===false && document.getElementById('payment3').checked===false ) {
         moveUp()
         // alert('please select a payment method');
         
@@ -46,6 +47,18 @@ $('#personForm').submit(function (e) {
 
         return false;
     }
+
+    else if(document.getElementById('payment3').checked===true && document.getElementById('id_order').value==='' && $("#save_checkout").click()) {
+       
+        // alert('please select a payment method');
+        
+        $("#other").css( "border-color", "red" );
+        
+        toastError('please specify your payment option')
+        moveUp()
+        return false;
+    }
+
 
    
         else {
@@ -64,6 +77,7 @@ $('#personForm').submit(function (e) {
                     region: $('#id_region').val(),
                     city: $('#id_city').val(),
                     payment_method:$('input[name="payment_method"]:checked').val(),
+                    order: $('#id_order').val(),
                     
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
 
@@ -87,25 +101,25 @@ $('#personForm').submit(function (e) {
                     // var url = '/checkout_success/'
                     // $(location).attr('href', url)
                     payment_method = $('input[name="payment_method"]:checked').val()
-                    if(payment_method==='On Delivery'){
+
+                    if(payment_method==='On Delivery' || payment_method==='Other method'){
                         var url = '/checkout_success/'
                     $(location).attr('href', url)
                     }
+                    
 
                     else if(payment_method==='Online'){
                         make_payments()
+                        // window.location=''
                     }
                     // window.location.href = '/url-path'+data.url; 
-
-                                    
-
                  
                    
                   
                 },
                 error: function () {
                     // alert('error no saved try again')
-                    toastError('error no saved try again')
+                    toastError('error not saved try again')
 
                 }
 

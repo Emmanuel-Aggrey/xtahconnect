@@ -92,7 +92,8 @@ env
 .venv
 venv/
 ENV/
-
+geunicon
+/geunicon
 # Spyder project settings
 .spyderproject
 .spyproject

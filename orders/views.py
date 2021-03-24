@@ -33,7 +33,7 @@ def checkout(request):
 
     form = OrderCreateForm(request.POST or None)
     cart = Cart(request)
-    payment_method =''
+    # payment_method ='Online'
     customer_name = ''
     get_total_price =0
     url= ''
@@ -45,6 +45,7 @@ def checkout(request):
         customer_region = request.POST.get('region')
         customer_city = request.POST.get('city')
         user = request.user
+        order_payment = request.POST['order']
         payment_method = request.POST.get('payment_method')
         get_total_price = cart.get_total_price()
 
@@ -98,21 +99,31 @@ def checkout(request):
             cart.clear()
             # request.session['order_number'] ="order_number"
             # print('order_number in session ',request.session['order_number'])
+
             
+            if payment_method == 'Other method':
+                payment_method = payment_method,' ',order_payment
+                # print(order_payment,payment_method)
+            # print("order",order_payment)
             order=Order.objects.filter(order_number=order_number).update(payment_method=payment_method)
 
             if payment_method=='Online':
+            
                 # print(customer_email,get_total_price)
-                make_payments =make_payment_(customer_email,get_total_price)
+                make_payments =make_payment_(request,customer_email,get_total_price)
 
                 # print("make_payments",make_payments)
                 # print(make_payment_)
                     
-                return redirect('orders:checkout_success')
+                # return redirect('https://www.google.com/')
         except:
             pass
                     
             # staff
+        # if payment_method=='Online':
+        #         # print(customer_email,get_total_price)
+        # make_payments =make_payment_(request,customer_email,get_total_price)
+        # print("payment_method =",payment_method)
 
              
         form = OrderCreateForm()
@@ -120,7 +131,7 @@ def checkout(request):
 
   
 values = [] #empty list to get thetellerurl
-def make_payment_(email,amount):
+def make_payment_(request,email,amount):
     
     make_payments = make_payment(email,amount)
     order=Order.objects.filter(order_number__in=order_number_).update(transaction_id= make_payments.get('transaction_id'))
@@ -138,7 +149,10 @@ def make_payment_(email,amount):
   
     values.append(payment_url)
 
-    make_payment_url()
+    # make_payment_url(request)
+
+    print("payment_url", payment_url)
+    print("values",values)
 
     # values = {
     #     "transaction_id":transaction_id,
@@ -148,9 +162,10 @@ def make_payment_(email,amount):
 
     # }
    
-    return HttpResponse()
+    return redirect(payment_url)
 
 def make_payment_url(request):
+    
 
     # print("values",values)
     return JsonResponse({"payment_url":values})
