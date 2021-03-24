@@ -10,6 +10,10 @@ __pycache__/
 db.sqlite3
 /db.sqlite3
 
+'udo journalctl -u geunicon'
+udo journalctl -u geunicon
+xconnect.sock
+
 # Distribution / packaging
 __pycache__
 /__pycache__
