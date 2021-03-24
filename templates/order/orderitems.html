@@ -40,6 +40,8 @@
                         <li>Phone :{{orders.phone_number}}</li>
                         <li>Order Number: {{orders.order_number}}</li>
                         <li>Date Issued: {{orders.date_add}}</li>
+                        <li>Paid: {{orders.paid|yesno:'YES,NO' }}</li>
+                        <li>Payment Method: {{orders.payment_method}}</li>
                     </ul>
                     <thead class="thead-light active">
                       <tr style="font-size: x-large;">
