@@ -20,4 +20,5 @@ urlpatterns=[
     path("search_api/",views.search_api,name='search_api'),
 
     path('header/',views.header),
+    path('resent_view_products/',views.resent_view_products,name='resent_view_products'),
 ]

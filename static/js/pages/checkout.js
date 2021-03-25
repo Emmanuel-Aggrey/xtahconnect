@@ -96,7 +96,6 @@ $('#personForm').submit(function (e) {
                     // $("#save_checkout").text("Submiting Your Orders").addClass('icon-check')
 
                   
-                    toastSuccess('order(s) Processed successfully Redirecting')
                     console.log('saved')
                     // var url = '/checkout_success/'
                     // $(location).attr('href', url)
@@ -221,8 +220,11 @@ function make_payments() {
         type: 'GET',
         success: function (res) {
 
-            console.log(res.payment_url)
-            
+            // console.log('Zero position ',res.payment_url[0])
+
+            // console.log('make_payment_url ',res.payment_url)
+            toastSuccess('order(s) Processed successfully Redirecting')
+
             $(location).attr('href',res.payment_url)
             // window.location=res.payment_url
 
@@ -230,6 +232,7 @@ function make_payments() {
         },
         error: function () {
            console.log('error')
+           toastError('was not abale to process payment yet order processed successfully')
 
         }
     })
@@ -247,3 +250,4 @@ function moveDown(){
     
     $('body, html').animate({scrollTop:$('form').offset().left}, 'slow');
 }
+

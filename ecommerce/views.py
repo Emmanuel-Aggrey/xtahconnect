@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User, auth
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, redirect, render,get_list_or_404
+from django.shortcuts import get_object_or_404, redirect, render,get_list_or_404,HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from .models import Category, Product, Sub_Category,Launching
 from hashids import Hashids
 from datetime import datetime
+import json
 from .forms import ProductForm
 # Create your views here.
 hashids = Hashids()
@@ -44,6 +45,18 @@ def index(request):
         "launching":launching,
     }
     return render(request, 'index.html', context)
+
+
+def resent_view_products(request):
+    resent_view_product =[]
+    resent_view_products=''
+    if request.session.get('history',None):
+        resent_view_products = Product.objects.filter(slug__in=(request.session['history']))[:8]
+  
+    for x in resent_view_products:
+        resent_view_product.append({"category":x.category.name,'sub_category':x.category.category.name,'quantity':x.quantity,'name':x.name,'image':x.image.url,'detail-page':x.get_absolute_url()})
+       
+    return JsonResponse(resent_view_product,safe=False)
 
 # return render(request,'index.html',context)
 
@@ -242,7 +255,9 @@ def error404(request, exception):
 
 def error500(request):
 
-    return render(request, 'error_pages/error500.html')
+    return HttpResponse('ERRO 500')
+
+    # return render(request, 'error_pages/error500.html')
 
 def header(request):
     return render(request, 'test_pages/herder.html')

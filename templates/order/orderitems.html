@@ -4,9 +4,8 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static "css/tableexport.css" %}">
 <script type="text/javascript" src="{% static 'jquery/jquery.min.js' %}"></script>
-<script src="{% static "js/xlsx.min.js" %}"></script>
+<link rel="stylesheet" href="{% static "css/tableexport.css" %}">
 
 <script src="{% static "js/FileSaver.min.js" %}"></script>
 <script src="{% static "js/tableexport.js" %}"></script>
@@ -98,7 +97,7 @@ headers: true,
 footers: true, 
 
 // Filetype(s) for the export
-formats: ["xls", "csv", "txt","xlsx"],           
+formats: ["xls", "csv", "txt",],           
 
 // Filename for the downloaded file
 fileName: "id",                         

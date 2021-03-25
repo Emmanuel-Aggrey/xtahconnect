@@ -30,7 +30,9 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 
-ALLOWED_HOSTS = ['157.230.15.214','xtayconnectafrica.com','www.xtayconnectafrica.com','127.0.0.1']
+ALLOWED_HOSTS = config("ALLOWED_HOSTS").split()
+
+print("ALLOWED_HOSTS",ALLOWED_HOSTS)
 
 AUTHENTICATION_BACKENDS = (
     'ecommerce.backends.CommonAuthBackend',
@@ -330,3 +332,7 @@ CRONJOBS = [
 
 
 TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
+
+
+
+

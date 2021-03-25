@@ -90,13 +90,13 @@ def checkout(request):
             # send the mail
         try:
 
-            send_mail(subject_staff, message_staff, email_from,recepient_staff, fail_silently=False)
+            # send_mail(subject_staff, message_staff, email_from,recepient_staff, fail_silently=False)
 
                 
             # customers
-            send_sendGredemail(customer_email,customer_subject,html_content)
+            # send_sendGredemail(customer_email,customer_subject,html_content)
 
-            cart.clear()
+            # cart.clear()
             # request.session['order_number'] ="order_number"
             # print('order_number in session ',request.session['order_number'])
 
@@ -115,7 +115,7 @@ def checkout(request):
                 # print("make_payments",make_payments)
                 # print(make_payment_)
                     
-                # return redirect('https://www.google.com/')
+                return HttpResponse()#redirect(make_payments) #redirect('https://www.google.com/')
         except:
             pass
                     
@@ -151,8 +151,8 @@ def make_payment_(request,email,amount):
 
     # make_payment_url(request)
 
-    print("payment_url", payment_url)
-    print("values",values)
+    # print("payment_url", payment_url)
+    # print("values",values)
 
     # values = {
     #     "transaction_id":transaction_id,
@@ -161,14 +161,14 @@ def make_payment_(request,email,amount):
     #     "order_number":order_number
 
     # }
-   
-    return redirect(payment_url)
+ 
+    return values
 
 def make_payment_url(request):
-    
+    # v = make_payment_
 
     # print("values",values)
-    return JsonResponse({"payment_url":values})
+    return JsonResponse({"payment_url":values[-1]})
 
 
     # return JsonResponse({"make_payments":make_payments['payment_url']})
