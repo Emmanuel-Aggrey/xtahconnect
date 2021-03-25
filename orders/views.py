@@ -90,13 +90,13 @@ def checkout(request):
             # send the mail
         try:
 
-            send_mail(subject_staff, message_staff, email_from,recepient_staff, fail_silently=False)
+            # send_mail(subject_staff, message_staff, email_from,recepient_staff, fail_silently=False)
 
                 
             # customers
-            send_sendGredemail(customer_email,customer_subject,html_content)
+            # send_sendGredemail(customer_email,customer_subject,html_content)
 
-            cart.clear()
+            # cart.clear()
             # request.session['order_number'] ="order_number"
             # print('order_number in session ',request.session['order_number'])
 

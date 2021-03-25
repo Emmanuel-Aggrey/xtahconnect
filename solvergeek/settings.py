@@ -32,8 +32,6 @@ DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS").split()
 
-print("ALLOWED_HOSTS",ALLOWED_HOSTS)
-
 AUTHENTICATION_BACKENDS = (
     'ecommerce.backends.CommonAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
