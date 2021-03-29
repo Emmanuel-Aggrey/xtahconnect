@@ -218,15 +218,17 @@ function make_payments() {
     $.ajax({
         url: '/make_payment_url/',
         type: 'GET',
-        success: function (res) {
 
-            // console.log('Zero position ',res.payment_url[0])
-
-            // console.log('make_payment_url ',res.payment_url)
+        beforeSend: function(){
             toastSuccess('order(s) Processed successfully Redirecting')
 
+        },
+        success: function (res) {
+
+          
             $(location).attr('href',res.payment_url)
             // window.location=res.payment_url
+            
 
         
         },
