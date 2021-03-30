@@ -147,7 +147,7 @@ def make_payment_(request,email,amount):
     order_number_.clear() #empt the order number not safe to keep
    
   
-    values.append(payment_url)
+    # values.append(payment_url)
 
     # make_payment_url(request)
 
@@ -162,13 +162,13 @@ def make_payment_(request,email,amount):
 
     # }
  
-    return values
+    return values.append(payment_url)
 
 def make_payment_url(request):
     # v = make_payment_
 
     # print("values",values)
-    return JsonResponse({"payment_url":values[-1]})
+    return JsonResponse({"payment_url":values.pop()})
 
 
     # return JsonResponse({"make_payments":make_payments['payment_url']})

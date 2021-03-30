@@ -225,9 +225,9 @@ function make_payments() {
         },
         success: function (res) {
 
-          
-            $(location).attr('href',res.payment_url)
-            // window.location=res.payment_url
+            console.log(res.payment_url)
+            // $(location).attr('href',res.payment_url)
+            window.location=res.payment_url
             
 
         
