@@ -55,7 +55,7 @@
 
                 <!-- Slider Area End Here -->
                 <!-- Begin Li Banner Area -->
-                <div class="col-lg-4 col-md-4 text-center pt-xs-3 bannerpc">
+                <div class="col-lg-4 col-md-4 text-center  bannerpc">
                     <h4>Latest Package</h4>
                     <div class="li-banner">
                         {% for product1 in latest_items|slice:'0:1'  %}
@@ -100,7 +100,7 @@
             {% for product in products|slice:":4" %}
             <div class="col-6 col-lg-3">
 
-                <div class="product-default product-default-home">
+                <div class="product-default product-default-home product-widget">
                     <figure>
 
                         <a href="{{product.get_absolute_url}}">
