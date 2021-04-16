@@ -35,123 +35,143 @@
 {% endif %} -->
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <h4 class="page-headers">Checkout {{user_last_info.name}}</h4>
-            <form method="post" id="personForm" data-cities-url="{% url 'orders:ajax_load_cities' %}" novalidate>
+    <div class="row justify-content-center">
+        <div class="col-md-9 col-lg-8">
+          
+
+            <form method="post" id="checkoutForm" data-cities-url="{% url 'orders:ajax_load_cities' %}" novalidate>
                 {% csrf_token %}
-                {{ form|crispy}}<br>
-                {% if cart.get_total_price < 1 %} <p class="text-danger  btn" style="color: #CE7F11;">your cart is empty
-                    </p>
-                    <a class="btn mx-6" style="background-color:#4654A3;color: white;" href="/">Continue Shopping</a>
-
-                    {% else %}
-                    <input  id="save_checkout" type="submit" class="btn btn-primary mb-4" value="Submit order"
-                        style="background-color: #4654A3;width: 84%">
-                            <!-- <input type="text" name="demo" id="demo"> -->
-
-       
-            <!-- {{ form.media }} -->
-           
-        </div>
-
-
               
+<div class="container">
+    <div class="row justify-content- center">
 
-
-        <div class="col-md-6">
-            <div class="shiping-methods card">
-                <div class="section-title">
-                    <h4 class="title">Payment  Methods</h4>
-                  {{request.session.payment_method}}
-                </div>
-
-                <div class="form-group">
-                    <div class="input-checkbox">
-                        
-                            <input style="height: 20px;" type="radio" value="Online" name="payment_method" id="payment1" class="radio"> 
-                        <label for="shipping-1 mt-4" style="position:static">Online Payment</label>
-                        <div class="caption" style="margin-left: 10% !important;">
-                            you have selected to pay through online
-                        </div>
-                        <hr>
-                    </div>
-                    <div class="input-checkbox">
-                        
-                        <input style="height: 20px;" type="radio" value="On Delivery" name="payment_method" id="payment2" class="radio">
-                        <label for="shipping-2" style="position:static">Pay On Delivery</label>
-                        <div class="caption" style="margin-left: 10% !important;">
-                            you have selected to pay on delivery
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="input-checkbox">
-                        
-                        <input style="height: 20px;" type="radio" value="Other method" name="payment_method" id="payment3" class="radio"> 
-                    <label for="shipping-1 mt-4" style="top:20px !important;">Other Option</label>
-                    <div class="caption" style="margin-left: 10% !important;">
-                        
-                        <input type="text" name="order" id="id_order" placeholder="please Specify payment method" style="height: 40px;width:500px">
-                    </div>
-                    
-                </div>
-                  
-                </div>
+      
+        <div class="col" id="checkout">
+            <div class="section-title">
+                <h4 class="title">Checkout</h4>
                
             </div>
+            
+           <div class="card border-primary" style="background-color: whitesmoke;">
+             <div class="card-body bg-muted">
+              
+               
+               <h4> PERSON INFORMATION</h4>
+                <div class="form-row">
+                   
+                  <div class="form-group col-md-4 mb-0">
+                    
+                    {{ form.name|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-4 mb-0">
+                    {{ form.email|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-4 mb-0">
+                    {{ form.phone_number|as_crispy_field }}
+                  </div>
+                </div>
+               
+                    <h4>ADDRESS / LOCATION</h4> </h4>
+                <div class="form-row">
+                    <div class="form-group col-md-4 mb-0">
+                        {{ form.region|as_crispy_field }}
+                      </div>
+                    <div class="form-group col-md-4 mb-0">
+                        {{ form.city|as_crispy_field }}
+                      </div>
+                    
+                  
+                  </div>
 
-            <div class="col-md-6">
-                <div class="page-headers">
-                    <b>Your Order review</b> <br>
+
+                  <div class="form-row">
+                    
+                      <div class="form-group col-md-6 mb-0">
+                        {{ form.address|as_crispy_field }}
+                      </div>
+                  
+                  </div>
+
+                  {% if cart.get_total_price < 1 %} <p class="text-danger  btn" style="color: 3D589E;">your cart is empty
+                </p>
+                <a class="btn mx-6" style="background-color:#3D589E;color: white;" href="/">Continue Shopping</a>
+
+                {% else %}
+                <input  id="save_checkout" type="submit" class="btn btn-primary mb-4" value="Submit order"
+                    style="background-color: #3D589E;color: white">
+                    
+
+   
+       
+     
+    {% endif %}                  
+              </form>
+             </div>
+           </div>
+          </div>
+        </div>
+    </div>
+</div>
+    </form>
+    
+    <div class="col-md-9" id="payment">
+        
+<div class="card">
+    <div class="card-body">
+     
+            <div class="section-title">
+                <h4 class="title">Payment Method</h4>   
+            </div>
+            <!-- <p class="text-muted">please select a payment method</p> -->
+
+           <form action="#" method="post" id="paymentForm">
+            {% csrf_token %}
+            <div class="form-row justify-content-center">
+             
+                <div class="form-group col-md-4  col-sm-4">
+             
+                <div class="text-center" >
+                    <label class="btn text-center" id="payment_method1" style="background-color:#FA7A62;color: white">On line</label>
+                </div> 
+
+            </div>
+            <div class="form-group col-md-4 col-sm-4">
+
+                <div class="text-center" >
+                    <label class="btn text-center" id="payment_method2"  style="background-color: #FA7A62;color: white;">On Delivery</label>
+                </div>
+                
+            </div>
+
+        </div> <hr>
+        <p class="text-center" id="please_wait"></p>
+        <input  type="submit" class="btn" value="Submit order" id="Submit_order" style="background-color:#3D589E;color: white">
+           </form>
+    </div>
+</div>
+    </div>
+
+            <div class="col-md-3 my-4">
+                <div class="section-title">
+                    <h4 class="title">Order(s) Review</h4>
+                   
                 </div>
                 <ul class="list-group">
                     {% for item in cart %}
                     <li class="list-group-item">
-                        {{ item.quantity }} {{ item.product.name }}
+                        {{ item.quantity|apnumber }}({{item.quantity }}) {{ item.product.name }}
                         <span id="total_price"> Total GH₵: {{ item.total_price|intcomma }}</span>
                     </li>
-                    {% endfor %}
 
-                    <li class="list-group-item active" style="background-color: #FA7A62;">Total Cost: GH₵: {{cart.get_total_price|intcomma }}</li>
+                    {% empty %}
+                    <p>empty place some orders <a href="/">here</a> </p>
+                    {% endfor %}
+                    <li class="list-group-item active" style="background-color:#3D589E;color: white">Total Cost: GH₵: {{cart.get_total_price|intcomma }}</li>
                 </ul>
             </div>
-            {% endif %}
-            
-            <!-- <div class="payments-methods">
-                <div class="section-title">
-                    <h4 class="title">Payments Methods</h4>
-                </div>
-                <div class="input-checkbox">
-                    <input type="radio" name="payments" id="payments-1" checked>
-                    <label for="payments-1">Online payment</label>
-                    <div class="caption">
-
-                      
-                    </div>
-                </div>
-                <div class="input-checkbox">
-                    <input type="radio" name="payments" id="payments-2">
-                    <label for="payments-2">Try as much to describe the pickup location</label>
-                    <div class="caption">
-
-                    </div>
-
-
-                </div>
-                <div class="input-checkbox">
-                    <input type="radio" name="payments" id="payments-3">
-                    <label for="payments-3">Pay On Delivery</label>
-                    <div class="caption">
-                        <p>
-                            contact customer care
-                        <p>
-                    </div>
-                </div>
-            </div> -->
-            
-        </div>
+          
+        
    
-    </form>
     </div>
 </div>
 
@@ -160,31 +180,25 @@
 
 
 <style>
-    /* big screen */
-    @media screen and (min-width: 600px) {
-        #id_address {
-            height: 5em !important;
-            width: 40em;
-        }
-    }
-
-    /* mobile */
-    @media screen and (max-width: 600px) {
-        #id_address {
-            height: 5em !important;
-            width: 26em !important;
-        }
-    }
-
-    input{
-        width: 50px;
-    }
-  
-  
+  @media screen and (max-width: 600px){
+      #id_address{
+        max-width :100%;
+      
+      }
+  }
 </style>
+
+
+
 
 {% if user.is_authenticated %}
 <script>
+
+
+
+
+
+
 
     document.getElementById('id_name').value = "{{request.user.get_full_name}}"
     document.getElementById('id_email').value = "{{request.user.email}}"

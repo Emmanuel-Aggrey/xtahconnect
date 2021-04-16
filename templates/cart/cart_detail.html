@@ -17,7 +17,9 @@ Your Shopping Cart
     <div class="col">
         <div class="order-summary clearfix">
            
-                <h3 class="title">Cart Review</h3>
+                <h3 class="title section-title">Cart Review</h3>
+
+                
             
             <table class="shopping-cart-tablve table">
                 <thead>
@@ -37,7 +39,7 @@ Your Shopping Cart
                                 
                                 <img class="img-responsive" src="{{ product.image.url }}" alt="{{ product.image.url }}"style="height:100px; width:100px">
                             </a>
-                            <a href="{{product.get_absolute_url}}" style="color: #4654A3;">{{product.name|truncatewords:20}}</a>
+                            <a href="{{product.get_absolute_url}}" style="color:#FA7A62;">{{product.name|truncatewords:20}}</a>
 
                         </td>
 
@@ -54,12 +56,12 @@ Your Shopping Cart
                                 {% csrf_token %}
                                 <p> {{ item.update_quantity_form.quantity }}</p>
                                 <p> {{ item.update_quantity_form.update }}</p>
-                                <br>
+                                
                                 <input type="submit" value="Update" class="btn">
                             </form>
                         </td>
                         <td class="">
-                            <a class="main-btn icon-btn fa fa-close" href="{% url "cart:cart_remove" product.id %}">❌</a>
+                            <a class="main-btn text-danger" href="{% url "cart:cart_remove" product.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
                     </tr>
 
@@ -101,15 +103,17 @@ Your Shopping Cart
     </div>
     
 </div>
-<ul>
-    <li>
-        <a class="btn primary-btn my-4" href="/">Continue Shopping</a>
+<ul class="ul" style="background-color: #3D589E; color: white">
+    
+    </li class="li">
+        <a class="btn btn-outline-default" style="color: white" href="/">Continue Shopping</a>
        
     </li>
-    <li>
+    </li>
+    <li class="li">
 
         {% if cart.get_total_price > 1 %}
-        <a  href="{% url 'orders:checkout' %}" class="btn primary-btn my-4">Checkout</a>
+        <a style="color: white" href="{% url 'orders:checkout' %}" class="btn btn-outline-default">Checkout</a>
 
         {% endif %}
     </li>
@@ -118,11 +122,11 @@ Your Shopping Cart
 
 <style>
   
-    li{
+    .li{
         display: inline;
     
     }
-    ul{
+    .ul{
         text-align: center;
         background-color: #4654A3;
     }

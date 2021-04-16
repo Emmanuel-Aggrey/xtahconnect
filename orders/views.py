@@ -45,7 +45,7 @@ def checkout(request):
         customer_region = request.POST.get('region')
         customer_city = request.POST.get('city')
         user = request.user
-        order_payment = request.POST['order']
+        # order_payment = request.POST['order']
         payment_method = request.POST.get('payment_method')
         get_total_price = cart.get_total_price()
 
@@ -54,7 +54,6 @@ def checkout(request):
 
         order_number = orders.order_number
         customer_city =orders.city
-        order_number_.append(order_number)
         
 
 
@@ -89,98 +88,117 @@ def checkout(request):
                 
             # send the mail
         try:
+            pass
 
+            # send_mail(subject_staff, message_staff, email_from,recepient_staff, fail_silently=False)
+
+                
+            # customers
+            # send_sendGredemail(customer_email,customer_subject,html_content)
+
+            # cart.clear()           
+        except:
+            pass
+
+        return JsonResponse({"order_number":order_number})
+                    
+          
+             
+        form = OrderCreateForm()
+    return render(request, 'order/checkoout.html', {'form': form})
+
+  
+
+
+def checkout_payment(request,order_number):
+    
+    if request.method == 'POST':
+        payment_method = request.POST.get('payment_method')
+        cart = Cart(request)
+        order = Order.objects.get(user=request.user,order_number=order_number)
+
+
+        customer_name = order.name
+        customer_email = order.email
+        customer_address = order.address
+        customer_phone_number = order.phone_number
+        customer_region = order.region
+        customer_city = order.city
+        order_number = order.order_number
+    
+        amount = cart.get_total_price()
+      
+
+        # print(payment_method)
+        order.payment_method =payment_method
+        order.save()
+
+
+
+       
+
+        payment_url_= ''
+        if payment_method == 'Online Payment':
+            
+            make_payment_ = make_payment(customer_email,amount)
+           
+
+            payment_url_ =make_payment_.get('payment_url')
+            # del request.session['payment_url']
+            request.session['payment_url'] = payment_url_
+            #token =make_payment_.get('token')
+            transaction_id = make_payment_.get('transaction_id')
+            order.transaction_id = transaction_id
+            order.save()
+       
+
+                # get order email receivers
+        order_email_recepients = Staff_Email.objects.values_list(
+            'email', flat=True).filter(receive_order=True)
+
+                # send mail to intended staff
+        subject_staff = 'Hi'
+        message_staff = f'Hello {customer_name} with contact number {customer_phone_number} from {customer_address}  (Google Map link) and close to {customer_city}, having order number {order_number}. \
+        \n \t \n He prefers to pay  {payment_method}. Please confirm, follow up and arrange dispatch. Thank You'
+
+        recepient_staff = order_email_recepients
+        email_from = 'Orders@xtayconnectafrica.com'
+    
+
+            # send mail to customers
+        customer_subject ='Order From Xtayconnect Africa'
+        customer_message = f'<strong>Dear Cherished Customer, <br> <br> Your Order has been placed successfully. We will call you soon! <br> <br> Please keep your Order Number <b style="font-size:bold">{order_number}</b> safe and thanks for shopping with us! <br> <br>  To view Your order(s), please click here <a href="https://xtayconnectafrica.com/my_orders/" target="_blank" rel="noopener noreferrer">My Order(s)</a></strong> <br>'
+        html_content =customer_message
+
+
+
+        try:
             send_mail(subject_staff, message_staff, email_from,recepient_staff, fail_silently=False)
 
                 
             # customers
             send_sendGredemail(customer_email,customer_subject,html_content)
 
-            cart.clear()
-            # request.session['order_number'] ="order_number"
-            # print('order_number in session ',request.session['order_number'])
-
-            
-            if payment_method == 'Other method':
-                payment_method = payment_method,' ',order_payment
-                # print(order_payment,payment_method)
-            # print("order",order_payment)
-            order=Order.objects.filter(order_number=order_number).update(payment_method=payment_method)
-
-            if payment_method=='Online':
-            
-                # print(customer_email,get_total_price)
-                make_payments =make_payment_(request,customer_email,get_total_price)
-
-                # print("make_payments",make_payments)
-                # print(make_payment_)
-                    
-                return HttpResponse()#redirect(make_payments) #redirect('https://www.google.com/')
+                      
         except:
             pass
-                    
-            # staff
-        # if payment_method=='Online':
-        #         # print(customer_email,get_total_price)
-        # make_payments =make_payment_(request,customer_email,get_total_price)
-        # print("payment_method =",payment_method)
+        
+        cart.clear() 
 
-             
-        form = OrderCreateForm()
-    return render(request, 'order/checkoout.html', {'form': form})
 
-  
-values = [] #empty list to get thetellerurl
-def make_payment_(request,email,amount):
+        payment_url ={
+        "payment_url":request.session['payment_url'],
+         }
     
-    make_payments = make_payment(email,amount)
-    order=Order.objects.filter(order_number__in=order_number_).update(transaction_id= make_payments.get('transaction_id'))
+        if payment_method == 'Online Payment':
+            return JsonResponse(payment_url,safe=False)
+        else: 
+            return HttpResponse()
 
-   
-    # print('order number is ',order)
-    # print('i am callable make_payments',make_payments['payment_url'])
-    payment_url =make_payments.get('payment_url')
-    token =make_payments.get('token')
-    transaction_id = make_payments.get('transaction_id')
-
-    # request.session['order_number']=order_number_
-    order_number_.clear() #empt the order number not safe to keep
-   
-  
-    # values.append(payment_url)
-
-    # make_payment_url(request)
-
-    # print("payment_url", payment_url)
-    # print("values",values)
-
-    # values = {
-    #     "transaction_id":transaction_id,
-    #     "token":token,
-    #     "payment_url":payment_url,
-    #     "order_number":order_number
-
-    # }
- 
-    return values.append(payment_url)
-
-def make_payment_url(request):
-    # v = make_payment_
-
-    # print("values",values)
-    return JsonResponse({"payment_url":values.pop()})
-
-
-    # return JsonResponse({"make_payments":make_payments['payment_url']})
 
 
 def checkout_success(request):
-    # request.session['order_number'] =order_number_
-    # print(request.session['order_number'])
-    
-    # order_number= []
-    # order_number.append(order_number_)
-    # order_number_.clear()
+  
     return render(request, 'order/checkoout_success.html')
 
 

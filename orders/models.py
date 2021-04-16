@@ -119,8 +119,8 @@ def create_orders_number(sender,instance,created,*args, **kwargs):
     # now = datetime.datetime.now().strftime("%Y%m%d%H%M")
     if not instance.order_number:
         
-        order_id = hashids.encrypt(instance.id)
-        ordernummber= str(random_with_N_digits(6))+''+str(order_id)
+        # order_id = hashids.encrypt(instance.id)
+        ordernummber= str(random_with_N_digits(8))#+''+str(order_id)
         instance.order_number = ordernummber
         instance.save()
 

@@ -1,7 +1,7 @@
 $("#id_city").addClass('id_city')
 
 $("#id_region").change(function () {
-    var url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
+    var url = $("#checkoutForm").attr("data-cities-url");  // get the url of the `load_cities` view
     var regionId = $(this).val();  // get the selected region ID from the HTML input
 
     $.ajax({                       // initialize an AJAX request
@@ -17,7 +17,7 @@ $("#id_region").change(function () {
 
 });
 $("#id_address").width("450px");
-$("#id_address").height("10px");
+$("#id_address").height("5px");
 
 
 
@@ -25,39 +25,20 @@ $("#id_address").height("10px");
 
 
 // save order
-
-$('#personForm').submit(function (e) {
+var order_number
+$('#checkoutForm').submit(function (e) {
    
-        
-
   
     if ($.trim($("#id_name").val()) === "" || $.trim($("#id_address").val()) === "" || $.trim($("#id_phone_number").val()) === "" || $.trim($("#id_region").val()) === "" || $.trim($("#id_city").val()) === "" || $.trim($("#id_email").val()) === "" ) {
         // alert('all fields are required');
         toastError('all fields are required')
-        moveUp()
+        // moveUp()
 
         return false;
         
     }
-    else if(document.getElementById('payment1').checked===false && document.getElementById('payment2').checked===false && document.getElementById('payment3').checked===false ) {
-        moveUp()
-        // alert('please select a payment method');
-        
-        toastError('please select a payment method')
 
-        return false;
-    }
-
-    else if(document.getElementById('payment3').checked===true && document.getElementById('id_order').value==='' && $("#save_checkout").click()) {
-       
-        // alert('please select a payment method');
-        
-        $("#other").css( "border-color", "red" );
-        
-        toastError('please specify your payment option')
-        moveUp()
-        return false;
-    }
+    
 
 
    
@@ -76,8 +57,7 @@ $('#personForm').submit(function (e) {
                     address: $('#id_address').val(),
                     region: $('#id_region').val(),
                     city: $('#id_city').val(),
-                    payment_method:$('input[name="payment_method"]:checked').val(),
-                    order: $('#id_order').val(),
+                    // order: $('#id_order').val(),
                     
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
 
@@ -86,39 +66,26 @@ $('#personForm').submit(function (e) {
                     console.log('sending data')
                     // getLocation()
                     // $("#save_checkout").text("Submiting Your Orders").addClass('icon-spinner')
-                    toastSuccess('Submiting Your Order(s)')
+                    // toastSuccess('Submiting Your Order(s)')
                     // alert($('input[name="payment_method"]:checked').val(),)
                     // make_payments()
-                   
+                 
                 },
 
-                success: function () {
-                    // $("#save_checkout").text("Submiting Your Orders").addClass('icon-check')
+                success: function (response) {
 
-                  
-                    console.log('saved')
-                    // var url = '/checkout_success/'
-                    // $(location).attr('href', url)
-                    payment_method = $('input[name="payment_method"]:checked').val()
-
-                    if(payment_method==='On Delivery' || payment_method==='Other method'){
-                        var url = '/checkout_success/'
-                    $(location).attr('href', url)
-                    }
-                    
-
-                    else if(payment_method==='Online'){
-                        make_payments()
-                        // window.location=''
-                    }
-                    // window.location.href = '/url-path'+data.url; 
-                 
-                   
+                //   console.log('done',response.order_number)
+                  order_number = response.order_number
+                  moveUp()
+                //    $("#checkoutForm").fadeOut('slow')
+                $("#checkoutForm").remove()
+                   $("#payment").fadeIn('slow')
+                //    moveDown()
                   
                 },
                 error: function () {
                     // alert('error no saved try again')
-                    toastError('error not saved try again')
+                    // toastError('error not saved try again')
 
                 }
 
@@ -128,24 +95,74 @@ $('#personForm').submit(function (e) {
 });
 
 
-$(".radio").click(function() {
+// payment options
+$("#payment").fadeOut()
+$("#Submit_order").fadeOut()
+
+$("#payment_method1").click(function(){
+    $("#payment_method1").addClass('fa fa-check')
+    $("#payment_method2").removeClass('fa fa-check')
+
+    // alert($("#payment_method1").text())
+    $("#Submit_order").val('Online Payment').fadeIn().addClass('pulse');
+
+})
+
+
+$("#payment_method2").click(function(){
+    $("#payment_method2").addClass('fa fa-check')
+    $("#payment_method1").removeClass('fa fa-check')
+
+    // alert($("#payment_method2").text())
+    $("#Submit_order").val('Pay On Delivery').fadeIn().addClass('pulse');
+
+
+})
   
-if(document.getElementById('payment1').checked===true || document.getElementById('payment2').checked===true){
 
-    moveDown()
-    // alert($('input[name="payment_method"]:checked').val())
-}
+$('#paymentForm').on('submit', function (e) {
+    e.preventDefault();
+    payment_method= $('#Submit_order').val(),
+    $.ajax({
+        url: `/checkout_payment/${order_number}/`,
+        type: 'POST',
+        data: {
 
-  });
-  
+            payment_method: payment_method,
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
 
-// $('#personForm').on('submit', function (e) {
+        },
 
-//     e.preventDefault();
+        beforeSend: function(){
+            // toastSuccess('order(s) Processed successfully Redirecting')
+            toastSuccess('order(s) Processed successfully Redirecting')
+            $("#please_wait").text('Please Wait processing ...').addClass('pulse')
 
+        },
+        success: function (res) {
 
+            if (payment_method==='Pay On Delivery') {
+                // $(location).attr('href','/checkout_success/')
+                var url = '/checkout_success/'
+                $(location).attr('href', url)
+            }
 
-// })
+            else if (payment_method==='Online Payment')
+            // console.log(res)
+          
+            $(location).attr('href',res.payment_url)
+            // window.location=res.payment_url
+            
+        },
+        error: function () {
+           console.log('error')
+           toastError('was not abale to process payment yet order processed successfully')
+           window.location='/checkout_fail/'
+
+        }
+    })
+
+})
 
 
 // getting geolocation
@@ -211,34 +228,6 @@ function showError(error) {
 
 
 
-
-function make_payments() {
-
-   
-    $.ajax({
-        url: '/make_payment_url/',
-        type: 'GET',
-
-        beforeSend: function(){
-            toastSuccess('order(s) Processed successfully Redirecting')
-
-        },
-        success: function (res) {
-
-            console.log(res.payment_url)
-            // $(location).attr('href',res.payment_url)
-            window.location=res.payment_url
-            
-
-        
-        },
-        error: function () {
-           console.log('error')
-           toastError('was not abale to process payment yet order processed successfully')
-
-        }
-    })
-}
 
 
 
