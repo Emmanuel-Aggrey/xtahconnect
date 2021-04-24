@@ -33,9 +33,6 @@ urlpatterns = [
     path('terms-and-conditions/', TemplateView.as_view(template_name='terms_and_conditions.html'), name='terms_and_conditions'),
     path('return-policy/', TemplateView.as_view(template_name='return_policy.html'), name='return_policy'),
 
-    # path('',TemplateView.as_view(template_name=''),''),
-
-    # path('chaining/', include('smart_selects.urls')),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
