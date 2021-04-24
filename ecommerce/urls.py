@@ -21,4 +21,8 @@ urlpatterns=[
 
     path('header/',views.header),
     path('resent_view_products/',views.resent_view_products,name='resent_view_products'),
+
+
+    path('terms_and_conditions',views.terms_and_conditions,name='terms_and_conditions'),
+    path('return_policy',views.return_policy,name='return_policy'),
 ]

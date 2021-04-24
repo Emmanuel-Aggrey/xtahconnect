@@ -261,3 +261,14 @@ def error500(request):
 
 def header(request):
     return render(request, 'test_pages/herder.html')
+
+
+
+def terms_and_conditions(request):
+
+    return render(request, 'terms_and_conditions.html')
+
+
+def return_policy(request):
+    
+    return render(request, 'return_policy.html')

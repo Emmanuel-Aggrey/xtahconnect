@@ -30,8 +30,8 @@ urlpatterns = [
     path('',include('reports.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('tracking/', include('tracking.urls')),
-    path('terms-and-conditions/', TemplateView.as_view(template_name='terms_and_conditions.html'), name='terms_and_conditions'),
-    path('return-policy/', TemplateView.as_view(template_name='return_policy.html'), name='return_policy'),
+    # path('terms_and_conditions/', TemplateView.as_view(template_name='terms_and_conditions.html'), name='terms_and_conditions'),
+    # path('return_policy/', TemplateView.as_view(template_name='return_policy.html'), name='return_policy'),
 
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
