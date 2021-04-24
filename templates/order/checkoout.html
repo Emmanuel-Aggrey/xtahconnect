@@ -97,7 +97,9 @@
                 <a class="btn mx-6" style="background-color:#3D589E;color: white;" href="/">Continue Shopping</a>
 
                 {% else %}
-                <input  id="save_checkout" type="submit" class="btn btn-primary mb-4" value="Submit order"
+                
+                <p class="section-title text-capitalize">By clicking on Order Now, you have agree to our terms and conditions<a    style="color:#4654A3;" class='mx-4' href="{% url 'terms_and_conditions' %}">here</a></p>
+                <input  id="save_checkout" type="submit" class="btn btn-primary mb-4" value="Order Now"
                     style="background-color: #3D589E;color: white">
                     
 

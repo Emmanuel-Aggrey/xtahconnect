@@ -18,6 +18,7 @@ from django.urls import path,include
 from django.conf.urls import  handler404,handler500
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
 urlpatterns = [
     # path('ecommerce/',include('ecommerce.urls')),
@@ -29,6 +30,10 @@ urlpatterns = [
     path('',include('reports.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('tracking/', include('tracking.urls')),
+    path('terms-and-conditions/', TemplateView.as_view(template_name='terms_and_conditions.html'), name='terms_and_conditions'),
+    path('return-policy/', TemplateView.as_view(template_name='return_policy.html'), name='return_policy'),
+
+    # path('',TemplateView.as_view(template_name=''),''),
 
     # path('chaining/', include('smart_selects.urls')),
 
