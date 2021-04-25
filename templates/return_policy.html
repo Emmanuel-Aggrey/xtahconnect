@@ -6,15 +6,11 @@
 <script src="https://use.fontawesome.com/30c21ac8e0.js"></script>
 
 
-<div class="container">
+<div class="container" style="border: 1px solid #4654A3;">
 
     <div class="row">
         <div class="col-sm-12">
-            <ul class="nav nav-tabs">
-                <li><a style="color:#3F589E" data-toggle="tab" href="#tab1" aria-selected="true" class="active">Return
-                        Policy</a></li>
-
-            </ul>
+            <h4 class="my-4">Return Policy</h4>
         </div>
     </div><br>
     <h4> Returns & Refunds for xtayconnectafrica.com</h4>
@@ -25,7 +21,7 @@
             <div class="tab-content">
                 <div id="tab1" class="tab-pane fade show active">
                     <div class="accordion">
-                        <div class="card">
+                        <div class="card"  style="background-color:whitesmoke">
                             <div class="card-header" id="infraOne">
                                 <a href="#collapseOne" data-toggle="collapse" data-target="#collapseOne"
                                     aria-expanded="false" aria-controls="collapseOne">
@@ -348,7 +344,9 @@
                                     10 days to receive your refund if the return meets our conditions for return.
                                 </div>
                             </div>
+
                         </div><!-- card-->
+                        <p class="section-title text-capitalize">you can read about  our terms and conditions<a    style="color:#4654A3;" class='mx-4' href="{% url 'termsandconditions' %}">here</a></p>
 
 
                     </div><!-- accordion-->
@@ -379,18 +377,9 @@
 
     }
 
-    ul.nav.nav-tabs>li a:hover,
-    ul.nav.nav-tabs>li:hover {
-        background: #FB282F;
-        color: #fff !important;
-        text-decoration: none !important;
-    }
 
-    ul.nav.nav-tabs>li a.active {
-        background: #282425;
-        color: #fff !important;
-        text-decoration: none !important;
-    }
+
+  
 
     .card-header {
         background-color: rgb(245, 245, 245, 0.3) !important;
