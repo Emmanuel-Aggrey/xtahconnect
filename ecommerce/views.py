@@ -246,16 +246,16 @@ def producCreatetView(request,id):
 def aboutpage(request):
     return render(request,'about.html')
 
-def error404(request, exception):
-    context = {
-        'date': 'IT LOOKS LIKE YOU\'R MISSING',
-    }
-    return render(request, 'error_pages/error404.html', context)
+# def error404(request, exception):
+#     # context = {
+#     #     'date': 'IT LOOKS LIKE YOU\'R MISSING',
+#     # }
+#     return render(request, '404.html')
 
 
-def error500(request):
+# def error500(request):
 
-    return HttpResponse('ERRO 500')
+#     return render(request, '505.html')
 
     # return render(request, 'error_pages/error500.html')
 
