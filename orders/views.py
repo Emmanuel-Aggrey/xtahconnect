@@ -75,7 +75,7 @@ def checkout(request):
                 # send mail to intended staff
         subject_staff = 'Hi'
         message_staff = f'Hello {customer_name} with contact number {customer_phone_number} from {customer_address}  (Google Map link) and close to {customer_city}, having order number {order_number}. \
-        \n \t \n He prefers to pay {payment_method}. Please confirm, follow up and arrange dispatch. Thank You'
+        \n \t \n He/She prefers to pay {payment_method}. Please confirm, follow up and arrange dispatch. Thank You'
 
         recepient_staff = order_email_recepients
         email_from = 'Orders@xtayconnectafrica.com'
@@ -159,7 +159,7 @@ def checkout_payment(request,order_number):
                 # send mail to intended staff
         subject_staff = 'Hi'
         message_staff = f'Hello {customer_name} with contact number {customer_phone_number} from {customer_address}  (Google Map link) and close to {customer_city}, having order number {order_number}. \
-        \n \t \n He prefers to pay  {payment_method}. Please confirm, follow up and arrange dispatch. Thank You'
+        \n \t \n He/She prefers to pay  {payment_method}. Please confirm, follow up and arrange dispatch. Thank You'
 
         recepient_staff = order_email_recepients
         email_from = 'Orders@xtayconnectafrica.com'
