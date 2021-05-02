@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'sendgrid',
     'mapbox_location_field',
     'location_field.apps.DefaultConfig',
-    'tracking',
+    # 'tracking',
 
     # 'smart_selects',
     # paymant
@@ -329,7 +329,6 @@ CRONJOBS = [
 # orders/cron_jobs.py
 
 
-TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
 
 
 

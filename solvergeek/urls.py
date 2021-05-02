@@ -29,7 +29,6 @@ urlpatterns = [
     path('', include('cart.urls')),
     path('', include('reports.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('tracking/', include('tracking.urls')),
     path('terms_and_conditions/', TemplateView.as_view(
         template_name='terms_and_conditions.html'), name='termsandconditions'),
     path('return_policy/', TemplateView.as_view(template_name='return_policy.html'),
