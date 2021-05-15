@@ -187,7 +187,7 @@ def checkout_payment(request,order_number):
 
 
         payment_url ={
-        "payment_url":request.session['payment_url'],
+        "payment_url":request.session.get("payment_url")
          }
     
         if payment_method == 'Online Payment':
