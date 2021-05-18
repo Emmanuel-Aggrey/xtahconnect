@@ -89,7 +89,7 @@ class Product(Base_Model):
 
 
     # promational products
-    text = models.CharField(max_length=30,blank=True, null=True)
+    text = models.TextField()
     discount_price = models.PositiveIntegerField(blank=True,null=True)
     start_date = models.DateTimeField(blank=True, null=True,default=timezone.now)
     end_date = models.DateTimeField(blank=True, null=True,default=timezone.now)
