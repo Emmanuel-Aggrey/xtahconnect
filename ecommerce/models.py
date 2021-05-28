@@ -67,7 +67,7 @@ class Product(Base_Model):
     quantity = models.IntegerField(default=1,blank=True)
     image = models.ImageField(upload_to='images/%Y/%m/%d/')
     price = models.DecimalField(decimal_places=2, max_digits=20)
-    discount = models.PositiveIntegerField('discount price',null=True,blank=True,default=0)
+    discount = models.DecimalField('discount price',decimal_places=2, max_digits=20)
     description = RichTextField(blank=True, null=True)
     is_available = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, editable=False, null=True, blank=True,max_length=1000)
@@ -90,10 +90,10 @@ class Product(Base_Model):
 
     # promational products
     text = models.TextField(null=True,blank=True)
-    discount_price = models.PositiveIntegerField(blank=True,null=True)
+    discount_price = models.PositiveIntegerField('price',blank=True,null=True)
     start_date = models.DateTimeField(blank=True, null=True,default=timezone.now)
     end_date = models.DateTimeField(blank=True, null=True,default=timezone.now)
-    is_promational = models.BooleanField('promotion',default=False,editable=False)
+    is_promational = models.BooleanField('promotion',default=False)
 
     # create a new slug
 
@@ -121,7 +121,15 @@ class Product(Base_Model):
     @property
     def percentageoff(self):
         if self.discount:
-            return  round(self.discount / self.price * 100, 2)
+            discount = (self.price/100)*(self.discount)
+
+            return '{0:.2f}'.format(discount) # to 2 decimal places
+
+            # return self.price-(self.price*self.discount/100)
+            # return  round(self.discount / self.price * 100, 2)
+
+
+        # discounted_price = original_price - (original_price * discount / 100)
     
             # mydis = int(dis)
             

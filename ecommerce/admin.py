@@ -23,23 +23,23 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ProductInline(admin.TabularInline):
     model = Product
-    list_display = ['category','name','quantity','price','is_available']
+    list_display = ['category','name','quantity','price','discount','is_available','is_promational']
     list_filter = ['category','is_available']
     fieldsets = (
         (None, {
-            'fields': ('category','name','quantity', 'price','image','is_available','description',)
+            'fields': ('category','name','quantity', 'price','discount','image','is_available','description',)
         }),
-         ('Add Descount', {
-            'classes': ('collapse',),
-            'fields': ('discount',),
-        }),
+        #  ('Add Descount', {
+        #     'classes': ('collapse',),
+        #     'fields': ('discount',),
+        # }),
         ('MORE IMAGES', {
             'classes': ('collapse',),
             'fields': ('image1', 'image2','image3','image4','image5',),
         }),
         
     )
-    list_editable = ['is_available',]
+    list_editable = ['is_available','is_promational']
 
 
 
@@ -53,25 +53,25 @@ class ProductAdminInline(admin.ModelAdmin):
 
    
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['category','name','quantity','price','is_available','is_promational']
-    list_editable = ['is_available',]
+    list_display = ['category','name','quantity','price','discount','is_available','is_promational']
+    list_editable = ['is_available','discount','is_promational']
     list_filter = ['is_available','is_promational']
 
     fieldsets = (
         (None, {
-            'fields': ('category','name','quantity','price','image','is_available','description',)
+            'fields': ('category','name','quantity','price','discount','image','is_available','description',)
         }),
-        ('Add Descount', {
-            'classes': ('collapse',),
-            'fields': ('discount',),
-        }),
+        # ('Add Descount', {
+        #     'classes': ('collapse',),
+        #     'fields': ('discount',),
+        # }),
         ('MORE IMAGES', {
             'classes': ('collapse',),
             'fields': ('image1', 'image2','image3','image4','image5',),
         }),
          ('Run Promotion', {
             'classes': ('collapse',),
-            'fields': ('text', 'discount_price','start_date','end_date',),
+            'fields': ('text', 'discount_price','start_date','end_date','is_promational'),
         }),
 
     )

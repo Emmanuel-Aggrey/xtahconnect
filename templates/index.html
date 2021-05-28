@@ -26,22 +26,35 @@
 
                                 <!-- {{product.promational_products}} -->
                             <div class="single-slide align-center-left  animation-style-01 bg-1"
-                                style="background-image: url({% static 'images/slider/2.jpg' %})">
+                                style="background-image: url({{product.image.url}})">
+
+                                <!-- style="background-image: url({% static 'images/slider/2.jpg' %})"> -->
+                                <!-- style="background-image: url({{product.image.url}})"> -->
                                 <div class="slider-progress"></div>
 
                                 <div class="slider-content">
-                                    <h5>Sale Offer <span>{{product.discount}}% Off</span></h5>
+                                  
                                     
                                     {% if product.is_promational %}
-                                    <h2>{{product.text|truncatechars:20}}</h2>
-                                    {% else %}
-                                    <h2>{{product.name|truncatechars:20}}</h2>
-                                    {% endif %}
-                                        
-                                    <h3>Starting at <span>GH₵: {{product.price|intcomma}}</span></h3>
+                                    <h2 class="text-light slider_text badge ">{{product.text|truncatechars:20}}</h2>
+                                    <h4 class="text-light slider_text"><del>GH₵: {{product.discount_price}}</del></h4>
+
+                                    <h3><span><span class="badge badge-primary ">GH₵: {{product.discount_price|intcomma}}</span></span></h3>
+                                  
+
                                     <div class="default-btn slide-btn">
                                         <a class="links" href="{{product.get_absolute_url}}">Shop Now</a>
                                     </div>
+                                    {% else %}
+                                    <h2 class="text-light slider_text badge  ">{{product.name|truncatechars:20}}</h2>
+                                   
+                                    <h4 class="text-light slider_text"><del>GH₵: {{product.price}}</del></h4>
+                                    <h3><span><span class="badge badge-primary">GH₵: {{product.discount|intcomma}}</span></span></h3>
+                                   
+                                    <div class="default-btn slide-btn">
+                                        <a class="links" href="{{product.get_absolute_url}}">Shop Now</a>
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                             {% endfor %}
@@ -65,9 +78,9 @@
                             <img src="{{product1.image.url}}" alt="">
                         </a>
                         <div class="price-box">
-                            <span class="product-price">GH₵ {{product1.price|intcomma}}</span>
+                            <span class="product-price">GH₵ {{product1.discount|intcomma}}</span>
                             {% if product1.discount %}
-                            <small class=""><del>GH₵ {{product1.discount|intcomma}}</del></small>
+                            <small class=""><del>GH₵ {{product1.price|intcomma}}</del></small>
 
                             {% endif %}
                         </div><!-- End .price-box -->
@@ -120,11 +133,10 @@
                             <h6 id="product-id">{{product.id}}</h6>
                         </h2>
                         <div class="price-box">
-                            <span class="product-price">GH₵ {{product.price|intcomma}}</span>
-                            {% if product.discount %}
-                            <small class=""><del>GH₵ {{product.discount|intcomma}}</del></small>
+                            <span class="product-price">GH₵ {{product.discount|intcomma}}</span>
+                         
+                            <small class=""><del>GH₵ {{product.price|intcomma}}</del></small>
 
-                            {% endif %}
                         </div><!-- End .price-box -->
                         <div class="product-action">
                             <!-- <a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a> -->
@@ -231,9 +243,9 @@
                                                                     href="{{product.get_absolute_url}}">{{product.name|truncatechars:20}}</a></h4>
                                                             <div class="price-box">
                                                                 <span class="new-price"><b>GH₵:
-                                                                        {{product.price|intcomma}}</b></span>
+                                                                        {{product.discount|intcomma}}</b></span>
                                                                         {% if product.discount %}
-                                                                        <small class=""><del>GH₵ {{product.discount|intcomma}}</del></small>
+                                                                        <small class=""><del>GH₵ {{product.price|intcomma}}</del></small>
                                         
                                                                         {% endif %}
                                                             </div>
@@ -409,11 +421,11 @@
                                 </div><!-- End .product-ratings -->
                             </div><!-- End .product-container -->
                             <div class="price-box">
-                                <span class="product-price">GH₵ {{resent_view_products.price|intcomma}}</span>
-                                {% if product.discount %}
-                                <small class=""><del>GH₵ {{product.discount|intcomma}}</del></small>
+                                <span class="product-price">GH₵ {{resent_view_products.discount|intcomma}}</span>
+                               
+                                <small class=""><del>GH₵ {{product.price|intcomma}}</del></small>
 
-                                {% endif %}
+                           
 
                             </div><!-- End .price-box -->
                         </div><!-- End .product-details -->
@@ -518,9 +530,30 @@
 <style>
 #single_launch{
     content: '';
-  
-
 }
+.slider_text{
+    /* color: white !important; */
+  mix-blend-mode: difference;
+  
+  
+  /* font: 150 5vmin/5vh cookie, cursive !important; */
+  /* text-align: center */
+}
+
+
+    @keyframes yourAnimation{
+    0%{
+        transform: rotate(0) translateX(10px) translateY(12);
+        opacity: .76;
+        
+        }
+       
+}
+
+.links{
+    animation: yourAnimation 1s forwards 2s ease;
+}
+
 </style>
 
 {% endblock %}

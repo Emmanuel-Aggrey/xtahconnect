@@ -31,7 +31,7 @@
                                         <div class="slider-content">
                                             <h5>Sale Offer <span>-20% Off</span> This Week</h5>
                                             <h2>{{product.name}}</h2>
-                                            <h3>Starting at <span>GH₵: {{product.price}}</span></h3>
+                                            <h3>Starting at <span>GH₵: {{product.discount}}</span></h3>
                                             <div class="default-btn slide-btn">
                                                 <a class="links" href="{{product.get_absolute_url}}">Shopping Now </a>
                                             </div>
@@ -105,7 +105,7 @@
                                 <h6 id="product-id">{{product.id}}</h6>
                             </h2>
                             <div class="price-box">
-                                <span class="product-price">GH₵ {{product.price}}</span>
+                                <span class="product-price">GH₵ {{product.discount}}</span>
                             </div><!-- End .price-box -->
                             <div class="product-action">
                                 <a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a>
@@ -209,7 +209,7 @@
                             </div><!-- End .product-ratings -->
                         </div><!-- End .product-container -->
                         <div class="price-box">
-                            <span class="product-price">GH₵ {{resent_view_products.price}}</span>
+                            <span class="product-price">GH₵ {{resent_view_products.discount}}</span>
                         </div><!-- End .price-box -->
                     </div><!-- End .product-details -->
                 </div>

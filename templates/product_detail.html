@@ -34,54 +34,61 @@
     <div class="container">
         <div class="row single-product-area">
             <div class="col-lg-5 col-md-6">
-               <!-- Product Details Left -->
+                <!-- Product Details Left -->
                 <div class="product-details-left">
                     <div class="product-details-images slider-navigation-1">
                         <div class="lg-image">
-                            <a   class="popup-img venobox vbox-item" href="{{product.image.url}}" data-gall="myGallery">
-                                <img id="zoom_01" src='{{product.image.url}}' data-zoom-image="{{product.image.url}}"/>
+                            <a class="popup-img venobox vbox-item" href="{{product.image.url}}" data-gall="myGallery">
+                                <img class="main_image" id="zoom_01" src='{{product.image.url}}'
+                                    data-zoom-image="{{product.image.url}}" />
 
                             </a>
                         </div>
-                        
+
                         {% if product.image1 %}
-                             
+
                         <div class="lg-image">
-                            <a class="popup-img venobox vbox-item" style="height: 100px; width: 100px" href="{{product.image1.url}}" alt="product image"data-gall="myGallery">
-                                <img id="zoom_02" src="{{product.image1.url}}" alt="{{product.name}}" data-zoom-image="{{product.image.url}}">
+                            <a class="popup-img venobox vbox-item" style="height: 100px; width: 100px"
+                                href="{{product.image1.url}}" alt="product image" data-gall="myGallery">
+                                <img id="zoom_02" src="{{product.image1.url}}" alt="{{product.name}}"
+                                    data-zoom-image="{{product.image.url}}">
                             </a>
                         </div>
                         {% endif %}
                         {% if product.image2 %}
                         <div class="lg-image">
                             <a class="popup-img venobox vbox-item" href="{{product.image2.url}}" data-gall="myGallery">
-                                <img id="zoom_03" src="{{product.image2.url}}" alt="{{product.name}}" data-zoom-image="{{product.image.url}}">
+                                <img id="zoom_03" src="{{product.image2.url}}" alt="{{product.name}}"
+                                    data-zoom-image="{{product.image.url}}">
                             </a>
                         </div>
                         {% endif %}
                         {% if product.image3 %}
                         <div class="lg-image">
                             <a class="popup-img venobox vbox-item" href="{{product.image3.url}}" data-gall="myGallery">
-                                <img id="zoom_04" src="{{product.image3.url}}" alt="{{product.name}}" data-zoom-image="{{product.image.url}}">
+                                <img id="zoom_04" src="{{product.image3.url}}" alt="{{product.name}}"
+                                    data-zoom-image="{{product.image.url}}">
                             </a>
                         </div>
                         {% endif %}
                         {% if product.image4 %}
                         <div class="lg-image">
                             <a class="popup-img venobox vbox-item" href="{{product.image4.url}}" data-gall="myGallery">
-                                <img id="zoom_05" src="{{product.image4.url}}" alt="{{product.name}}" data-zoom-image="{{product.image.url}}">
+                                <img id="zoom_05" src="{{product.image4.url}}" alt="{{product.name}}"
+                                    data-zoom-image="{{product.image.url}}">
                             </a>
                         </div>
                         {% endif %}
                         {% if product.image5 %}
                         <div class="lg-image">
                             <a class="popup-img venobox vbox-item" href="{{product.image5.url}}" data-gall="myGallery">
-                                <img id="zoom_06" src="{{product.image5.url}}" alt="{{product.name}}" data-zoom-image="{{product.image.url}}">
+                                <img id="zoom_06" src="{{product.image5.url}}" alt="{{product.name}}"
+                                    data-zoom-image="{{product.image.url}}">
                             </a>
                         </div>
                         {% endif %}
                     </div>
-                    <div class="product-details-thumbs slider-thumbs-1">                                        
+                    <div class="product-details-thumbs slider-thumbs-1">
                         <div class="sm-image"><img src="{{product.image.url}}" alt="product image thumb"></div>
                         {% if product.image1 %}
                         <div class="sm-image"><img src="{{product.image1.url}}" alt="product image thumb"></div>
@@ -106,14 +113,17 @@
             <div class="col-lg-7 col-md-6">
                 <div class="product-details-view-content pt-60">
                     <div class="product-info">
-                      
+
                         <div class="price-box pt-20">
                             <h4> {{product.name}}</h4>
-                            <span class="new-price new-price-2"><b>GH₵ {{product.price|intcomma}}</b></span>
+                            <span class="new-price new-price-2"><b>GH₵ {{product.discount|intcomma}}</b></span> 
+                            <span>
+                                <del class="product-old-price mx-4 my-4">GH¢ {{product.price|intcomma}}</del>
+                            </span>
                         </div>
-                       
-                      
-                        
+
+
+
                         <form id="cart-form" action="#" class="cart-quantity">
                             <div class="quantity">
                                 <label>Quantity</label>
@@ -137,7 +147,7 @@
                                     href="{% url 'orders:checkout' %}">Check Out</a>
                             </li>
                         </ul>
-                       
+
                     </div>
                     <div class="product-desc">
                         <p>
@@ -146,7 +156,7 @@
                         </p>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
@@ -165,7 +175,7 @@
         <h2 class="title">Picked For You</h2>
         <div class="row">
             <!-- section title -->
-           
+
 
             <!-- section title -->
 
@@ -177,21 +187,23 @@
                 <div class="product product-single ">
                     <a href="{{popular.get_absolute_url}}">
                         <div class="product-thumb">
-                            
+
                             {% if popular.discount %}
                             <div class="product-label">
-                                <span style="background-color: #4654A3" class="sale text-light">-{{popular.percentageoff}} %</span>
+                                <span style="background-color: #4654A3"
+                                    class="sale text-light">-{{popular.percentageoff}} %</span>
                             </div>
-                           
+
                             {% endif %}
-                                
-                           
+
+
                             <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
                             <img src="{{popular.image.url}}" alt="">
                         </div>
                         <div class="product-body">
-                            <h3 class="product-price" style="color:#D7782F;font-weight:bold">GH¢ {{popular.price|intcomma}} <del
-                                    class="product-old-price">GH¢ {{popular.discount|intcomma}}</del>
+                            <h3 class="product-price" style="color:#D7782F;font-weight:bold">GH¢
+                                {{popular.discount|intcomma}} <del class="product-old-price">GH¢
+                                    {{popular.price|intcomma}}</del>
                             </h3>
                             <div class="product-rating">
                                 <!-- <i class="fa fa-star"></i>
@@ -292,7 +304,7 @@
 
                 // $('#').text('saved to cart').fadeIn('fast')
                 // $('#alert').fadeIn('fast').text('Saved To Cart').fadeOut(5000).addClass('icon-check')
-                
+
                 // $('#submit').text('Add To Cart')
                 toastSuccess('Saved To Cart')
                 $('#view_cart').fadeIn('fast').fadeOut(30000)
@@ -345,7 +357,7 @@
 
                 // $('#alertnew').fadeIn('fast').text('Saved To Cart').fadeOut(5000)
                 toastSuccess('Saved To Cart')
-              
+
 
                 // $('#').text('saved to cart').fadeIn('fast')
 
@@ -354,7 +366,7 @@
             error: function () {
                 // $('#alertnew').fadeIn('fast').text(' not saved error').fadeOut(5000)
                 toastError('not saved error')
-                
+
 
 
 
@@ -376,7 +388,7 @@
 //     $("#zoom_05").elevateZoom({easing : true});
 //     $("#zoom_06").elevateZoom({easing : true});
 
-  
+
 // }
 
 
@@ -389,26 +401,29 @@
         display: inline
     }
 
-      @media only screen and (max-width: 600px) {
-  .product-single {
-    height: 4% !important;
-  }
-  .owlspace{
-    height: 225px;
-  }
-  .product-details{
-    height: 40px !important; 
-   }
-}
-#quantity{
-    width: 100px;
-}
-html img {
-   
-    all: revert;
-    
-}
+    @media only screen and (max-width: 600px) {
+        .product-single {
+            height: 4% !important;
+        }
 
+        .owlspace {
+            height: 225px;
+        }
+
+        .product-details {
+            height: 40px !important;
+        }
+    }
+
+    #quantity {
+        width: 100px;
+    }
+
+    html img {
+
+        all: revert;
+
+    }
 </style>
 <!-- <script src="{% static 'js/main.js' %}"></script>  -->
 
@@ -444,5 +459,3 @@ html img {
 
 
 {% endblock %}
-
-
