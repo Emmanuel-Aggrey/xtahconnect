@@ -20,7 +20,7 @@
                 <!-- Begin Slider Area -->
                 <div class="col-lg-8 col-md-8">
                     <div class="slider-area">
-                        <div class="slider-active owl-carousel">
+                        <div class="slider-active owl-carousel" >
                             <!-- Begin Single Slide Area -->
                             {% for product in promational_products %}
 
@@ -49,7 +49,7 @@
                                     <h2 class="text-light slider_text badge  ">{{product.name|truncatechars:20}}</h2>
                                    
                                     <h4 class="text-light slider_text"><del>GH₵: {{product.price}}</del></h4>
-                                    <h3><span><span class="badge badge-primary">GH₵: {{product.discount|intcomma}}</span></span></h3>
+                                    <h3><span><span class="badge badge-primary">GH₵: {{product.percentageoff|intcomma}}</span></span></h3>
                                    
                                     <div class="default-btn slide-btn">
                                         <a class="links" href="{{product.get_absolute_url}}">Shop Now</a>
@@ -78,7 +78,7 @@
                             <img src="{{product1.image.url}}" alt="">
                         </a>
                         <div class="price-box">
-                            <span class="product-price">GH₵ {{product1.discount|intcomma}}</span>
+                            <span class="product-price">GH₵ {{product1.percentageoff|intcomma}}</span>
                             {% if product1.discount %}
                             <small class=""><del>GH₵ {{product1.price|intcomma}}</del></small>
 
@@ -133,7 +133,7 @@
                             <h6 id="product-id">{{product.id}}</h6>
                         </h2>
                         <div class="price-box">
-                            <span class="product-price">GH₵ {{product.discount|intcomma}}</span>
+                            <span class="product-price">GH₵ {{product.percentageoff|intcomma}}</span>
                          
                             <small class=""><del>GH₵ {{product.price|intcomma}}</del></small>
 
@@ -243,7 +243,7 @@
                                                                     href="{{product.get_absolute_url}}">{{product.name|truncatechars:20}}</a></h4>
                                                             <div class="price-box">
                                                                 <span class="new-price"><b>GH₵:
-                                                                        {{product.discount|intcomma}}</b></span>
+                                                                        {{product.percentageoff|intcomma}}</b></span>
                                                                         {% if product.discount %}
                                                                         <small class=""><del>GH₵ {{product.price|intcomma}}</del></small>
                                         
@@ -421,7 +421,7 @@
                                 </div><!-- End .product-ratings -->
                             </div><!-- End .product-container -->
                             <div class="price-box">
-                                <span class="product-price">GH₵ {{resent_view_products.discount|intcomma}}</span>
+                                <span class="product-price">GH₵ {{resent_view_products.percentageoff|intcomma}}</span>
                                
                                 <small class=""><del>GH₵ {{product.price|intcomma}}</del></small>
 

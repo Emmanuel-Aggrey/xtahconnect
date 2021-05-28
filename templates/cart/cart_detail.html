@@ -44,11 +44,10 @@ Your Shopping Cart
                         </td>
 
                         
-                        <td class="price text-center"><strong>GH₵ {{product.discount|intcomma}}</strong><br><del
+                        <td class="price text-center"><strong>GH₵ {{product.percentageoff|intcomma}}</strong><br><del
                                 class="font-weak"><small>
-                                    {% if product.discount %}
-                                    GH₵ {{product.discount|intcomma}}
-                                    {% endif %}
+                                  
+                                 
                                 </small></del></td>
 
                         <td class="qty text-center">

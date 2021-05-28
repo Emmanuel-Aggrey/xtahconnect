@@ -116,7 +116,7 @@
 
                         <div class="price-box pt-20">
                             <h4> {{product.name}}</h4>
-                            <span class="new-price new-price-2"><b>GH₵ {{product.discount|intcomma}}</b></span> 
+                            <span class="new-price new-price-2"><b>GH₵ {{product.percentageoff|intcomma}}</b></span> 
                             <span>
                                 <del class="product-old-price mx-4 my-4">GH¢ {{product.price|intcomma}}</del>
                             </span>
@@ -191,7 +191,7 @@
                             {% if popular.discount %}
                             <div class="product-label">
                                 <span style="background-color: #4654A3"
-                                    class="sale text-light">-{{popular.percentageoff}} %</span>
+                                    class="sale text-light">-{{popular.discount}} %</span>
                             </div>
 
                             {% endif %}
@@ -202,7 +202,7 @@
                         </div>
                         <div class="product-body">
                             <h3 class="product-price" style="color:#D7782F;font-weight:bold">GH¢
-                                {{popular.discount|intcomma}} <del class="product-old-price">GH¢
+                                {{popular.percentageoff|intcomma}} <del class="product-old-price">GH¢
                                     {{popular.price|intcomma}}</del>
                             </h3>
                             <div class="product-rating">

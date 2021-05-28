@@ -66,8 +66,8 @@ class Product(Base_Model):
     name = models.TextField()
     quantity = models.IntegerField(default=1,blank=True)
     image = models.ImageField(upload_to='images/%Y/%m/%d/')
-    price = models.DecimalField(decimal_places=2, max_digits=20)
-    discount = models.DecimalField('discount price',decimal_places=2, max_digits=20)
+    price = models.DecimalField('original price',decimal_places=2, max_digits=20)
+    discount = models.PositiveIntegerField('Percentage off',null=True,blank=True,default=0,help_text='enter percentage value eg 5 not 5%')
     description = RichTextField(blank=True, null=True)
     is_available = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, editable=False, null=True, blank=True,max_length=1000)
@@ -122,8 +122,10 @@ class Product(Base_Model):
     def percentageoff(self):
         if self.discount:
             discount = (self.price/100)*(self.discount)
-
+           
             return '{0:.2f}'.format(discount) # to 2 decimal places
+        else:
+            return self.price
 
             # return self.price-(self.price*self.discount/100)
             # return  round(self.discount / self.price * 100, 2)
