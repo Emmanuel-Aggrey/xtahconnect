@@ -69,10 +69,10 @@ class ProductAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
             'fields': ('image1', 'image2','image3','image4','image5',),
         }),
-        #  ('Run Promotion', {
-        #     'classes': ('collapse',),
-        #     'fields': ('text', 'discount_price','start_date','end_date','is_promational'),
-        # }),
+         ('Run Promotion', {
+            'classes': ('collapse',),
+            'fields': ('start_date','end_date','is_promational'),
+        }),
 
     )
 

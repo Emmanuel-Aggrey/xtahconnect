@@ -36,12 +36,11 @@
                                   
                                     
                                     {% if product.is_promational %}
-                                    <h2 class="text-light slider_text badge ">{{product.text|truncatechars:20}}</h2>
-                                    <h4 class="text-light slider_text"><del>GH₵: {{product.discount_price}}</del></h4>
-
-                                    <h3><span><span class="badge badge-primary ">GH₵: {{product.discount_price|intcomma}}</span></span></h3>
-                                  
-
+                                    <h2 class="text-light slider_text badge  ">{{product.name|truncatechars:20}}</h2>
+                                   
+                                    <h4 class="text-light slider_text"><del>GH₵: {{product.price}}</del></h4>
+                                    <h3><span><span class="badge badge-primary">GH₵: {{product.percentageoff|intcomma}}</span></span></h3>
+                                   
                                     <div class="default-btn slide-btn">
                                         <a class="links" href="{{product.get_absolute_url}}">Shop Now</a>
                                     </div>
