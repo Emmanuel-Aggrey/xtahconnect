@@ -23,7 +23,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ProductInline(admin.TabularInline):
     model = Product
-    list_display = ['category','name','quantity','price','discount','percentageoff','is_available','is_promational']
+    list_display = ['category','name','quantity','price','discount','discount_price','percentageoff','is_available','is_promational']
     list_filter = ['category','is_available']
     fieldsets = (
         (None, {
@@ -53,13 +53,13 @@ class ProductAdminInline(admin.ModelAdmin):
 
    
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['category','name','quantity','price','discount','percentageoff','is_available','is_promational']
+    list_display = ['category','name','quantity','price','discount','discount_price','percentageoff','is_available','is_promational']
     list_editable = ['is_available','discount','is_promational']
     list_filter = ['is_available','is_promational']
 
     fieldsets = (
         (None, {
-            'fields': ('category','name','quantity','price','discount','percentageoff','image','is_available','description',)
+            'fields': ('category','name','quantity','price','discount','image','is_available','description',)
         }),
         # ('Add Descount', {
         #     'classes': ('collapse',),

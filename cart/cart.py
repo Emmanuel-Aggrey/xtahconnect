@@ -16,8 +16,8 @@ class Cart(object):
         product_id = str(product.id)
         if product_id not in self.cart:
 
-            final_price = (product.price/100)*(product.discount)
-            self.cart[product_id] = {'quantity': 0, 'price': str(final_price)}
+            discount = (product.price*product.discount)/100
+            self.cart[product_id] = {'quantity': 0, 'price': str(product.price-discount)}
         if update_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:

@@ -63,7 +63,7 @@ class Product(Base_Model):
     price = models.DecimalField(
         'original price', decimal_places=2, max_digits=20)
     discount = models.PositiveIntegerField(
-        'discount', null=True, blank=True, default=0, help_text='enter percentage value eg 5 not 5%')
+        'discount %', null=True, blank=True, default=0, help_text='enter percentage value eg 5 not 5%')
     description = RichTextField(blank=True, null=True)
     is_available = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, editable=False,
@@ -112,12 +112,24 @@ class Product(Base_Model):
     def promotional_products(self):
         return Product.objects.filter(is_promational=True, date_updated__range=[self.start_date, self.end_date])
 
+
+
+    @property
+    def discount_price(self):
+        if self.discount:
+            discount = (self.price * self.discount)/100
+            # to 2 decimal places
+            return discount
+        else:
+            return 'no discount'
+
     @property
     def percentageoff(self):
         if self.discount:
             discount = (self.price * self.discount)/100
+            discount =self.price - discount
             # to 2 decimal places
-            return '{0:.2f}'.format(self.price - discount)
+            return '{0:.2f}'.format(discount)
         else:
             return self.price
 
