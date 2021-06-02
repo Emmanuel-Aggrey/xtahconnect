@@ -20,11 +20,11 @@
                 <!-- Begin Slider Area -->
                 <div class="col-lg-8 col-md-8">
                     <div class="slider-area">
-                        <div class="slider-active owl-carousel" >
+                        <div class="slider-active owl-carousel">
                             <!-- Begin Single Slide Area -->
                             {% for product in promational_products %}
 
-                                <!-- {{product.promational_products}} -->
+                            <!-- {{product.promational_products}} -->
                             <div class="single-slide align-center-left  animation-style-01 bg-1"
                                 style="background-image: url({{product.image.url}})">
 
@@ -33,23 +33,26 @@
                                 <div class="slider-progress"></div>
 
                                 <div class="slider-content">
-                                  
-                                    
+
+
                                     {% if product.is_promational %}
-                                    <h2 class="text-light slider_text badge  ">{{product.name|truncatechars:20}}</h2>
-                                   
-                                    <h4 class="text-light slider_text"><del>GH₵: {{product.price}}</del></h4>
-                                    <h3><span><span class="badge badge-primary">GH₵: {{product.percentageoff|intcomma}}</span></span></h3>
-                                   
+                                    <h2 class="text-light badge  ">{{product.name|truncatechars:20}}</h2>
+
+                               
+                                    <h3><span><span class="badge badge-primary">GH₵:
+                                                {{product.percentageoff|intcomma}}</span></span></h3>
+                                                <h4 class="text-light"><del>GH₵: {{product.price}}</del></h4>
                                     <div class="default-btn slide-btn">
                                         <a class="links" href="{{product.get_absolute_url}}">Shop Now</a>
                                     </div>
                                     {% else %}
-                                    <h2 class="text-light slider_text badge  ">{{product.name|truncatechars:20}}</h2>
+                                    <h2 class="text-light badge">{{product.name|truncatechars:20}}</h2>
+         
                                    
-                                    <h4 class="text-light slider_text"><del>GH₵: {{product.price}}</del></h4>
-                                    <h3><span><span class="badge badge-primary">GH₵: {{product.percentageoff|intcomma}}</span></span></h3>
-                                   
+                                    <h3><span><span class="badge badge-primary">GH₵:
+                                                {{product.percentageoff|intcomma}}</span></span></h3>
+                                                <h4 class="text-light"><del>GH₵: {{product.price}}</del></h4>
+
                                     <div class="default-btn slide-btn">
                                         <a class="links" href="{{product.get_absolute_url}}">Shop Now</a>
                                     </div>
@@ -63,16 +66,16 @@
                     </div>
                 </div>
 
-               
+
 
                 <!-- Slider Area End Here -->
                 <!-- Begin Li Banner Area -->
                 <div class="col-lg-4 col-md-4 text-center  bannerpc">
                     <h4>Latest Package</h4>
                     <div class="li-banner">
-                        {% for product1 in latest_items|slice:'0:1'  %}
-                          
-                       
+                        {% for product1 in latest_items|slice:'0:1' %}
+
+
                         <a href="{{product1.get_absolute_url}}">
                             <img src="{{product1.image.url}}" alt="">
                         </a>
@@ -128,12 +131,13 @@
                         </div><!-- End .product-container -->
 
                         <h2 class="product-title">
-                            <a id="product-name" href="{{product.get_absolute_url}}">{{product.name|truncatechars:20}}</a>
+                            <a id="product-name"
+                                href="{{product.get_absolute_url}}">{{product.name|truncatechars:20}}</a>
                             <h6 id="product-id">{{product.id}}</h6>
                         </h2>
                         <div class="price-box">
                             <span class="product-price">GH₵ {{product.percentageoff|intcomma}}</span>
-                         
+
                             <small class=""><del>GH₵ {{product.price|intcomma}}</del></small>
 
                         </div><!-- End .price-box -->
@@ -208,7 +212,7 @@
 
                     <!-- Li's Banner Area End Here -->
                     <!-- shop-top-bar start -->
-                   
+
                     <!-- shop-top-bar end -->
                     <!-- shop-products-wrapper start -->
                     <div class="shop-products-wrapper">
@@ -224,7 +228,8 @@
                                             <div class="single-product-wrap">
                                                 <div class="product-image">
                                                     <a href="{{product.get_absolute_url}}">
-                                                        <img src="{{product.image.url}}" alt="{{product.name|truncatechars:20}}">
+                                                        <img src="{{product.image.url}}"
+                                                            alt="{{product.name|truncatechars:20}}">
                                                     </a>
                                                     <!-- <span class="sticker">New</span> -->
                                                 </div>
@@ -235,18 +240,20 @@
                                                                 <a
                                                                     href="{% url 'categories' product.category.id  %}">{{product.category.name|truncatechars:20}}</a>
                                                             </h5>
-                                                           
+
                                                         </div>
                                                         <div class="text-center">
                                                             <h4><a class="product_name"
-                                                                    href="{{product.get_absolute_url}}">{{product.name|truncatechars:20}}</a></h4>
+                                                                    href="{{product.get_absolute_url}}">{{product.name|truncatechars:20}}</a>
+                                                            </h4>
                                                             <div class="price-box">
                                                                 <span class="new-price"><b>GH₵:
                                                                         {{product.percentageoff|intcomma}}</b></span>
-                                                                        {% if product.discount %}
-                                                                        <small class=""><del>GH₵ {{product.price|intcomma}}</del></small>
-                                        
-                                                                        {% endif %}
+                                                                {% if product.discount %}
+                                                                <small class=""><del>GH₵
+                                                                        {{product.price|intcomma}}</del></small>
+
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                     </div> <br> <br>
@@ -257,7 +264,7 @@
                                                                 style="background-color: #4654A3;color: white;"
                                                                 class=""><i class="icon-bag"></i>Add To
                                                                 Cart </button>
-                                                            
+
 
                                                         </form>
 
@@ -279,9 +286,9 @@
 
 
 
-                            
-                          
-                        
+
+
+
                         </div>
                     </div>
 
@@ -351,35 +358,35 @@
 
     <!--  start of .promo-section-->
 
-      
-   <div class="slider-active owl-carousel">
-    {% for launching in launching %}
 
-    <div class="promo-section" style="background-image: url({{launching.image.url}})">
-        <div class="container">
-            <!-- <h3>the perfect gift</h3> -->
-            <h4>
-            {% if launching.name %}
-                {{launching.name}}
-            {% endif %}
+    <div class="slider-active owl-carousel">
+        {% for launching in launching %}
+
+        <div class="promo-section" style="background-image: url({{launching.image.url}})">
+            <div class="container">
+                <!-- <h3>the perfect gift</h3> -->
+                <h4>
+                    {% if launching.name %}
+                    {{launching.name}}
+                    {% endif %}
                 </h4>
-            <!-- <a href="#" class="btn btn-primary">Shop Now</a> -->
-        </div><!-- End .container -->
+                <!-- <a href="#" class="btn btn-primary">Shop Now</a> -->
+            </div><!-- End .container -->
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
     <!-- End .promo-section -->
-   
 
 
-   
+
+
     <div class="partners-container">
         <div class="container-fluid">
             {% for launching in launching %}
-              
-           
+
+
             <div class="owl-carousel owl-theme   animation-style-01 bg-1">
-               
+
                 <a href="#" class="partner">
                     <img src="{{launching.image.url}}" alt="{{launching.name}}">
                 </a>
@@ -411,7 +418,8 @@
                         </figure>
                         <div class="product-details">
                             <h2 class="product-title">
-                                <a href="{{resent_view_products.get_absolute_url}}">{{resent_view_products.name|truncatechars:20}}</a>
+                                <a
+                                    href="{{resent_view_products.get_absolute_url}}">{{resent_view_products.name|truncatechars:20}}</a>
                             </h2>
                             <div class="ratings-container">
                                 <div class="product-ratings">
@@ -421,10 +429,10 @@
                             </div><!-- End .product-container -->
                             <div class="price-box">
                                 <span class="product-price">GH₵ {{resent_view_products.percentageoff|intcomma}}</span>
-                               
+
                                 <small class=""><del>GH₵ {{product.price|intcomma}}</del></small>
 
-                           
+
 
                             </div><!-- End .price-box -->
                         </div><!-- End .product-details -->
@@ -527,32 +535,44 @@
 </script>
 
 <style>
-#single_launch{
-    content: '';
-}
-.slider_text{
-    /* color: white !important; */
-  mix-blend-mode: difference;
+    #single_launch {
+        content: '';
+    }
+
   
-  
-  /* font: 150 5vmin/5vh cookie, cursive !important; */
-  /* text-align: center */
-}
 
 
-    @keyframes yourAnimation{
-    0%{
-        transform: rotate(0) translateX(10px) translateY(12);
-        opacity: .76;
-        
+    @keyframes yourAnimation {
+        0% {
+            transform: rotate(0) translateX(10px) translateY(12);
+            opacity: .76;
+
         }
-       
-}
 
-.links{
-    animation: yourAnimation 1s forwards 2s ease;
-}
+    }
 
+    .links {
+        animation: yourAnimation 1s forwards 2s ease;
+    }
+
+
+    .slider-with-banner img {
+        vertical-align: middle;
+    }
+
+    .slider-with-banner .slider-content {
+        position: absolute;
+        bottom: 0;
+        background: rgb(0, 0, 0);
+        /* Fallback color */
+        background: rgba(0, 0, 0, 0.5);
+        /* Black background with 0.5 opacity */
+        color: #f1f1f1;
+        width: 100%;
+        padding: 10px;
+    }
 </style>
+
+
 
 {% endblock %}
