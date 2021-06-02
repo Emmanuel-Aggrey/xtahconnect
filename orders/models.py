@@ -36,16 +36,22 @@ class Region(Base_Model):
     def __str__(self):
         return self.name
 
+    class  Meta:
+        ordering = ['name']
+
 class City(Base_Model):
     region=models.ForeignKey(Region,on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=200)
+
+  
 
     def __str__(self):
         return f"{self.name} in {self.region}"
     
     class Meta:
         verbose_name = 'City'
-        verbose_name_plural= 'Cites'
+        verbose_name_plural= 'Cities'
+        ordering = ['name']
 
 
 class Delevery_Status(Base_Model):
