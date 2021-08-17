@@ -297,10 +297,10 @@
                             </li>
                             {% endif %}
                             {% if user.is_staff %}
-                            <li>
+                            <!-- <li>
                                 <a class="btn pulse nav-item" href="{% url 'create_form' %}">Create</a>
 
-                            </li>
+                            </li> -->
                             {% elif user.is_authenticated %}
                             <li>
                                 <a title="orders placed" class="btn nav-item" href="{% url 'orders:my_order_detail' %}">My Orders</a>
@@ -610,8 +610,8 @@
                                 <div class="qty-input">
                                     <span class="text-uppercase">QTY: </span>
                                     <input class="input" type="number" id="quantity" required>
-                                    <button id="add-to-cart" class="primary-btn add-to-cart my-4 mb-4"
-                                        style="background-color: #F95B3D;"><i class="fa fa-shopping-cart"></i> Add to
+                                    <button id="add-to-cart" class="primary-btn add-to-cart my-4 mb-4" 
+                                        style="background-color: #F95B3D;"><i class="fa fa-shopping-cart"></i> Add to to
                                         Cart</button>
 
                                 </div>
@@ -776,7 +776,8 @@ body {
         // var department = '{{department.id}}'
 
         // console.log('department = ',department,'url = ',url)
-        url = '/add/' + product_id + '/'
+        url = `/add/${product_id}/`
+        // url = '/add/' + product_id + '/'
 
 
 
@@ -796,7 +797,7 @@ body {
             },
             beforeSend: function () {
                 // $(".cart_saved").text('saving to cart...').addClass('alert')
-                toastSuccess('Saving To Cart...')
+                // toastSuccess('Saving To Cart...')
                 // $('#addtocart').text('adding to cart..')
             },
 
